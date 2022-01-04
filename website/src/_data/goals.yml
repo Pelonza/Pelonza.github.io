@@ -1,0 +1,26 @@
+- name: Learning Assessment 1
+  goals:
+    - Represent a problem using a regular model of computation.
+    - Prove closure and algorithmic properties of the regular languages.
+    - Prove the irregularity of a problem.
+    - Represent a problem using a context-free model of computation.
+    - Represent a problem using a Turing machine.
+    - Prove closure and algorithmic properties of Turing machines.
+
+- name: Learning Assessment 2
+  goals:
+    - Prove that a problem is in a particular time complexity class.
+    - Prove that a problem is NP-complete by way of a reduction.
+    - Explain the practical ramifications of the P vs. NP problem.
+    - Prove that a problem is in a particular space complexity class.
+    - Describe the essential charactistics of problems belonging to each of the major complexity classes.
+    - Describe the practical relationships between various time and space complexity classes.
+
+- name: Learning Assessment 3
+  goals:
+    - Prove the decidability of a given machine analysis algorithm.
+    - Prove the undecidability of a given problem by way of a reduction.
+    - Prove the undecidability of a given problem through Rice's Theorem.
+    - Describe the practical ramifications of computational undecidability.
+    - Describe practical problem solving strategies for dealing with intractable problems.
+    - Design and reason about an approximation algorithm to an optimization problem.

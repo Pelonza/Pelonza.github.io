@@ -1,0 +1,16 @@
+I"#
+<h1 id="problem-all-nfas">Problem: All NFAs</h1>
+<p>An <em>all</em>-NFA <span class="math inline">\(M\)</span> is a 5-tuple <span class="math inline">\((Q, \Sigma, \delta, q_0, F)\)</span> that behaves like an NFA except that it accepts <span class="math inline">\(x \in \Sigma^*\)</span> if <em>every</em> possible state that <span class="math inline">\(M\)</span> could be in after reading input <span class="math inline">\(x\)</span> is a state from <span class="math inline">\(F\)</span>. Note, in contrast, that an ordinary NFA accepts a string if <em>some</em> state among these possible states is an accept state. Prove the following claim:</p>
+<div class="proof">
+<p><strong>Claim</strong>: all-NFAs recognize the class of regular languages.</p>
+</div>
+<ol type="1">
+<li><strong>Understand the Definitions</strong>: create a small, toy all-NFA <span class="math inline">\(M\)</span> that exhibits the essence of the all-NFA construction and give a pair of strings, one of which <span class="math inline">\(M\)</span> accepts and the other <span class="math inline">\(M\)</span> rejects. Give the execution traces of these strings on <span class="math inline">\(M\)</span>.</li>
+<li><strong>Assess the Claim</strong>: read the claim. Identify what you must do (<em>i.e.</em>, construct) in order to prove this claim.</li>
+<li><strong>Explore the Design Space</strong>: use your toy all-NFA <span class="math inline">\(M\)</span> and convert it to an equivalent NFA. Likewise, create a small, toy NFA <span class="math inline">\(N\)</span> and convert it into an equivalent all-NFA. Perform your conversion with an eye towards <em>generalizing the conversion process</em>. In other words, you should try to work mechanically on the structure of the machines rather than with knowledge of the particulars of their languages.</li>
+<li><strong>State Essence</strong>: your previous exploration should convince you that the claim is true. In a sentence or two, identify the “essence” as to why the claim is true. Try to appeal to the behaviors of NFAs/DFAs versus all-NFAs. Work through more examples if you are still unsure of the essence of this claim.</li>
+<li><strong>Develop a Proof Strategy</strong>: based on this essence, describe at a high-level plan how to (a) convert an all-NFA into a DFA/NFA and (b) convert an DFA/NFA into an all-NFA.</li>
+<li><strong>Start with the Easy Case</strong>: next, formally prove the “easy direction” of the claim.</li>
+<li><strong>Finish It Off</strong>: finally, finish the proof by proving the “hard direction” of the claim.</li>
+</ol>
+:ET

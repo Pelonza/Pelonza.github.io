@@ -1,0 +1,20 @@
+I"�
+<h1 id="the-cook-levine-theorem">The Cook-Levine Theorem</h1>
+<p>Pragmatically, we show that problems are NP-complete by reduction from a known NP-complete problem. If we know that a problem B is (poly-time) reducible from a problem A (<span class="math inline">\(A \leq_p B\)</span>), then we know that <span class="math inline">\(B\)</span> is as hard as <span class="math inline">\(A\)</span>. Furthermore, if <span class="math inline">\(A\)</span> is NP-complete, then we know that <span class="math inline">\(B\)</span> is reducible from any other problem <span class="math inline">\(X\)</span> in NP by first reducing <span class="math inline">\(X\)</span> to <span class="math inline">\(A\)</span> and then <span class="math inline">\(A\)</span> to <span class="math inline">\(B\)</span>.</p>
+<p>However, how do we establish the first NP-complete problem? This is the focus of the Cook-Levine theorem which claims that:</p>
+<p><span class="math display">\[
+\mathsf{SAT} = \\{ \phi \mid \text{ $\phi$ is a satisfiable boolean formula } \\}.
+\]</span></p>
+<p>is NP-complete.</p>
+<p>The proof is fundamentally easy to understand—circuits are ultimately boolean formula and we can thus use such formulae to represent general computation—but it is extremely detail-oriented and touches on all aspects of the formal definition of Turing machine we discussed prior to the first exam. Hence we will spend a substantial amount of time ensuring that we understand the proof in depth, so that we have a clear foundation to work from in understanding NP-completeness.</p>
+<ul>
+<li>Sipser 7.4 from “The Cook-Levine Theorem”.</li>
+</ul>
+<hr />
+<p><strong>Reading Problem (Windows)</strong></p>
+<p>The presentation of Cook-Levine in Sipser relies heavily on the notion of “window”.</p>
+<ol type="1">
+<li>Windows are used in the <span class="math inline">\(\phi_{\text{move}}\)</span> formula of the proof. What does this boolean formula capture?</li>
+<li>Suppose that we are translating the Turing machine <span class="math inline">\(M_1\)</span> from figure 3.10 of the text (pp. 173 in the third edition) to a boolean formula according to Cook-Levine. Suppose that the current configuration <span class="math inline">\(C_i\)</span> under consideration is <span class="math inline">\(&quot;xxq_{3}10\\#xx00&quot;\)</span>. (Recall that a configuration represents the current contents of the tape, the current state, and the position of the tape head.) Describe (a) a <em>legal</em> window involving configurations <span class="math inline">\(C_i\)</span> and the next configuration <span class="math inline">\(C_{i+1}\)</span> and a (b) <em>illegal</em> window involving these configurations.</li>
+</ol>
+:ET

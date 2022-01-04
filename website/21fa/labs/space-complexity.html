@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Space Complexity</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bulma/0.7.5/css/bulma.min.css">
+  <link rel="stylesheet" href="/csc341/css/style.css">
+  <link rel="stylesheet" href="/csc341/css/syntax.css">
+  <link rel="stylesheet" href="/csc341/css/syntax-drracket.css">
+  <script defer src="https://use.fontawesome.com/releases/v5.3.1/js/all.js"></script>
+  
+  <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+  <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+  
+  
+  
+</head>
+
+  </head>
+  <body>
+    <nav class="navbar is-primary" role="navigation" aria-label="main navigation">
+  <div class="navbar-brand">
+    <a class="navbar-item" href="/csc341/">
+      <img src="/csc341/img/laurel-white.png">
+      &nbsp;
+      CSC 341 (21fa)
+    </a>
+
+    <a role="button" class="navbar-burger burger" aria-label="menu" aria-expanded="false" data-target="navbarBasicExample">
+      <span aria-hidden="true"></span>
+      <span aria-hidden="true"></span>
+      <span aria-hidden="true"></span>
+    </a>
+  </div>
+
+  <div id="navbarBasicExample" class="navbar-menu">
+    <div class="navbar-start">
+      <a class="navbar-item" href="/csc341/syllabus">
+        Syllabus
+      </a>
+      <a class="navbar-item" href="/csc341/resources">
+        Resources
+      </a>
+      
+      <a class="navbar-item" href="https://teams.microsoft.com/l/team/19%3avJm8Wpx7VaDe72Q53lhFS8hKbE8ZqBMHkz-HLvwbzag1%40thread.tacv2/conversations?groupId=621c250a-ec62-4c30-afbd-0e3b7efa7606&tenantId=524f9e3e-faca-4f64-b3ec-adb2baee8807
+">Teams</a>
+      
+      
+      <a class="navbar-item" href="https://www.gradescope.com/courses/299977
+">Gradescope</a>
+      
+      <a class="navbar-item" href="/csc341/editor">
+        Editor
+      </a>
+    </div>
+  </div>
+</nav>
+
+<!-- Adapted from: https://bulma.io/documentation/components/navbar/ -->
+<script>
+  document.addEventListener('DOMContentLoaded', () => {
+
+    // Get all "navbar-burger" elements
+    const $navbarBurgers = Array.prototype.slice.call(document.querySelectorAll('.navbar-burger'), 0);
+
+    // Check if there are any navbar burgers
+    if ($navbarBurgers.length > 0) {
+
+      // Add a click event on each of them
+      $navbarBurgers.forEach( el => {
+        el.addEventListener('click', () => {
+
+          // Get the target from the "data-target" attribute
+          const target = el.dataset.target;
+          const $target = document.getElementById(target);
+
+          // Toggle the "is-active" class on both the "navbar-burger" and the "navbar-menu"
+          el.classList.toggle('is-active');
+          $target.classList.toggle('is-active');
+
+        });
+      });
+    }
+
+  });
+</script>
+
+    <section class="section">
+      <div class="container">
+        <h1 class="title">
+          CSC 341 (Fall 2021)
+        </h1>
+        <h1 class="subtitle">
+          
+            Lab: Space Complexity
+          
+        </h1>
+      </div>
+    </section>
+    <section class="content">
+      <div class="container">
+        
+        <h1 id="problem-1-developing-the-strategy">Problem 1: Developing the Strategy</h1>
+<p>Review the proof that <span class="math inline">\(\mathsf{SAT}\)</span> is in <span class="math inline">\(\text{PSPACE}\)</span> (Example 8.3). In a sentence or two, describe how the construction captures the exponential nature of the search space using a polynomial amount of memory.</p>
+<h1 id="problem-2-space">Problem 2: Space!</h1>
+<p>Next prove that the following problems are in <span class="math inline">\(\text{PSPACE}\)</span>:</p>
+<ol type="a">
+<li><span class="math inline">\(\mathsf{CLIQUE} = \{\, (G, k) \mid \text{\( G \) has a \( k \)-clique} \,\}\)</span>.</li>
+<li><span class="math inline">\(\mathsf{SUBSET} = \{\, (S, t) \mid \text{\( S \) is a set, \( t \in \mathbb{N} \), and there exists a \( S^* \subseteq S \) such that \( \sum_{x \in S^*} x = t \).} \,\}\)</span>.</li>
+</ol>
+<h1 id="problem-3-generalization">Problem 3: Generalization</h1>
+<p>Now that you’ve had some experience thinking about how <span class="math inline">\(\text{PSPACE}\)</span> algorithms work, let’s generalize our constructions. At this point, you should observe that there seems to be a pattern for every <span class="math inline">\(\text{NP}\)</span> problem and realizing it as a <span class="math inline">\(\text{PSPACE}\)</span> algorithm. This pattern is similar to the verifier-to-NTM direction of the proof of Theorem 7.20 (pp. 294).</p>
+<p>Adapt this direction of the proof to formally prove that <span class="math inline">\(\text{NP} \subseteq \text{PSPACE}\)</span>.</p>
+<p>(<em>Hint</em>: the definition of <span class="math inline">\(\text{NP}\)</span> says that you start with a verifier for the problem. You must then build a polynomial space algorithm for the problem using this verifier. What do you use your polynomial space to “remember?”)</p>
+
+      </div>
+    </section>
+    <footer class="footer is-size-7 has-text-centered">
+  <a rel="license" href="http://creativecommons.org/licenses/by-sa/4.0/"><img alt="Creative Commons License" style="border-width:0" src="https://i.creativecommons.org/l/by-sa/4.0/80x15.png" /></a><br />This work is licensed under a <a rel="license" href="http://creativecommons.org/licenses/by-sa/4.0/">Creative Commons Attribution-ShareAlike 4.0 International License</a>.<br/>
+  Made with <a href="https://bulma.io">Bulma</a>, <a href="https://jekyllrb.com">Jekyll</a>, <a href="https://www.brailleinstitute.org/freefont">Atkinson Hyperlegible</a>, and <a href="https://github.com/JetBrains/JetBrainsMono">JetBrains Mono</a>.
+</footer>
+
+  </body>
+</html>

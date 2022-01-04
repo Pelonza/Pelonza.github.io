@@ -1,0 +1,36 @@
+I"�<h1 id="optional-textbooks">Optional Textbooks</h1>
+<ul>
+<li><a href="https://courses.csail.mit.edu/6.042/spring18/mcs.pdf">Mathematics for Computer Science, Lehman, Leighton, and Meyer</a></li>
+<li><a href="http://www.cs.carleton.edu/faculty/dln/book/">Discrete Mathematics for Computer Science, Liben-Nowell</a></li>
+<li><a href="https://www.amazon.com/How-Prove-Structured-Approach-2nd/dp/0521675995">How to Prove It: A Structured Approach, Velleman</a></li>
+<li><a href="https://www.amazon.com/How-Solve-Mathematical-Princeton-Science/dp/069116407X">How to Solve It: A New Aspect of Mathematical Method, Polya and Conway</a></li>
+</ul>
+<h1 id="latex">LaTeX</h1>
+<ul>
+<li>LaTeX Distributions
+<ul>
+<li><a href="https://www.overleaf.com/">Overleaf (Online LaTeX IDE)</a></li>
+<li><a href="https://www.tug.org/texlive/">TexLive</a></li>
+<li><a href="http://www.tug.org/mactex/">MacTeX (Mac)</a></li>
+<li><a href="https://miktex.org/">MiKTeX (Windows)</a></li>
+</ul></li>
+<li>General References
+<ul>
+<li><a href="https://www.overleaf.com/learn">Overleaf knowledge base (LaTeX tutorials and references)</a></li>
+<li><a href="https://en.wikibooks.org/wiki/LaTeX">LaTeX @ Wikibooks</a></li>
+</ul></li>
+<li>LaTeX Packages
+<ul>
+<li><a href="http://www.texample.net/tikz/">TiKZ (Graphs)</a></li>
+<li><a href="http://cristal.inria.fr/~remy/latex/">Mathpartir (Inference Rules)</a></li>
+</ul></li>
+<li>Additional LaTeX Tools
+<ul>
+<li><a href="https://mg.readthedocs.io/latexmk.html">Latexmk (LaTeX “Make” script)</a></li>
+<li><a href="https://github.com/aclements/latexrun">Latexrun (command-line wrapper)</a></li>
+<li><a href="http://detexify.kirelabs.org/classify.html">Detexify (symbol reverse-lookup)</a></li>
+<li><a href="http://latex2png.com/">latex2png (to use equations, <em>e.g.</em>, in PowerPoint)</a></li>
+<li><a href="https://pandoc.org/">Pandoc (conversion between <em>many</em> document formats)</a></li>
+</ul></li>
+</ul>
+:ET

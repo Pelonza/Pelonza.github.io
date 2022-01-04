@@ -1,0 +1,16 @@
+I"â<p><span class="math inline">\(\newcommand{\NP}{\mathsf{NP}}\)</span></p>
+<h1 id="problem-graph-reductions">Problem: Graph Reductions</h1>
+<p>Here is an additional NP-completeness problem, this time concerning graph problems for you to consider:</p>
+<hr />
+<p>Define the following problems:</p>
+<p><span class="math display">\[\begin{align}
+\mathsf{CLIQUE} = \{ \desc{G, k} \mid \text{ $G$ has a $k$-clique } \} \\
+\mathsf{COVER}  = \{ \desc{G, k} \mid \text{ $G$ has a $k$-vertex cover } \}
+\end{align}\]</span></p>
+<p>A <span class="math inline">\(k\)</span>-clique is a <span class="math inline">\(k\)</span>-complete subgraph of <span class="math inline">\(G\)</span>. A <span class="math inline">\(k\)</span>-vertex cover is a <span class="math inline">\(k\)</span>-sized subset of vertices of <span class="math inline">\(G\)</span> that cover (<em>i.e.</em>, are  with) all the edges of <span class="math inline">\(G\)</span>. Assume that  is <span class="math inline">\(\NP\)</span>-complete. Show that  is <span class="math inline">\(\NP\)</span>-complete.</p>
+<hr />
+<p>Proceed similarly to the previous lab:</p>
+<ol type="1">
+<li>First write at least two examples of <span class="math inline">\(\mathsf{COVER}\)</span> instances</li>
+</ol>
+:ET

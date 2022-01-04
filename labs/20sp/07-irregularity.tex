@@ -1,0 +1,64 @@
+\documentclass[11pt]{book}
+
+\setcounter{chapter}{7}
+\newcommand{\docclass}{CSC 341 (20sp)}
+\newcommand{\doctitle}{Irregularity}
+\newcommand{\docauthor}{Peter-Michael Osera}
+
+\usepackage{reading}
+
+\begin{document}
+
+\begin{center}
+  (Turn-in problems are indicated with a dagger \turninproblem{}.)
+\end{center}
+
+\begin{center}
+  \large\textbf{{\doctitle}}
+\end{center}
+
+\vspace{2em}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{problem}{Pumps}
+
+\noindent (a) Revisit the first proof of irregularity in the book (example 1.73, pp. 80, \( B = \{ 0^n 1^n \mid n ≥ 0 \} \) is irregular).
+For each of the variables introduced in the proof, say whether that variable is \emph{held arbitrary} or \emph{chosen} to be a particular value.
+\begin{enumerate}
+  \item \( p \).
+  \item \( s \).
+  \item \( x \), \( y \), and \( z \).
+  \item \( i \).
+\end{enumerate}
+
+\noindent (b) In the proof, Sipser chooses the string \( 0^p 1 ^p \) to analyze.
+By the conditions of the pumping lemma, draw in the diagram of the string where \( x \), \( y \), and \( z \) must lie.
+\vspace{0.5in}
+\[
+  \underbrace{0\;\cdots\;0}_{p}\;\underbrace{1\;\cdots\;1}_{p}
+\]
+\vspace{0.5in}
+
+\noindent (c) There are many choices of strings that satisfy the conditions of the pumping lemma, but not all of them lead to contradictions.
+For each of the candidate strings below, determine whether (i) the string satisifies the conditions of the pumping lemma, and if so, (ii) what does the pumping lemma say about the shape of \( x \), \( y \), and \( z \), and (iii) whether we can complete a pumping lemma proof using this string.
+\begin{enumerate}
+  \item \( 0^5 1^5 \).
+  \item \( 0^{2p} 1^{2p} \).
+  \item \( 0^{p/2} 1^{p/2} \).
+\end{enumerate}
+
+\end{problem}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\newpage
+
+\begin{problem}{Nope, Not Regular \turninproblem}
+
+Consider the language \( A = \{ www \mid w \in \Sigma^* \} \) with \( \Sigma = \{ 0, 1 \} \).
+Prove that \( A \) is irregular by (a) the pumping lemma and (b) the Myhill-Nerode Theorem.
+
+\end{problem}
+
+\end{document}

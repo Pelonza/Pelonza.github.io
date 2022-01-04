@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Approximation with Linear Programming</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bulma/0.7.5/css/bulma.min.css">
+  <link rel="stylesheet" href="/csc341/css/style.css">
+  <link rel="stylesheet" href="/csc341/css/syntax.css">
+  <link rel="stylesheet" href="/csc341/css/syntax-drracket.css">
+  <script defer src="https://use.fontawesome.com/releases/v5.3.1/js/all.js"></script>
+  
+  <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+  <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+  
+  
+  
+</head>
+
+  </head>
+  <body>
+    <nav class="navbar is-primary" role="navigation" aria-label="main navigation">
+  <div class="navbar-brand">
+    <a class="navbar-item" href="/csc341/">
+      <img src="/csc341/img/laurel-white.png">
+      &nbsp;
+      CSC 341 (21fa)
+    </a>
+
+    <a role="button" class="navbar-burger burger" aria-label="menu" aria-expanded="false" data-target="navbarBasicExample">
+      <span aria-hidden="true"></span>
+      <span aria-hidden="true"></span>
+      <span aria-hidden="true"></span>
+    </a>
+  </div>
+
+  <div id="navbarBasicExample" class="navbar-menu">
+    <div class="navbar-start">
+      <a class="navbar-item" href="/csc341/syllabus">
+        Syllabus
+      </a>
+      <a class="navbar-item" href="/csc341/resources">
+        Resources
+      </a>
+      
+      <a class="navbar-item" href="https://teams.microsoft.com/l/team/19%3avJm8Wpx7VaDe72Q53lhFS8hKbE8ZqBMHkz-HLvwbzag1%40thread.tacv2/conversations?groupId=621c250a-ec62-4c30-afbd-0e3b7efa7606&tenantId=524f9e3e-faca-4f64-b3ec-adb2baee8807
+">Teams</a>
+      
+      
+      <a class="navbar-item" href="https://www.gradescope.com/courses/299977
+">Gradescope</a>
+      
+      <a class="navbar-item" href="/csc341/editor">
+        Editor
+      </a>
+    </div>
+  </div>
+</nav>
+
+<!-- Adapted from: https://bulma.io/documentation/components/navbar/ -->
+<script>
+  document.addEventListener('DOMContentLoaded', () => {
+
+    // Get all "navbar-burger" elements
+    const $navbarBurgers = Array.prototype.slice.call(document.querySelectorAll('.navbar-burger'), 0);
+
+    // Check if there are any navbar burgers
+    if ($navbarBurgers.length > 0) {
+
+      // Add a click event on each of them
+      $navbarBurgers.forEach( el => {
+        el.addEventListener('click', () => {
+
+          // Get the target from the "data-target" attribute
+          const target = el.dataset.target;
+          const $target = document.getElementById(target);
+
+          // Toggle the "is-active" class on both the "navbar-burger" and the "navbar-menu"
+          el.classList.toggle('is-active');
+          $target.classList.toggle('is-active');
+
+        });
+      });
+    }
+
+  });
+</script>
+
+    <section class="section">
+      <div class="container">
+        <h1 class="title">
+          CSC 341 (Fall 2021)
+        </h1>
+        <h1 class="subtitle">
+          
+            Lab: Approximation with Linear Programming
+          
+        </h1>
+      </div>
+    </section>
+    <section class="content">
+      <div class="container">
+        
+        <p>In class, we introduced the problem of <em>0-1 integer programming</em>.</p>
+<div class="definition">
+<p>Suppose we have an <em>objective function</em> over <span class="math inline">\(m\)</span> variables <span class="math inline">\(f(x_1, \ldots, x_m) = c_1 x_1 + \cdots + c_m x_m\)</span>. Furthermore, suppose we have <em>constraints</em> on the variables in the form of <span class="math inline">\(n\)</span> equations of the form <span class="math inline">\(a_{i1} x_1 + \cdots + a_{im} x_m \leq b_i\)</span> for <span class="math inline">\(i \in 1, \ldots, n\)</span>. In addition, we require that the variables can only take on the values <span class="math inline">\(0\)</span> or <span class="math inline">\(1\)</span>.</p>
+<p>Our goal is to choose values for <span class="math inline">\(x_1, \ldots, x_m\)</span> that <em>maximizes</em> <span class="math inline">\(f(x_1, \ldots, x_m)\)</span> while satisfying all of the <span class="math inline">\(n\)</span> constraint equations.</p>
+</div>
+<p>We discussed how the 0-1 integer programming can serve as a reduction point for a variety of problems. We then discussed how we can reduce a problem, <em>e.g.</em>, the <em>set cover</em> problem:</p>
+<div class="definition">
+<p>Let <span class="math inline">\(S_1, \ldots, S_m \subseteq \mathcal{U}\)</span> be subsets drawn from a universe <span class="math inline">\(\mathcal{U}\)</span>. Furthermore, assign to each subset a weight <span class="math inline">\(w_i\)</span> for <span class="math inline">\(i \in 1, \ldots, m\)</span>. Create a sub-collection of these subsets such that:</p>
+<ul>
+<li>The subsets cover all the elements of <span class="math inline">\(\mathcal{U}\)</span>. In other words, if <span class="math inline">\(T\)</span> is the collection of subsets, then we want <span class="math inline">\(\bigcup_{S \in T} S = \mathcal{U}\)</span>.</li>
+<li>The sum of the weights of the sub-collection should be minimal.</li>
+</ul>
+</div>
+<p>An approximation algorithm comes from:</p>
+<ol type="1">
+<li>Reducing set cover to 0-1 integer programming.</li>
+<li>Solving the resulting integer program as a linear program, a process called <em>linear relaxation</em>.</li>
+<li>Recovering an approximate solution for the integer program from the linear program.</li>
+</ol>
+<p>For now, let’s focus on the first step of the process. Give a polynomial time reduction from 0-1 integer programming to set cover.</p>
+
+      </div>
+    </section>
+    <footer class="footer is-size-7 has-text-centered">
+  <a rel="license" href="http://creativecommons.org/licenses/by-sa/4.0/"><img alt="Creative Commons License" style="border-width:0" src="https://i.creativecommons.org/l/by-sa/4.0/80x15.png" /></a><br />This work is licensed under a <a rel="license" href="http://creativecommons.org/licenses/by-sa/4.0/">Creative Commons Attribution-ShareAlike 4.0 International License</a>.<br/>
+  Made with <a href="https://bulma.io">Bulma</a>, <a href="https://jekyllrb.com">Jekyll</a>, <a href="https://www.brailleinstitute.org/freefont">Atkinson Hyperlegible</a>, and <a href="https://github.com/JetBrains/JetBrainsMono">JetBrains Mono</a>.
+</footer>
+
+  </body>
+</html>

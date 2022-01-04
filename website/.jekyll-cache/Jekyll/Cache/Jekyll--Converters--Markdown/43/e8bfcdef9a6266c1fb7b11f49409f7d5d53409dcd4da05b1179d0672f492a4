@@ -1,0 +1,36 @@
+I"^<p>In this lab, we’ll work on authoring proofs. Try to be as rigorous, yet concise in your proofs as possible. If you have any questions about levels of formality or formatting, please don’t hesitate to ask!</p>
+<h2 id="problem-1-formal-proof">Problem 1: Formal Proof</h2>
+<p>Formally prove the following claims over strings.</p>
+<div class="claim">
+<p><strong>Claim 1</strong>: Call an element <span class="math inline">\(u\)</span> of a set <span class="math inline">\(S\)</span> and an associated binary operation over that set <span class="math inline">\((+) : S → S\)</span> a <em>unit</em> if <span class="math inline">\(\forall x \in S \ldotp x + u = u + x = x\)</span>. We claim that <span class="math inline">\(ϵ\)</span> is a unit for strings and concatenation over strings.</p>
+</div>
+<div class="claim">
+<p><strong>Claim 2</strong>: Let <span class="math inline">\(x\)</span> and <span class="math inline">\(y\)</span> be strings. If <span class="math inline">\(x\)</span> is a prefix of <span class="math inline">\(y\)</span> and <span class="math inline">\(y\)</span> is a prefix of <span class="math inline">\(x\)</span> then <span class="math inline">\(x = y\)</span>.</p>
+</div>
+<p>(<em>Hint</em>: make this an algebraic argument based on the definition of prefix from the book!)</p>
+<h2 id="problem-2-induction-revisited">Problem 2: Induction Revisited</h2>
+<p>Consider the following definitions regarding binary trees.</p>
+<div class="definition">
+<p><strong>Definition (Binary Tree)</strong>: a binary tree is either:</p>
+<ul>
+<li>A <em>leaf</em> or</li>
+<li>A <em>node</em> with two sub-trees, its <em>children</em>.</li>
+</ul>
+<p>We define the <em>root</em> of a binary tree to be a node that is not the child of any other node in the tree.</p>
+</div>
+<div class="definition">
+<p><strong>Definition (Level and Height)</strong>: the <em>level</em> of a node in a binary tree is the length of the path from the root to that node. The <em>height</em> of a binary tree is the maximal level of any node in the tree. We also use “level” to denote the <em>set of all nodes</em> that share the same level in the tree.</p>
+</div>
+<div class="definition">
+<p><strong>Definition (Complete and Perfect Trees)</strong>: a tree is <em>complete</em> if each of its levels contain its maximal number of possible nodes. A tree is <em>perfect</em> if each node of the tree contains zero or two children.</p>
+</div>
+<p>Now prove the following claim by structural induction.</p>
+<div class="claim">
+<p>Let <span class="math inline">\(h\)</span> be the height of a complete, perfect binary tree. If <span class="math inline">\(n \leq h\)</span>, then there are <span class="math inline">\(2^n\)</span> nodes at level <span class="math inline">\(n\)</span> of this tree.</p>
+</div>
+<h2 id="problem-3-constructive-proof-optional">Problem 3: Constructive Proof (Optional)</h2>
+<p>Chess is played on a <span class="math inline">\(n \times n\)</span> board (usually <span class="math inline">\(n = 8\)</span>). Consider the <em>rook</em> piece, which can move in any number of squares in a cardinal (non-diagonal) direction. A <em>rook’s tour</em> is a sequence of moves for a single rook that causes the piece to visit <em>every</em> square of the board <em>exactly once</em>. When considering a tour, we are free to place our piece on the board at any position initially. Also, we only consider a square visited if the piece <em>ends its movement</em> on that square.</p>
+<p>Prove via induction that there exists a rook’s tour for any chessboard of size <span class="math inline">\(n ≥ 1\)</span>.</p>
+<p>(<em>Hint 1</em>: note that proving the existence of a rook’s tour means constructing a rook’s tour for an arbitrary board, <em>i.e.</em>, designing an algorithm that generates the tour!)</p>
+<p>(<em>Hint 2:</em> pay attention to the details! This is not as straightforward of a proof as you might think!)</p>
+:ET

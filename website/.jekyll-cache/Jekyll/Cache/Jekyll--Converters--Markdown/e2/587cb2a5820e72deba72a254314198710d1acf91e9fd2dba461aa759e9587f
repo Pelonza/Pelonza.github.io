@@ -1,0 +1,33 @@
+I"�<h1 id="problem-1-who-needs-von-neumann">Problem 1: Who Needs Von Neumann?</h1>
+<p>Most computational devices are based on a <em>Von Neumann</em> architecture which consists of a central-processing unit and memory. However, non-Von Neumann architectures are possible and sometimes preferred depending on the workload in question. In particular, consider tasks that can be represented as <em>non-deterministic finite automata</em>.</p>
+<p>Non-determinism is physically realized on traditional hardware by translation to a deterministic finite automata as a pre-processing step. Note that, once compiled, executing a DFA is efficient on paper—<span class="math inline">\(\mathcal{O}(n)\)</span> time and <span class="math inline">\(\mathcal{O}(1)\)</span> space for an input of size <span class="math inline">\(n\)</span>. But in reality, this may not be accurate. Review the NFA-to-DFA translation and in a few sentences, describe the circumstances in which executing NFAs in this manner may be inefficient or otherwise infeasible.</p>
+<h1 id="problem-2-introducing-the-ap">Problem 2: Introducing the AP</h1>
+<p>To mitigate these problems, Micron Technology has developed a non-Von Neumann computing architecture that executes non-deterministic finite automata directly, the <em>Automata Processor</em> (AP). Intuitively, we think of non-determinism as a sort of parallelism where (a) threads of execution act independently of each other and (b) we are looking for at least one thread of execution that accepts its input. On the AP, execution of non-determinism is truly parallelized, leading to significant gains in performance if our problem can be expressed using a collection of NFAs.</p>
+<p>As an example of its usage, consider the following problem from computational biology. A <em>sequence motif</em> is a nucleotide pattern of significance. For example, the N-glycosylation site motif is:</p>
+<pre><code>&gt; Asn, followed by anything but Pro, followed by either Ser or Thr, followed by anything but Pro (&lt;https://en.wikipedia.org/wiki/Sequence_motif&gt;).</code></pre>
+<p>We would like to detect whether a given DNA sequence contains one of a given set of sequence motifs. What makes this problem interesting is that both the number of motifs and the size of the input sequence are both large.</p>
+<p>We can represent sequence motifs using regular expressions. Let <span class="math inline">\(R_1, \ldots, R_k\)</span> be a collection of <span class="math inline">\(k\)</span> regular expressions representing our <span class="math inline">\(k\)</span> motifs that we wish to find:</p>
+<p><span class="math display">\[
+L_1 = \{ w \mid \text{\( R_i \in R_1, \ldots, R_k \), \( w&#39; \) is a substring of \( w \), \( w&#39; \in L(R_i) \)} \}.
+\]</span></p>
+<p>Give a NFA <span class="math inline">\(N\)</span> that recognizes <span class="math inline">\(L_1\)</span>. And explain briefly how your NFA could take advantage of the parallelism of the Automata Processor.</p>
+<h1 id="problem-3-not-so-rosy">Problem 3: Not so Rosy</h1>
+<p>Problems like motif detection can be solved in an efficient manner by exploiting the parallelism of non-determinism. However, some regular languages do not have this property.</p>
+<p>Consider the language:</p>
+<p><span class="math display">\[
+L_2 = \{ w \mid \text{ \( w \in \{ 0, 1 \}^* \), \( w \) has an even number of 0s } \}.
+\]</span></p>
+<p>Give a NFA that recognizes <span class="math inline">\(L_2\)</span>. Explain in a few sentences why your construction may not exploit the parallelism inherent in the AP.</p>
+<h1 id="problem-4-tah-dah">Problem 4: Tah-dah!</h1>
+<p>We shall see in the coming weeks that with general computing, full automatic parallelization of arbitrary code is undecidable. However, in the case of finite automata and the Automata Processor, this is not the case if we are clever enough!</p>
+<p>Consider a DFA <span class="math inline">\(D\)</span> and an input <span class="math inline">\(w\)</span> and suppose that we want to parallelize execution of <span class="math inline">\(D\)</span> on <span class="math inline">\(w\)</span> <span class="math inline">\(k\)</span>-ways using non-determinism. That is, we want to fully take advantage of <span class="math inline">\(k\)</span> parallel processes to execute <span class="math inline">\(D\)</span> on <span class="math inline">\(w\)</span>.</p>
+<p>Describe an algorithm that (a) breaks up the computation of <span class="math inline">\(D\)</span> into <span class="math inline">\(k\)</span> NFAs that operate in parallel and then (b) combines the results of the NFAs into a result for the original DFA. With such an algorithm, we can then combine those <span class="math inline">\(k\)</span> NFAs into a single mega-NFA that can be run truly in parallel on an Automata Processor. In a few sentences, argue the correctness of your construction—a “formal” proof is not necessary!</p>
+<p>(<em>Hint 1</em>: since you don’t know how <span class="math inline">\(D\)</span> computes, your best bet is to consider chopping up the input <span class="math inline">\(w\)</span> into <span class="math inline">\(k\)</span> pieces and working with those individual pieces.)</p>
+<p>(<em>Hint 2</em>: when executing a finite automata in your algorithm, you will need to know more than just acceptance of the execution. You are free to assume that you can track other things like execution traces, where each branch of the finite automata ends, <em>etc</em>.)</p>
+<h1 id="problem-5-optimize">Problem 5: Optimize</h1>
+<ol type="a">
+<li><p>The algorithm you developed in the previous problem might seem magical as it allows you to parallelize <em>any</em> workload that is expressible as a finite automata. There are, of course, significant performance downsides to your approach that make it impractical. In a few sentences, describe the potential performance issues with your algorithm, both in terms of time as well as space complexity.</p></li>
+<li><p>Optimizing this naive approach is an area of active research in the field of next-generation computer architectures. Nevertheless, there are some simple things we might consider to optimize the algorithm. In a paragraph, describe such an optimization to your algorithm and argue informally why it is correct.</p>
+<p>(<em>Hint</em>: think about the execution of individual segments of the input in your algorithm. You are likely doing lots of computation to cover all the possible cases of execution for the automata. Are any of these executions unnecessary, for example because of the state you start in or the length of the segment?)</p></li>
+</ol>
+:ET

@@ -1,0 +1,18 @@
+I"^<h1 id="problem-details-details">Problem: Details, Details, …</h1>
+<p>Answer the following key questions about the proof of the Cook-Levine theorem that tests our understanding of Turing machines and polynominal-time reductions.</p>
+<ol type="1">
+<li><p>What are the inputs and outputs of the mapping function of the reduction?</p></li>
+<li><p>Why do the tableaus under consideration have <span class="math inline">\(n^k\)</span> rows?</p></li>
+<li><p>Why can we bound the size of the tape, <em>i.e.</em>, the number of columns of the tableau, to <span class="math inline">\(n^k\)</span>?</p></li>
+<li><p>What do the boolean variables <span class="math inline">\(x_{i, j, s}\)</span> represent in the reduction?</p></li>
+<li><p>In a few sentences each, describe the structure and purpose of the following boolean formulae?</p>
+<ul>
+<li><span class="math inline">\(\phi_\mathsf{cell}\)</span>,</li>
+<li><span class="math inline">\(\phi_\mathsf{start}\)</span>,</li>
+<li><span class="math inline">\(\phi_\mathsf{move}\)</span>,</li>
+<li><span class="math inline">\(\phi_\mathsf{accept}\)</span>?</li>
+</ul></li>
+<li><p>Does a <span class="math inline">\(2 \times 2\)</span> window, <em>i.e.</em>, two rows and two columns, work? Why or why not?</p></li>
+<li><p>How does the constructed boolean function account for the nondeterminism of the NTM it simulates?</p></li>
+</ol>
+:ET

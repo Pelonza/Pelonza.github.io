@@ -1,0 +1,234 @@
+\documentclass[12pt]{article}
+
+%%%%% Document Information (FILL THIS IN!) %%%%%
+\newcommand{\authorname}{(Name)}
+\newcommand{\grinnellusername}{(Username)}
+
+\newcommand{\coursenumber}{CSC 341}
+\newcommand{\assignmentname}{Demo Exercises \#5}
+\newcommand{\assignmentversion}{2}
+
+%%%%% Fonts and Encodings %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\usepackage[T1]{fontenc}
+\usepackage{libertine}
+
+%%%%% General %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{enumitem}
+\usepackage{fancyvrb}
+\usepackage[amsmath, amsthm, thmmarks]{ntheorem}
+\usepackage{microtype}
+\usepackage{url}
+\usepackage[svgnames]{xcolor}
+\usepackage{xspace}
+
+\usepackage{tikz}
+
+%%%%% Page Formatting %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\usepackage[
+  top=1in,
+  bottom=1in,
+  left=1in,
+  right=1in,
+  includefoot,
+  paperwidth=8.5in,
+  paperheight=11in
+]{geometry}
+
+\usepackage{fancyhdr}
+\setlength{\headheight}{15.2pt}
+\pagestyle{fancy}
+
+\fancyhead{}
+\fancyfoot{}
+\lhead{\coursenumber{}---\assignmentname{} (ver. \assignmentversion), \authorname{} [\grinnellusername{}]}
+\cfoot{\thepage}
+
+%%%%% Code %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\usepackage{listings}
+\usepackage{xcolor}
+
+% Adapted from: https://en.wikibooks.org/wiki/LaTeX/Source_Code_Listings
+\definecolor{mygreen}{rgb}{0,0.6,0}
+\definecolor{mygray}{rgb}{0.5,0.5,0.5}
+\definecolor{mymauve}{rgb}{0.58,0,0.82}
+
+\lstset{ 
+  backgroundcolor=\color{white},      % choose the background color; you must add \usepackage{color} or \usepackage{xcolor}; should come as last argument
+  basicstyle=\ttfamily\footnotesize,  % the size of the fonts that are used for the code
+  breakatwhitespace=false,            % sets if automatic breaks should only happen at whitespace
+  breaklines=true,                    % sets automatic line breaking
+  captionpos=b,                       % sets the caption-position to bottom
+  commentstyle=\color{mygreen},       % comment style
+  keepspaces=true,                    % keeps spaces in text, useful for keeping indentation of code (possibly needs columns=flexible)
+  keywordstyle=\color{blue},          % keyword style
+  language=Java,                      % the language of the code
+  stringstyle=\color{mymauve},        % string literal style
+}
+
+%%%%% Basic Macros and Definitions %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\newtheorem{claim}{Claim}
+\newtheorem{invariant}{Invariant}
+\newtheorem{defn}{Definition}
+\newtheorem{thm}{Theorem}
+\newtheorem{lemma}{Lemma}
+
+\newcommand{\ie}{\emph{i.e.}\xspace}
+\newcommand{\eg}{\emph{e.g.}\xspace}
+\newcommand{\hint}[1]{(\emph{Hint}: #1)}
+
+\newcounter{ProblemCounter}
+\newenvironment{problem}[1][]
+  {\refstepcounter{ProblemCounter}\noindent\textbf{Problem \theProblemCounter{} (#1)}\quad}
+  {\newpage}
+
+\newcommand{\answerbelow}{\noindent\makebox[\linewidth]{\rule{\textwidth}{0.4pt}}}
+
+
+%%%%% Problem-specific Macros %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\newcommand{\np}{\ensuremath{\mathsf{NP}}\xspace}
+\newcommand{\prob}[1]{\ensuremath{\mathsf{#1}}\xspace}
+\newcommand{\desc}[1]{\ensuremath{\langle #1 \rangle}}
+\newcommand{\Nat}{\ensuremath{\mathbb{N}}\xspace}
+\newcommand{\comp}[1]{\ensuremath{\overline{#1}}\xspace}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{document}
+
+\begin{problem}[Satisfying Variations]
+
+For this problem, we'll explore variations of the 3-SAT problem, generalized to
+the \( k \)-SAT problem:
+\begin{gather*}
+  \prob{kSAT} = \{ \desc{\phi} \mid \text{\( \phi \) is a satisfiable \( k \)cnf-formula} \}.
+\end{gather*}
+
+\begin{enumerate}[itemsep=0pt, label=(\alph*)]
+  \item Suppose that you have a 2cnf-formula clause of the form \( (x_1 \vee
+    x_2) \). Describe how you would turn this clause into a logically equivalent
+    3cnf-formula clause. Argue in a sentence or two why your transformation is
+    correct. \item With this fact, prove that \( \prob{2SAT} \leq_p \prob{3SAT}
+    \).
+  \item Suppose that you have a 4cnf-formula clause of the form \( (x_1 \vee x_2
+    \vee x_3 \vee x_4 ) \). Describe how you would turn this clause into a
+    logically equivalent 3cnf-formula clause.  Argue in a sentence or two why
+    your transformation is correct. \hint{you will want to split up the 4cnf
+      clause into, \eg, \( (x_1 \vee x_2 \vee \ldots) \wedge (\ldots \vee x_3
+      \vee x_4) \). How do you complete these two 3cnf clauses so that only one
+      of \( x_1, \ldots, x_4 \) is necessary to be true to make \emph{both}
+      clauses true? You should consider making a new variable distinct from \(
+      x_1, \ldots, x_4 \) to help you with this transformation.}
+  \item With this fact, prove that \( \prob{4SAT} \leq_p \prob{3SAT} \).
+  \item Finally, we can generalize \( k \)-SAT to any combination of sizes of
+    cnf-formula as follows:
+    \[
+      \prob{CSAT} = \{ \desc{\phi} \mid \text{ \( \phi \) is a satisfiable
+        formula in CNF form } \}.
+    \]
+    Show that \( \prob{CSAT} \leq_p \prob{3SAT} \).  \hint{each sub-formula of
+    \( \phi \) can have arbitrary size.  Make sure that your reduction covers
+    \emph{every} possible size of formula.}
+\end{enumerate}
+
+\answerbelow{}
+
+% FILL IN YOUR ANSWER HERE
+
+\end{problem}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{problem}[Color Me Badd]
+
+\tikzset{gnode/.style={circle,fill=white!20,draw,minimum size=1cm,inner sep=0pt},}
+
+A \( k \)-coloring of a graph \( G \) is an assignment of \( k \) distinct
+colors to the nodes of \( G \) such that no two nodes that share an edge also
+share the same color.  In this problem, we will show that: \( \prob{3COLOR} =
+\{ \desc{G} \mid \text{\( G \) is a graph at \( G \) has a 3-coloring} \} \) is
+\np-complete.
+
+\begin{enumerate}[itemsep=0pt, label=(\alph*)]
+  \item Prove that \( \prob{3COLOR} \in \np \).
+  \item To prove that \( \prob{3COLOR} \) is \np-hard, we will reduce from
+    \( \prob{3SAT} \).  Our mapping function takes as input a 3cnf-formula \(
+    \phi \) and produces a graph \( G \) as output with the property:
+    \[
+      \text{\( \phi \) is satisfiable} \Leftrightarrow \text{\( G \) has a 3-coloring}.
+    \]
+    The core of this construction is a \emph{color gadget} which is a sub-graph
+    that forces a particular coloring of its nodes:
+    \begin{center}
+      \begin{tikzpicture}[node distance=1.3cm, >=stealth, bend angle=45, auto]
+        \node [gnode] (1) at (0, 0) {T};
+        \node [gnode] (2) at (1, 2) {F};
+        \node [gnode] (3) at (2, 0) {B};
+        \draw (1) -- (2) -- (3) -- (1);
+      \end{tikzpicture}
+    \end{center}
+    Note that the color gadget is a complete 3-graph.  Because of this, each
+    node must be a distinct color.  Here, we will use the colors \( T \), \( F
+    \), and \( B \).  The first two colors will correspond to the values true
+    and false respectively.  The final color is a ``base'' color that we
+    introduce merely to fulfill the requirement that the graph coloring must
+    employ three colors.  With the color gadget, we are able to \emph{force}
+    nodes in our overall construction to take on particular colors.
+
+    Recall in our mapping function that we must map objects of our input
+    domain---variables, clauses, and assignments of \( \phi \)---to objects in
+    our output domain---nodes, edges, and colorings of \( G \).  First we will
+    map the variables to nodes and assignments to colorings.  For each \( x_i
+    \), we will create two nodes labeled \( x_i \) and \( \comp{x_i} \).
+    Create a subgraph with these two nodes and the color gadget to force
+    exactly one of the two nodes to be colored \( T \) and the other \( F \).
+    Argue in a few sentences why your constructed subgraph correctly implements
+    this behavior.
+  \item Next, we will describe how to map the input clauses onto the output
+    graph.  Suppose that we have two variable nodes \( x_i \) and \( x_j \) and
+    we want to compute the ``or'' of the two nodes.  Create a subgraph with
+    these two nodes with the property that one of the nodes of this subgraph,
+    the ``output'' node, *can* be colored \( T \) if at least one of \( x_i \)
+    and \( x_j \) are colored \( T \).  Give an example of your ``or''-gadget
+    and how it may output \( T \) when given two variables, exactly one of
+    which is colored \( T \).
+  \item Extend the ``or''-gadget from the previous part to three variable nodes
+    \( x_i \), \( x_j \), and \( x_k \).  Furthermore, force the output node of
+    this gadget to be colored \( T \).  Argue in a few sentences why the clause
+    gadget outputs \( T \) if and only if at least one of \( x_i \), \( x_j \),
+    and \( x_k \) is true. \hint{Note that ``or'' gadget from the previous part
+    may not have the ``if and only if'' behavior that we need.  However, this
+    extended gadget should have that behavior, but its a surprisingly subtle
+    argument! Use the color gadget to force colorings as necessary and argue
+    why certain ``bad'' colorings present in the basic ``or'' gadget are not
+    possible with the extended gadget.}
+  \item Describe the complete mapping function \( m : \phi \rightarrow G \) for
+    this reduction, combining all of the gadgets from the previous parts.
+  \item As an example, give the output of your mapping function for the
+    following 3-sat formula (from figure 7.33 of Sipser):
+    \[
+      \phi = (x_1 \vee x_1 \vee x_2) \wedge (\comp{x_1} \vee \comp{x_2} \vee
+        \comp{x_2}) \wedge (\comp{x_1} \vee x_2 \vee x_2)
+    \]
+  \item Finally, we'll prove the correctness of our construction.  First, prove
+    the ``if'' direction: if \( \phi \) is satisfiable, then \( m(\phi) \) is
+    3-colorable.  You may appeal to your previous arguments for the correctness
+    of the sub-components of the construction as necessary.
+  \item Prove the ``only if'' direction of the claim: if \( m(\phi) = G \) and
+    \( G \) is 3-colorable, then \( \phi \) is satisfiable.  You may appeal to
+    your previous arguments for the correctness of the sub-components of the
+    construction as necessary.
+\end{enumerate}
+
+\answerbelow{}
+
+% FILL IN YOUR ANSWER HERE
+
+\end{problem}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\end{document}

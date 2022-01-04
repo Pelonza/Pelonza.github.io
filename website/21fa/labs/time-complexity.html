@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Time Complexity</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bulma/0.7.5/css/bulma.min.css">
+  <link rel="stylesheet" href="/csc341/css/style.css">
+  <link rel="stylesheet" href="/csc341/css/syntax.css">
+  <link rel="stylesheet" href="/csc341/css/syntax-drracket.css">
+  <script defer src="https://use.fontawesome.com/releases/v5.3.1/js/all.js"></script>
+  
+  <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+  <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+  
+  
+  
+</head>
+
+  </head>
+  <body>
+    <nav class="navbar is-primary" role="navigation" aria-label="main navigation">
+  <div class="navbar-brand">
+    <a class="navbar-item" href="/csc341/">
+      <img src="/csc341/img/laurel-white.png">
+      &nbsp;
+      CSC 341 (21fa)
+    </a>
+
+    <a role="button" class="navbar-burger burger" aria-label="menu" aria-expanded="false" data-target="navbarBasicExample">
+      <span aria-hidden="true"></span>
+      <span aria-hidden="true"></span>
+      <span aria-hidden="true"></span>
+    </a>
+  </div>
+
+  <div id="navbarBasicExample" class="navbar-menu">
+    <div class="navbar-start">
+      <a class="navbar-item" href="/csc341/syllabus">
+        Syllabus
+      </a>
+      <a class="navbar-item" href="/csc341/resources">
+        Resources
+      </a>
+      
+      <a class="navbar-item" href="https://teams.microsoft.com/l/team/19%3avJm8Wpx7VaDe72Q53lhFS8hKbE8ZqBMHkz-HLvwbzag1%40thread.tacv2/conversations?groupId=621c250a-ec62-4c30-afbd-0e3b7efa7606&tenantId=524f9e3e-faca-4f64-b3ec-adb2baee8807
+">Teams</a>
+      
+      
+      <a class="navbar-item" href="https://www.gradescope.com/courses/299977
+">Gradescope</a>
+      
+      <a class="navbar-item" href="/csc341/editor">
+        Editor
+      </a>
+    </div>
+  </div>
+</nav>
+
+<!-- Adapted from: https://bulma.io/documentation/components/navbar/ -->
+<script>
+  document.addEventListener('DOMContentLoaded', () => {
+
+    // Get all "navbar-burger" elements
+    const $navbarBurgers = Array.prototype.slice.call(document.querySelectorAll('.navbar-burger'), 0);
+
+    // Check if there are any navbar burgers
+    if ($navbarBurgers.length > 0) {
+
+      // Add a click event on each of them
+      $navbarBurgers.forEach( el => {
+        el.addEventListener('click', () => {
+
+          // Get the target from the "data-target" attribute
+          const target = el.dataset.target;
+          const $target = document.getElementById(target);
+
+          // Toggle the "is-active" class on both the "navbar-burger" and the "navbar-menu"
+          el.classList.toggle('is-active');
+          $target.classList.toggle('is-active');
+
+        });
+      });
+    }
+
+  });
+</script>
+
+    <section class="section">
+      <div class="container">
+        <h1 class="title">
+          CSC 341 (Fall 2021)
+        </h1>
+        <h1 class="subtitle">
+          
+            Lab: Time Complexity
+          
+        </h1>
+      </div>
+    </section>
+    <section class="content">
+      <div class="container">
+        
+        <p><span class="math display">\[
+\newcommand{\desc}[1]{\langle #1 \rangle}
+\]</span></p>
+<h1 id="problem-1-representation">Problem 1: Representation</h1>
+<p>For each of the following objects, describe a plausible representation for those objects as strings.</p>
+<ol type="1">
+<li>An undirected graph <span class="math inline">\(G\)</span>.</li>
+<li>A finite collection of objects <span class="math inline">\(O_1, \ldots, O_n\)</span>, weights for each object <span class="math inline">\(w_i\)</span>, and costs for each object <span class="math inline">\(c_i\)</span>.</li>
+<li>An assignment of truth values to a finite collection of boolean variables <span class="math inline">\(x_1, \ldots, x_k\)</span>.</li>
+<li>A Turing machine configuration <span class="math inline">\(C\)</span>.</li>
+<li>A deterministic finite automata <span class="math inline">\(D\)</span>.</li>
+</ol>
+<h1 id="problem-2-poly-want-a-cracker">Problem 2: Poly Want A Cracker</h1>
+<p>Show that each of the following languages are in <span class="math inline">\(P\)</span>.</p>
+<ul>
+<li><span class="math inline">\(\{\, \desc{G, V&#39;} \mid \text{\( G = (V, E) \) is a graph, \( V&#39; \subseteq V \) and no two vertices of \( V&#39; \) are incident with each other} \,\}\)</span>.</li>
+<li><span class="math inline">\(\{\, \desc{D} \mid \text{\( D \) is a DFA and \( L(D) = \Sigma^* \)} \,\}\)</span>.</li>
+<li><span class="math inline">\(\{\, \desc{G} \mid \text{\( G \) is a graph and \( G \) contains a triangle (a 3-clique)} \,\}\)</span>.</li>
+</ul>
+
+      </div>
+    </section>
+    <footer class="footer is-size-7 has-text-centered">
+  <a rel="license" href="http://creativecommons.org/licenses/by-sa/4.0/"><img alt="Creative Commons License" style="border-width:0" src="https://i.creativecommons.org/l/by-sa/4.0/80x15.png" /></a><br />This work is licensed under a <a rel="license" href="http://creativecommons.org/licenses/by-sa/4.0/">Creative Commons Attribution-ShareAlike 4.0 International License</a>.<br/>
+  Made with <a href="https://bulma.io">Bulma</a>, <a href="https://jekyllrb.com">Jekyll</a>, <a href="https://www.brailleinstitute.org/freefont">Atkinson Hyperlegible</a>, and <a href="https://github.com/JetBrains/JetBrainsMono">JetBrains Mono</a>.
+</footer>
+
+  </body>
+</html>

@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>P vs NP</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bulma/0.7.5/css/bulma.min.css">
+  <link rel="stylesheet" href="/csc341/css/style.css">
+  <link rel="stylesheet" href="/csc341/css/syntax.css">
+  <link rel="stylesheet" href="/csc341/css/syntax-drracket.css">
+  <script defer src="https://use.fontawesome.com/releases/v5.3.1/js/all.js"></script>
+  
+  <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+  <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+  
+  
+  
+</head>
+
+  </head>
+  <body>
+    <nav class="navbar is-primary" role="navigation" aria-label="main navigation">
+  <div class="navbar-brand">
+    <a class="navbar-item" href="/csc341/">
+      <img src="/csc341/img/laurel-white.png">
+      &nbsp;
+      CSC 341 (21fa)
+    </a>
+
+    <a role="button" class="navbar-burger burger" aria-label="menu" aria-expanded="false" data-target="navbarBasicExample">
+      <span aria-hidden="true"></span>
+      <span aria-hidden="true"></span>
+      <span aria-hidden="true"></span>
+    </a>
+  </div>
+
+  <div id="navbarBasicExample" class="navbar-menu">
+    <div class="navbar-start">
+      <a class="navbar-item" href="/csc341/syllabus">
+        Syllabus
+      </a>
+      <a class="navbar-item" href="/csc341/resources">
+        Resources
+      </a>
+      
+      <a class="navbar-item" href="https://teams.microsoft.com/l/team/19%3avJm8Wpx7VaDe72Q53lhFS8hKbE8ZqBMHkz-HLvwbzag1%40thread.tacv2/conversations?groupId=621c250a-ec62-4c30-afbd-0e3b7efa7606&tenantId=524f9e3e-faca-4f64-b3ec-adb2baee8807
+">Teams</a>
+      
+      
+      <a class="navbar-item" href="https://www.gradescope.com/courses/299977
+">Gradescope</a>
+      
+      <a class="navbar-item" href="/csc341/editor">
+        Editor
+      </a>
+    </div>
+  </div>
+</nav>
+
+<!-- Adapted from: https://bulma.io/documentation/components/navbar/ -->
+<script>
+  document.addEventListener('DOMContentLoaded', () => {
+
+    // Get all "navbar-burger" elements
+    const $navbarBurgers = Array.prototype.slice.call(document.querySelectorAll('.navbar-burger'), 0);
+
+    // Check if there are any navbar burgers
+    if ($navbarBurgers.length > 0) {
+
+      // Add a click event on each of them
+      $navbarBurgers.forEach( el => {
+        el.addEventListener('click', () => {
+
+          // Get the target from the "data-target" attribute
+          const target = el.dataset.target;
+          const $target = document.getElementById(target);
+
+          // Toggle the "is-active" class on both the "navbar-burger" and the "navbar-menu"
+          el.classList.toggle('is-active');
+          $target.classList.toggle('is-active');
+
+        });
+      });
+    }
+
+  });
+</script>
+
+    <section class="section">
+      <div class="container">
+        <h1 class="title">
+          CSC 341 (Fall 2021)
+        </h1>
+        <h1 class="subtitle">
+          
+            Reading: P vs NP
+          
+        </h1>
+      </div>
+    </section>
+    <section class="content">
+      <div class="container">
+        
+        <h1 id="p-vs-np">P vs NP</h1>
+<p>We’ll wrap-up our discussion of NP-Completeness by reviewing the NP-completeness proof technique. With the time remaining we’ll contextualize the <a href="https://en.wikipedia.org/wiki/P_versus_NP_problem">Million Dollar P vs NP Problem</a> before we move onto space complexity! If you’re interested in learning more about the current state of the P vs NP problem, read this excellent overview by theory of computation researcher Scott Aaronson.</p>
+<ul>
+<li>Scott Aaronson. <span class="math inline">\(\mathsf{P} \stackrel{?}{=} \mathsf{NP}\)</span>. <a href="https://www.scottaaronson.com/papers/pnp.pdf" class="uri">https://www.scottaaronson.com/papers/pnp.pdf</a></li>
+</ul>
+<hr />
+<p><strong>Reading Problem (Reductions Concluded)</strong></p>
+<p>Complete and submit the <em>other</em> of the two NP-complete problems introduced in Monday’s daily:</p>
+<ol type="1">
+<li>Prove that vertex cover (<span class="math inline">\(\mathsf{COVER}\)</span>) is NP-complete.</li>
+<li>Sipser 7.28. Prove that the card puzzle problem (<span class="math inline">\(\mathsf{PUZZLE}\)</span>) is NP-complete.</li>
+</ol>
+<p>Remember to prove both parts of the definition of NP-completeness: membership in NP and NP-hardness. Make sure that you also argue both directions of the reduction’s correctness condition.</p>
+
+      </div>
+    </section>
+    <footer class="footer is-size-7 has-text-centered">
+  <a rel="license" href="http://creativecommons.org/licenses/by-sa/4.0/"><img alt="Creative Commons License" style="border-width:0" src="https://i.creativecommons.org/l/by-sa/4.0/80x15.png" /></a><br />This work is licensed under a <a rel="license" href="http://creativecommons.org/licenses/by-sa/4.0/">Creative Commons Attribution-ShareAlike 4.0 International License</a>.<br/>
+  Made with <a href="https://bulma.io">Bulma</a>, <a href="https://jekyllrb.com">Jekyll</a>, <a href="https://www.brailleinstitute.org/freefont">Atkinson Hyperlegible</a>, and <a href="https://github.com/JetBrains/JetBrainsMono">JetBrains Mono</a>.
+</footer>
+
+  </body>
+</html>

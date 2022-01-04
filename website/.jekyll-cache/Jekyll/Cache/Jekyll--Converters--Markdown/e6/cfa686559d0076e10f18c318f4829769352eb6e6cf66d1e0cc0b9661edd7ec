@@ -1,0 +1,468 @@
+I"��<p>When studying models of computation, we are primarily interested in three kinds of results:</p>
+<ul>
+<li><em>Equivalence Properties</em> (Sipser §1.2): are two models of computation equivalent in expressive power, <em>i.e.</em>, do they recognize the same class of languages?</li>
+<li><em>Closure Properties</em> (Sipser §1.2): given an operation over a particular sort of language (<em>e.g.</em>, the regular languages), does the operation preserve the sort of the input languages? For example, the result of concatenating two regular languages is always a regular language.</li>
+<li><em>Decision Procedures</em>: given a machine (<em>e.g.</em>, a DFA), can we determine if a proposition about that machine holds? For example, is a given DFA minimal with respect to the number of states that it contains?</li>
+</ul>
+<p>Here, we are concerned with the last kind of results. In particular, we will study the following problems:</p>
+<ul>
+<li><em>Emptiness</em>: given a DFA (equivalently, an NFA or regular expression), is its language empty?</li>
+<li><em>Acceptance</em>: given a DFA (equivalently, an NFA or regular expression) and an input string, does the DFA recognize that input string?</li>
+<li><em>Minimization</em>: given a DFA, is it minimal with respect to the number of states that it contains?</li>
+<li><em>Equivalence</em>: given two DFAs (equivalently, NFAs or regular expressions), are the DFAs equivalent? That is, do they accept the same set of strings and reject the same set of strings?</li>
+</ul>
+<h1 id="emptiness-and-acceptance">Emptiness and Acceptance</h1>
+<p>The language of a DFA <span class="math inline">\(D\)</span> is <em>empty</em> if it is the empty set, <em>i.e.</em>, <span class="math inline">\(L(D) = \emptyset\)</span>. The emptiness problem consists of an input DFA <span class="math inline">\(D\)</span> and determining if <span class="math inline">\(L(D) = \emptyset\)</span>. A naïve strategy for solving this problem is running <span class="math inline">\(D\)</span> on every possible string <span class="math inline">\(w \in \Sigma^*\)</span>, returning false if any such <span class="math inline">\(w\)</span> is rejected by <span class="math inline">\(D\)</span>. This does not work because there are an infinite number of such strings—we never have the opportunity to return true!</p>
+<p>Instead, we must determine whether <span class="math inline">\(L(D) = \emptyset\)</span> by inspecting the structure of <span class="math inline">\(D\)</span>. To get a feel of how to check this, consider the following DFA:</p>
+<figure>
+<img src="/csc341/img/dfa-decision-procedures-01.png" alt="A simple DFA." /><figcaption aria-hidden="true">A simple DFA.</figcaption>
+</figure>
+<p>The language of this DFA is non-empty. It at least accepts the string <span class="math inline">\(10\)</span>. In contrast, consider the following DFA:</p>
+<figure>
+<img src="/csc341/img/dfa-decision-procedures-02.png" alt="A simple DFA with no accepting states." /><figcaption aria-hidden="true">A simple DFA with no accepting states.</figcaption>
+</figure>
+<p>This DFA is identical to the first, except that it does not have any accepting states. Because of this, no string will ever be accepted by the DFA and so its language is empty.</p>
+<p>In light of this, it is clear that the language of any DFA whose set of accept states is empty will be empty as well. However, there is one other case we must consider.</p>
+<figure>
+<img src="/csc341/img/dfa-decision-procedures-03.png" alt="A DFA with unreachable accepting states." /><figcaption aria-hidden="true">A DFA with unreachable accepting states.</figcaption>
+</figure>
+<p>Here, the DFA has an accepting state, <span class="math inline">\(q_1\)</span>. However, there is no way to reach that accepting state from the start state.</p>
+<p>To formalize this idea, let’s define the notion of <em>reachability</em> in a DFA.</p>
+<div class="definition">
+<p><strong>Definition (Reachability)</strong>. <em>In a DFA <span class="math inline">\(D = (\Sigma, Q, \delta, q_0, F)\)</span>, a state <span class="math inline">\(q&#39; \in Q\)</span> is </em>reachable* from another state <span class="math inline">\(q \in Q\)</span> if there exists a <span class="math inline">\(w \in \Sigma\)</span> such that <span class="math inline">\(\delta(\delta(\delta(q, w_0), w_1), \ldots), w_n) = q&#39;\)</span> where <span class="math inline">\(w = w_0 w_1 \cdots w_n\)</span>.</p>
+</div>
+<p>Intuitively, a state <span class="math inline">\(q&#39;\)</span> is reachable from a state <span class="math inline">\(q\)</span> if there exists a series of characters we can read to go from <span class="math inline">\(q\)</span> to <span class="math inline">\(q&#39;\)</span> according to the transition function <span class="math inline">\(\delta\)</span>. In the case where <span class="math inline">\(q = q_0\)</span>, then the series of characters we read correspond to strings accepted by the DFA.</p>
+<p>Thus, the emptiness problem is a matter of determining <em>reachability</em> in a DFA. We can define the solution to the emptiness problem as follows:</p>
+<div class="proof">
+<p><strong>Theorem (Reachability for Finite Automata)</strong>. Given a DFA <span class="math inline">\(D = (\Sigma, Q, \delta, q_0, F)\)</span>, <span class="math inline">\(L(D) = \emptyset\)</span> if and only if no <span class="math inline">\(q_f \in F\)</span> is reachable from <span class="math inline">\(q_0\)</span>.</p>
+<p><em>Proof.</em> In both directions of the biconditional, correctness follows from the fact that the definition of reachability is analogous to the definition of acceptance of a DFA: “There exists a chain of characters that take the machine from the start state to an accepting state.”</p>
+<div class="qed">
+□
+</div>
+</div>
+<p>Note that we don’t need to enumerate all possible strings to test reachability. It is sufficient to simply perform a breadth- or depth-first search starting from <span class="math inline">\(q_0\)</span> to see if we are able to reach an accepting state.</p>
+<p>Likewise, the acceptance problem considers a DFA <span class="math inline">\(D\)</span> and a string <span class="math inline">\(w\)</span> and asks whether <span class="math inline">\(w \in L(D)\)</span>. This also corresponds to reachability:</p>
+<div class="proof">
+<p><strong>Theorem (Acceptance for Finite Automata)</strong>. Given a DFA <span class="math inline">\(D = (\Sigma, Q, \delta, q_0, F)\)</span> and string <span class="math inline">\(w \in \Sigma^*\)</span>, <span class="math inline">\(w \in L(D)\)</span> if and only if <span class="math inline">\(q_f \in F\)</span> is reachable from <span class="math inline">\(q_0\)</span> using <span class="math inline">\(w\)</span>.</p>
+<p><em>Proof.</em> Again, both directions of the biconditional are immediate from the definition of reachability and DFA acceptance.</p>
+<div class="qed">
+□
+</div>
+</div>
+<p>Here, we simply need to hand-simulate execution of <span class="math inline">\(D\)</span> on <span class="math inline">\(w\)</span> to determine acceptance.</p>
+<h1 id="minimization-and-equivalence">Minimization and Equivalence</h1>
+<p>Consider the following DFA:</p>
+<figure>
+<img src="/csc341/img/dfa-decision-procedures-04.png" alt="A DFA that recognizes (0 \cup 1)01." /><figcaption aria-hidden="true">A DFA that recognizes <span class="math inline">\((0 \cup 1)01\)</span>.</figcaption>
+</figure>
+<p>The language of this DFA are the strings corresponding to the following regular expression: <span class="math inline">\((0 \cup 1)01\)</span>. However, this is a simpler DFA that recognizes the same language:</p>
+<figure>
+<img src="/csc341/img/dfa-decision-procedures-05.png" alt="A simpler DFA that also recognizes (0 \cup 1)01." /><figcaption aria-hidden="true">A simpler DFA that also recognizes <span class="math inline">\((0 \cup 1)01\)</span>.</figcaption>
+</figure>
+<p>This DFA is simpler in the sense that it has one fewer states than the original DFA. We could try to reduce this DFA further, but it turns out that this DFA is the <em>smallest</em> DFA recognizing the language <span class="math inline">\((0 \cup 1)01\)</span>. The process of taking a DFA that recognizes language <span class="math inline">\(L\)</span> and finding a corresponding DFA with less states that also recognizes <span class="math inline">\(L\)</span> is called <em>minimization</em>.</p>
+<p>The intuition behind minimizing a DFA is that some states in a non-minimal DFA exhibit the <em>same behavior</em>. For example, consider <span class="math inline">\(q_1\)</span> and <span class="math inline">\(q_2\)</span> in the original DFA. Even though they are different states, you can see that for any string <span class="math inline">\(w\)</span> that simulating the machine on input <span class="math inline">\(w\)</span> starting at either <span class="math inline">\(q_1\)</span> or <span class="math inline">\(q_2\)</span> results in the same result: either both cases accept the string or reject the string. This is because for any character, <span class="math inline">\(q_1\)</span> and <span class="math inline">\(q_2\)</span> both move to the same states (<span class="math inline">\(q_3\)</span> on a <span class="math inline">\(0\)</span> and <span class="math inline">\(q_5\)</span> on a <span class="math inline">\(1\)</span>). In this sense, <span class="math inline">\(q_1\)</span> and <span class="math inline">\(q_2\)</span> are <em>indistinguishable</em>—we can combine them without any change in the behavior of the DFA. Formally, we define two states to be distinguishable as follows:</p>
+<div class="definition">
+<p><strong>Definition (Distinguishable)</strong>. In a DFA <span class="math inline">\(D = (\Sigma, Q, \delta, q_0, F)\)</span>, states <span class="math inline">\(p, q \in Q\)</span> are <em>distinguishable</em> if there exists a string <span class="math inline">\(w \in \Sigma^*\)</span> such that <span class="math inline">\(\delta^*(p, w) = p&#39;\)</span> and <span class="math inline">\(\delta^*(q, w) = q&#39;\)</span> and either <span class="math inline">\(p&#39; \in F, q&#39; \not\in F\)</span> or <span class="math inline">\(p&#39; \not\in F, q&#39; \in F\)</span>.</p>
+</div>
+<p>Indistinguishability is defined similarly:</p>
+<div class="definition">
+<p><strong>Definition (Indistinguisable)</strong>. In a DFA <span class="math inline">\(D = (\Sigma, Q, \delta, q_0, F)\)</span>, states <span class="math inline">\(p, q \in Q\)</span> are <em>indistinguishable</em> if for all <span class="math inline">\(w \in \Sigma^*\)</span>, <span class="math inline">\(\delta^*(p, w) = p&#39;\)</span> and <span class="math inline">\(\delta^*(q, w) = q&#39;\)</span> and either <span class="math inline">\(p&#39; \in F, q&#39; \in F\)</span> or <span class="math inline">\(p&#39; \not\in F, q&#39; \not\in F\)</span>.</p>
+</div>
+<p>With this in mind, the <em>DFA minimization process</em> works in three steps:</p>
+<ol type="1">
+<li>First, remove from the DFA any states that are <em>unreachable</em> from the start state (using the definition of reachability from the previous section).</li>
+<li>Discover pairs of states in the DFA that are indistinguishable.</li>
+<li>Combine indistinguishable states to achieve a final, <em>minimal</em> DFA.</li>
+</ol>
+<p>To discover pairs of indistinguishable states, we use a <em>table-filling algorithm</em> that tracks which pairs of states are indistinguishable. We repeatedly refine the table, discovering new states that are indistinguishable until we reach a point where we make no new discoveries. The final table denotes which states are indistinguishable and thus combinable in the final step of the algorithm.</p>
+<p>As an example, consider running the table-filling algorithm on the original DFA. Our table has the following shape:</p>
+<table>
+<thead>
+<tr class="header">
+<th style="text-align: center;"><span class="math inline">\(q_0\)</span></th>
+<th style="text-align: center;"><span class="math inline">\(\times\)</span></th>
+<th style="text-align: center;"><span class="math inline">\(\times\)</span></th>
+<th style="text-align: center;"><span class="math inline">\(\times\)</span></th>
+<th style="text-align: center;"><span class="math inline">\(\times\)</span></th>
+<th style="text-align: center;"><span class="math inline">\(\times\)</span></th>
+<th style="text-align: center;"><span class="math inline">\(\times\)</span></th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: center;"><span class="math inline">\(q_1\)</span></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"><span class="math inline">\(\times\)</span></td>
+<td style="text-align: center;"><span class="math inline">\(\times\)</span></td>
+<td style="text-align: center;"><span class="math inline">\(\times\)</span></td>
+<td style="text-align: center;"><span class="math inline">\(\times\)</span></td>
+<td style="text-align: center;"><span class="math inline">\(\times\)</span></td>
+</tr>
+<tr class="even">
+<td style="text-align: center;"><span class="math inline">\(q_2\)</span></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"><span class="math inline">\(\times\)</span></td>
+<td style="text-align: center;"><span class="math inline">\(\times\)</span></td>
+<td style="text-align: center;"><span class="math inline">\(\times\)</span></td>
+<td style="text-align: center;"><span class="math inline">\(\times\)</span></td>
+</tr>
+<tr class="odd">
+<td style="text-align: center;"><span class="math inline">\(q_3\)</span></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"><span class="math inline">\(\times\)</span></td>
+<td style="text-align: center;"><span class="math inline">\(\times\)</span></td>
+<td style="text-align: center;"><span class="math inline">\(\times\)</span></td>
+</tr>
+<tr class="even">
+<td style="text-align: center;"><span class="math inline">\(q_4\)</span></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"><span class="math inline">\(\times\)</span></td>
+<td style="text-align: center;"><span class="math inline">\(\times\)</span></td>
+</tr>
+<tr class="odd">
+<td style="text-align: center;"><span class="math inline">\(q_5\)</span></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"><span class="math inline">\(\times\)</span></td>
+</tr>
+<tr class="even">
+<td style="text-align: center;"></td>
+<td style="text-align: center;"><span class="math inline">\(q_0\)</span></td>
+<td style="text-align: center;"><span class="math inline">\(q_1\)</span></td>
+<td style="text-align: center;"><span class="math inline">\(q_2\)</span></td>
+<td style="text-align: center;"><span class="math inline">\(q_3\)</span></td>
+<td style="text-align: center;"><span class="math inline">\(q_4\)</span></td>
+<td style="text-align: center;"><span class="math inline">\(q_5\)</span></td>
+</tr>
+</tbody>
+</table>
+<p>An entry in the table is marked with a circle (<span class="math inline">\(\circ\)</span>) if we have discovered that the corresponding pair of states are <em>distinguishable</em>. If the entry is empty, we say that the states are <em>indistinguishable</em>. Entries marked with a cross (<span class="math inline">\(\times\)</span>) are ignored as they are redundant (since the ordering does not matter in these pairs of states).</p>
+<p>First, from our definition of distinguished states, we see that any accepting state is distinguished from a non-accepting state. We therefore mark any pair of states that contains <span class="math inline">\(q_4\)</span> as distinguished:</p>
+<table>
+<thead>
+<tr class="header">
+<th style="text-align: center;"><span class="math inline">\(q_0\)</span></th>
+<th style="text-align: center;"><span class="math inline">\(\times\)</span></th>
+<th style="text-align: center;"><span class="math inline">\(\times\)</span></th>
+<th style="text-align: center;"><span class="math inline">\(\times\)</span></th>
+<th style="text-align: center;"><span class="math inline">\(\times\)</span></th>
+<th style="text-align: center;"><span class="math inline">\(\times\)</span></th>
+<th style="text-align: center;"><span class="math inline">\(\times\)</span></th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: center;"><span class="math inline">\(q_1\)</span></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"><span class="math inline">\(\times\)</span></td>
+<td style="text-align: center;"><span class="math inline">\(\times\)</span></td>
+<td style="text-align: center;"><span class="math inline">\(\times\)</span></td>
+<td style="text-align: center;"><span class="math inline">\(\times\)</span></td>
+<td style="text-align: center;"><span class="math inline">\(\times\)</span></td>
+</tr>
+<tr class="even">
+<td style="text-align: center;"><span class="math inline">\(q_2\)</span></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"><span class="math inline">\(\times\)</span></td>
+<td style="text-align: center;"><span class="math inline">\(\times\)</span></td>
+<td style="text-align: center;"><span class="math inline">\(\times\)</span></td>
+<td style="text-align: center;"><span class="math inline">\(\times\)</span></td>
+</tr>
+<tr class="odd">
+<td style="text-align: center;"><span class="math inline">\(q_3\)</span></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"><span class="math inline">\(\times\)</span></td>
+<td style="text-align: center;"><span class="math inline">\(\times\)</span></td>
+<td style="text-align: center;"><span class="math inline">\(\times\)</span></td>
+</tr>
+<tr class="even">
+<td style="text-align: center;"><span class="math inline">\(q_4\)</span></td>
+<td style="text-align: center;"><span class="math inline">\(\circ\)</span></td>
+<td style="text-align: center;"><span class="math inline">\(\circ\)</span></td>
+<td style="text-align: center;"><span class="math inline">\(\circ\)</span></td>
+<td style="text-align: center;"><span class="math inline">\(\circ\)</span></td>
+<td style="text-align: center;"><span class="math inline">\(\times\)</span></td>
+<td style="text-align: center;"><span class="math inline">\(\times\)</span></td>
+</tr>
+<tr class="odd">
+<td style="text-align: center;"><span class="math inline">\(q_5\)</span></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"><span class="math inline">\(\circ\)</span></td>
+<td style="text-align: center;"><span class="math inline">\(\times\)</span></td>
+</tr>
+<tr class="even">
+<td style="text-align: center;"></td>
+<td style="text-align: center;"><span class="math inline">\(q_0\)</span></td>
+<td style="text-align: center;"><span class="math inline">\(q_1\)</span></td>
+<td style="text-align: center;"><span class="math inline">\(q_2\)</span></td>
+<td style="text-align: center;"><span class="math inline">\(q_3\)</span></td>
+<td style="text-align: center;"><span class="math inline">\(q_4\)</span></td>
+<td style="text-align: center;"><span class="math inline">\(q_5\)</span></td>
+</tr>
+</tbody>
+</table>
+<p>Now, we repeat the following process until we no longer change the table:</p>
+<ol type="1">
+<li>For each pair of states <span class="math inline">\((p, q)\)</span> and for each possible character <span class="math inline">\(a \in \Sigma\)</span>, consider the new pair of states <span class="math inline">\((\delta(p, a), \delta(p, q))\)</span>.</li>
+<li>If <span class="math inline">\((p, q)\)</span> is undistinguished, but <span class="math inline">\((\delta(p, a), \delta(p, q))\)</span> is distinguished, then mark <span class="math inline">\((p, q)\)</span> as distinguished.</li>
+</ol>
+<p>For example, on the first iteration of our process, we first consider the pair <span class="math inline">\((q_1, q_0)\)</span> (the top-left corner of the table although the order does not matter) and the possible transitions from it:</p>
+<ul>
+<li>On input <span class="math inline">\(0\)</span>, <span class="math inline">\((\delta(q_1, 0), \delta(q_0, 0)) = (q_3, q_1)\)</span>.</li>
+<li>On input <span class="math inline">\(1\)</span>, <span class="math inline">\((\delta(q_1, 1), \delta(q_0, 1)) = (q_5, q_2)\)</span>.</li>
+</ul>
+<p>We note that <span class="math inline">\((q_3, q_1)\)</span> and <span class="math inline">\((q_5, q_2)\)</span> are not marked (<em>i.e.</em>, are considered undistinguished), so we do not change the entry for <span class="math inline">\((q_1, q_0)\)</span>.</p>
+<p>In contrast, consider the pair <span class="math inline">\((q_2, q_3)\)</span>:</p>
+<ul>
+<li>On input <span class="math inline">\(0\)</span>, <span class="math inline">\((\delta(q_2, 0), \delta(q_3, 0)) = (q_3, q_5)\)</span>.</li>
+<li>On input <span class="math inline">\(1\)</span>, <span class="math inline">\((\delta(q_2, 1), \delta(q_3, 1)) = (q_5, q_4)\)</span>.</li>
+</ul>
+<p>While <span class="math inline">\((q_3, q_5)\)</span> is not marked, <span class="math inline">\((q_5, q_4)\)</span> is marked, so we mark <span class="math inline">\((q_2, q_3)\)</span>.</p>
+<p>Continuing this process, we arrive at the following updated table:</p>
+<table>
+<thead>
+<tr class="header">
+<th style="text-align: center;"><span class="math inline">\(q_0\)</span></th>
+<th style="text-align: center;"><span class="math inline">\(\times\)</span></th>
+<th style="text-align: center;"><span class="math inline">\(\times\)</span></th>
+<th style="text-align: center;"><span class="math inline">\(\times\)</span></th>
+<th style="text-align: center;"><span class="math inline">\(\times\)</span></th>
+<th style="text-align: center;"><span class="math inline">\(\times\)</span></th>
+<th style="text-align: center;"><span class="math inline">\(\times\)</span></th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: center;"><span class="math inline">\(q_1\)</span></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"><span class="math inline">\(\times\)</span></td>
+<td style="text-align: center;"><span class="math inline">\(\times\)</span></td>
+<td style="text-align: center;"><span class="math inline">\(\times\)</span></td>
+<td style="text-align: center;"><span class="math inline">\(\times\)</span></td>
+<td style="text-align: center;"><span class="math inline">\(\times\)</span></td>
+</tr>
+<tr class="even">
+<td style="text-align: center;"><span class="math inline">\(q_2\)</span></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"><span class="math inline">\(\times\)</span></td>
+<td style="text-align: center;"><span class="math inline">\(\times\)</span></td>
+<td style="text-align: center;"><span class="math inline">\(\times\)</span></td>
+<td style="text-align: center;"><span class="math inline">\(\times\)</span></td>
+</tr>
+<tr class="odd">
+<td style="text-align: center;"><span class="math inline">\(q_3\)</span></td>
+<td style="text-align: center;"><span class="math inline">\(\circ\)</span></td>
+<td style="text-align: center;"><span class="math inline">\(\circ\)</span></td>
+<td style="text-align: center;"><span class="math inline">\(\circ\)</span></td>
+<td style="text-align: center;"><span class="math inline">\(\times\)</span></td>
+<td style="text-align: center;"><span class="math inline">\(\times\)</span></td>
+<td style="text-align: center;"><span class="math inline">\(\times\)</span></td>
+</tr>
+<tr class="even">
+<td style="text-align: center;"><span class="math inline">\(q_4\)</span></td>
+<td style="text-align: center;"><span class="math inline">\(\circ\)</span></td>
+<td style="text-align: center;"><span class="math inline">\(\circ\)</span></td>
+<td style="text-align: center;"><span class="math inline">\(\circ\)</span></td>
+<td style="text-align: center;"><span class="math inline">\(\circ\)</span></td>
+<td style="text-align: center;"><span class="math inline">\(\times\)</span></td>
+<td style="text-align: center;"><span class="math inline">\(\times\)</span></td>
+</tr>
+<tr class="odd">
+<td style="text-align: center;"><span class="math inline">\(q_5\)</span></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"><span class="math inline">\(\circ\)</span></td>
+<td style="text-align: center;"><span class="math inline">\(\circ\)</span></td>
+<td style="text-align: center;"><span class="math inline">\(\times\)</span></td>
+</tr>
+<tr class="even">
+<td style="text-align: center;"></td>
+<td style="text-align: center;"><span class="math inline">\(q_0\)</span></td>
+<td style="text-align: center;"><span class="math inline">\(q_1\)</span></td>
+<td style="text-align: center;"><span class="math inline">\(q_2\)</span></td>
+<td style="text-align: center;"><span class="math inline">\(q_3\)</span></td>
+<td style="text-align: center;"><span class="math inline">\(q_4\)</span></td>
+<td style="text-align: center;"><span class="math inline">\(q_5\)</span></td>
+</tr>
+</tbody>
+</table>
+<p>Note that because the only pairs of states involving <span class="math inline">\(q_4\)</span> were marked as distinguished initially, then only pairs of states that transitioned into a pair containing <span class="math inline">\(q_4\)</span> are marked as distinguished in this first round. The only such state is <span class="math inline">\(q_3\)</span>, so only pairs of states involving <span class="math inline">\(q_3\)</span> were marked in this round.</p>
+<p>Since we modified the table in the first round, we repeat the process again for all the unmarked states. On the next iteration, the updated table is:</p>
+<table>
+<thead>
+<tr class="header">
+<th style="text-align: center;"><span class="math inline">\(q_0\)</span></th>
+<th style="text-align: center;"><span class="math inline">\(\times\)</span></th>
+<th style="text-align: center;"><span class="math inline">\(\times\)</span></th>
+<th style="text-align: center;"><span class="math inline">\(\times\)</span></th>
+<th style="text-align: center;"><span class="math inline">\(\times\)</span></th>
+<th style="text-align: center;"><span class="math inline">\(\times\)</span></th>
+<th style="text-align: center;"><span class="math inline">\(\times\)</span></th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: center;"><span class="math inline">\(q_1\)</span></td>
+<td style="text-align: center;"><span class="math inline">\(\circ\)</span></td>
+<td style="text-align: center;"><span class="math inline">\(\times\)</span></td>
+<td style="text-align: center;"><span class="math inline">\(\times\)</span></td>
+<td style="text-align: center;"><span class="math inline">\(\times\)</span></td>
+<td style="text-align: center;"><span class="math inline">\(\times\)</span></td>
+<td style="text-align: center;"><span class="math inline">\(\times\)</span></td>
+</tr>
+<tr class="even">
+<td style="text-align: center;"><span class="math inline">\(q_2\)</span></td>
+<td style="text-align: center;"><span class="math inline">\(\circ\)</span></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"><span class="math inline">\(\times\)</span></td>
+<td style="text-align: center;"><span class="math inline">\(\times\)</span></td>
+<td style="text-align: center;"><span class="math inline">\(\times\)</span></td>
+<td style="text-align: center;"><span class="math inline">\(\times\)</span></td>
+</tr>
+<tr class="odd">
+<td style="text-align: center;"><span class="math inline">\(q_3\)</span></td>
+<td style="text-align: center;"><span class="math inline">\(\circ\)</span></td>
+<td style="text-align: center;"><span class="math inline">\(\circ\)</span></td>
+<td style="text-align: center;"><span class="math inline">\(\circ\)</span></td>
+<td style="text-align: center;"><span class="math inline">\(\times\)</span></td>
+<td style="text-align: center;"><span class="math inline">\(\times\)</span></td>
+<td style="text-align: center;"><span class="math inline">\(\times\)</span></td>
+</tr>
+<tr class="even">
+<td style="text-align: center;"><span class="math inline">\(q_4\)</span></td>
+<td style="text-align: center;"><span class="math inline">\(\circ\)</span></td>
+<td style="text-align: center;"><span class="math inline">\(\circ\)</span></td>
+<td style="text-align: center;"><span class="math inline">\(\circ\)</span></td>
+<td style="text-align: center;"><span class="math inline">\(\circ\)</span></td>
+<td style="text-align: center;"><span class="math inline">\(\times\)</span></td>
+<td style="text-align: center;"><span class="math inline">\(\times\)</span></td>
+</tr>
+<tr class="odd">
+<td style="text-align: center;"><span class="math inline">\(q_5\)</span></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"><span class="math inline">\(\circ\)</span></td>
+<td style="text-align: center;"><span class="math inline">\(\circ\)</span></td>
+<td style="text-align: center;"><span class="math inline">\(\circ\)</span></td>
+<td style="text-align: center;"><span class="math inline">\(\circ\)</span></td>
+<td style="text-align: center;"><span class="math inline">\(\times\)</span></td>
+</tr>
+<tr class="even">
+<td style="text-align: center;"></td>
+<td style="text-align: center;"><span class="math inline">\(q_0\)</span></td>
+<td style="text-align: center;"><span class="math inline">\(q_1\)</span></td>
+<td style="text-align: center;"><span class="math inline">\(q_2\)</span></td>
+<td style="text-align: center;"><span class="math inline">\(q_3\)</span></td>
+<td style="text-align: center;"><span class="math inline">\(q_4\)</span></td>
+<td style="text-align: center;"><span class="math inline">\(q_5\)</span></td>
+</tr>
+</tbody>
+</table>
+<p>And on the final iteration, the updated table is:</p>
+<table>
+<thead>
+<tr class="header">
+<th style="text-align: center;"><span class="math inline">\(q_0\)</span></th>
+<th style="text-align: center;"><span class="math inline">\(\times\)</span></th>
+<th style="text-align: center;"><span class="math inline">\(\times\)</span></th>
+<th style="text-align: center;"><span class="math inline">\(\times\)</span></th>
+<th style="text-align: center;"><span class="math inline">\(\times\)</span></th>
+<th style="text-align: center;"><span class="math inline">\(\times\)</span></th>
+<th style="text-align: center;"><span class="math inline">\(\times\)</span></th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: center;"><span class="math inline">\(q_1\)</span></td>
+<td style="text-align: center;"><span class="math inline">\(\circ\)</span></td>
+<td style="text-align: center;"><span class="math inline">\(\times\)</span></td>
+<td style="text-align: center;"><span class="math inline">\(\times\)</span></td>
+<td style="text-align: center;"><span class="math inline">\(\times\)</span></td>
+<td style="text-align: center;"><span class="math inline">\(\times\)</span></td>
+<td style="text-align: center;"><span class="math inline">\(\times\)</span></td>
+</tr>
+<tr class="even">
+<td style="text-align: center;"><span class="math inline">\(q_2\)</span></td>
+<td style="text-align: center;"><span class="math inline">\(\circ\)</span></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"><span class="math inline">\(\times\)</span></td>
+<td style="text-align: center;"><span class="math inline">\(\times\)</span></td>
+<td style="text-align: center;"><span class="math inline">\(\times\)</span></td>
+<td style="text-align: center;"><span class="math inline">\(\times\)</span></td>
+</tr>
+<tr class="odd">
+<td style="text-align: center;"><span class="math inline">\(q_3\)</span></td>
+<td style="text-align: center;"><span class="math inline">\(\circ\)</span></td>
+<td style="text-align: center;"><span class="math inline">\(\circ\)</span></td>
+<td style="text-align: center;"><span class="math inline">\(\circ\)</span></td>
+<td style="text-align: center;"><span class="math inline">\(\times\)</span></td>
+<td style="text-align: center;"><span class="math inline">\(\times\)</span></td>
+<td style="text-align: center;"><span class="math inline">\(\times\)</span></td>
+</tr>
+<tr class="even">
+<td style="text-align: center;"><span class="math inline">\(q_4\)</span></td>
+<td style="text-align: center;"><span class="math inline">\(\circ\)</span></td>
+<td style="text-align: center;"><span class="math inline">\(\circ\)</span></td>
+<td style="text-align: center;"><span class="math inline">\(\circ\)</span></td>
+<td style="text-align: center;"><span class="math inline">\(\circ\)</span></td>
+<td style="text-align: center;"><span class="math inline">\(\times\)</span></td>
+<td style="text-align: center;"><span class="math inline">\(\times\)</span></td>
+</tr>
+<tr class="odd">
+<td style="text-align: center;"><span class="math inline">\(q_5\)</span></td>
+<td style="text-align: center;"><span class="math inline">\(\circ\)</span></td>
+<td style="text-align: center;"><span class="math inline">\(\circ\)</span></td>
+<td style="text-align: center;"><span class="math inline">\(\circ\)</span></td>
+<td style="text-align: center;"><span class="math inline">\(\circ\)</span></td>
+<td style="text-align: center;"><span class="math inline">\(\circ\)</span></td>
+<td style="text-align: center;"><span class="math inline">\(\times\)</span></td>
+</tr>
+<tr class="even">
+<td style="text-align: center;"></td>
+<td style="text-align: center;"><span class="math inline">\(q_0\)</span></td>
+<td style="text-align: center;"><span class="math inline">\(q_1\)</span></td>
+<td style="text-align: center;"><span class="math inline">\(q_2\)</span></td>
+<td style="text-align: center;"><span class="math inline">\(q_3\)</span></td>
+<td style="text-align: center;"><span class="math inline">\(q_4\)</span></td>
+<td style="text-align: center;"><span class="math inline">\(q_5\)</span></td>
+</tr>
+</tbody>
+</table>
+<p>(I recommend stepping through the algorithm and checking your work with the tables above.) In the final iteration, the pair <span class="math inline">\((q_2, q_1)\)</span> is left unmarked. To see why we’ll never mark <span class="math inline">\((q_2, q_1)\)</span>, look at its transitions:</p>
+<ul>
+<li>On input <span class="math inline">\(0\)</span>, <span class="math inline">\((\delta(q_2, 0), \delta(q_1, 0)) = (q_3, q_3)\)</span>.</li>
+<li>On input <span class="math inline">\(1\)</span>, <span class="math inline">\((\delta(q_2, 1), \delta(q_1, 1)) = (q_5, q_5)\)</span>.</li>
+</ul>
+<p>And note that the pairs <span class="math inline">\((q_3, q_3)\)</span> and <span class="math inline">\((q_5, q_5)\)</span> are not marked as distinguished.</p>
+<p>Because of this, successive iterations of the process do not change the table. Therefore, this is the final result and we note that <span class="math inline">\(q_2\)</span> and <span class="math inline">\(q_1\)</span> are indistinguishable. Collapsing these two states into a single state results in the minimized DFA given above.</p>
+<p>A surprising but important fact about our minimization algorithm is that it produces a <em>unique</em> DFA.</p>
+<div class="proof">
+<p><strong>Theorem (Correctness of Table-filling Algorithm)</strong>. Consider a DFA <span class="math inline">\(D\)</span>. There exists a unique DFA <span class="math inline">\(D&#39; = (\Sigma, Q&#39;, \delta&#39;, q_0&#39;, F&#39;)\)</span> (up to renaming of states) such that <span class="math inline">\(L(D) = L(D&#39;)\)</span> and for any other DFA <span class="math inline">\(D&#39;&#39; = (\Sigma, Q&#39;&#39;, \delta&#39;&#39;, q_0&#39;&#39;, F&#39;&#39;)\)</span> such that <span class="math inline">\(L(D) = L(D&#39;&#39;)\)</span> and <span class="math inline">\(|Q&#39;| &lt; |Q&#39;&#39;|\)</span>. The table-filling algorithm above derives this <span class="math inline">\(D&#39;\)</span> for some given DFA <span class="math inline">\(D\)</span>.</p>
+</div>
+<p>We’ll withhold the proof of this claim until later when we have additional machinery to reason about the <em>equivalence classes</em> of states discovered by our algorithm.</p>
+<p>With this theorem, we can tackle the closely-related problem of DFA <em>equivalence</em>:</p>
+<div class="definition">
+<p><strong>Definition (Equivalence of DFAs)</strong>. Let <span class="math inline">\(D_1\)</span> and <span class="math inline">\(D_2\)</span> be DFAs. <span class="math inline">\(D_1\)</span> is <em>equivalent</em> to <span class="math inline">\(D_2\)</span>, written <span class="math inline">\(D_1 \equiv D_2\)</span>, if <span class="math inline">\(L(D_1) = L(D_2)\)</span>. That is <span class="math inline">\(D_1\)</span> accepts the same strings as <span class="math inline">\(D_2\)</span>, and <span class="math inline">\(D_1\)</span> rejects the same strings as <span class="math inline">\(D_2\)</span>.</p>
+</div>
+<p>Luckily, because the minimal DFA <span class="math inline">\(D&#39;\)</span> for some DFA <span class="math inline">\(D\)</span> is unique, we can use the following procedure to see if two DFAs <span class="math inline">\(D_1\)</span> and <span class="math inline">\(D_2\)</span> are equivalent:</p>
+<ol type="1">
+<li>Run the minimization procedure on <span class="math inline">\(D_1\)</span> and <span class="math inline">\(D_2\)</span> to produce minimal DFAs <span class="math inline">\(D_1&#39;\)</span> and <span class="math inline">\(D_2&#39;\)</span>.</li>
+<li>If <span class="math inline">\(D_1&#39;\)</span> and <span class="math inline">\(D_2&#39;\)</span> are identical (up to renaming of states), then <span class="math inline">\(D_1 \equiv D_2\)</span>.</li>
+</ol>
+:ET

@@ -1,0 +1,37 @@
+I"i<h1 id="problem-1-tic-tacs">Problem 1: Tic-Tacs</h1>
+<ol type="a">
+<li><p>Consider the following position in a standard tic-tac-toe game:</p>
+<pre><code> x |   |
+---|---|---
+   | o |
+---|---|---
+ o |   | x</code></pre>
+<p>Let’s say that it is the <code>x</code>-player’s turn to move next. Describe a winning strategy for this player. (Recall that a winning strategy isn’t merely the best move to make in the current position. It also includes all the responses that this player must make to win regardless of how the opponent moves.)</p></li>
+<li><p>Define the <em>generalized tic-tac-toe game</em> as:</p>
+<p><span class="math display">\[
+\mathsf{GTAC} = \{\, (M, m, n, k) \mid \text{\( M \) is a \( m \times n \) board and player one has a winning strategy.} \,\}.
+\]</span></p>
+<p>A generalized tic-tac-toe game is played on an <span class="math inline">\(m \times n\)</span> board with some placement of <span class="math inline">\(x\)</span>s (player one’s pieces) and <span class="math inline">\(o\)</span>s (player two’s pieces). The player wins the game if they can arrange <span class="math inline">\(k\)</span> of their pieces on the board in a line—vertically, horizontally, or diagonally. The  problem asks whether for a given board if player one has a strategy that allows them to win given the current board configuration.</p>
+<p>Show that <span class="math inline">\(\mathsf{GTAC} \in \mathsf{PSPACE}\)</span>.</p>
+<p>(<em>Hint</em>: adapt the solution for  from the reading to this setting.)</p></li>
+</ol>
+<h1 id="problem-2-reductions">Problem 2: Reductions</h1>
+<p>Prove that the following languages are undecidable by reduction from a known, undecidable language:</p>
+<ol type="a">
+<li><span class="math inline">\(L_1 = \{\, M \mid \text{\( M \) is a TM and \( L(M) \) is infinite} \,\}\)</span>.</li>
+<li><span class="math inline">\(L_2 = \{\, M \mid \text{\( M \) is a TM and the \( L(M) \) is finite} \,\}\)</span></li>
+</ol>
+<p>(<em>Hint</em>: A contradiction can be established with a simple mapping reduction for <span class="math inline">\(L_1\)</span>. However, <span class="math inline">\(L_2\)</span> is surprisingly not as simple; you will need to write a general reduction instead!}</p>
+<h1 id="problem-3-machinations">Problem 3: Machinations</h1>
+<p>Consider two languages that represent decision procedures over Turing machines:</p>
+<ul>
+<li><span class="math inline">\(L_1\)</span>: determine if a TM <span class="math inline">\(M\)</span> on input <span class="math inline">\(w\)</span> ever attempts to move its head left when its head is on the left-most tape cell.</li>
+<li><span class="math inline">\(L_2\)</span>: determine if a TM <span class="math inline">\(M\)</span> on input <span class="math inline">\(w\)</span> ever attempts to move its head left during computation on <span class="math inline">\(w\)</span>.</li>
+</ul>
+<ol type="a">
+<li><p><span class="math inline">\(L_1\)</span> is undecidable; prove it. In your construction, make it clear how the decider for <span class="math inline">\(L_1\)</span> will detect the relevant behavior from <span class="math inline">\(M\)</span> on <span class="math inline">\(w\)</span>.</p></li>
+<li><p><span class="math inline">\(L_2\)</span> is decidable; prove it.</p>
+<p>(<em>Hint</em>: imagine a Turing machine that <em>never</em> moves its head left during computation. What can it never do?)</p></li>
+<li><p>With what you learned from these proofs, come up with a language <span class="math inline">\(L_3\)</span> that is also a decidable problem that analyzes how a TM <span class="math inline">\(M\)</span> computes on input <span class="math inline">\(w\)</span>.</p></li>
+</ol>
+:ET

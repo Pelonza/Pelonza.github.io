@@ -1,0 +1,11 @@
+I"õ<p><span class="math inline">\(\newcommand{\tile}[2]{\left[\frac{\texttt{#1}}{\texttt{#2}}\right]}\)</span></p>
+<h1 id="problem-honey-bunches-of-oats">Problem: Honey Bunches of Oats</h1>
+<ul>
+<li><p>(Sipser 5.3) Find a match in the following instance of the Post Correspondence Problem:</p>
+<p><span class="math display">\[
+  \left\{ \tile{ab}{abab}, \tile{b}{a}, \tile{aba}{b}, \tile{aa}{a} \right\}.
+\]</span></p></li>
+<li><p>(Sipser 5.17) Show that the PCP problem is <em>decidable</em> over the unary alphabet <span class="math inline">\(\Sigma = \{\, a \,\}\)</span>.</p>
+<p>(<em>Hint</em>: With one symbol, you can safely consider the <em>number</em> of symbols on the top and bottom of each tile. From there, think about fractionsâ€¦)</p></li>
+</ul>
+:ET

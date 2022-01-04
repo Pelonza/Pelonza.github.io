@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Pspace Completeness</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bulma/0.7.5/css/bulma.min.css">
+  <link rel="stylesheet" href="/csc341/css/style.css">
+  <link rel="stylesheet" href="/csc341/css/syntax.css">
+  <link rel="stylesheet" href="/csc341/css/syntax-drracket.css">
+  <script defer src="https://use.fontawesome.com/releases/v5.3.1/js/all.js"></script>
+  
+  <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+  <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+  
+  
+  
+</head>
+
+  </head>
+  <body>
+    <nav class="navbar is-primary" role="navigation" aria-label="main navigation">
+  <div class="navbar-brand">
+    <a class="navbar-item" href="/csc341/">
+      <img src="/csc341/img/laurel-white.png">
+      &nbsp;
+      CSC 341 (21fa)
+    </a>
+
+    <a role="button" class="navbar-burger burger" aria-label="menu" aria-expanded="false" data-target="navbarBasicExample">
+      <span aria-hidden="true"></span>
+      <span aria-hidden="true"></span>
+      <span aria-hidden="true"></span>
+    </a>
+  </div>
+
+  <div id="navbarBasicExample" class="navbar-menu">
+    <div class="navbar-start">
+      <a class="navbar-item" href="/csc341/syllabus">
+        Syllabus
+      </a>
+      <a class="navbar-item" href="/csc341/resources">
+        Resources
+      </a>
+      
+      <a class="navbar-item" href="https://teams.microsoft.com/l/team/19%3avJm8Wpx7VaDe72Q53lhFS8hKbE8ZqBMHkz-HLvwbzag1%40thread.tacv2/conversations?groupId=621c250a-ec62-4c30-afbd-0e3b7efa7606&tenantId=524f9e3e-faca-4f64-b3ec-adb2baee8807
+">Teams</a>
+      
+      
+      <a class="navbar-item" href="https://www.gradescope.com/courses/299977
+">Gradescope</a>
+      
+      <a class="navbar-item" href="/csc341/editor">
+        Editor
+      </a>
+    </div>
+  </div>
+</nav>
+
+<!-- Adapted from: https://bulma.io/documentation/components/navbar/ -->
+<script>
+  document.addEventListener('DOMContentLoaded', () => {
+
+    // Get all "navbar-burger" elements
+    const $navbarBurgers = Array.prototype.slice.call(document.querySelectorAll('.navbar-burger'), 0);
+
+    // Check if there are any navbar burgers
+    if ($navbarBurgers.length > 0) {
+
+      // Add a click event on each of them
+      $navbarBurgers.forEach( el => {
+        el.addEventListener('click', () => {
+
+          // Get the target from the "data-target" attribute
+          const target = el.dataset.target;
+          const $target = document.getElementById(target);
+
+          // Toggle the "is-active" class on both the "navbar-burger" and the "navbar-menu"
+          el.classList.toggle('is-active');
+          $target.classList.toggle('is-active');
+
+        });
+      });
+    }
+
+  });
+</script>
+
+    <section class="section">
+      <div class="container">
+        <h1 class="title">
+          CSC 341 (Fall 2021)
+        </h1>
+        <h1 class="subtitle">
+          
+            Lab: Pspace Completeness
+          
+        </h1>
+      </div>
+    </section>
+    <section class="content">
+      <div class="container">
+        
+        <h1 id="problem-the-puzzle-game">Problem: The Puzzle Game</h1>
+<p>Recall the <em>puzzle</em> problem, <span class="math inline">\(\text{PUZZLE}\)</span>, from a previous lab:</p>
+<blockquote>
+<p>You are given a box and a collection of cards as indicated in the following figure. Because of the pegs in the box and the notches in the cards, each card will fit in the box in either of two ways. Each card contains two columns of holes, some of which may not be punched out. The puzzle is solved by placing all the cards in the box so as to completely cover the bottom of the box (<em>i.e.</em>, every hole position is blocked by at least one card that has no hole there).</p>
+</blockquote>
+<p>Consider a related problem, the two-player <em>puzzle game</em>, <span class="math inline">\(\text{PUZZLE-GAME}\)</span>. The game consists of an <em>ordered</em> stack of cards as described in <span class="math inline">\(\textsf{PUZZLE}\)</span>. Players take turns placing the cards in order into the box, choosing whether or not the card is flipped. After placing all the cards, player one wins if all the hole positions are covered in the stack; player two wins if this is not the case.</p>
+<p>Define: <span class="math display">\[
+\text{PUZZLE-GAME} = \{\, C \mid \text{\( C \) is an ordered stack of puzzle cards and player 1 has a winning strategy} \,\}.
+\]</span></p>
+<p>In this problem, we’ll show that <span class="math inline">\(\text{PUZZLE-GAME}\)</span> is <span class="math inline">\(\mathsf{PSPACE}\)</span>-complete.</p>
+<ol type="1">
+<li><p>Show that <span class="math inline">\(\text{PUZZLE-GAME} \in \mathsf{PSPACE}\)</span>.</p></li>
+<li><p>From the reading, you know that:</p>
+<p><span class="math display">\[
+\text{FORMULA-GAME} = \{\, \phi \mid \text{\( \phi \) is a TQBF and player 1 has a winning strategy} \,\}.
+\]</span></p>
+<p>is <span class="math inline">\(\mathsf{PSPACE}\)</span>-complete. Furthermore, the restriction of the boolean formulas to 3-cnf form is also <span class="math inline">\(\mathsf{PSPACE}\)</span>-complete. Use this fact to construct a polynomial time mapping function from the 3-cnf version of <span class="math inline">\(\textsf{FORMULA-GAME}\)</span> to <span class="math inline">\(\textsf{PUZZLE{-}GAME}\)</span>, demonstrating that <span class="math inline">\(\textsf{PUZZLE-GAME}\)</span> is <span class="math inline">\(\mathsf{PSPACE}\)</span>-hard. In a few sentences, argue why your construction is correct.</p>
+<p>(<em>Hint</em>: Adopt the solution for <span class="math inline">\(\textsf{PUZZLE}\)</span> directly.)</p></li>
+<li><p>Show your construction is correct by giving an example of the output of your mapping function on the following TQBF in 3-cnf form:</p>
+<p><span class="math display">\[
+\exists x_1 \forall x_2 \exists x_3 \ldotp [ (x_1 \vee x_2 \vee x_1) \wedge (x_2 \vee x_3 \vee x_3) \wedge (\overline{x_2} \vee \overline{x_3} \vee \overline{x_3}) ]
+\]</span></p>
+<p>As well as a winning strategy for player 1 on the resulting puzzle game.</p></li>
+</ol>
+
+      </div>
+    </section>
+    <footer class="footer is-size-7 has-text-centered">
+  <a rel="license" href="http://creativecommons.org/licenses/by-sa/4.0/"><img alt="Creative Commons License" style="border-width:0" src="https://i.creativecommons.org/l/by-sa/4.0/80x15.png" /></a><br />This work is licensed under a <a rel="license" href="http://creativecommons.org/licenses/by-sa/4.0/">Creative Commons Attribution-ShareAlike 4.0 International License</a>.<br/>
+  Made with <a href="https://bulma.io">Bulma</a>, <a href="https://jekyllrb.com">Jekyll</a>, <a href="https://www.brailleinstitute.org/freefont">Atkinson Hyperlegible</a>, and <a href="https://github.com/JetBrains/JetBrainsMono">JetBrains Mono</a>.
+</footer>
+
+  </body>
+</html>

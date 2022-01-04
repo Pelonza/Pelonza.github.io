@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Week 6 Lab Solutions</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bulma/0.7.5/css/bulma.min.css">
+  <link rel="stylesheet" href="/csc341/css/style.css">
+  <link rel="stylesheet" href="/csc341/css/syntax.css">
+  <link rel="stylesheet" href="/csc341/css/syntax-drracket.css">
+  <script defer src="https://use.fontawesome.com/releases/v5.3.1/js/all.js"></script>
+  
+  <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+  <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+  
+  
+  
+</head>
+
+  </head>
+  <body>
+    <nav class="navbar is-primary" role="navigation" aria-label="main navigation">
+  <div class="navbar-brand">
+    <a class="navbar-item" href="/csc341/">
+      <img src="/csc341/img/laurel-white.png">
+      &nbsp;
+      CSC 341 (21fa)
+    </a>
+
+    <a role="button" class="navbar-burger burger" aria-label="menu" aria-expanded="false" data-target="navbarBasicExample">
+      <span aria-hidden="true"></span>
+      <span aria-hidden="true"></span>
+      <span aria-hidden="true"></span>
+    </a>
+  </div>
+
+  <div id="navbarBasicExample" class="navbar-menu">
+    <div class="navbar-start">
+      <a class="navbar-item" href="/csc341/syllabus">
+        Syllabus
+      </a>
+      <a class="navbar-item" href="/csc341/resources">
+        Resources
+      </a>
+      
+      <a class="navbar-item" href="https://teams.microsoft.com/l/team/19%3avJm8Wpx7VaDe72Q53lhFS8hKbE8ZqBMHkz-HLvwbzag1%40thread.tacv2/conversations?groupId=621c250a-ec62-4c30-afbd-0e3b7efa7606&tenantId=524f9e3e-faca-4f64-b3ec-adb2baee8807
+">Teams</a>
+      
+      
+      <a class="navbar-item" href="https://www.gradescope.com/courses/299977
+">Gradescope</a>
+      
+      <a class="navbar-item" href="/csc341/editor">
+        Editor
+      </a>
+    </div>
+  </div>
+</nav>
+
+<!-- Adapted from: https://bulma.io/documentation/components/navbar/ -->
+<script>
+  document.addEventListener('DOMContentLoaded', () => {
+
+    // Get all "navbar-burger" elements
+    const $navbarBurgers = Array.prototype.slice.call(document.querySelectorAll('.navbar-burger'), 0);
+
+    // Check if there are any navbar burgers
+    if ($navbarBurgers.length > 0) {
+
+      // Add a click event on each of them
+      $navbarBurgers.forEach( el => {
+        el.addEventListener('click', () => {
+
+          // Get the target from the "data-target" attribute
+          const target = el.dataset.target;
+          const $target = document.getElementById(target);
+
+          // Toggle the "is-active" class on both the "navbar-burger" and the "navbar-menu"
+          el.classList.toggle('is-active');
+          $target.classList.toggle('is-active');
+
+        });
+      });
+    }
+
+  });
+</script>
+
+    <section class="section">
+      <div class="container">
+        <h1 class="title">
+          CSC 341 (Fall 2021)
+        </h1>
+        <h1 class="subtitle">
+          
+            Week 6 Lab Solutions
+          
+        </h1>
+      </div>
+    </section>
+    <section class="content">
+      <div class="container">
+        
+        <p><span class="math display">\[
+\newcommand{\SAT}{\mathsf{SAT}}
+\newcommand{\CLIQUE}{\mathsf{CLIQUE}}
+\newcommand{\ISO}{\mathsf{ISO}}
+\]</span></p>
+<h1 id="problem-representation">Problem: Representation</h1>
+<ol type="1">
+<li>A list of vertices and a list of edges, each of which is a pair of vertices from the first list.</li>
+<li>A list of pairs of weights and costs for each of the objects.</li>
+<li>A list of pairs of variables and truth values.</li>
+<li>A string consisting of tape symbols with a single state that represents both the current state and the current position of the tape.</li>
+<li>A tuple consisting of a list of states, the start state, the set of final states, and triples of a state, character, and state denoting the transition function.</li>
+</ol>
+<h1 id="problem-poly-want-a-cracker">Problem: Poly Want A Cracker</h1>
+<ul>
+<li>For each vertex <span class="math inline">\(v\)</span> of <span class="math inline">\(V&#39;\)</span>, check every other vertex <span class="math inline">\(v&#39;\)</span> of <span class="math inline">\(V&#39;\)</span> and verify that <span class="math inline">\((v, v&#39;)\)</span> is not an edge of <span class="math inline">\(E\)</span>, <span class="math inline">\(\mathcal{O}(|V|^2)\)</span> time overall.</li>
+<li>Use depth-first search to determine the set of states reachable from the start state and ensure that every such state is an accepting state, <span class="math inline">\(\mathcal{O}(|Q|)\)</span> time overall.</li>
+<li>Enumerate every possible triple of distinct vertices and see if they form a 3-clique, <span class="math inline">\(\mathcal{O}(|V|^3)\)</span> such triples overall.</li>
+</ul>
+<h1 id="problem-bridging-the-gap">Problem: Bridging the Gap</h1>
+<p>Let <span class="math inline">\(A\)</span> be a decidable language and <span class="math inline">\(V\)</span> be a polynomial-time verifier for <span class="math inline">\(A\)</span> that runs in some polynomial time <span class="math inline">\(f(n)\)</span>. Non-deterministic Turing machine <span class="math inline">\(N\)</span> does the following to decide <span class="math inline">\(A\)</span> on input <span class="math inline">\(w\)</span>:</p>
+<ol type="1">
+<li>Non-deterministically generate a certificate <span class="math inline">\(c\)</span> of size <span class="math inline">\(f(|w|)\)</span>.</li>
+<li>Run <span class="math inline">\(V(w, c)\)</span> and accept if <span class="math inline">\(V\)</span> accepts.</li>
+<li>If no such <span class="math inline">\(c\)</span> leads to acceptance, then reject.</li>
+</ol>
+<p>The non-deterministic search is bounded by the size of potential certificates, observing that an algorithm that runs in time <span class="math inline">\(f(n)\)</span> cannot access memory larger than size <span class="math inline">\(f(n)\)</span>.</p>
+<h1 id="problem-membership">Problem: Membership</h1>
+<ol type="1">
+<li>Let the certificate to the verifier for <span class="math inline">\(A_1\)</span> be an assignment of truth values to the literals of the boolean formula. Checking that formula is satisfiable given the assignment amounts to running the formula which takes a linear amount of time.</li>
+<li>Let the certificate to the verifier for <span class="math inline">\(A_2\)</span> be a set <span class="math inline">\(S^* \subseteq S\)</span>. Checking that the sum of the elements of <span class="math inline">\(S^*\)</span> is <span class="math inline">\(t\)</span> takes a linear amount of time.</li>
+<li>Let the certificate to <span class="math inline">\(A_3\)</span> be a subset <span class="math inline">\(V&#39; \subseteq V\)</span>. Checking that <span class="math inline">\(V&#39;\)</span> is a covering amounts to checking every edge and verifying that at least one of its vertices is in <span class="math inline">\(V&#39;\)</span>. This process is linear in the number of edges of <span class="math inline">\(G\)</span>.</li>
+</ol>
+<h1 id="problem-completeness">Problem: Completeness</h1>
+<div class="proof">
+<p><strong>Claim</strong>: <span class="math inline">\(\CLIQUE \leq_p \ISO\)</span>.</p>
+<p>Let <span class="math inline">\((G, k)\)</span> be an instance of <span class="math inline">\(\CLIQUE\)</span>. From this instance, constructing <span class="math inline">\((G, K_k)\)</span>, an instance of <span class="math inline">\(\ISO\)</span> where <span class="math inline">\(K_k\)</span> is the complete graph on <span class="math inline">\(k\)</span> vertices.</p>
+<p>First we show that if <span class="math inline">\(G\)</span> has a <span class="math inline">\(k\)</span>-clique, then a subset of <span class="math inline">\(G\)</span> is isomorphic to <span class="math inline">\(K_k\)</span>. Observe that the <span class="math inline">\(k\)</span>-clique of <span class="math inline">\(G\)</span> is, itself, a complete graph of size <span class="math inline">\(k\)</span>. Therefore, this <span class="math inline">\(k\)</span>-clique is the subset of <span class="math inline">\(G\)</span> that is isomorphic to <span class="math inline">\(K_k\)</span>.</p>
+<p>Next we show that if a subset of <span class="math inline">\(G\)</span> is isomorphic to <span class="math inline">\(K_k\)</span>, then <span class="math inline">\(G\)</span> has a <span class="math inline">\(k\)</span>-clique. Observe that <span class="math inline">\(K_k\)</span> itself is a <span class="math inline">\(k\)</span>-clique embedded in <span class="math inline">\(G\)</span>, so we are done.</p>
+</div>
+<h1 id="problem-details-details">Problem: Details, Details, …</h1>
+<ol type="1">
+<li>The inputs to the mapping function is a Turing machine <span class="math inline">\(M\)</span> and an input <span class="math inline">\(w\)</span>. The output is a boolean formula <span class="math inline">\(\phi\)</span>.</li>
+<li>The tableaus have <span class="math inline">\(n^k\)</span> rows because it is assumed that <span class="math inline">\(M\)</span> runs in some polynomial amount of time <span class="math inline">\(n^k\)</span>. Each row is a step of the computation.</li>
+<li>We can bound the size of the tape to a polynomial because a Turing machine cannot access more memory than steps of time it takes to run.</li>
+<li><span class="math inline">\(x_{i, j, s}\)</span> is true if and only if cell <span class="math inline">\((i, j)\)</span> of the tableau is filled with symbol <span class="math inline">\(s\)</span>.</li>
+<li>Each of the boolean formulae of Cook-Levine:
+<ul>
+<li><span class="math inline">\(\phi_\mathsf{cell}\)</span>: checks that every cell of the tableau has exactly one symbol enabled.</li>
+<li><span class="math inline">\(\phi_\mathsf{start}\)</span>: checks that the first row corresponds to the initial configuration of <span class="math inline">\(M\)</span> on <span class="math inline">\(w\)</span>.</li>
+<li><span class="math inline">\(\phi_\mathsf{move}\)</span>: checks every <span class="math inline">\(2 \times 3\)</span> window of the tableau correctly encodes a potential step of execution of <span class="math inline">\(M\)</span>.</li>
+<li><span class="math inline">\(\phi_\mathsf{accept}\)</span>: checks that some row of the tableau ends on <span class="math inline">\(\q_\mathsf{accept}\)</span>.</li>
+</ul></li>
+<li>The constructed boolean function accounts for non-determinism by emitting sub-formulae in <span class="math inline">\(\phi_\mathsf{move}\)</span> to account for every possible step of non-determinism. The assumed solver for <span class="math inline">\(\SAT\)</span> is then responsible for determine which of non-deterministic paths would result in acceptance, if any of them do.</li>
+</ol>
+
+      </div>
+    </section>
+    <footer class="footer is-size-7 has-text-centered">
+  <a rel="license" href="http://creativecommons.org/licenses/by-sa/4.0/"><img alt="Creative Commons License" style="border-width:0" src="https://i.creativecommons.org/l/by-sa/4.0/80x15.png" /></a><br />This work is licensed under a <a rel="license" href="http://creativecommons.org/licenses/by-sa/4.0/">Creative Commons Attribution-ShareAlike 4.0 International License</a>.<br/>
+  Made with <a href="https://bulma.io">Bulma</a>, <a href="https://jekyllrb.com">Jekyll</a>, <a href="https://www.brailleinstitute.org/freefont">Atkinson Hyperlegible</a>, and <a href="https://github.com/JetBrains/JetBrainsMono">JetBrains Mono</a>.
+</footer>
+
+  </body>
+</html>

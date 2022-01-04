@@ -1,0 +1,11 @@
+I"`<h1 id="context-free-grammars">Context-free Grammars</h1>
+<p>Now that we’ve discussed the properties of regular languages in detail, let’s move on to more powerful models of computation. Before we talk about models that capture the full generality of computation as we know it, we’ll take a pit stop to discuss an intermediate step on this path, <em>the context-free languages</em>. The models of the context-free languages add just enough expressiveness to overcome most of the immediate pitfalls we encountered in the languages that we previously showed were irregular.</p>
+<h2 id="reading">Reading</h2>
+<p>For next class, please read about the model of computation for context-free languages that we will study: the <em>context-free grammar</em>.</p>
+<ul>
+<li>Sipser, chapter 2 up to 2.2, “Pushdown Automata”</li>
+</ul>
+<hr />
+<p><strong>Reading Problem (A CFG)</strong></p>
+<p>Give a context-free grammar <span class="math inline">\(G\)</span> that recognizes language <span class="math inline">\(A = \{\, w \mid \text{ \( w \in \{\, 0, 1 \,\}^* \) starts and ends with the same symbol} \,\}\)</span>.</p>
+:ET

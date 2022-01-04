@@ -1,0 +1,19 @@
+I"<h1 id="irregularity">Irregularity</h1>
+<p>DFAs, NFAs, and regular expressions are all <em>restricted</em> models of computation in that we trade-off computational expressiveness for tractability in terms of analysis. We crystallize the limitations of these models by showing that some languages are provably not regular. We can do this via two methods:</p>
+<ol type="1">
+<li><em>The pumping lemma</em> which describes a necessary characteristic of the repetitive nature of infinite regular languages.</li>
+<li><em>The Myhill-Nerode theorem</em> which relates the finite invariants captured the states of a finite automata to regularity directly.</li>
+</ol>
+<h2 id="reading">Reading</h2>
+<p>First, we will learn about the pumping lemma, and in next class, we’ll learn about the Myhill-Nerode Theorem.</p>
+<ul>
+<li>Learn about the pumping lemma from Sipser, chapter 1.4, “Nonregular Languages”.</li>
+</ul>
+<hr />
+<p><strong>Reading Problem (Skeletons)</strong></p>
+<p>The pumping lemma and Myhill-Nerode theorem each give a unique technique for proving that a language is irregular. Give a <em>proof skeleton</em> for each technique. A proof skeleton for a particular proof technique is an <em>outline</em> of a proof using that technique, clearly indicating:</p>
+<ol type="1">
+<li>What is <em>generic</em> in the proof, <em>i.e.</em>, what parts of the skeleton hold for all claims when using this technique.</li>
+<li>What we must ultimately <em>show</em> when proving a particular claim. This part should be unique to each claim.</li>
+</ol>
+:ET

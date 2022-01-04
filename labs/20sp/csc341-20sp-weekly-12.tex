@@ -1,0 +1,230 @@
+\documentclass[12pt]{article}
+
+%%%%% Document Information (FILL THIS IN!) %%%%%
+\newcommand{\authornames}{(Names)}
+
+\newcommand{\coursenumber}{CSC 341}
+\newcommand{\assignmentname}{Weekly Exercises \#12}
+\newcommand{\assignmentversion}{1}
+
+%%%%% Fonts and Encodings %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\usepackage[T1]{fontenc}
+\usepackage{libertine}
+
+%%%%% General %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage[shortlabels]{enumitem}
+\setlist{nosep}
+\usepackage{framed}
+\usepackage{fancyvrb}
+\usepackage[amsmath, amsthm, thmmarks]{ntheorem}
+\usepackage{microtype}
+\usepackage{url}
+\usepackage[svgnames]{xcolor}
+\usepackage{xspace}
+
+\usepackage{tikz}
+
+%%%%% Page Formatting %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\usepackage[
+  top=1in,
+  bottom=1in,
+  left=1in,
+  right=1in,
+  includefoot,
+  paperwidth=8.5in,
+  paperheight=11in
+]{geometry}
+
+\usepackage{fancyhdr}
+\setlength{\headheight}{15.2pt}
+\pagestyle{fancy}
+
+\fancyhead{}
+\fancyfoot{}
+\lhead{\coursenumber{}---\assignmentname{} (ver. \assignmentversion), \authornames{}}
+\cfoot{\thepage}
+
+%%%%% Code %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\usepackage{listings}
+\usepackage{xcolor}
+
+% Adapted from: https://en.wikibooks.org/wiki/LaTeX/Source_Code_Listings
+\definecolor{mygreen}{rgb}{0,0.6,0}
+\definecolor{mygray}{rgb}{0.5,0.5,0.5}
+\definecolor{mymauve}{rgb}{0.58,0,0.82}
+
+\lstset{ 
+  backgroundcolor=\color{white},      % choose the background color; you must add \usepackage{color} or \usepackage{xcolor}; should come as last argument
+  basicstyle=\ttfamily\footnotesize,  % the size of the fonts that are used for the code
+  breakatwhitespace=false,            % sets if automatic breaks should only happen at whitespace
+  breaklines=true,                    % sets automatic line breaking
+  captionpos=b,                       % sets the caption-position to bottom
+  commentstyle=\color{mygreen},       % comment style
+  keepspaces=true,                    % keeps spaces in text, useful for keeping indentation of code (possibly needs columns=flexible)
+  keywordstyle=\color{blue},          % keyword style
+  language=Python,                    % the language of the code
+  stringstyle=\color{mymauve},        % string literal style
+}
+
+%%%%% Basic Macros and Definitions %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\newtheorem{claim}{Claim}
+\newtheorem{invariant}{Invariant}
+\newtheorem{defn}{Definition}
+\newtheorem{thm}{Theorem}
+\newtheorem{lemma}{Lemma}
+
+\newcommand{\ie}{\emph{i.e.}\xspace}
+\newcommand{\eg}{\emph{e.g.}\xspace}
+\newcommand{\hint}[1]{(\emph{Hint}: #1)}
+\newcommand{\note}[1]{(\emph{Note}: #1)}
+
+\newcounter{ProblemCounter}
+\newenvironment{problem}[1][]
+  {\refstepcounter{ProblemCounter}\noindent\textbf{Problem \theProblemCounter{} (#1)}\quad}
+  {\newpage}
+
+\newcommand{\answerbelow}{\noindent\makebox[\linewidth]{\rule{\textwidth}{0.4pt}}}
+
+%%%%% Problem-specific Macros %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\newcommand{\prob}[1]{\ensuremath{\textsf{#1}}\xspace}
+\newcommand{\desc}[1]{\ensuremath{\langle #1 \rangle}}
+\newcommand{\comp}[1]{\ensuremath{\overline{#1}}\xspace}
+
+\newcommand{\nats}{\ensuremath{\mathbb{N}}\xspace}
+\newcommand{\dfa}{\textsf{DFA}\xspace}
+\newcommand{\EQdfa}{\ensuremath{EQ_\mathsf{DFA}\xspace}}
+\newcommand{\Atm}{\ensuremath{A_\mathsf{TM}}\xspace}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{document}
+
+%%%%% Monday: Approximation %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{problem}[Formation]
+
+Before you begin the group activity for this week, identify:
+\begin{itemize}
+  \item A \emph{Scribe}: who will be responsible for creating a shared document
+    and turning in your solutions for this week's problems.
+  \item A \emph{Timekeeper}: who will keep track of the timer for weekly
+    activities that require timekeeping.
+  \item A \emph{Driver}: who will be responsible for asking people to share or
+    otherwise kickstarting conversation if group chat slows down.
+\end{itemize}
+
+For this problem, simply identify your teammate's roles in the space below.
+
+If you cannot attend a given class period, please work with your group on how
+you will contribute to the group's work either asynchronously (\eg, by doing
+the work yourself) or outside of the class period (\eg, by chatting or meeting
+outside of class).  If there are any issues in coordinating work in your group,
+please let me know as soon as possible!
+
+\answerbelow
+% FILL IN YOUR ANSWER HERE
+
+\end{problem}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{problem}[Tours, Approximately]
+
+A polynomial-time approximation scheme (PTAS) is an approximation algorithm for
+a minimization problem that produces solutions that are within a factor of \(
+(1 + \epsilon) \) of the optimal solution, for some constant parameter \(
+\epsilon \).  In the book, Sipser describes a 2-approximation algorithm for
+\prob{VERTEX-COVER} which is a PTAS with \( \epsilon = 1 \).  Several
+NP-complete problems has PTAS.
+
+Recall that a \emph{Hamiltonian cycle} is a cycle in a graph that touches every
+vertex at least once.  From this, we can discuss the \emph{traveling salesman
+problem} (TSP) which requires us to find the shortest Hamiltonian cycle in a
+weighted undirected graph.  For simplicity's sake, when we talk about TSP, we
+assume that the graph is complete, \ie, every location is reachable from every
+other location.  It turns out that it is provable that TSP has no PTAS which is
+not good since TSP occurs in many real-life situations!
+
+In order to gain a tractable approximation for TSP, we need to add in
+an extra constraint, \emph{the triangle inequality}, which states that for any
+triple of vertices \( u \), \( v \), \( w \):
+\[
+  l(u, v) + l(v, w) \geq l(u, w)
+\]
+where \( l(u, v) \) is the weight of the edge \( uv \).  If we add this constraint
+to TSP, then we can obtain a 2-approximation scheme for TSP.
+
+\begin{enumerate}[(a)]
+  \item Individually, spend no more than 2 minutes making sure you understand
+    what the triangle inequality says.  Come up with a small example graph that
+    exhibits the triangle inequality and one that does not.  Come back with
+    your group and answer the following question: if we know that the triangle
+    inequality holds of a graph, what do we know about the shortest path
+    between any pair of vertices in the graph?
+  \item As a group, spend no more than 3 minutes reviewing the concept of a
+    \emph{minimum spanning tree} (MST) for a graph.  In particular, what is a MST
+    and how can you compute one efficiently?  You do not need to include anything in
+    your write-up for this part.
+  \item Now, spend 10 minutes individually taking this idea of a MST and
+    deriving an approximation algorithm for the TSP.  Come back as a group and agree
+    on a final algorithm and describe it in your write-up.  \hint{Think about
+    using the MST of the graph as a starting point for the tour?  How can the
+    MST be used to visit all the vertices of the graph?  From this, you can view the
+    problem as "fixing up" this tour so it is indeed Hamiltonian.}
+  \item Finally, spend another 5 minutes individually to think about why this algorithm
+    is a 2-approximation scheme.  That is, the result is no larger than two times the
+    optimal tour of the graph.  Come back as a group and summarize your reasoning.
+    You do not need to formally prove this fact, but instead try to give intuition why
+    the factor is specifically 2 with respect to the triangle inequality and MSTs.
+\end{enumerate}
+
+\answerbelow
+% FILL IN YOUR ANSWER HERE
+
+\end{problem}
+
+%%%%% Wednesday: Probabilistic Algorithms %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{problem}[Maybe?]
+
+Consider the problem of analyzing a large data set \( S \) for the presence of
+a particular value \( v \).  Here are two probabilistic algorithms that
+describe how we might solve this problem.
+
+\begin{lstlisting}
+def find1(S, v):
+    repeat forever:
+        Choose an element x of S at random.
+        If s == v, return true, else continue.
+\end{lstlisting}
+
+\begin{lstlisting}
+def find2(S, v, k):
+    for i in range(0, k):
+        Choose an element x of S at random.
+        If s == v, return true, else continue.
+    # Otherwise the element was not found
+    return false
+\end{lstlisting}
+
+\answerbelow
+% FILL IN YOUR ANSWER HERE
+
+\end{problem}
+
+%%%%% Friday: Cryptography %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{problem}[Forthcoming!]
+
+\answerbelow
+% FILL IN YOUR ANSWER HERE
+
+\end{problem}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\end{document}

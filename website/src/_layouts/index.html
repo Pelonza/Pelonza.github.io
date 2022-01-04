@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html>
+  {% include head.html %}
+  <body>
+    {% include nav.html %}
+    <section class="section">
+      <div class="container">
+        <h1 class="title">{{ site.data.course.number }}</h1>
+        <h1 class="subtitle"><a href="{{ "/" | relative_url }}">{{ site.data.course.title }} ({{ site.data.course.semester }})</a></h1>
+        <ul>
+          <li><strong>Course</strong>: {{ site.data.course.number }} ({{ site.data.course.semester }}), <a href="https://grinnell.edu">Grinnell College</a></li>
+          <li><strong>Instructor</strong>: <a href="https://iampmo.com">Peter-Michael Osera</a>, (<a href="https://osera.cs.grinnell.edu/contact">Schedule and Office Hours</a>)</li>
+          {% if site.data.course.mentor %}
+          <li><strong>Mentor</strong>: {{ site.data.course.mentor }} </li>
+          {% endif %}
+          <li><strong>Meeting Times</strong>: {{ site.data.course.meeting-times }}
+        </ul>
+      </div>
+    </section>
+
+    <section class="content">
+      <div class="container">
+        {{ page.content | markdownify }}
+      </div>
+    </section>
+
+    <section class="content">
+      <div class="container">
+        <h2 class="title">Schedule</h2>
+
+        <table class="table is-striped is-fullwidth is-narrow is-hoverable">
+          <thead>
+            <tr>
+              <th>Date</th>
+              <th>Topic/Reading</th>
+              <th>Lab</th>
+              <th>Deliverables</th>
+            </tr>
+          </thead>
+          <tbody>
+            {% for entry in site.data.schedule %}
+              {% if entry.week %}
+                <tr>
+                  <th class="week" colspan="4">{{ entry.week }}</th>
+                </tr>
+              {% else %}
+                <tr>
+                  <th>
+                    {{ entry.date | date: "%a" | replace: "Mon", "M" | replace: "Tue", "T" | replace: "Wed", "W" | replace: "Thu", "Th" | replace: "Fri", "F" | replace: "Sat", "Sa" | replace: "Sun", "Su" }}
+                    {{ entry.date | date: "%m/%d" }}
+                  </th>
+                  <td>
+                    {% if entry.topic %}
+                      {% capture filename %}{{ entry.topic | slugify }}{% endcapture %}
+                      {% capture path %}_readings/{{ filename }}.md{% endcapture %}
+                      {% capture exists %}{% file_exists {{ path }} %}{% endcapture %}
+                      {% if exists == "true" %}
+                        {% capture url %}readings/{{ filename }}.html{% endcapture %}
+                        <a href="{{ url | relative_url }}">{{ entry.topic }}</a>
+                      {% else %}
+                        {{ entry.topic }}
+                      {% endif %}
+                    {% endif %}
+                  </td>
+                  <td>
+                    {% if entry.lab %}
+                      {% capture filename %}{{ entry.lab | slugify }}{% endcapture %}
+                      {% capture path %}_labs/{{ filename }}.md{% endcapture %}
+                      {% capture exists %}{% file_exists {{ path }} %}{% endcapture %}
+                      {% if exists == "true" %}
+                        {% capture url %}labs/{{ filename }}.html{% endcapture %}
+                        <a href="{{ url | relative_url }}">{{ entry.lab }}</a>
+                      {% else %}
+                        {{ entry.lab }}
+                      {% endif %}
+                    {% endif %}
+                  </td>
+                  <td>
+                    {% if entry.deliverables %}
+                      <ul>
+                        {% for deliverable in entry.deliverables %}
+                          {% if deliverable.out %}
+                            <li>
+                              <strong>
+                                {% capture filename %}{{ deliverable.out | slugify }}{% endcapture %}
+                                {% capture path %}_demos/{{ filename }}.md{% endcapture %}
+                                {% capture exists %}{% file_exists {{ path }} %}{% endcapture %}
+                                {% if exists == "true" %}
+                                  {% capture url %}demos/{{ filename }}.html{% endcapture %}
+                                  <a href="{{ url | relative_url }}">{{ deliverable.out }}</a>
+                                {% else %}
+                                  {{ deliverable.out }}
+                                {% endif %} out
+                              </strong>
+                            </li>
+                          {% elsif deliverable.due %}
+                            <li>{{ deliverable.due }} due</li>
+                          {% elsif deliverable.la %}
+                            <li><strong>{{ deliverable.la }} is live</strong></li>
+                          {% endif %}
+                        {% endfor %}
+                      </ul>
+                    {% endif %}
+                  </td>
+                </tr>
+              {% endif %}
+            {% endfor %}
+          </tbody>
+        </table>
+
+        <h2 class="title">Learning Goals</h2>
+
+        <section class="content">
+          <ul>
+            {% for la in site.data.goals %}
+            <li>
+              <strong>{{ la.name }}</strong>
+              <ul>
+                {% for goal in la.goals %}
+                  <li>{{ goal }}</li>
+                {% endfor %}
+              </ul>
+            </li>
+            {% endfor %}
+          </ul>
+        </section>
+      </div>
+    </section>
+    {% include footer.html %}
+  </body>
+</html>

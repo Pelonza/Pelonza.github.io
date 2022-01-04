@@ -1,0 +1,21 @@
+I"�<h1 id="problem-1-countability">Problem 1: Countability</h1>
+<ol type="a">
+<li><p>Prove that the language <span class="math inline">\(L = \Sigma^*\)</span> where <span class="math inline">\(\Sigma = \{\, 0, 1 \,\}\)</span> is countably infinite.</p>
+<p>(<em>Hint</em>: simply declaring that the mapping from <span class="math inline">\(\Sigma^*\)</span> to <span class="math inline">\(\mathbb{N}\)</span> is the binary interpretation of <span class="math inline">\(w \in \Sigma^*\)</span> is insufficient since <span class="math inline">\(0\)</span> and <span class="math inline">\(000\)</span> are distinct strings but both represent the value zero. The resulting mapping would, therefore, not be a bijection!}</p></li>
+<li><p>Generalize your construction to any ( ) of finite size.</p></li>
+<li><p>Use this fact to argue that the set of possible Java programs is countably infinite.</p></li>
+</ol>
+<h1 id="problem-2-hey-wait-a-second">Problem 2: Hey, Wait a Second</h1>
+<p>Consider the following proof that <span class="math inline">\(\mathbb{N}\)</span> is uncountable.</p>
+<div class="proof">
+<p><em>Proof</em>. Assume that <span class="math inline">\(\mathbb{N}\)</span> is countable. Then there is a bijection <span class="math inline">\(f\)</span> that covers every natural numbers in <span class="math inline">\(\mathbb{N}\)</span>. Construct the natural number <span class="math inline">\(n\)</span> where the <span class="math inline">\(i\)</span>th digit of <span class="math inline">\(n\)</span> is the <span class="math inline">\(i\)</span>th digit of the <span class="math inline">\(i\)</span>th natural number in the bijection (<em>i.e.</em>, <span class="math inline">\(f(i)\)</span>) plus one mod 10 (so that it is a decimal digit). That is, if <span class="math inline">\(k\)</span> is the <span class="math inline">\(i\)</span>th digit of the <span class="math inline">\(i\)</span>th natural number, then the <span class="math inline">\(i\)</span>th digit of <span class="math inline">\(n\)</span> is given by <span class="math inline">\(k + 1 \mod 10\)</span>. <span class="math inline">\(n\)</span> is a valid natural number and by construction, <span class="math inline">\(n\)</span> differs from every natural number in the bijection by one digit. Therefore, <span class="math inline">\(n\)</span> cannot be in the bijection and therefore our assumption that such a bijection exists is incorrect. Thus, <span class="math inline">\(\mathbb{N}\)</span> is uncountable.</p>
+</div>
+<p>However, we already know that <span class="math inline">\(\mathbb{N}\)</span> is countable (the bijection is the identity function). What is wrong with this proof?</p>
+<p>(<em>Hint</em>: think about the assumptions latent in Cantor’s diagonalization argument that the reals are uncountable. What specifically is different in this case?}</p>
+<h1 id="problem-3-running-the-diagonal-line">Problem 3: Running the (Diagonal) Line</h1>
+<p>Consider the following language:</p>
+<p><span class="math display">\[
+\mathsf{HALT}_\mathsf{TM} = \{\, (M, w) \mid \text{Turing machine \( M \) halts on input \( w \)} \,\}.
+\]</span></p>
+<p>By “halts”, we mean that the Turing machine either accepts or rejects. Adapt the diagonalization proof that <span class="math inline">\(A_\mathsf{TM}\)</span> is undecidable from the end of chapter 4.2 to show that <span class="math inline">\(\mathsf{HALT}_\mathsf{TM}\)</span> is undecidable. In a few sentences, describe how the diagonalization matrix figure 4.21 changes when adapted to your new proof.</p>
+:ET

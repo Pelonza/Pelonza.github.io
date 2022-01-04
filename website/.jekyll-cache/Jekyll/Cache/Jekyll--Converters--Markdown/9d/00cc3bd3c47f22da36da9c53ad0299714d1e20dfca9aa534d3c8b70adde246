@@ -1,0 +1,65 @@
+I"6%<p><span class="math display">\[
+\newcommand{\prob}[1]{\mathsf{#1}}
+\newcommand{\desc}[1]{\langle #1 \rangle}
+\newcommand{\np}{\mathsf{NP}}
+\newcommand{\comp}[1]{\overline{#1}}
+\]</span></p>
+<h1 id="problem-1-satisfying-variations">Problem 1: Satisfying Variations</h1>
+<p>For this problem, we’ll explore variations of the 3-SAT problem, generalized to the <span class="math inline">\(k\)</span>-SAT problem:</p>
+<p><span class="math display">\[
+\prob{kSAT} = \{\, \desc{\phi} \mid \text{\( \phi \) is a satisfiable \( k \) cnf-formula} \,\}.
+\]</span></p>
+<ol type="a">
+<li><p>Suppose that you have a 2cnf-formula clause of the form <span class="math inline">\((x_1 \vee x_2)\)</span>. Describe how you would turn this clause into a logically equivalent 3cnf-formula clause. Argue in a sentence or two why your transformation is correct.</p></li>
+<li><p>With this fact, prove that <span class="math inline">\(\prob{2SAT} \leq_p \prob{3SAT}\)</span>.</p></li>
+<li><p>Suppose that you have a 4cnf-formula clause of the form <span class="math inline">\((x_1 \vee x_2 \vee x_3 \vee x_4)\)</span>. Describe how you would turn this clause into a logically equivalent 3cnf-formula clause. Argue in a sentence or two why your transformation is correct.</p>
+<p>(<em>Hint</em>: you will want to split up the 4cnf clause into, <em>e.g.</em>, <span class="math inline">\((x_1 \vee x_2 \vee \ldots) \wedge (\ldots \vee x_3 \vee x_4)\)</span>. How do you complete these two 3cnf clauses so that only one of <span class="math inline">\(x_1, \ldots, x_4\)</span> is necessary to be true to make <em>both</em> clauses true? You should consider making a new variable distinct from <span class="math inline">\(x_1, \ldots, x_4\)</span> to help you with this transformation.)</p></li>
+<li><p>With this fact, prove that <span class="math inline">\(\prob{4SAT} \leq_p \prob{3SAT}\)</span>.</p></li>
+<li><p>Finally, we can generalize <span class="math inline">\(k\)</span>-SAT to any combination of sizes of cnf-formula as follows:</p>
+<p><span class="math display">\[
+\prob{CSAT} = \{\, \desc{\phi} \mid \text{$\phi$ is a satisfiable formula in CNF form} \,\}.
+\]</span></p>
+<p>Show that <span class="math inline">\(\prob{CSAT} \leq_p \prob{3SAT}\)</span>.</p>
+<p>(<em>Hint</em>: each sub-formula of <span class="math inline">\(\phi\)</span> can have arbitrary size. Make sure that your reduction covers <em>every</em> possible size of formula.)</p></li>
+</ol>
+<h1 id="problem-2-color-me-badd">Problem 2: Color Me Badd</h1>
+<p>A <span class="math inline">\(k\)</span>-coloring of a graph <span class="math inline">\(G\)</span> is an assignment of <span class="math inline">\(k\)</span> distinct colors to the nodes of <span class="math inline">\(G\)</span> such that no two nodes that share an edge also share the same color. In this problem, we will show that:</p>
+<p><span class="math display">\[
+\prob{3COLOR} = \{\, \desc{G} \mid \text{\( G \) is a graph at \( G \) has a 3-coloring} \,\}
+\]</span></p>
+<p>Is <span class="math inline">\(\np\)</span>-complete.</p>
+<ol type="a">
+<li><p>Prove that <span class="math inline">\(\prob{3COLOR} \in \np\)</span>.</p></li>
+<li><p>To prove that <span class="math inline">\(\prob{3COLOR}\)</span> is <span class="math inline">\(\np\)</span>-hard, we will reduce from <span class="math inline">\(\prob{3SAT}\)</span>. Our mapping function takes as input a 3cnf-formula <span class="math inline">\(\phi\)</span> and produces a graph <span class="math inline">\(G\)</span> as output with the property:</p>
+<p><span class="math display">\[
+\text{\( \phi \) is satisfiable} \Leftrightarrow \text{\( G \) has a 3-coloring}.
+\]</span></p>
+<p>The core of this construction is a <em>color gadget</em> which is a sub-graph that forces a particular coloring of its nodes:</p>
+<figure>
+<img src="/csc341/img/demo-6-color-gadget.png" alt="The color gadget." /><figcaption aria-hidden="true">The color gadget.</figcaption>
+</figure>
+<p>Note that the color gadget is a complete 3-graph. Because of this, each node must be a distinct color. Here, we will use the colors <span class="math inline">\(T\)</span>, <span class="math inline">\(F\)</span>, and <span class="math inline">\(B\)</span>. The first two colors will correspond to the values true and false respectively. The final color is a “base” color that we introduce merely to fulfill the requirement that the graph coloring must employ three colors. With the color gadget, we are able to <em>force</em> nodes in our overall construction to take on particular colors.</p>
+<p>Recall in our mapping function that we must map objects of our input domain—variables, clauses, and assignments of <span class="math inline">\(\phi\)</span>—to objects in our output domain—nodes, edges, and colorings of <span class="math inline">\(G\)</span>. First we will map the variables to nodes and assignments to colorings. For each <span class="math inline">\(x_i\)</span>, we will create two nodes labeled <span class="math inline">\(x_i\)</span> and <span class="math inline">\(\comp{x_i}\)</span>. Create a subgraph with these two nodes and the color gadget to force exactly one of the two nodes to be colored <span class="math inline">\(T\)</span> and the other <span class="math inline">\(F\)</span>. Argue in a few sentences why your constructed subgraph correctly implements this behavior.</p></li>
+<li><p>Next, we will describe how to map the input clauses onto the output graph. Suppose that we have two variable nodes <span class="math inline">\(x_i\)</span> and <span class="math inline">\(x_j\)</span> and we want to compute the “or” of the two nodes. Create a subgraph with these two nodes with the property that one of the nodes of this subgraph, the “output” node, <em>can</em> be colored <span class="math inline">\(T\)</span> if at least one of <span class="math inline">\(x_i\)</span> and <span class="math inline">\(x_j\)</span> are colored <span class="math inline">\(T\)</span>. Give an example of your “or”-gadget and how it may output <span class="math inline">\(T\)</span> when given two variables, exactly one of which is colored <span class="math inline">\(T\)</span>.</p></li>
+<li><p>Extend the “or”-gadget from the previous part to three variable nodes <span class="math inline">\(x_i\)</span>, <span class="math inline">\(x_j\)</span>, and <span class="math inline">\(x_k\)</span>.<br />
+Furthermore, force the output node of this gadget to be colored <span class="math inline">\(T\)</span>. Argue in a few sentences why the clause gadget outputs <span class="math inline">\(T\)</span> if and only if at least one of <span class="math inline">\(x_i\)</span>, <span class="math inline">\(x_j\)</span>, and <span class="math inline">\(x_k\)</span> is true.</p>
+<p>(<em>Hint</em>: note that “or” gadget from the previous part may not have the “if and only if” behavior that we need. However, this extended gadget should have that behavior, but its a surprisingly subtle argument! Use the color gadget to force colorings as necessary and argue why certain “bad” colorings present in the basic “or” gadget are not possible with the extended gadget.)</p></li>
+<li><p>Describe the complete mapping function <span class="math inline">\(m : \phi \rightarrow G\)</span> for this reduction, combining all of the gadgets from the previous parts.</p></li>
+<li><p>As an example, give the output of your mapping function for the following 3-sat formula (from figure 7.33 of Sipser):</p>
+<p><span class="math display">\[
+  \phi = (x_1 \vee x_1 \vee x_2) \wedge (\comp{x_1} \vee \comp{x_2} \vee
+    \comp{x_2}) \wedge (\comp{x_1} \vee x_2 \vee x_2)
+\]</span></p></li>
+<li><p>Finally, we’ll prove the correctness of our construction. First, prove the “if” direction: if <span class="math inline">\(\phi\)</span> is satisfiable, then <span class="math inline">\(m(\phi)\)</span> is 3-colorable. You may appeal to your previous arguments for the correctness of the sub-components of the construction as necessary.</p></li>
+<li><p>Prove the “only if” direction of the claim: if <span class="math inline">\(m(\phi) = G\)</span> and <span class="math inline">\(G\)</span> is 3-colorable, then <span class="math inline">\(\phi\)</span> is satisfiable. You may appeal to your previous arguments for the correctness of the sub-components of the construction as necessary.</p></li>
+</ol>
+<h1 id="problem-3-closing-space">Problem 3: Closing Space</h1>
+<p>Prove that the class of <span class="math inline">\(\mathsf{PSPACE}\)</span> languages are closed under the following properties:</p>
+<ul>
+<li>Complementation: <span class="math inline">\(\overline{L} = \{\, w \mid w \notin L \,\}\)</span>.</li>
+<li>Kleene star: <span class="math inline">\(L^*\)</span> (strings formed from zero or more repetitions of strings drawn from <span class="math inline">\(L\)</span>).</li>
+</ul>
+<p>You do not have to given full symbolic descriptions of the relevant Turing machines, but you should describe their relevant details in sufficient detail that their construction is unambiguous. Make sure to argue that your resulting Turing machines takes a polynomial amount of space!</p>
+<p>(<em>Hint 1</em>: what do assume exists since you know the language <span class="math inline">\(L\)</span> is in <span class="math inline">\(\mathsf{PSPACE}\)</span>?)</p>
+<p>(<em>Hint 2</em>: what properties of <span class="math inline">\(\mathsf{PSPACE}\)</span> can you use to make your constructions, in particular for Kleene Star, easier?)</p>
+:ET

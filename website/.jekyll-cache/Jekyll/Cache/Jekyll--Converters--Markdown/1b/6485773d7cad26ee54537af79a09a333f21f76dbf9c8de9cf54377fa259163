@@ -1,0 +1,15 @@
+I"�<p>In today’s class we’ll spend the day looking at different considerations when designing computation with finite automata. In particular, we’ll look at:</p>
+<ul>
+<li>Establishing <em>invariants</em> about states.</li>
+<li>Utilizing <em>patterns</em> of states to accomplish common tasks in automata.</li>
+</ul>
+<p>For today, review the <em>Designing Finite Automata</em> section of Sipser chapter 1 (pp. 41–43).</p>
+<div class="exercise">
+<p><strong>Reading Problem (Corners)</strong></p>
+<p>Design well-formed DFAs over the alphabet <span class="math inline">\(\Sigma = \{\, 0, 1 \,\}\)</span> that recognize the languages:</p>
+<ul>
+<li><span class="math inline">\(L_1 = \emptyset\)</span>, <em>i.e.</em>, the empty set of strings.</li>
+<li><span class="math inline">\(L_1 = \Sigma^*\)</span>, <em>i.e.</em>, all possible strings generated from <span class="math inline">\(\Sigma\)</span>.</li>
+</ul>
+</div>
+:ET

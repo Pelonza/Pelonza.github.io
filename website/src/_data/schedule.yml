@@ -1,0 +1,299 @@
+- topic: Introductions
+  date: 2021-08-27
+
+- week: "Week 1: Preliminaries"
+
+- topic: Review of Mathematical Literacy
+  date: 2021-08-30
+  deliverables:
+    - out: |
+        Demo #1
+  lab: Interpreting Definitions
+
+- topic: Constructive and Classical Proof
+  date: 2021-09-01
+  lab: Formal Proof
+
+- topic: Deterministic Finite Automata
+  date: 2021-09-03
+  lab: DFA Basics
+
+- week: "Week 2: Finite Automata"
+
+- topic: Design with Finite Automata
+  date: 2021-09-06
+  deliverables:
+    - out: |
+        Demo #2
+    - due: |
+        Demo #1
+  lab: DFA Design
+
+- topic: Nondeterminism
+  date: 2021-09-08
+  lab: Exploring Nondeterminism
+
+- topic: Equivalence of Models
+  date: 2021-09-10
+  lab: Finding Essence
+
+- week: "Week 3: Regularity"
+
+- topic: Closure Properties
+  date: 2021-09-13
+  deliverables:
+    - out: |
+        Demo #3
+    - due: |
+        Demo #2
+  lab: Closure Problems
+
+- topic: Regular Expressions
+  date: 2021-09-15
+  deliverables:
+    - due: |
+        Demo #1 revisions
+  lab: Regular Expressions
+
+- topic: Analysis of Regular Models
+  date: 2021-09-17
+  lab: Exploring the Regular Models
+
+- week: "Week 4: Beyond Regularity"
+
+- topic: Irregularity and the Pumping Lemma
+  date: 2021-09-20
+  deliverables:
+    - out: |
+        Demo #4
+    - due: |
+        Demo #3
+  lab: Irregularity
+
+- topic: Myhill-Nerode Theorem
+  date: 2021-09-22
+  deliverables:
+    - due: |
+        Demo #2 revisions
+  lab: Applying Myhill-Nerode
+
+- topic: Context-Free Grammars
+  date: 2021-09-24
+  lab: Context-free Grammars
+
+- week: "Week 5: Turing Machines"
+
+- topic: Introduction to Turing Machines
+  date: 2021-09-27
+  deliverables:
+    - due: |
+        Demo #4
+  lab: Introduction to Turing Machines
+
+- topic: Variants and The Church-Turing Thesis
+  date: 2021-09-29
+  deliverables:
+    - due: |
+        Demo #3 revisions
+  lab: Properties and Variants of TMs
+
+- topic: (No class, LA day!)
+  date: 2021-10-01
+  deliverables:
+    - out: |
+        LA #1
+
+- week: "Week 6: Time Complexity"
+
+- topic: Time Complexity
+  date: 2021-10-04
+  deliverables:
+    - out: |
+        Demo #5
+  lab: Time Complexity
+
+- topic: NP-Completeness
+  date: 2021-10-06
+  deliverables:
+    - due: |
+        Demo #4 revisions
+  lab: NP-Completeness
+
+- topic: The Cook-Levine Theorem
+  date: 2021-10-08
+  lab: The Cook-Levine Theorem
+
+- week: "Week 7: NP-Completeness"
+
+- topic: Mapping Reducibility
+  date: 2021-10-11
+  deliverables:
+    - out: |
+        Exploration #1
+    - due: |
+        Demo #5
+  lab: Mapping Reducibility
+
+- topic: Classical NP-Complete Problems
+  date: 2021-10-13
+  lab: More Mapping Reductions
+
+- topic: P vs. NP
+  date: 2021-10-15
+
+- week: "(Fall break: 10/18 to 10/22)"
+
+- week: "Week 8: Space Complexity"
+
+- topic: Space Complexity
+  date: 2021-10-25
+  deliverables:
+    - out: |
+        Demo #6
+  lab: Space Complexity
+
+- topic: Savitchs Theorem
+  date: 2021-10-27
+  deliverables:
+    - due: |
+        Demo #5 revisions
+  lab: Space Relationships
+
+- topic: PSPACE and PSPACE-Completeness
+  date: 2021-10-29
+  lab: PSPACE-Completeness
+
+- week: "Week 9: Complexity Wrap-Up"
+
+- topic: Sublinear Space Complexity
+  date: 2021-11-01
+  deliverables:
+    - due: |
+        Demo #6
+  lab: Complements and Complexity
+
+- topic: Hierarchy Theorems
+  date: 2021-11-03
+  lab: Complexity Wrap-Up
+
+- topic: (No class, LA day!)
+  date: 2021-11-05
+  deliverables:
+    - out: |
+        LA #2
+
+- week: "Week 10: Computability"
+
+- topic: Machine Analysis
+  date: 2021-11-08
+  deliverables:
+    - out: |
+        Demo #7
+  lab: Machine Analysis
+
+- topic: Diagonalization
+  date: 2021-11-10
+  deliverables:
+    - due: |
+        Demo #6 revisions
+  lab: Diagonalization
+
+- topic: Undecidability
+  date: 2021-11-12
+  lab: Undecidability
+
+- week: "Week 11: Undecidability"
+
+- topic: Undecidability Reductions
+  date: 2021-11-15
+  deliverables:
+    - out: |
+        Demo #8
+    - due: |
+        Demo #7
+  lab: Machine Behavior Undecidability
+
+- topic: The Post-Correspondence Problem
+  date: 2021-11-17
+  lab: PCP
+
+- topic: Rices Theorem
+  date: 2021-11-19
+  lab: Rices Theorem
+
+- week: "Week 12: Computability and Logic"
+
+- topic: Recursion and Logical Theories
+  date: 2021-11-22
+  deliverables:
+    - due: |
+        Demo #8
+  lab: Quine Exploration
+
+- topic: (No class, pre-Thanksgiving Break!)
+  date: 2021-11-24
+  deliverables:
+    - due: |
+        Demo #7 revisions
+
+- week: "(Thanksgiving Break: 11/25 and 11/26)"
+
+- week: "Week 13: Approximation and Probabilistic Computation"
+
+- topic: Approximate Computing
+  date: 2021-11-29
+  deliverables:
+    - out: |
+        Demo #9
+  lab: PTASs
+
+- topic: Approximation with Linear Programming
+  date: 2021-12-01
+  deliverables:
+    - due: |
+        Demo #8 revisions
+  lab: Approximation with Linear Programming
+
+- topic: Hardness of Approximation
+  date: 2021-12-03
+  lab: Hardness of Approximation
+
+- week: "Week 14: The Future of Computation"
+
+- topic: Solving SAT Efficiently
+  date: 2021-12-06
+  deliverables:
+    - due: |
+        Demo #9
+  lab: DPLL
+
+- topic: The Theory of Computation
+  date: 2021-12-08
+
+- topic: (No class, LA day!)
+  date: 2021-12-10
+  deliverables:
+    - out: |
+        LA #3
+
+- week: "Finals Week"
+
+- date: 2021-12-13
+  deliverables:
+    - out: |
+        Exploration #2
+
+- date: 2021-12-14
+  deliverables:
+    - out: |
+        LA #4
+
+- date: 2021-12-15
+  deliverables:
+    - due: |
+        Demo #9 revisions
+
+- date: 2021-12-17
+  deliverables:
+    - due: |
+        All remaining work

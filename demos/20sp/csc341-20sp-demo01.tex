@@ -1,0 +1,167 @@
+\documentclass[12pt]{article}
+
+%%%%% Document Information (FILL THIS IN!) %%%%%
+\newcommand{\authorname}{(Name)}
+\newcommand{\grinnellusername}{(Username)}
+
+\newcommand{\coursenumber}{CSC 341}
+\newcommand{\assignmentname}{Demo Exercises \#1}
+\newcommand{\assignmentversion}{1}
+
+%%%%% Fonts and Encodings %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\usepackage[T1]{fontenc}
+\usepackage{libertine}
+
+%%%%% General %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{enumitem}
+\usepackage{fancyvrb}
+\usepackage[amsmath, amsthm, thmmarks]{ntheorem}
+\usepackage{microtype}
+\usepackage{url}
+\usepackage[svgnames]{xcolor}
+\usepackage{xspace}
+
+%%%%% Page Formatting %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\usepackage[
+  top=1in,
+  bottom=1in,
+  left=1in,
+  right=1in,
+  includefoot,
+  paperwidth=8.5in,
+  paperheight=11in
+]{geometry}
+
+\usepackage{fancyhdr}
+\setlength{\headheight}{15.2pt}
+\pagestyle{fancy}
+
+\fancyhead{}
+\fancyfoot{}
+\lhead{\coursenumber{}---\assignmentname{} (ver. \assignmentversion), \authorname{} [\grinnellusername{}]}
+\cfoot{\thepage}
+
+%%%%% Code %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\usepackage{listings}
+\usepackage{xcolor}
+
+% Adapted from: https://en.wikibooks.org/wiki/LaTeX/Source_Code_Listings
+\definecolor{mygreen}{rgb}{0,0.6,0}
+\definecolor{mygray}{rgb}{0.5,0.5,0.5}
+\definecolor{mymauve}{rgb}{0.58,0,0.82}
+
+\lstset{ 
+  backgroundcolor=\color{white},      % choose the background color; you must add \usepackage{color} or \usepackage{xcolor}; should come as last argument
+  basicstyle=\ttfamily\footnotesize,  % the size of the fonts that are used for the code
+  breakatwhitespace=false,            % sets if automatic breaks should only happen at whitespace
+  breaklines=true,                    % sets automatic line breaking
+  captionpos=b,                       % sets the caption-position to bottom
+  commentstyle=\color{mygreen},       % comment style
+  keepspaces=true,                    % keeps spaces in text, useful for keeping indentation of code (possibly needs columns=flexible)
+  keywordstyle=\color{blue},          % keyword style
+  language=Java,                      % the language of the code
+  stringstyle=\color{mymauve},        % string literal style
+}
+
+%%%%% Basic Macros and Definitions %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\newtheorem{claim}{Claim}
+\newtheorem{invariant}{Invariant}
+\newtheorem{defn}{Definition}
+\newtheorem{thm}{Theorem}
+
+\newcommand{\ie}{\emph{i.e.}\xspace}
+\newcommand{\eg}{\emph{e.g.}\xspace}
+
+\newcounter{ProblemCounter}
+\newenvironment{problem}[1][]
+  {\refstepcounter{ProblemCounter}\noindent\textbf{Problem \theProblemCounter{} (#1)}\quad}
+  {\newpage}
+
+\newcommand{\answerbelow}{\noindent\makebox[\linewidth]{\rule{\textwidth}{0.4pt}}}
+
+\begin{document}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{problem}[Protocols]
+
+A powerful application of finite automata is the specification and
+verification of \emph{protocols}.  In this problem, we'll examine a protocol
+between a client and a conference management server (CMS) such as
+HotCRP\footnote{%
+  \url{https://hotcrp.com}
+}.
+A client to this system may be an \emph{author} editing a paper for a review
+That same client might also be a \emph{reviewer} editing reviews for papers
+submitted to the conference.  Such a system segregates the two \emph{roles} so
+that authors cannot edit reviews of other papers they are in competition with.
+
+The client may issue the following commands to the server:
+\begin{itemize}[itemsep=0pt]
+  \item Connect
+  \item Change role to author
+  \item Change role to reviewer
+  \item Edit paper
+  \item Edit review
+  \item Disconnect
+\end{itemize}
+A valid \emph{session} between the client and CMS adheres to the following
+rules.
+\begin{enumerate}[itemsep=0pt]
+  \item The client must connect to the server before performing any other
+    action.
+  \item Once connected, the client is initially given the author role.
+  \item While connected, the client can switch their role between author
+    and reviewer.  (Presumably, the client needs to have proper rights to
+    switch roles, but that is not captured in this protocol.)
+  \item As an author, the client can edit papers but not reviews
+  \item As a reviewer, the client can edit reviews but not papers.
+  \item The client cannot connect to the server if it is already connected.
+  \item The client must disconnect from the server to end the session.
+\end{enumerate}
+Note that in a single session, the client may connect and disconnect multiple
+times.  However, every valid session ends with the client disconnected from the
+CMS.
+
+\begin{enumerate}[itemsep=0pt, label=(\alph*)]
+  \item Specify a language \( L \) that captures valid sessions between the
+    client and the server.  \( L \) should be specified in set-theoretic terms
+    without appeal to a machine, and you should clearly define its alphabet
+    \( \Sigma \).
+  \item Give a deterministic finite automata \( D \) that recognizes \( L \).
+    You may use the TikZ library to render the DFA with LaTeX or the
+    \texttt{graphicx} package to include the DFA as an image.  You may consult
+    online resources in using these packages.
+  \item Prove that the DFA \( D \) recognizes \( L \).  To do this, assign
+    relevant properties to each state of \( D \) and perform an exhaustive case
+    analysis on each state \( q \) of \( D \), arguing that each of \( q \)'s
+    transitions is valid and preserves the property of \( q \) according to the
+    rules of the protocol.
+  \item Give an implementation of the protocol in a real-world programming
+    language of your choice, inlining the code below using the
+    \texttt{verbatim} environment (or the \texttt{listings} package if you
+    don't mind looking up more documentation).  Realize the protocol as a
+    function that takes as input:
+    \begin{itemize}
+      \item The current state of the client and
+      \item The next command issued by the client
+    \end{itemize}
+    and produces the next state of the client as output.  You may choose any
+    representation of states and commands appropriate for your chosen language.
+  \item Finally, based on your experiences developing \( D \) and your
+    ``real-world'' implementation of the protocol, describe the pros and cons
+    of first using a finite automata to \emph{model} a protocol \emph{before}
+    going to implementation.  Be open-minded about the benefits you consider
+    not just in terms of correctness but also productivity.
+\end{enumerate}
+
+\answerbelow{}
+
+%%%%% FILL IN YOUR ANSWERS HERE %%%%%
+
+\end{problem}
+
+\end{document}

@@ -1,0 +1,139 @@
+\documentclass[12pt]{article}
+
+%%%%% Document Information (FILL THIS IN!) %%%%%
+\newcommand{\authorname}{(Name)}
+\newcommand{\grinnellusername}{(Username)}
+
+\newcommand{\coursenumber}{CSC 341}
+\newcommand{\assignmentname}{Demo Exercises \#7}
+\newcommand{\assignmentversion}{1}
+
+%%%%% Fonts and Encodings %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\usepackage[T1]{fontenc}
+\usepackage{libertine}
+
+%%%%% General %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{enumitem}
+\usepackage{fancyvrb}
+\usepackage[amsmath, amsthm, thmmarks]{ntheorem}
+\usepackage{microtype}
+\usepackage{url}
+\usepackage[svgnames]{xcolor}
+\usepackage{xspace}
+
+\usepackage{tikz}
+
+%%%%% Page Formatting %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\usepackage[
+  top=1in,
+  bottom=1in,
+  left=1in,
+  right=1in,
+  includefoot,
+  paperwidth=8.5in,
+  paperheight=11in
+]{geometry}
+
+\usepackage{fancyhdr}
+\setlength{\headheight}{15.2pt}
+\pagestyle{fancy}
+
+\fancyhead{}
+\fancyfoot{}
+\lhead{\coursenumber{}---\assignmentname{} (ver. \assignmentversion), \authorname{} [\grinnellusername{}]}
+\cfoot{\thepage}
+
+%%%%% Basic Macros and Definitions %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\newtheorem{claim}{Claim}
+\newtheorem{invariant}{Invariant}
+\newtheorem{defn}{Definition}
+\newtheorem{thm}{Theorem}
+\newtheorem{lemma}{Lemma}
+
+\newcommand{\ie}{\emph{i.e.}\xspace}
+\newcommand{\eg}{\emph{e.g.}\xspace}
+\newcommand{\etc}{\emph{etc.}\xspace}
+\newcommand{\hint}[1]{(\emph{Hint}: #1)}
+
+\newcounter{ProblemCounter}
+\newenvironment{problem}[1][]
+  {\refstepcounter{ProblemCounter}\noindent\textbf{Problem \theProblemCounter{} (#1)}\quad}
+  {\newpage}
+
+\newcommand{\answerbelow}{\noindent\makebox[\linewidth]{\rule{\textwidth}{0.4pt}}}
+
+
+%%%%% Problem-specific Macros %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\newcommand{\np}{\ensuremath{\mathsf{NP}}\xspace}
+\newcommand{\prob}[1]{\ensuremath{\mathsf{#1}}\xspace}
+\newcommand{\desc}[1]{\ensuremath{\langle #1 \rangle}}
+\newcommand{\Nat}{\ensuremath{\mathbb{N}}\xspace}
+\newcommand{\comp}[1]{\ensuremath{\overline{#1}}\xspace}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{document}
+
+\begin{problem}[Honey Bunches of Oats]
+
+\newcommand{\tile}[2]{\ensuremath{\left[\frac{\texttt{#1}}{\texttt{#2}}\right]}}
+
+\begin{enumerate}[itemsep=0pt, label=(\alph*)]
+  \item (Sipser 5.3) Find a match in the following instance of the Post
+    Correspondence Problem:
+    \[
+      \left\{ \tile{ab}{abab}, \tile{b}{a}, \tile{aba}{b}, \tile{aa}{a} \right\}.
+    \]
+  \item (Sipser 5.17) Show that the PCP problem is decidable over the unary
+    alphabet \( \Sigma = \{\, a \,\} \).  \hint{With one symbol, you can safely
+    consider the \emph{number} of symbols on the top and bottom of each tile.
+  From there, think about fractions, \ldots}
+\end{enumerate}
+
+\answerbelow
+
+% FILL IN YOUR ANSWER HERE
+
+\end{problem}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{problem}[Scheme Is Real, Right?]
+
+\begin{enumerate}[itemsep=0pt, label=(\alph*)]
+  \item Consider the problem of determining whether the branches of an
+    arbitrary if-expression in Scheme---\texttt{(if b e1 e2)}---produces only
+    one type of value (\eg, only integers or strings).  For example, this
+    property is true of \texttt{(if b 0 1)} but false for \texttt{(if b 5
+    True)}.  Formulate this problem as a language and show that this problem is
+    undecidable.  You may assume the existence of a Scheme function
+    \texttt{run-tm} that takes a Turing machine description \( M \) and input
+    \( w \) and returns \texttt{\#t} if and only if \( M \) accepts \( w \).
+  \item Now consider the fact that a computer program on a 64-bit machine runs
+    with \( 2^{64} \) bits of memory.  Show that the halting problem for such
+    computer programs is decidable.  Make sure to argue the (a) correctness and
+    (b) termination of your algorithm.  \hint{consider the decidability proof
+    of \( A_{\mathsf{LBA}} \).}
+  \item The answers to the two previous parts seem to be at odds.  In a few
+    sentences, describe the critical difference between the two cases that
+    makes the first part undecidable but the second part undecidable.
+  \item Finally with all this in mind, it seems like that undecidability is
+    merely a theoretical device.  However, it does have important practical
+    implications!  In a few sentences, describe these practical
+    implications---if we feel the need to solve some variant of the halting
+    problem for a computational device, what must we keep in mind and how
+    should we approach the problem?
+\end{enumerate}
+
+\answerbelow
+
+% FILL IN YOUR ANSWER HERE
+
+\end{problem}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\end{document}

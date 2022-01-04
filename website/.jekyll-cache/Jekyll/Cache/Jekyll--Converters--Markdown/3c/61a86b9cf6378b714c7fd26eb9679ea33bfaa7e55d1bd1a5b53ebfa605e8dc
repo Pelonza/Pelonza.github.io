@@ -1,0 +1,31 @@
+I"¬<h1 id="problem-1-membership">Problem 1: Membership</h1>
+<p>Consider the following problems and prove that they are in NP. Be explicit about (a) the type of witnesses of the problem and (b) the verification algorithm for witnesses. Argue that the verification algorithm operates in polynomial time.</p>
+<ol type="1">
+<li><span class="math inline">\(\mathsf{COLOR} = \{\, \langle G, k \rangle \mid \text{There is a \( k \)-coloring of graph \( G \)} \,\}\)</span>.</li>
+<li><span class="math inline">\(\mathsf{SCHED} = \{\, \langle J, (\prec), W, k, t \rangle \mid \text{There is a schedule of \( J \) jobs on \( k \) processors taking time \( t \) or less} \,\}\)</span>.</li>
+</ol>
+<p><strong>Graph Coloring</strong></p>
+<p>A <span class="math inline">\(k\)</span>-graph coloring of a graph <span class="math inline">\(G\)</span> is an assignment of <span class="math inline">\(k\)</span> colors to nodes such that no two nodes share both the same color and an edge.</p>
+<p><strong>Job Scheduling</strong></p>
+<p>Consider a set of <span class="math inline">\(J\)</span> jobs equipped with:</p>
+<ol type="1">
+<li>A partial order <span class="math inline">\(\prec\)</span> on <span class="math inline">\(J\)</span> that determines that for each <span class="math inline">\(J_m, J_n \in J\)</span> whether <span class="math inline">\(J_m \prec J_n\)</span> (understood to mean that <span class="math inline">\(J_m\)</span> must be completed before <span class="math inline">\(J_n\)</span>)</li>
+<li>Weight determined by the function <span class="math inline">\(W : J \rightarrow \mathbb{N}\)</span> that says how long each job takes to complete.</li>
+</ol>
+<p>There exists <span class="math inline">\(k\)</span> distinct processors on which to run jobs. The goal is to find a scheduling of jobs on these processors that respects the ordering such that all jobs complete in target time <span class="math inline">\(t\)</span> or less.</p>
+<h1 id="problem-2-the-complexity-strikes-again">Problem 2: The Complexity Strikes Again</h1>
+<p>Consider the following combinatorial decision problems:</p>
+<p><strong>0-1 Knapsack</strong></p>
+<p>Let <span class="math inline">\(B\)</span> be a set of objects equipped with two functions:</p>
+<ul>
+<li>A <em>weight function</em> <span class="math inline">\(w : B \rightarrow \mathbb{N}\)</span> assigning weights to objects.</li>
+<li>A <em>value function</em> <span class="math inline">\(v : B \rightarrow \mathbb{N}\)</span> assigning values to objects.</li>
+</ul>
+<p>Suppose that we have a knapsack that can hold at most <span class="math inline">\(W\)</span> weight. Find a subset <span class="math inline">\(B^* \subseteq B\)</span> that can fit in the knapsack and has at least value <span class="math inline">\(V\)</span>.</p>
+<p><strong>Subset Sum</strong></p>
+<p>Let <span class="math inline">\(S \subseteq \mathbb{N}\)</span> be a (multi-)set of natural numbers. Find a subset <span class="math inline">\(S^* \subseteq S\)</span> such that <span class="math inline">\(\sum_{s \in S^*} s = t\)</span> for some target number <span class="math inline">\(t\)</span>.</p>
+<ol type="1">
+<li><p>Write down formal language definitions for these two problems: <span class="math inline">\(\mathsf{knapsack}\)</span> and <span class="math inline">\(\mathsf{subsetsum}\)</span>.</p></li>
+<li><p>Assume that <span class="math inline">\(\mathsf{subsetsum}\)</span> is <span class="math inline">\(\mathsf{NP}\)</span>-complete. Prove that <span class="math inline">\(\mathsf{knapsack}\)</span> is <span class="math inline">\(\mathsf{NP}\)</span>-complete. Make sure that you explicitly justify the complexity of your verifier and the complexity and correctness of your constructed mapping function in your proof.</p></li>
+</ol>
+:ET

@@ -1,0 +1,50 @@
+\documentclass[11pt]{book}
+
+\setcounter{chapter}{9}
+\newcommand{\docclass}{CSC 341 (20sp)}
+\newcommand{\doctitle}{The Essence of Context-Free Languages}
+\newcommand{\docauthor}{Peter-Michael Osera}
+
+\usepackage{reading}
+
+\begin{document}
+
+\begin{center}
+  \large\textbf{{\doctitle}}
+\end{center}
+
+\vspace{2em}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{problem}{The Price of Power}
+
+Context-free languages are more expressive than regular languages.  In this
+problem, we examine the trade-offs of that expressiveness, namely that certain
+operations over regular languages are no longer closed under context-free
+languages.
+
+\begin{enumerate}[itemsep=0pt, label=(\alph*)]
+  \item Prove that context-free languages are closed under:
+    \begin{itemize}
+      \item Union $L_1 \cup L_2$.
+      \item Concatenation $L_1 \circ L_2$, and
+      \item Kleene star $L^*$.
+    \end{itemize}
+    (\emph{Hint}: in all three cases, you should use context-free grammars
+    as your model to show closure.)
+  \item Both \( L_1 \) and \( L_2 \) below are context-free:
+    \begin{gather*}
+      L_1 = \{\, a^i b^j c^k \mid i < j \,\} \\
+      L_2 = \{\, a^i b^j c^k \mid i < k \,\}
+    \end{gather*}
+    Give either a CFG or PDA for one of these languages, demonstrating that it is indeed context-free.
+  \item Show that language intersection \( L_1 \cap L_2 \) is \emph{not} closed under context-free languages.
+    (\emph{Hint}: what happens when you take the intersection of \( L_1 \) and \( L_2 \)?)
+  \item Use the previous parts of this problem to conclude that language complement \( \overline{L} \) (the set of strings \emph{not} in \( L \)) is also \emph{not} closed under context-free languages.
+    (\emph{Hint}: use standard set-theoretic operations that involve intersection and complement to push through a proof by contradiction.)
+\end{enumerate}
+
+\end{problem}
+
+\end{document}

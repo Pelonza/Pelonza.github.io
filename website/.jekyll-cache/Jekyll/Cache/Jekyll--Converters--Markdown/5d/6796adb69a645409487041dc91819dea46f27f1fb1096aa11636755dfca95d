@@ -1,0 +1,8 @@
+I"v<h1 id="problem-it-hurts-my-head">Problem: It Hurts My Head</h1>
+<p>Prove that the following languages are undecidable by reduction from a known undecidable language.</p>
+<ol type="a">
+<li><p><span class="math inline">\(L_1 = \{\, M \mid \text{\( M \) is a TM that accepts \( w^{R} \) whenever it accepts \( w \)} \,\}\)</span>.</p>
+<p>(Recall that <span class="math inline">\(w^{R}\)</span> is the reversal of <span class="math inline">\(w\)</span>.)</p></li>
+<li><p><span class="math inline">\(L_2 = \{\, (M, w) \mid \text{\( M \) is a TM that, on input \( w \), writes a &#39;\$&#39; on the tape} \,\}\)</span>.</p></li>
+</ol>
+:ET

@@ -1,0 +1,56 @@
+\documentclass[11pt]{book}
+
+\setcounter{chapter}{17}
+\newcommand{\docclass}{CSC 341 (20sp)}
+\newcommand{\doctitle}{Space Complexity}
+\newcommand{\docauthor}{Peter-Michael Osera}
+
+\usepackage{reading}
+
+\begin{document}
+
+\begin{center}
+  \large\textbf{{\doctitle}}
+\end{center}
+
+\vspace{2em}
+
+%%%%% Problem-specific Macros %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\newcommand{\desc}[1]{\ensuremath{\langle #1 \rangle}}
+\newcommand{\NP}{\ensuremath{\mathsf{NP}}\xspace}
+\newcommand{\prob}[1]{\ensuremath{\mathsf{#1}}\xspace}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{problem}{Space!}
+  Prove that the following problems are in \( \text{PSPACE} \).
+  \begin{align*}
+    \prob{CLIQUE} =&\; \{ \desc{G, k} \mid \text{\( G \) has a \( k \)-clique} \} \\
+    \prob{SUBSET} =&\; \{ \desc{S, t} \mid \text{There exists a \( S^* ⊆ S \) such that \( \sum_{x ∈ S^*} x = t \).} \}
+  \end{align*}
+\end{problem}
+
+\newpage
+
+\begin{problem}{The Space-Time Continuum}
+  The book gives the following relationships between complexity classes that relate space and time:
+    \[
+      \text{P} ⊆ \text{NP} ⊆ \text{PSPACE} = \text{NPSPACE} ⊆ \text{EXPTIME}
+    \]
+    Where \( \text{PSPACE} = \text{NPSPACE} \) is proven with Savitch's Theorem which we will discuss next class.
+
+    We also note that \( \text{P} \subset \text{EXPTIME} \).
+    Thus at least one of the subset relations is proper.
+    (The field generally believes that all of them are proper.)
+
+\begin{enumerate}
+  \item Review lemma 7.20 (pp. 294) that relates verifiers and nondeterministic polynomial time Turing machines.
+    Prove the second of these relations: \( \text{NP} \subseteq \text{PSPACE} \).
+  \item The book explains why \( \text{PSPACE} ⊆ \text{EXPTIME} \) by way of lemma 5.8 (pp. 222).
+    Read this lemma and reformulate its proof to this claim which draws a correspondence between space and time.
+\end{enumerate}
+
+\end{problem}
+
+\end{document}

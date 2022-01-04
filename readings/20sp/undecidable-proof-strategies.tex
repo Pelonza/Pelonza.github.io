@@ -1,0 +1,149 @@
+\documentclass[11pt]{book}
+
+%%%%% Handout Definitions %%%%%
+\setcounter{chapter}{7}
+\newcommand{\docclass}{CSC 341\xspace}
+\newcommand{\doctitle}{Undecidable Proof Strategies}
+\newcommand{\docauthor}{Peter-Michael Osera}
+
+\usepackage{reading}
+
+%%%%% Drawing %%%%%
+\usepackage{tikz}
+\usetikzlibrary{shapes, arrows, automata, positioning}
+\tikzstyle{block} = [draw, rectangle, minimum height=3em, minimum width=3em]
+\tikzstyle{virtual} = [coordinate]
+
+%%%%% Theorem Environments %%%%%%
+\newcommand{\Atm}{A_{\mathsf{TM}}}
+\newcommand{\desc}[1]{\langle #1 \rangle}
+
+\newenvironment{turing}[2]
+ {\begin{enumerate}[leftmargin=0pt,labelsep=0pt,align=left,parsep=0pt]
+  \item[$#1={}$]``\ignorespaces#2
+  \begin{enumerate}[
+    nosep,
+    align=left,
+    labelwidth=1.5em,
+    label=\bfseries\arabic{*}.,
+    ref=\arabic{*}
+  ]}
+ {\unskip''\end{enumerate}\end{enumerate}}
+\newcommand{\bitem}{\item\hspace*{1em}\ignorespaces}
+
+\begin{document}
+
+\section*{Undecidable Proof Strategies}
+
+So far, we have learned about undecidability and the \emph{reduction} technique which allows us to show that a problem is solvable given another problem.
+In this unit, we use reductions to establish that one problem is undecidable by showing that it reduces to another problem known to be undecidable.
+We have some intuition of what a reduction is---solving the second problem by using a helper function that solves the first problem.
+However, it is not straightforward to map that intuition into a strategy for building reducibility proofs.
+In this reading, I outline a particular strategy for developing these proofs so that they are less magical and more mechanical.
+
+\subsection*{An Example Reduction}
+
+Consider the following language:
+\[
+  A = \{ \desc{M} \mid \text{$M$ is a TM and $L(M) = \Sigma^*$} \}
+\]
+To prove that this language is undecidable, we will reduce a known, undecidable language to it.
+A common choice that we'll use for this problem is $\Atm$:
+\[
+  \Atm = \{ \desc{M, w} \mid \text{$M$ is a TM and $M$ accepts $w$} \}
+\]
+Thus our goal is to show that $\Atm \leq A$, that is, $\Atm$ is reducible to $A$.
+
+Recall that (mapping) reducibility says that to establish this fact, we need to create a function $f$ that maps a string $w$ in $\Atm$ to a string in $A$ such that:
+\begin{enumerate}[itemsep=0pt]
+  \item $f$ itself is decidable (\ie, never goes into an infinite loop on any input) and
+  \item $w \in \Atm \Longleftrightarrow f(w) \in A$
+\end{enumerate}
+$\Atm$ accepts TM descriptions and inputs $\desc{M, x}$ and $A$ accepts TM descriptions $\desc{M}$.
+Therefore, our function can be written as $f(\desc{M, w}) = \desc{M'}$ where:
+\[
+  \text{$M$ accepts $w$} \Longleftrightarrow \text{$L(M') = \Sigma^*$}.
+\]
+Note that all we need to do is create this function $f$ to complete the proof.
+This is because we are using $f$ in a standard way to build a decider for $\Atm$ given a decider $D$ for $A$:
+
+\begin{center}
+\begin{tikzpicture}[>=stealth,auto, node distance=2cm]
+    % Place nodes
+    \node [block] (model) {
+      \begin{tikzpicture}[>=stealth, auto, node distance=2cm, baseline=-1.15cm]
+        \node [block] (inner) {$D$};
+        \node [block, left=of inner] (f) {$f$};
+        \node [virtual, left=of f] (iin) {};
+        \draw [->] (f) -- node {$\desc{M'}$} (inner);
+        \draw [->] (iin) -- node {} (f);
+        \node [virtual, right=of inner] (iout) {};
+        \draw [->] (inner) -- node [name=z] {} (iout);
+      \end{tikzpicture}
+    };
+    \node [virtual, left=of model] (input)     {};
+    \node [virtual, right=of model] (output)    {};
+    \node [virtual, below left=of model.west] (feedback)  {};
+    % Connect nodes
+    \draw [->] (input) -- node {$\desc{M, w}$} (model);
+    \draw [->] (model) -- node [name=y] {} (output);
+\end{tikzpicture}
+\end{center}
+Our decider for $\Atm$, the outer-most box, proceeds by transforming its input using $f$ and then runs that output through $D$.
+The decider then outputs whatever $D$ outputs.
+This decides $\Atm$ but is a contradiction because we know $\Atm$ is not decidable.
+Therefore, we can conclude that $D$ must not exist, \ie, $A$ is not decidable.
+For more complex problems, we will need to generalize this construction so that the contents of the decider for $\Atm$ is arbitrary (given $D$), but for now, this simple form of a reduction is sufficient for our purposes.
+
+Now, our proof consists of constructing $f$ with the two properties listed above.
+To do so, I find it best to operate in three steps:
+\begin{enumerate}[itemsep=0pt]
+  \item As a starting point, build a TM $P$ that it obeys the right-hand side of the biconditional and a TM $Q$ that does not obey this property.
+    We will base $M'$ off of the behavior of these \emph{target} TMs.
+  \item Next, construct $M'$, the output of $f$, that conditionally acts like $P$ if the left-hand side of the biconditional is true and $Q$ if the left-hand side of the biconditional is false.
+  \item Verify that this $M'$ fully obeys the two conditions of mapping reducibility.
+\end{enumerate}
+For simple reducibility proofs, this construction strategy allows us to quickly build an appropriate mapping function $f$.
+More complicated proofs will require additional manipulation, but this strategy at least gives us a starting point in our investigation.
+
+For our example, we must first build a simple machine $P$ such that $L(P) = \Sigma^*$.
+This is straightforward to do:
+\begin{center}
+  \begin{turing}{P}{ On input $x$: }
+    \item \textbf{Accept}.
+  \end{turing}
+\end{center}
+$P$ accepts any string $x$ given to it, therefore, its language is $\Sigma^*$.
+
+Let's also build a simple machine $Q$ such that $L(Q) \neq \Sigma^*$.
+We have more options here, \ie, $Q$ could accept some finite number of strings.
+However, it is simpler to have $Q$ simply accept nothing:
+\begin{center}
+  \begin{turing}{Q}{ On input $x$: }
+    \item \textbf{Reject}.
+  \end{turing}
+\end{center}
+$Q$ rejects any string $x$ given to it, therefore, its language is $\emptyset$.
+
+Next, let's build $M'$ that is the output of our mapping function $f(\desc{M, w})$.
+Based on our biconditional, whenever $M$ accepts $w$, we should emulate $P$'s behavior; otherwise, we emulate $Q$'s behavior.
+Define our mapping function as $f(\desc{M, w}) = \desc{M'}$ where:
+\begin{center}
+  \begin{turing}{M'}{ Ignore the input. }
+    \item Run $M$ on $w$.
+      \bitem If $M$ accepts, \textbf{accept}.
+      \bitem If $M$ rejects, \textbf{reject}.
+  \end{turing}
+\end{center}
+
+Finally, let's check that $M'$ has the appropriate behavior:
+\begin{itemize}[itemsep=0pt]
+  \item If $M$ accepts $w$, then the conditional of $M'$ is always true, therefore the machine always accepts.
+    Thus $L(M') = \Sigma^*$.
+  \item If $M$ rejects $w$ then the conditional of $M'$ is always false, therefore the machine always rejects.
+    Thus $L(M') = \emptyset \neq \Sigma^*$.
+  \item If $M$ loops on $w$ then $M'$ never proceeds past line 1 and thus never accepts any string.
+    Thus $L(M') = \emptyset \neq \Sigma^*$.
+\end{itemize}
+
+\end{document}

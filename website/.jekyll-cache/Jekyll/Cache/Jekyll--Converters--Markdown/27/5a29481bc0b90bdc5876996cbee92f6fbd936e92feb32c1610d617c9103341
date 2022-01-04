@@ -1,0 +1,29 @@
+I"�
+<p>In today’s class, we talked about Davis-Putnam-Logemann-Loveland (DPLL) algorithm for deciding satisfiability of CNF formulae. In our short lab for today, we’ll work through some examples of using DPLL and exploring</p>
+<h1 id="problem-1-satisfying-or-not">Problem 1: Satisfying or Not</h1>
+<p>Use DPLL to efficiently find satisfying assignments for the following boolean formulae:</p>
+<p><span class="math display">\[\begin{align}
+\phi_1 =&amp;\; (x4 \vee x4 \vee x1) \wedge (x4) \wedge (\neg x3) \wedge (\neg x1 \vee x3) \\
+  \wedge &amp;\; (\neg x2 \vee x2 \vee \neg x4) \wedge (\neg x4 \vee \neg x3 \vee \neg x4 \vee \neg x3 \vee \neg x5) \wedge (\neg x4 \vee x5 \vee x5 \vee \neg x2) \\
+  \wedge &amp;\; (\neg x4 \vee \neg x3 \vee \neg x1 \vee \neg x4 \vee x4) \wedge (x2) \wedge (x5 \vee \neg x5)
+\end{align}\]</span></p>
+<p><span class="math display">\[\begin{align}
+\phi_2 =&amp;\; (x3 \vee \neg x1 \vee x4) \wedge (\neg x4 \vee x1 \vee \neg x4) \wedge (x4 \vee \neg x3 \vee x3) \\
+  \wedge &amp;\; (x4) \wedge (x4 \vee x4 \vee x3) \wedge (x3 \vee x1 \vee x2 \vee \neg x5 \vee x4) \\
+  \wedge &amp;\; \wedge (x2 \vee x2 \vee x1) \wedge (\neg x1 \vee \neg x4 \vee x1 \vee \neg x2) \\
+  \wedge &amp;\; \wedge (\neg x2 \vee x1 \vee x3 \vee \neg x2 \vee \neg x3) \wedge (\neg x5 \vee x5 \vee \neg x2 \vee x5).
+\end{align}\]</span></p>
+<p>Use DPLL to demonstrate why each of the following formulae are <em>not</em> satisfiable:</p>
+<p><span class="math display">\[\begin{align}
+\phi_3 =&amp;\; (\neg x1 \vee \neg x3) \wedge (\neg x1) \wedge (x1 \vee x3 \vee \neg x1) \wedge (\neg x5 \vee \neg x1 \vee x5) \\
+  \wedge &amp;\; (x2) \wedge (x2 \vee \neg x2) \wedge (x2 \vee \neg x2 \vee \neg x5) \wedge (\neg x2) \wedge (x3 \vee \neg x5) \wedge (x3 \vee \neg x1)
+\end{align}\]</span></p>
+<p><span class="math display">\[\begin{align}
+\phi_4 = &amp;\; (x2 \vee \neg x1 \vee x2) \wedge (x5 \vee \neg x1 \vee \neg x1) \wedge (\neg x5 \vee \neg x4 \vee x1) \\
+  \wedge &amp;\; (\neg x2 \vee x1 \vee \neg x5 \vee \neg x3 \vee \neg x1) \wedge (x4 \vee \neg x1 \vee x1) \wedge (x5) \\
+  \wedge &amp;\; (\neg x5) \wedge (x5 \vee x1 \vee \neg x2 \vee \neg x4) \wedge (\neg x1) \wedge (x2 \vee \neg x5 \vee \neg x5 \vee \neg x1 \vee x4)
+\end{align}\]</span></p>
+<h1 id="problem-2-heuristics">Problem 2: Heuristics</h1>
+<p>As you have noticed, unit propagation can go a long way towards simplifying SAT instances. However, you may have also noticed that your <em>heuristic for choosing the next literal to explore</em> is also relevant!</p>
+<p>Based on your experiences with DPLL so far, suggest a polynomial-time heuristic that you can apply to guide your backtracking search in DPLL. In a few sentences, justify why this heuristic might lead to a productive search.</p>
+:ET

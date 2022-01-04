@@ -1,0 +1,14 @@
+I"�<p>With two formal models of computation in-hand, we’ll now talk about two important properties of these models:</p>
+<ul>
+<li>An <em>equivalence</em> property, stating that, perhaps surprisingly, deterministic and nondeterministic finite automata are equivalent in power!</li>
+<li><em>Closure properties</em> that express that certain operations over regular languages, <em>e.g.</em>, language union, produce regular languages as a result.</li>
+</ul>
+<h2 id="sipser-reading">Sipser Reading</h2>
+<ul>
+<li>(Re-)read chapter 1.1 “The Regular Operations” to the end of 1.1.</li>
+<li>Read chapter 1.2 “Equivalence of NFAs and DFAs” and “Closure Under the Regular Operations” to the end of 1.2.</li>
+</ul>
+<div class="exercise">
+<p><strong>Reading Problem (Restatement)</strong>: closely follow the equivalence of NFA and DFA argument in the reading. Do your best to replicate the proof on your own, minimally referring to the text.</p>
+</div>
+:ET

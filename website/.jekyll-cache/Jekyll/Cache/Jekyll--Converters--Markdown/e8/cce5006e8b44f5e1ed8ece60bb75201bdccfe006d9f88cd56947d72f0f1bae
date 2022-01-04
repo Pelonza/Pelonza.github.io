@@ -1,0 +1,15 @@
+I"�<h1 id="time-complexity">Time Complexity</h1>
+<p>On Monday, we begin our journey into complexity theory! First we’ll review the basics of complexity theory as presented in CSC 207 and 301, situating our notions of complexity within our primary model of computation, the Turing machine.</p>
+<ul>
+<li>Sipser 7.1 and 7.2, “Measuring Complexity” and “The Class P”.</li>
+</ul>
+<p><em>Skim</em> the beginning of 7.1 to review the definition of Big-O. The rest of the reading gives various examples of high-level Turing machine descriptions (<em>i.e.</em>, algorithms) and their complexity analysis, ultimately settling on the class <span class="math inline">\(P\)</span>. Pay attention to how our notion of time complexity is defined and analyzed in terms of Turing machines. Also, pay special attention to the end of 7.1 which talks about the runtime of Turing machine variants when adapted as ordinary Turing machines. These sorts of transformations and their effects on runtime (in particular, the nondeterministic-to-deterministic transformation) will be important later when we discuss other complexity classes.</p>
+<hr />
+<p><strong>Reading Problem (Just The Facts)</strong></p>
+<p>Answer these conceptual questions in a sentence or two a piece.</p>
+<ol type="1">
+<li>What is the complexity class <span class="math inline">\(P\)</span>?</li>
+<li>How do I show that a language belongs to <span class="math inline">\(P\)</span>?</li>
+<li>In theorem 7.11, we show that a DTM can simulate a NTM with runtime <span class="math inline">\(t(n)\)</span> in <span class="math inline">\(2^{\mathcal{O}(t(n))}\)</span> time. How does the proof of the theorem bound the total number of leaves in the tree when a Turing machine can potentially go into infinite loops?</li>
+</ol>
+:ET

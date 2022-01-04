@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Week 5 Lab Solutions</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bulma/0.7.5/css/bulma.min.css">
+  <link rel="stylesheet" href="/csc341/css/style.css">
+  <link rel="stylesheet" href="/csc341/css/syntax.css">
+  <link rel="stylesheet" href="/csc341/css/syntax-drracket.css">
+  <script defer src="https://use.fontawesome.com/releases/v5.3.1/js/all.js"></script>
+  
+  <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+  <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+  
+  
+  
+</head>
+
+  </head>
+  <body>
+    <nav class="navbar is-primary" role="navigation" aria-label="main navigation">
+  <div class="navbar-brand">
+    <a class="navbar-item" href="/csc341/">
+      <img src="/csc341/img/laurel-white.png">
+      &nbsp;
+      CSC 341 (21fa)
+    </a>
+
+    <a role="button" class="navbar-burger burger" aria-label="menu" aria-expanded="false" data-target="navbarBasicExample">
+      <span aria-hidden="true"></span>
+      <span aria-hidden="true"></span>
+      <span aria-hidden="true"></span>
+    </a>
+  </div>
+
+  <div id="navbarBasicExample" class="navbar-menu">
+    <div class="navbar-start">
+      <a class="navbar-item" href="/csc341/syllabus">
+        Syllabus
+      </a>
+      <a class="navbar-item" href="/csc341/resources">
+        Resources
+      </a>
+      
+      <a class="navbar-item" href="https://teams.microsoft.com/l/team/19%3avJm8Wpx7VaDe72Q53lhFS8hKbE8ZqBMHkz-HLvwbzag1%40thread.tacv2/conversations?groupId=621c250a-ec62-4c30-afbd-0e3b7efa7606&tenantId=524f9e3e-faca-4f64-b3ec-adb2baee8807
+">Teams</a>
+      
+      
+      <a class="navbar-item" href="https://www.gradescope.com/courses/299977
+">Gradescope</a>
+      
+      <a class="navbar-item" href="/csc341/editor">
+        Editor
+      </a>
+    </div>
+  </div>
+</nav>
+
+<!-- Adapted from: https://bulma.io/documentation/components/navbar/ -->
+<script>
+  document.addEventListener('DOMContentLoaded', () => {
+
+    // Get all "navbar-burger" elements
+    const $navbarBurgers = Array.prototype.slice.call(document.querySelectorAll('.navbar-burger'), 0);
+
+    // Check if there are any navbar burgers
+    if ($navbarBurgers.length > 0) {
+
+      // Add a click event on each of them
+      $navbarBurgers.forEach( el => {
+        el.addEventListener('click', () => {
+
+          // Get the target from the "data-target" attribute
+          const target = el.dataset.target;
+          const $target = document.getElementById(target);
+
+          // Toggle the "is-active" class on both the "navbar-burger" and the "navbar-menu"
+          el.classList.toggle('is-active');
+          $target.classList.toggle('is-active');
+
+        });
+      });
+    }
+
+  });
+</script>
+
+    <section class="section">
+      <div class="container">
+        <h1 class="title">
+          CSC 341 (Fall 2021)
+        </h1>
+        <h1 class="subtitle">
+          
+            Week 5 Lab Solutions
+          
+        </h1>
+      </div>
+    </section>
+    <section class="content">
+      <div class="container">
+        
+        <h1 id="problem-just-the-facts-turing-edition">Problem: Just The Facts, Turing Edition</h1>
+<ol type="1">
+<li><p>Can a Turing machine ever write the blank symbol <code>␣</code> on its tape? <strong>Yes. Γ includes the blank tape symbol, so it is a valid input to δ.</strong></p></li>
+<li><p>Can the tape alphabet <span class="math inline">\(Γ\)</span> be the same as the input alphabet <span class="math inline">\(Σ\)</span>? <strong>No. The blank tape symbol must always be in Γ but not Σ.</strong></p></li>
+<li><p>Can a Turing machine’s head <em>ever</em> be in the same location in two successive steps? <strong>No. On every step, the head must move left or right; it cannot hold still.</strong></p></li>
+<li><p>Can a Turing machine contain just a single state? <strong>No. A Turing machine must at least have distinguished accept and reject states.</strong></p></li>
+<li><p>What happens when a Turing machine’s head moves off the left end of the tape? <strong>It stays on the left-most tape cell, <em>i.e.</em>, it hits a wall.</strong> What happens when it moves off the right end of the tape? <strong>We spawn a new cell with a blank tape symbol to move onto.</strong> <strong>Alternatively, we can view the tape as containing an infinite number of blank symbol cells to the right.</strong></p></li>
+<li><p>One difference between Turing machines and our previous machine-based models of computation is the presence of a reject state. Why was this unnecessary for finite automata? Why is it necessary for Turing machines? <strong>Reject states unnecessary for a finite automata because there is no way to go into an infinite loop, so rejection can be defined as “not accept.”</strong> <strong>It is necessary for TMs because they can loop.</strong></p></li>
+<li><p>Describe the difference between a Turing machine that <em>recognizes</em> a language versus a machine that <em>decides</em> a language. <strong>A TM that decides a language (a) accepts all strings that are in the language and (b) rejects all strings not in the language.</strong> <strong>A TM that recognizes a language (a) accepts all strings that are in the language and (b) rejects <em>or loops</em> on all strings no in the language</strong>.</p></li>
+<li><p>We can strongly characterize the runtime of any finite automata in terms of the size of its input. What can we say about the runtime of a Turing machine in terms of the size of its input? <strong>We can say nothing! A TM may run into an infinite loop, regardless of tape contents.</strong></p></li>
+<li><p>Give a implementation-level diagram of a Turing machine that does not terminate on any input. <strong>Our TM contains a start state <span class="math inline">\(q\)</span> as well as an accept and reject state.</strong> <strong>All three states simply loop on themselves on any possible input and advance the tape head right without modification.</strong> <strong>Observe that on any input, this TM will loop on <span class="math inline">\(q\)</span> and can never reach the accept or reject states.</strong></p></li>
+</ol>
+<h1 id="problem-implementation-details">Problem: Implementation Details</h1>
+<p>A TM <span class="math inline">\(M\)</span> that implements <span class="math inline">\(L_1\)</span> proceeds as follows:</p>
+<ul>
+<li>First, <span class="math inline">\(M\)</span> inserts a special symbol <span class="math inline">\(!\)</span> at the beginning of the tape so that it can seek to the beginning easily.</li>
+<li>Next, <span class="math inline">\(M\)</span> returns to the beginning of the tape and repeats the following until it can no longer find a <span class="math inline">\(0\)</span> on the tape:
+<ul>
+<li><span class="math inline">\(M\)</span> sweeps the tape from beginning to end, looking for a <span class="math inline">\(0\)</span>. Once <span class="math inline">\(M\)</span> finds a <span class="math inline">\(0\)</span>, it replaces the <span class="math inline">\(0\)</span> with an <span class="math inline">\(x\)</span>.</li>
+<li><span class="math inline">\(M\)</span> sweeps the tape again from beginning to end, this time looking for a <span class="math inline">\(1\)</span>. Once <span class="math inline">\(M\)</span> finds a <span class="math inline">\(1\)</span>, it replaces the <span class="math inline">\(1\)</span> with an <span class="math inline">\(x\)</span>. If <span class="math inline">\(M\)</span> does not find a <span class="math inline">\(1\)</span>, it <em>rejects</em>.</li>
+</ul></li>
+<li>Once done with this process, all <span class="math inline">\(0\)</span>s on the tape have been replaced with <span class="math inline">\(x\)</span>s. <span class="math inline">\(M\)</span> sweeps the tape one more time from beginning to end and <em>rejects</em> if it finds a <span class="math inline">\(1\)</span>. Otherwise, <span class="math inline">\(M\)</span> should have seen all <span class="math inline">\(x\)</span>s; it <em>accepts</em> in this case.</li>
+</ul>
+<p>A TM <span class="math inline">\(N\)</span> that implements <span class="math inline">\(L_2\)</span> behaves somewhat similarly to <span class="math inline">\(N\)</span> but flips when it accepts and rejects:</p>
+<ul>
+<li>First, <span class="math inline">\(N\)</span> inserts a special symbol <span class="math inline">\(!\)</span> at the beginning of the tape so that it can seek to the beginning easily.</li>
+<li>Next, <span class="math inline">\(N\)</span> returns to the beginning of the tape and repeats the following until it can no longer find a <span class="math inline">\(0\)</span> on the tape:
+<ul>
+<li><span class="math inline">\(N\)</span> sweeps the tape from beginning to end, looking for a <span class="math inline">\(0\)</span>. Once <span class="math inline">\(N\)</span> finds a <span class="math inline">\(0\)</span>, it replaces the <span class="math inline">\(0\)</span> with an <span class="math inline">\(x\)</span>.</li>
+<li><span class="math inline">\(N\)</span> sweeps the tape again from beginning to end, this time looking for a <span class="math inline">\(1\)</span>. Once <span class="math inline">\(M\)</span> finds a <span class="math inline">\(1\)</span>, it replaces the <span class="math inline">\(1\)</span> with an <span class="math inline">\(x\)</span>. If <span class="math inline">\(N\)</span> does not find a <span class="math inline">\(1\)</span>, it <em>accepts</em>.</li>
+</ul></li>
+<li>Once done with this process, all <span class="math inline">\(0\)</span>s on the tape have been replaced with <span class="math inline">\(x\)</span>s. <span class="math inline">\(N\)</span> sweeps the tape one more time from beginning to end and <em>accepts</em> if it finds a <span class="math inline">\(1\)</span>. Otherwise, <span class="math inline">\(M\)</span> should have seen all <span class="math inline">\(x\)</span>s; it <em>rejects</em> in this case.</li>
+</ul>
+<h1 id="problem-multi-tape-kill">Problem: Multi-(tape) Kill</h1>
+<ol type="1">
+<li><p><strong>TM-to-multi-TM</strong>. Trivial as a regular TM is a (single tape) multi-tape machine.</p>
+<p><strong>Multi-TM-to-TM</strong>. Lay out the <span class="math inline">\(k\)</span> tapes of the multi-TM onto the single tape of the regular TM end-to-end with appropriate delimiters in place to separate the different tapes. Sweep the single tape to read/write symbols from each of the multi-TM’s tapes.</p></li>
+<li><p>An infinite number of tapes would not result in a well-defined machine. δ would need to output an infinite set of tapes, and during execution, the TM would need to somehow update the infinite tapes in a finite amount of time to make progress on each step.</p></li>
+<li><p>The dynamic, unbounded multi-tape model is equivalent to ordinary TMs. Note that we can lay out the tapes end-to-end like the static multi-tape TM model. Since the transition function must operate over a list of tapes, it must account for the fact that the number of tapes is unknown. Furthermore, while the number of tapes is unbounded, it is not infinite, so at any point in time, there is only a finite number of tapes to traverse.</p></li>
+</ol>
+<h1 id="problem-the-matrix">Problem: The Matrix</h1>
+<ol type="1">
+<li><p><strong>TM-to-NTM</strong>: Trivial as a regular TM is a (degenerate) NTM.</p>
+<p><strong>NTM-to-TM</strong>: Maintain a counter that represents the “path” through the tree representing all the non-deterministic choices that can be made during the NTM’s execution. Simulate the NTM up to the number of steps as represented by the counter, “increment” the counter, and then repeat.</p></li>
+<li><p>The “space hit” for a TM simulating a NTM does not necessarily come from space complexity—the additional cost is a single counter—but instead comes in the form of time complexity in that we have to still explore every branch of the NTM’s execution in sequence. Furthermore, we have to repeat tons of work, because we explore the execution tree in breadth-first order, repeating the “prefixes” of each execution trace to go deeper into the tree.</p></li>
+<li><p>The address of the book’s construction keeps track of the current “path” through the NTM’s tree of nondeterministic choices. It also doubles, implicitly, as a limiter on how many steps of execution we take on any given run, thus avoiding the problem of “looping” on one branch and not making progress with others.</p>
+<p>The book construction has a “bug” in it in that if the string is rejected by the NTM, then the corresponding TM loops forever (note the construction never says when it rejects). We want to reject a string when all the concurrent branches of execution die. However, the “address” setup makes it difficult to detect this because we don’t know, <em>e.g.</em>, if the execution corresponding to counter value <span class="math inline">\(x\)</span> occurs at the “same time” as the execution corresponding to counter value <span class="math inline">\(x+1\)</span>.</p>
+<p>To address this, we can take a different approach: we can enqueue the <em>current, live configurations of executions</em> onto the tape, similarly to how we encode a multi-tape TM. The deterministic TM then simulates one step of execution on the head of the queue, potentially enqueuing more configurations to process. By using a queue, we avoid “livelocking” on a looping branch of execution, and we can easily detect when to reject a string: when the queue is empty.</p></li>
+</ol>
+<h1 id="problem-blah-blah-blah">Problem: Blah Blah Blah</h1>
+<ol type="1">
+<li><p><strong>TM-to-Enumerator</strong>: enumerate all possible strings in lexographical order, run them through the TM in a breadth-first manner (to avoid livelocking), and output a string once a TM accepts it.</p>
+<p><strong>Enumerator-to-TM</strong>: run the enumerator and accept when our input string is outputted by the enumerator.</p></li>
+<li><p>An enumerator <span class="math inline">\(E\)</span> operates over a alphabet <span class="math inline">\(\Sigma\)</span> and is a black box that outputs strings over <span class="math inline">\(\Sigma\)</span>. In other words, it doesn’t have any “external” components that we can manipulate! <span class="math inline">\(E\)</span> simply enumerate strings from <span class="math inline">\(\Sigma^*\)</span>. A string <span class="math inline">\(w \in L(E)\)</span> iff <span class="math inline">\(E\)</span> outputs <span class="math inline">\(w\)</span> at some point during its execution.</p></li>
+</ol>
+
+      </div>
+    </section>
+    <footer class="footer is-size-7 has-text-centered">
+  <a rel="license" href="http://creativecommons.org/licenses/by-sa/4.0/"><img alt="Creative Commons License" style="border-width:0" src="https://i.creativecommons.org/l/by-sa/4.0/80x15.png" /></a><br />This work is licensed under a <a rel="license" href="http://creativecommons.org/licenses/by-sa/4.0/">Creative Commons Attribution-ShareAlike 4.0 International License</a>.<br/>
+  Made with <a href="https://bulma.io">Bulma</a>, <a href="https://jekyllrb.com">Jekyll</a>, <a href="https://www.brailleinstitute.org/freefont">Atkinson Hyperlegible</a>, and <a href="https://github.com/JetBrains/JetBrainsMono">JetBrains Mono</a>.
+</footer>
+
+  </body>
+</html>

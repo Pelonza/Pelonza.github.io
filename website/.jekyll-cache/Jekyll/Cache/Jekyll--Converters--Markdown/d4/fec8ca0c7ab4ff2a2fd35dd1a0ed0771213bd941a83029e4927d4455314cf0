@@ -1,0 +1,20 @@
+I"ù<p><span class="math display">\[
+\newcommand{\desc}[1]{\langle #1 \rangle}
+\]</span></p>
+<h1 id="problem-1-representation">Problem 1: Representation</h1>
+<p>For each of the following objects, describe a plausible representation for those objects as strings.</p>
+<ol type="1">
+<li>An undirected graph <span class="math inline">\(G\)</span>.</li>
+<li>A finite collection of objects <span class="math inline">\(O_1, \ldots, O_n\)</span>, weights for each object <span class="math inline">\(w_i\)</span>, and costs for each object <span class="math inline">\(c_i\)</span>.</li>
+<li>An assignment of truth values to a finite collection of boolean variables <span class="math inline">\(x_1, \ldots, x_k\)</span>.</li>
+<li>A Turing machine configuration <span class="math inline">\(C\)</span>.</li>
+<li>A deterministic finite automata <span class="math inline">\(D\)</span>.</li>
+</ol>
+<h1 id="problem-2-poly-want-a-cracker">Problem 2: Poly Want A Cracker</h1>
+<p>Show that each of the following languages are in <span class="math inline">\(P\)</span>.</p>
+<ul>
+<li><span class="math inline">\(\{\, \desc{G, V&#39;} \mid \text{\( G = (V, E) \) is a graph, \( V&#39; \subseteq V \) and no two vertices of \( V&#39; \) are incident with each other} \,\}\)</span>.</li>
+<li><span class="math inline">\(\{\, \desc{D} \mid \text{\( D \) is a DFA and \( L(D) = \Sigma^* \)} \,\}\)</span>.</li>
+<li><span class="math inline">\(\{\, \desc{G} \mid \text{\( G \) is a graph and \( G \) contains a triangle (a 3-clique)} \,\}\)</span>.</li>
+</ul>
+:ET

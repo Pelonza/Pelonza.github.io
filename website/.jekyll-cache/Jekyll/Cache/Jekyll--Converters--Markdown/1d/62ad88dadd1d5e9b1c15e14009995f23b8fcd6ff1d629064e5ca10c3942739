@@ -1,0 +1,12 @@
+I"�<h1 id="regular-expressions">Regular Expressions</h1>
+<p>We’ll study one final model of “regular” computation: the regular expression. Whereas finite automata are machine-like models, the regular expression is a <em>linguistic</em> model. While seemingly unrelated, there are both theoretical and pragmatic connections between the models. As the text illustrates, regular expressions and finite automata are equivalent in computational power. Pragmatically speaking, regular expressions—a fundamental building block for parsing and pattern recognition—are efficiently implemented by translation into equivalent finite automata.</p>
+<h2 id="sipser-reading">Sipser Reading</h2>
+<p>Through section 1.3 (Regular Expressions).</p>
+<hr />
+<p><strong>Reading Problem (Slightly Unnatural)</strong> Give a regular expression for a language <span class="math inline">\(L\)</span> of strings drawn from the alphabet <span class="math inline">\(\Sigma = \\{ 0, 1, -, . \\}\)</span> that obey the following properties:</p>
+<ul>
+<li>All strings in <span class="math inline">\(L\)</span> are strings of binary digits.</li>
+<li>Each string may optionally be preceded by a single <span class="math inline">\((-)\)</span>.</li>
+<li>Each string may optionally contain a single <span class="math inline">\((.)\)</span>. At least one binary digit must follow the <span class="math inline">\((.)\)</span> if it appears in the string.</li>
+</ul>
+:ET

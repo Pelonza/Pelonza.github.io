@@ -1,0 +1,51 @@
+I"
+<p>Demonstration exercises are your opportunity to showcase your mastery of the week’s material. In lab, you gain practice employing the fundamental skills we introduce in class. In contrast, the demos are <em>integrative</em> in nature, requiring to put those skills <em>into context</em> as well as <em>mix different skills together</em> to solve problems that are more like the ones you find in the real world.</p>
+<h1 id="formatting-and-submitting-your-work">Formatting and Submitting Your Work</h1>
+<p>Create a PDF (either generated from LaTeX or an appropriate Markdown workflow) for each demonstration exercise, using headings to label each problem. Your write-ups for each problem should reflect good writing principles and mathematical style:</p>
+<ul>
+<li>Grammatically correct English prose and mathematics.</li>
+<li>Structure of the prose made obvious through subheadings, paragraphs, and lists.</li>
+<li>Math appropriately integrated into the prose as needed.</li>
+</ul>
+<p>To achieve this, you will need to set aside ample time for revision and editing of your work before the deadline. Approach the demonstration exercises not like a one-and-done problem set, but as a <em>writing assignment</em> where you are putting in work that you eventually refine into a polished, complete product.</p>
+<p>When you are done, you should submit your PDF to Gradescope.</p>
+<h1 id="problem-protocols">Problem: Protocols</h1>
+<p>A powerful application of finite automata is the specification and verification of <em>protocols</em>. In this problem, we’ll examine a protocol between a client and a conference management server (CMS) such as <a href="https://hotcrp.com">HotCRP</a>. A client to this system may be an <em>author</em> editing a paper for a review. That same client might also be a <em>reviewer</em> editing reviews for papers submitted to the conference. Such a system segregates the two <em>roles</em> so that authors cannot edit reviews of other papers they are in competition with.</p>
+<p>The client may issue the following commands to the server:</p>
+<ul>
+<li>Connect</li>
+<li>Change role to author</li>
+<li>Change role to reviewer</li>
+<li>Edit paper</li>
+<li>Edit review</li>
+<li>Disconnect</li>
+</ul>
+<p>A valid <em>session</em> between the client and CMS adheres to the following rules.</p>
+<ol type="1">
+<li>The client must connect to the server before performing any other action.</li>
+<li>Once connected, the client is initially given the author role.</li>
+<li>While connected, the client can switch their role between author and reviewer. (Presumably, the client needs to have proper rights to switch roles, but that is not captured in this protocol.)</li>
+<li>As an author, the client can edit papers but not reviews</li>
+<li>As a reviewer, the client can edit reviews but not papers.</li>
+<li>The client cannot connect to the server if it is already connected.</li>
+<li>The client must disconnect from the server to end the session.</li>
+</ol>
+<p>Note that in a single session, the client may connect and disconnect multiple times. However, every valid session ends with the client disconnected from the CMS.</p>
+<ol type="1">
+<li><p>Specify a language <span class="math inline">\(L\)</span> that captures valid sessions between the client and the server. <span class="math inline">\(L\)</span> should be specified in set-theoretic terms without appeal to a machine, and you should clearly define its alphabet <span class="math inline">\(\Sigma\)</span>.</p></li>
+<li><p>Give a deterministic finite automata <span class="math inline">\(D\)</span> that recognizes <span class="math inline">\(L\)</span> in terms of a state diagram. You may either use a library to build this in your LaTeX/Markdown source, <em>e.g.</em>, TikZ for LaTeX, or embed a picture of the diagram made in a third party tool or drawn by-hand. In your state diagram, you make take the shortcut that any transition from a state that is not drawn implicitly goes to an additional “dead” state.</p></li>
+<li><p>Prove that the DFA <span class="math inline">\(D\)</span> recognizes <span class="math inline">\(L\)</span>. To do this:</p>
+<ul>
+<li>Assign a property to each state of <span class="math inline">\(D\)</span> that captures the essence of what that state means, <em>e.g.</em>, the “disconnected” state.</li>
+<li>Perform an exhaustive case analysis on each state <span class="math inline">\(q\)</span> of <span class="math inline">\(D\)</span>, arguing that each of <span class="math inline">\(q\)</span>’s transitions is valid and preserves the property of <span class="math inline">\(q\)</span> according to the rules of the protocol.</li>
+</ul></li>
+<li><p>Give an implementation of the protocol in a real-world programming language of your choice, inlining the code in your write-up. Please use the <code>verbatim</code> environment in LaTeX or a fenced code-block in Markdown to do this.</p>
+<p>Implement the protocol as a function that takes two inputs:</p>
+<ul>
+<li>The current state of the client and</li>
+<li>The next command issued by the client</li>
+</ul>
+<p>And produces the next state of the client as output. You may choose any representation of states and commands appropriate for your chosen language.</p></li>
+<li><p>Finally, based on your experiences developing <span class="math inline">\(D\)</span> and your “real-world” implementation of the protocol, describe the pros and cons of first using a finite automata to <em>model</em> a protocol <em>before</em> going to implementation. Be open-minded about the benefits you consider not just in terms of correctness but also productivity.</p></li>
+</ol>
+:ET

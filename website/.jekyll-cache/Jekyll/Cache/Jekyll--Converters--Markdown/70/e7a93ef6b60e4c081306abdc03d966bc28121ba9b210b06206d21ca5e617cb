@@ -1,0 +1,45 @@
+I"Ä<h1 id="problem-developing-the-strategy">Problem: Developing the Strategy</h1>
+<p>Because we donâ€™t care about time complexity, we are free to explore the exponential search space of <span class="math inline">\(\mathsf{SAT}\)</span> directly provided that we can track our current position using a polynomial amount of space. We can do this because we just need to track the boolean assignments of a linear number of variables.</p>
+<h1 id="problem-space">Problem: Space!</h1>
+<p><span class="math inline">\(\mathsf{CLIQUE}\)</span> is in <span class="math inline">\(\mathsf{PSPACE}\)</span> because we can exhaustively search all <span class="math inline">\(k\)</span>-sized sub-graphs of <span class="math inline">\(G\)</span> and determine if any is a clique, <em>i.e.</em>, every vertex of the sub-graph is connected to every other vertex. This takes a polynomial amount of space because we just need to track for each of the vertices of <span class="math inline">\(G\)</span> whether they are currently in or out of the subset.</p>
+<p><span class="math inline">\(\mathsf{SUBSET}\)</span> is in <span class="math inline">\(\mathsf{PSPACE}\)</span> because we can exhaustively search all subsets <span class="math inline">\(S^* \subseteq S\)</span> and check for each whether they sum to <span class="math inline">\(t\)</span>. Like <span class="math inline">\(\mathsf{CLIQUE}\)</span> we can do this search in polynomial space because we just need to track for each element of <span class="math inline">\(S\)</span> whether it is currently in <span class="math inline">\(S^*\)</span> or not.</p>
+<h1 id="problem-generalization">Problem: Generalization</h1>
+<p>::: proof <strong>Claim</strong>: <span class="math inline">\(\mathsf{NP} \subseteq \mathsf{PSPACE}\)</span>.</p>
+<p><em>Proof</em>. Let <span class="math inline">\(A \in \mathsf{NP}\)</span> and let <span class="math inline">\(V\)</span> verify <span class="math inline">\(A\)</span>. Furthermore, suppose that the runtime of <span class="math inline">\(V\)</span> is some polynomial <span class="math inline">\(f\)</span>. Build a polynomial-space decider <span class="math inline">\(D\)</span> for <span class="math inline">\(A\)</span> as follows.</p>
+<p>$D(w) = $</p>
+<ul>
+<li>Enumerate all certificates <span class="math inline">\(c\)</span> up to size <span class="math inline">\(f(|w|)\)</span> and run <span class="math inline">\(V(w, c)\)</span>.</li>
+<li>Accept if any such input-certificate pairs are accepted by the verifier and reject otherwise.</li>
+</ul>
+<p>Observe that the verifier can only access certificates whose size does not exceed the runtime of <span class="math inline">\(V\)</span>. Thus, enumeration of these certificates is possible because we need only keep track of the possible certificates using a polynomial-length counter (proportional in size to <span class="math inline">\(f\)</span>).</p>
+<h1 id="problem-configurations">Problem: Configurations</h1>
+<p>A configuration representing a TM with an <span class="math inline">\(n\)</span>-sized tape is broken up into <span class="math inline">\(n\)</span> tape cells, each of which can be one of <span class="math inline">\(g\)</span> possible symbols and a tape head denoted by one of <span class="math inline">\(q\)</span> states that can appear in one of <span class="math inline">\(n\)</span> positions: <span class="math inline">\(g^n \times qn\)</span> possibilities overall.</p>
+<h1 id="problem-cycles">Problem: Cycles</h1>
+<p>Suppose to the contrary that a TM that halts does repeat a configuration. Then there must be a chain of sequential <span class="math inline">\(C_1, C_2, \ldots, C_k, C_1\)</span> that starts and ends in the same configuration <span class="math inline">\(C_1\)</span>. Because the configuration fully determines the current state of the TM, we know that from the second <span class="math inline">\(C_1\)</span>, we will simply repeat this chain again, resulting in an infinite loop, contradicting the assumption that the TM halts.</p>
+<h1 id="problem-upper-bounds">Problem: Upper Bounds</h1>
+<div class="proof">
+<p><strong>Claim</strong>: <span class="math inline">\(\mathsf{PSPACE} \subseteq \mathsf{EXPTIME}\)</span>.</p>
+<p><em>Proof</em>. Let <span class="math inline">\(A \in \mathsf{PSPACE}\)</span> and let <span class="math inline">\(M\)</span> decide <span class="math inline">\(A\)</span> in polynomial space <span class="math inline">\(f\)</span>. Observe that <span class="math inline">\(M\)</span> has an exponential number of possible configurations and that if it were to repeat any such configuration, it would go into an infinite loop. Therefore, <span class="math inline">\(M\)</span> takes as most an exponential number of steps, one for each configuration.</p>
+</div>
+<h1 id="problem-the-puzzle-game">Problem: The Puzzle Game</h1>
+<ol type="1">
+<li><p><span class="math inline">\(\mathsf{PUZZLE-GAME} \in \mathsf{PSPACE}\)</span> because we can determine if there is an optimal strategy by leveraging the quantifier-as-turns analogy. The following recursive algorithm decides <span class="math inline">\(\mathsf{PUZZLE-GAME}\)</span>:</p>
+<ul>
+<li>Let <span class="math inline">\(c\)</span> be the top card of the deck and <span class="math inline">\(cs\)</span> of the deck. Also let <span class="math inline">\(p\)</span> be the current player.
+<ul>
+<li>If <span class="math inline">\(p\)</span> is the first player, then try:
+<ul>
+<li>To orient <span class="math inline">\(c\)</span> as-is and recursively decide the game with deck <span class="math inline">\(cs\)</span>, setting <span class="math inline">\(p\)</span> to the second player.</li>
+<li>To flip <span class="math inline">\(c\)</span> and recursively decide the game with <span class="math inline">\(cs\)</span>, setting <span class="math inline">\(p\)</span> to the second player. If player 1 wins in <em>either</em> recursive case, then player 1 wins the overall game. Otherwise, they lose.</li>
+</ul></li>
+<li>If <span class="math inline">\(p\)</span> is the second player, then try
+<ul>
+<li>To orient <span class="math inline">\(c\)</span> as-is and recursively decide the game with deck <span class="math inline">\(cs\)</span>, setting <span class="math inline">\(p\)</span> to the first player.</li>
+<li>To flip <span class="math inline">\(c\)</span> and recursively decide the game with <span class="math inline">\(cs\)</span>, setting <span class="math inline">\(p\)</span> to the first player. If player 1 wins in <em>both</em> cases, then player 1 wins the overall game. Otherwise, they lose.</li>
+</ul></li>
+</ul></li>
+</ul>
+<p>If the deck is empty, inspect the oriented stack of cards. If the stack covers the bottom of the box, then player 1 wins. Otherwise player 2 wins.</p></li>
+<li><p>To reduce <span class="math inline">\(\mathsf{FORMULA-GAME}\)</span> to <span class="math inline">\(\mathsf{PUZZLE-GAME}\)</span>, follow the reduction from <span class="math inline">\(\mathsf{3SAT}\)</span> to <span class="math inline">\(\mathsf{PUZZLE}\)</span>. However, for every variable that is existentially quantified, player one chooses the alignment of the card. For every variable that is universally quantified, player two chooses the alignment of the card. Furthermore, player one chooses the orientation of the extra card (that has exactly one column punched out).</p></li>
+</ol>
+:ET

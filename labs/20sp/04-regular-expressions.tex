@@ -1,0 +1,81 @@
+\documentclass[11pt]{book}
+
+\setcounter{chapter}{4}
+\newcommand{\docclass}{CSC 341 (20sp)}
+\newcommand{\doctitle}{Regular Expressions}
+\newcommand{\docauthor}{Peter-Michael Osera}
+
+\usepackage{reading}
+
+\begin{document}
+
+\begin{center}
+  (Turn-in problems are indicated with a dagger \turninproblem{}.)
+\end{center}
+
+\begin{center}
+  \large\textbf{{\doctitle}}
+\end{center}
+
+\vspace{2em}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{problem}{Sugar}
+
+Definition 1.52 of Sipser gives the formal definition of a regular expression.
+You might notice that this includes a minimal set of operators compared to a
+real-world regular expression language.  The set of additional operators found
+in these real-world languages are not essential; indeed, with a little bit of
+thought, we can use the minimal set to emulate these extended operators.
+
+For each of the given extended regular expression operators, give an equivalent
+regular expression using the operators defined in Sipser.
+
+\begin{enumerate}[label=(\alph*)]
+  \item \( R+ \): matches one or more occurrences of \( R \).
+  \item \( R? \): matches zero or one occurrences of \( R \).
+  \item \( [c_1 \cdots c_k] \): matches exactly one occurrence of any of the
+    characters \( c_1 \), \ldots, \( c_k \).
+  \item \( n\{R\} \): matches \( n \) repetitions of \( R \).
+  \item \( R\$ \): matches any string that ends with \( R \).
+\end{enumerate}
+
+\end{problem}
+
+
+\vspace{1in}
+
+\begin{problem}{Awkward}
+
+(\emph{Adapted from Sipser exercise 1.6.})
+
+Give DFAs/NFAs and regular expressions for each of the following languages.  In
+all cases, \( \Sigma = \{ 0, 1 \} \).
+
+\begin{enumerate}[label=(\alph*)]
+  \item \( L_1 = \{ w \mid \text{\( w \) does not contain \( 01 \) or \( 101 \)} \} \).
+  \item \( L_2 = \{ w \mid \text{\( w \) starts with 0 and has odd length or starts with 1 and has even length} \} \).
+\end{enumerate}
+
+\end{problem}
+
+\newpage
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{problem}{Go To Implementation \turninproblem{}}
+
+\begin{enumerate}[label=(\alph*)]
+  \item Describe how you might \emph{implement} a deterministic finite automata efficiently.
+    Describe how you would (a) represent each of the components of the DFA and (b) simulate the transition function on a particular input.
+    What is the time and space complexity of the process of simulating a DFA?
+  \item In contrast, describe how you might \emph{execute} the matching procedure of a regular expression directly using recursion.
+    What is the time and space complexity of directly executing a regular expression?
+  \item Many implementations of regular expressions, \eg, in Python provide a function to \emph{compile} a regular expression into an optimized form as an alternative to direct interpretation.
+    Based on your knowledge of the relationship of DFAs, NFAs, and regular expressions and the above analysis, what do you believe happens if you compile a regular expression?
+\end{enumerate}
+
+\end{problem}
+
+\end{document}

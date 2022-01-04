@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Complements and Complexity</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bulma/0.7.5/css/bulma.min.css">
+  <link rel="stylesheet" href="/csc341/css/style.css">
+  <link rel="stylesheet" href="/csc341/css/syntax.css">
+  <link rel="stylesheet" href="/csc341/css/syntax-drracket.css">
+  <script defer src="https://use.fontawesome.com/releases/v5.3.1/js/all.js"></script>
+  
+  <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+  <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+  
+  
+  
+</head>
+
+  </head>
+  <body>
+    <nav class="navbar is-primary" role="navigation" aria-label="main navigation">
+  <div class="navbar-brand">
+    <a class="navbar-item" href="/csc341/">
+      <img src="/csc341/img/laurel-white.png">
+      &nbsp;
+      CSC 341 (21fa)
+    </a>
+
+    <a role="button" class="navbar-burger burger" aria-label="menu" aria-expanded="false" data-target="navbarBasicExample">
+      <span aria-hidden="true"></span>
+      <span aria-hidden="true"></span>
+      <span aria-hidden="true"></span>
+    </a>
+  </div>
+
+  <div id="navbarBasicExample" class="navbar-menu">
+    <div class="navbar-start">
+      <a class="navbar-item" href="/csc341/syllabus">
+        Syllabus
+      </a>
+      <a class="navbar-item" href="/csc341/resources">
+        Resources
+      </a>
+      
+      <a class="navbar-item" href="https://teams.microsoft.com/l/team/19%3avJm8Wpx7VaDe72Q53lhFS8hKbE8ZqBMHkz-HLvwbzag1%40thread.tacv2/conversations?groupId=621c250a-ec62-4c30-afbd-0e3b7efa7606&tenantId=524f9e3e-faca-4f64-b3ec-adb2baee8807
+">Teams</a>
+      
+      
+      <a class="navbar-item" href="https://www.gradescope.com/courses/299977
+">Gradescope</a>
+      
+      <a class="navbar-item" href="/csc341/editor">
+        Editor
+      </a>
+    </div>
+  </div>
+</nav>
+
+<!-- Adapted from: https://bulma.io/documentation/components/navbar/ -->
+<script>
+  document.addEventListener('DOMContentLoaded', () => {
+
+    // Get all "navbar-burger" elements
+    const $navbarBurgers = Array.prototype.slice.call(document.querySelectorAll('.navbar-burger'), 0);
+
+    // Check if there are any navbar burgers
+    if ($navbarBurgers.length > 0) {
+
+      // Add a click event on each of them
+      $navbarBurgers.forEach( el => {
+        el.addEventListener('click', () => {
+
+          // Get the target from the "data-target" attribute
+          const target = el.dataset.target;
+          const $target = document.getElementById(target);
+
+          // Toggle the "is-active" class on both the "navbar-burger" and the "navbar-menu"
+          el.classList.toggle('is-active');
+          $target.classList.toggle('is-active');
+
+        });
+      });
+    }
+
+  });
+</script>
+
+    <section class="section">
+      <div class="container">
+        <h1 class="title">
+          CSC 341 (Fall 2021)
+        </h1>
+        <h1 class="subtitle">
+          
+            Lab: Complements and Complexity
+          
+        </h1>
+      </div>
+    </section>
+    <section class="content">
+      <div class="container">
+        
+        <p><span class="math display">\[
+\newcommand{\comp}[1]{\overline{#1}}
+\newcommand{\SAT}{\mathsf{SAT}}
+\newcommand{\NP}{\mathsf{NP}}
+\newcommand{\coNP}{\mathsf{coNP}}
+\newcommand{\NL}{\mathsf{NL}}
+\newcommand{\coNL}{\mathsf{coNL}}
+\newcommand{\PATH}{\mathsf{PATH}}
+\newcommand{\PCLS}{\mathsf{P}}
+\newcommand{\CoP}{\mathsf{coP}}
+\]</span></p>
+<p>In today’s lab, we’ll look at logspace as well as begin investigating the relationship between complexity classes, problems, and their <em>complements</em>.</p>
+<h1 id="problem-1-proper-endpoints">Problem 1: Proper Endpoints</h1>
+<p>Show that <span class="math inline">\(A\)</span>, the language of properly nested parentheses is in <span class="math inline">\(L\)</span>. For example, <code>(()((())))</code> ∈ <span class="math inline">\(A\)</span> but <code>()((</code> is not. (Thanks Adam.)</p>
+<h1 id="problem-2-problem-complements">Problem 2: Problem Complements</h1>
+<p>The complement of a language <span class="math inline">\(A\)</span>, written <span class="math inline">\(\comp{A}\)</span>, is simply the set of strings <em>not</em> in the language, <em>i.e.</em>,</p>
+<p><span class="math display">\[
+\comp{A} = \{\, w \mid w \notin A \,\}
+\]</span></p>
+<p>As a concrete example, recall the definition of <span class="math inline">\(\SAT\)</span>:</p>
+<p><span class="math display">\[
+\SAT = \{\, \phi \mid \text{\( \phi \) is a satisfiable boolean formula} \,\}.
+\]</span></p>
+<p>The complement of <span class="math inline">\(\SAT\)</span> can therefore be defined as:</p>
+<p><span class="math display">\[
+\comp{\SAT} = \{\, \phi \mid \text{\( \phi \) is not a satisfiable boolean formula} \,\}.
+\]</span></p>
+<p>For each of the following formulae, determine whether they are in <span class="math inline">\(\SAT\)</span> or <span class="math inline">\(\comp{\SAT}\)</span>.</p>
+<ol type="a">
+<li><span class="math inline">\((x_1 \vee x_3) \wedge (x_2 \vee x_3) \wedge (x_1 \vee \comp{x_3}) \wedge (\comp{x_2} \vee x_3)\)</span>.</li>
+<li><span class="math inline">\((x_1 \vee x_2) \wedge (\comp{x_1} \vee \comp{x_2}) \wedge (x_1 \vee \comp{x_2}) \wedge (\comp{x_1} \vee x_2)\)</span>.</li>
+</ol>
+<h1 id="problem-3-verifying-complements">Problem 3: Verifying Complements</h1>
+<p>Analogously, we can consider complexity classes whose languages consist of the complements of languages in the original class. We prefix such classes with “co.” For example, the class of languages that are complements of languages in <span class="math inline">\(\NP\)</span> is <span class="math inline">\(\coNP\)</span>. In the <span class="math inline">\(\NP\)</span> case, we can think of <span class="math inline">\(\coNP\)</span> as the class of language complements with verifiers that take an input and certificate that report whether the input is <em>not</em> in the original language.</p>
+<ol type="a">
+<li><p>An important question we might ask is whether <em>solving a problem’s complement is as easy as solving the original problem</em>. In terms of classes, this amounts to asking the question: <span class="math inline">\(\NP = \coNP\)</span>? To get at this problem, let’s first consider the left-to-right direction of this claim. Suppose that we know that a language <span class="math inline">\(A\)</span> is in <span class="math inline">\(\NP\)</span>; thus, we know that there exists a verifier for <span class="math inline">\(A\)</span>. Describe your best attempt at building a verifier for <span class="math inline">\(\comp{A}\)</span> using this assumed verifier for <span class="math inline">\(A\)</span>. Describe where your attempt fails.</p></li>
+<li><p>Now, let’s consider the right-to-left direction. Suppose we know that <span class="math inline">\(\comp{A} \in \coNP\)</span>; thus, we know there exists a verifier for <span class="math inline">\(\comp{A}\)</span>. Describe your best attempt at building a verifier for <span class="math inline">\(A\)</span> using this assumed verifier for <span class="math inline">\(\comp{A}\)</span>. Describe where your attempt fails.</p></li>
+<li><p>Finally, summarize your findings from the previous two parts. What is the fundamental difficulty that you encountered when trying to build verifiers in either direction? What does this imply about the relationships between the two classes? Is it clear whether <span class="math inline">\(\NP \subseteq \coNP\)</span> or <span class="math inline">\(\coNP \subseteq \NP\)</span>?</p></li>
+</ol>
+<h1 id="problem-4-easy-complements">Problem 4: Easy Complements</h1>
+<p>The final section (8.6) of the reading highlights a surprising fact, <span class="math inline">\(\NL = \coNL\)</span>! That is, even though we have difficulty navigating between “yes” and “no” answers in <span class="math inline">\(\NP\)</span>, we can do so easily in <span class="math inline">\(\NL\)</span>! The proof that <span class="math inline">\(\NL = \coNL\)</span> is straightforward—show that <span class="math inline">\(\comp{PATH} \in \coNL\)</span>—but the construction is a bit tricky and specific to fit within logspace bounds.</p>
+<p>For this exercise, to get a sense of the weirdness involved with reasoning about complements, let’s consider a simpler case: <span class="math inline">\(\PCLS = \CoP\)</span>.</p>
+<ol type="a">
+<li>Prove that <span class="math inline">\(\PCLS = \CoP\)</span>. Make sure to prove both directions of this claim.</li>
+<li>Why does this proof not translate to a proof that <span class="math inline">\(\NP = \coNP\)</span>.</li>
+</ol>
+
+      </div>
+    </section>
+    <footer class="footer is-size-7 has-text-centered">
+  <a rel="license" href="http://creativecommons.org/licenses/by-sa/4.0/"><img alt="Creative Commons License" style="border-width:0" src="https://i.creativecommons.org/l/by-sa/4.0/80x15.png" /></a><br />This work is licensed under a <a rel="license" href="http://creativecommons.org/licenses/by-sa/4.0/">Creative Commons Attribution-ShareAlike 4.0 International License</a>.<br/>
+  Made with <a href="https://bulma.io">Bulma</a>, <a href="https://jekyllrb.com">Jekyll</a>, <a href="https://www.brailleinstitute.org/freefont">Atkinson Hyperlegible</a>, and <a href="https://github.com/JetBrains/JetBrainsMono">JetBrains Mono</a>.
+</footer>
+
+  </body>
+</html>

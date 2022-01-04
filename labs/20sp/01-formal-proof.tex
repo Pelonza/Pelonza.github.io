@@ -1,0 +1,103 @@
+\documentclass[11pt]{book}
+
+\setcounter{chapter}{0}
+\newcommand{\docclass}{CSC 341 (20sp)}
+\newcommand{\doctitle}{Daily Exercise---Formal Proof}
+\newcommand{\docauthor}{Peter-Michael Osera}
+
+\usepackage{reading}
+
+\begin{document}
+
+\chapter{\doctitle}
+
+\section{About Course Daily Work}
+
+Our class periods will involve daily work in class to encourage you to tackle the material systematically.
+We'll approach this work in a variety of ways, \eg, individual work, class activities, lead-by-example, but most commonly, we'll work in randomly-assigned pairs.
+While this is a mathematics-oriented course, group work is essential to help you develop your understanding of the material.
+When approaching group work, try not to work individually and then compare answers at the end!
+Instead, consider the following strategies for making collaboration on these problems more beneficial to you and your partner:
+\begin{itemize}
+  \item Vocalize your thought process to your partner.
+    Try to explain what you are thinking about using words or pictures.
+  \item If something your partner says confuses you, or you don't understand what's going on, ask a question!
+    Remember that good mathematics is elegant and simple; you help your partner by forcing them to try to explain things in such a manner.
+  \item If you feel like your partner is slowing down your progress, keep in mind that (a) daily work is not a race! and (b) trying to help a peer get through the material helps clarify and reinforce the material for yourself as well!
+\end{itemize}
+
+\subsection{Turning In Daily Work}
+
+Each set of daily exercises contains \emph{write-up problems} indicated with a dagger \turninproblem{} that I will ask you to turn in to Gradescope.
+You should polish your answers to these problems outside of class, write them up in \LaTeX{} and turn them into Gradescope online.
+Your write-ups to these problems along with your solutions to the reading exercises for the next class period will generally be due before the next period.
+
+In class, I encourage you to write your initial work by-hand on the worksheets I provide.
+While you will need to turn in the required daily work problems through a \LaTeX{}-generated PDF, I find that trying to typeset solutions distracts me from deriving said solutions.
+Furthermore, you will find it immensely helpful to draw graphs and pictures to organize your thoughts, something that is difficult to do in \LaTeX{}.
+
+To turn in your daily work, please use the daily work \LaTeX{} template found on the course website.
+Make sure to fill in the macros at the top of the file to add your name and the title of the assignment to your write-up.
+The template also has macros for giving your solutions to each problem as well as citing your collaborators and resources.
+
+\newpage
+
+\section{Formal Proof}
+
+Formally prove the following claims over strings.
+
+\begin{claim}
+  Call an element \( u \) of a set \( S \) and an associated binary operation over that set \( (+) : S → S \) a \emph{unit} if \( ∀x ∈ S.\, x + u = u + x = x \).
+  \( ϵ \) is a unit for strings and concatenation over strings.
+\end{claim}
+
+\begin{claim}
+  Let \( x \) and \( y \) be strings.
+  If \( x \) is a prefix of \( y \) and \( y \) is a prefix of \( x \) then \( x = y \).
+\end{claim}
+
+\newpage
+
+\section{Induction Revisited}
+
+Consider the following definitions regarding binary trees.
+\begin{defn}[Binary Tree]
+  A binary tree is either:
+  \begin{itemize}
+    \item A \emph{leaf} or
+    \item A \emph{node} with two sub-trees, its \emph{children}.
+  \end{itemize}
+  We define the \emph{root} of a binary tree to be a node that is not the child of any other node in the tree.
+\end{defn}
+\begin{defn}[Levels and Heights]
+  The \emph{level} of a node in a binary tree is the length of the path from the root to that node.
+  The \emph{height} of a binary tree is the maximal level of any node in the tree.
+  We also use ``level'' to denote the \emph{set of all nodes} that share the same level in the tree.
+\end{defn}
+\begin{defn}[Complete, Perfect Trees]
+  A tree is \emph{complete} if each level of the tree contains its maximal number of possible nodes.
+  A tree is \emph{perfect} if each node of the tree contains zero or two children.
+\end{defn}
+
+Now prove the following claim by structural induction.
+\begin{claim}
+  Let \( h \) be the height of a complete, perfect binary tree.
+  If \( n ≤ h \), then there are \( 2^n \) nodes at level \( n \) of this tree.
+\end{claim}
+
+\newpage
+
+\section{Constructive Proof}
+
+\turninproblem{}
+Chess is played on a \( n × n \) board (usually \( n = 8 \)).
+Consider the \emph{rook} piece, which can move in any number of squares in a cardinal (non-diagonal) direction.
+A \emph{rook's tour} is a sequence of moves for a single rook that causes the piece to visit \emph{every} square of the board \emph{exactly once}.
+When considering a tour, we are free to place our piece on the board at any position initially.
+Also, we only consider a square visited if the piece \emph{ends its movement} on that square.
+
+Prove via induction that there exists a rook's tour for any chessboard of size \( n ≥ 1 \).
+(\emph{Hint:} pay attention to the details!
+This is not as straightforward of a proof as you might think!)
+
+\end{document}

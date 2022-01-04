@@ -1,0 +1,331 @@
+\documentclass[12pt]{article}
+
+%%%%% Document Information (FILL THIS IN!) %%%%%
+\newcommand{\authornames}{(Names)}
+
+\newcommand{\coursenumber}{CSC 341}
+\newcommand{\assignmentname}{Weekly Exercises \#10}
+\newcommand{\assignmentversion}{2}
+
+%%%%% Fonts and Encodings %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\usepackage[T1]{fontenc}
+\usepackage{libertine}
+
+%%%%% General %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{enumitem}
+\usepackage{framed}
+\usepackage{fancyvrb}
+\usepackage[amsmath, amsthm, thmmarks]{ntheorem}
+\usepackage{microtype}
+\usepackage{url}
+\usepackage[svgnames]{xcolor}
+\usepackage{xspace}
+
+\usepackage{tikz}
+
+%%%%% Page Formatting %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\usepackage[
+  top=1in,
+  bottom=1in,
+  left=1in,
+  right=1in,
+  includefoot,
+  paperwidth=8.5in,
+  paperheight=11in
+]{geometry}
+
+\usepackage{fancyhdr}
+\setlength{\headheight}{15.2pt}
+\pagestyle{fancy}
+
+\fancyhead{}
+\fancyfoot{}
+\lhead{\coursenumber{}---\assignmentname{} (ver. \assignmentversion), \authornames{}}
+\cfoot{\thepage}
+
+%%%%% Code %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\usepackage{listings}
+\usepackage{xcolor}
+
+% Adapted from: https://en.wikibooks.org/wiki/LaTeX/Source_Code_Listings
+\definecolor{mygreen}{rgb}{0,0.6,0}
+\definecolor{mygray}{rgb}{0.5,0.5,0.5}
+\definecolor{mymauve}{rgb}{0.58,0,0.82}
+
+\lstset{ 
+  backgroundcolor=\color{white},      % choose the background color; you must add \usepackage{color} or \usepackage{xcolor}; should come as last argument
+  basicstyle=\ttfamily\footnotesize,  % the size of the fonts that are used for the code
+  breakatwhitespace=false,            % sets if automatic breaks should only happen at whitespace
+  breaklines=true,                    % sets automatic line breaking
+  captionpos=b,                       % sets the caption-position to bottom
+  commentstyle=\color{mygreen},       % comment style
+  keepspaces=true,                    % keeps spaces in text, useful for keeping indentation of code (possibly needs columns=flexible)
+  keywordstyle=\color{blue},          % keyword style
+  language=Java,                      % the language of the code
+  stringstyle=\color{mymauve},        % string literal style
+}
+
+%%%%% Basic Macros and Definitions %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\newtheorem{claim}{Claim}
+\newtheorem{invariant}{Invariant}
+\newtheorem{defn}{Definition}
+\newtheorem{thm}{Theorem}
+\newtheorem{lemma}{Lemma}
+
+\newcommand{\ie}{\emph{i.e.}\xspace}
+\newcommand{\eg}{\emph{e.g.}\xspace}
+\newcommand{\hint}[1]{(\emph{Hint}: #1)}
+\newcommand{\note}[1]{(\emph{Note}: #1)}
+
+\definecolor{shadecolor}{named}{LightGray}
+\newenvironment{exercise}[1]{%
+  \begin{shaded}
+  \noindent\textbf{Exercise (#1)}\quad
+}{\end{shaded}}
+
+\newcounter{ProblemCounter}
+\newenvironment{problem}[1][]
+  {\refstepcounter{ProblemCounter}\noindent\textbf{Problem \theProblemCounter{} (#1)}\quad}
+  {\newpage}
+
+\newcommand{\answerbelow}{\noindent\makebox[\linewidth]{\rule{\textwidth}{0.4pt}}}
+
+%%%%% Problem-specific Macros %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\newcommand{\prob}[1]{\ensuremath{\textsf{#1}}\xspace}
+\newcommand{\desc}[1]{\ensuremath{\langle #1 \rangle}}
+\newcommand{\comp}[1]{\ensuremath{\overline{#1}}\xspace}
+
+\newcommand{\nats}{\ensuremath{\mathbb{N}}\xspace}
+\newcommand{\dfa}{\textsf{DFA}\xspace}
+\newcommand{\EQdfa}{\ensuremath{EQ_\mathsf{DFA}\xspace}}
+\newcommand{\Atm}{\ensuremath{A_\mathsf{TM}}\xspace}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{document}
+
+%%%%% Monday: Undecidability Proof Techniques %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{problem}[Enter the Machine]
+
+Many problems concerning properties of models of computations turn out to be
+decidable.  We can break this up into two sorts:
+\begin{enumerate}
+  \item \emph{Language properties} that concern the strings that a machine
+    accepts.
+  \item \emph{Behavioral properties} that concern how a machine operates.
+\end{enumerate}
+In this problem, we will discuss properties of the second sort.  Because these
+properties are not tied to the acceptance/rejection behavior of the machine,
+undecidablity proofs of these properties all follow a strict formula.
+
+Let's consider such a problem from the textbook:
+\begin{quote}
+  (Sipser 5.13) A useless state in a Turing machine is one that is never
+  entered on any input string.  Consider the problem of determining whether a
+  Turing machine has any useless states.  Formulate this problem as a language
+  and show it is undecidable.
+\end{quote}
+
+\begin{exercise}{Languages}
+  Do what Sipser says!  First formulate this problem as a language
+  \prob{USELESS}.  Importantly, identify what an assumed decider \( D \) for
+  \prob{USELESS} takes as input.
+\end{exercise}
+
+Now let's show that \prob{USELESS} is undecidable by a mapping reduction from
+\Atm.  To do so, we'll follow the strategy suggested in the handout that
+accompanied today's reading.  First let's establish what our mapping function
+should look like and how it should behave.
+
+\begin{exercise}{Mappings}
+  The heart of the mapping reduction is a mapping from inputs to \Atm to
+  \prob{USELESS}.  What does the mapping function \( f \) take as input and
+  produces as output?
+\end{exercise}
+
+Once we know the types of the mapping reduction, we now need to reason about
+the correctness condition linking acceptance between \Atm and \prob{USELESS}.
+
+\begin{exercise}{The Condition}
+  Let \( \desc{M, w} \) be inputs to a decider for \Atm and \( \desc{M'} \) the
+  input to a decider for \prob{USELESS}.  Give the correctness condition for \(
+  f \) based on these inputs.
+\end{exercise}
+
+We have now established our correctness condition for our construction.  Based
+on this condition, we need to figure out a way to have our machine \( M' \)
+\emph{conditionally} have the property of \prob{USELESS}: \( M' \) has a useless
+state.  Recall that a state is useless if no input string causes \( M '\) to
+enter that state.  Because the transitions of a Turing machine are dependent on
+the positions of the tape head and contents of the tape at that position, we
+need to know how a Turing machine executes in order to determine if it contains
+a useless state.  This is ultimately why \Atm can be reduced to \prob{USELESS}.
+
+For the purposes of our construction, however, we want to conditionally make \(
+M' \) have a useless state in such a way that it is painfully obvious that this
+is the case.  This will simplify our reasoning when we go to make sure that \(
+M' \) obeys the correct condition outlined above.  Two ways that we might go
+about this are:
+\begin{enumerate}
+  \item Give \( M' \) a state \( u \) that has no physical transition to it from
+    any other state in \( M' \).  It is obvious that \( u \) is useless because
+    there is no way to reach it in this situation.
+  \item Give \( M' \) a state \( u \) that is connected from some other state in
+    the Turing machine, but make that transition involve reading a tape symbol
+    that provably never appears on the tape, \eg, by ensuring that it is a
+    alphabet symbol and it is not mentioned in the read position of any
+    transition of the Turing Machine.
+\end{enumerate}
+The first option does not not work for our purposes because the transitions are
+fixed when \( M' \) is constructed; we can't condition the existence of a
+transition based on whether \( M \) accepts \( w \).  However, the second option
+is controllable at runtime---we can condition the appearance of the symbol that
+will allow us to transition to our useless state on whether \( M \) accepts \( w
+\).
+
+Putting all of this together, we have the following skeleton for the
+construction of our mapping function and the Turing machine \( M' \) it
+produces:
+
+\vspace{1em}
+
+\noindent \( M' = \text{``On input \( x \):} \)
+\begin{enumerate}[topsep=0pt, itemsep=0pt]
+  \item Run \( M \) on \( w \).
+    \begin{itemize}[topsep=0pt, itemsep=0pt]
+      \item \( M \) accepts: \emph{(\( M' \) should have a useless state)}
+      \item \( M \) rejects: \emph{(\( M' \) should not have a useless state)}''
+    \end{itemize}
+\end{enumerate}
+
+Note that also in the case where \( M \) loops on \( w \), we want to have the
+same behavior as the rejection case.
+
+\begin{exercise}{The Construction}
+  Complete the construction of \( M' \) as specified above.
+\end{exercise}
+
+Finally, we need to verify that \( M' \) does the right thing.  Rather than
+proving our correctness condition instead (which is a biconditional), I find it
+easier to reason about the three cases that might occur as a result of \( M \)'s
+execution of \( w \) (convince yourself these three cases cover the two cases of
+the biconditional you derived above):
+\begin{itemize}[itemsep=0pt]
+  \item \( M \) accept \( w \).
+  \item \( M \) rejects \( w \).
+  \item \( M \) loops on \( w \).
+\end{itemize}
+
+\begin{exercise}{The Proof of Correctness}
+  Prove that \( M' \) has the appropriate behavior for the three cases outlined
+  above with respect to your correctness condition for the mapping function.
+\end{exercise}
+
+\answerbelow
+% FILL IN YOUR ANSWER HERE
+
+\end{problem}
+
+%%%%% Friday: Rice's Theorem %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{problem}[Rice's Theorem]
+
+In this problem, we'll walk through and complete a proof of Rice's Theorem
+which was introduced in the reading.
+
+Let \( P \)  be a decidable language whose strings are turing machine
+descriptions that satisfy an arbitrary predicate \( f \), \ie,
+\[
+  P = \{ \desc{M} \mid f(M) \}
+\]
+where \( f \) is a proposition ranging over Turing machine descriptions  For
+example, the following are propositions over a Turing machine, call it \( M \):
+\begin{itemize}
+  \item \( L(M) \) is finite.
+  \item \( M \) writes a `\$' on its tape for some input.
+\end{itemize}
+
+Rice's Theorem demands two properties are true about \( P \).
+\begin{enumerate}
+  \item \( P \) is non-trivial: \( |P| > 0 \) and \( P \neq \Sigma^* \).
+  \item \( P \) is a language property: if \( L(M_1) = L(M_2) \) then \(
+    \desc{M_1} \in P \Leftrightarrow \desc{M_2} \in P \).
+\end{enumerate}
+
+Let's first check that we understand what we mean by language property.
+
+\begin{exercise}{Language Property Example}
+  Let:
+  \[
+    P = \{ \desc{M} \mid \text{\( M \) writes a `\$' on its tape for some
+    input.} \}.
+  \]
+  Spend 2--3 minutes individually and write down why \( P \) does not fulfill
+  the conditions of a language property.  Come back as a group and come up with
+  a final explanation why \( P \) is not a language property.
+\end{exercise}
+
+Now let's proceed with the core of the proof of Rice's theorem.  First we'll
+complete the core reduction under a set of assumptions about our property \( P
+\).  We'll then discuss after the fact why these assumptions are sound given the
+constraints of Rice's theorem.  Assume the following:
+
+\begin{itemize}
+  \item There exists a TM \( T \) such that \( \desc{T} \in P \).
+  \item Define the TM that rejects all strings be \( T_{\emptyset} \).
+    Assume that \( \desc{T_{\emptyset}} \not\in P \).
+\end{itemize}
+
+\begin{exercise}{Core Reduction}
+  As a group, use \( T \) to construct a mapping reduction from \( \Atm \) to \(
+  P \).  Keep in mind the following insights while constructing your mapping
+  reduction:
+  \begin{itemize}
+    \item Your mapping construction, when given an input to \Atm of the form
+      \( \desc{M, w} \) should produce a TM \( \desc{M'} \) with the property
+      that \( M \) accepts \( w \) iff \( \desc{M'} \in P \).
+    \item Note that we have asserted that (a) a machine \( T \) exists that is
+      in \( P \) and (b) the machine that rejects all strings \( T_\emptyset \)
+      is not in \( P \).  Use these as the targets for your mapping function as
+      described in ``Undecidable Proof Strategies'' handout.
+  \end{itemize}
+  Once you have a candidate reduction, check your answer with the course staff.
+\end{exercise}
+
+With the reduction completed, we need to show where the two constraints came
+from.  Let's briefly talk about the first constraint.
+
+\begin{exercise}{The First Constraint}
+  Individually, spend a few minutes and explain why the constraints of Rice's
+  Theorem on \( P \) imply that there exists a TM \( T \) such that \( \desc{T}
+  \in P \).  Come back as a group and agree on a final explanation.
+\end{exercise}
+
+The second constraint is really an assumption ``without loss of generality''.
+In other words, even if \( T_\emptyset \in P \), we can still complete the
+proof with a little bit inconsequential fix-up to our proof.  Note that we
+can't simply work with \( T_\emptyset \) directly in this case because our
+mapping reduction will fail in a style similar to \( E_{TM} \).  We instead
+need to do something else.
+
+\begin{exercise}{The Final Fix-Up}
+  It turns out that the fix-up is to consider instead the complement of \( P \):
+  \[
+    \overline{P} = \{\, \desc{M} \mid \text{\( f(M) \) is not provable} \,\}.
+  \]
+  The reduction above then holds, but shows that \( \Atm \leq_m \overline{P} \)
+  rather than \( P \). As a group, determine how a decider for \( \overline{P}
+  \) could be used to create a decider for \( P \), allowing us to conclude
+  that \( \Atm \leq \overline{P} \) as well.  Check your reasoning for this and
+  the previous part with the course staff when you are done.
+\end{exercise}
+
+\end{problem}
+
+
+\end{document}

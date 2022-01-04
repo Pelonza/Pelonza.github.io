@@ -1,0 +1,49 @@
+I"}<p>For our labs, you will work with a <em>designated study group</em> of 2–3 people throughout the week. You will turn in a single lab write-up for each lab for your entire group. I recommend that you designate one person in your group for writing up your solutions, turning them in, and sending everyone a copy of the final version for their records. Note that all labs for a given week are due on the <em>Saturday</em> of the week, giving you time to coordinate with your partners to finish up work if you need additional time.</p>
+<p>To turn in a lab assignment, you should submit a PDF containing your responses to the relevant assignment on Gradescope. You may use LaTeX for generating this PDF (as well as any other deliverables for this course). If you are unfamiliar with LaTeX, you may either pick up LaTeX from an appropriate tutorial such as the one found on <a href="https://overleaf.org">Overleaf</a> or <a href="https://en.wikibooks.org/wiki/LaTeX">Wikibooks</a> or you may want to try using <a href="https://markdownguide.org">Markdown</a> with appropriate extensions for rendering math instead. I use Markdown to write all of the material that you see on this course website. For more information on how to set up an environment for writing Markdown, see this supplementary reading from my CSC 208 course:</p>
+<ul>
+<li><a href="/csc341/readings/markdown.html">Markdown</a></li>
+</ul>
+<h2 id="a-note-on-collaborative-learning">A Note on Collaborative Learning</h2>
+<p>While this is a mathematics-oriented course, group work is essential to help you develop your understanding of the material. When approaching group work, try not to work individually and then compare answers at the end! Instead, consider the following strategies for making collaboration on these problems more beneficial to you and your partner:</p>
+<ul>
+<li>Vocalize your thought process to your partner. Try to explain what you are thinking about using words or pictures.</li>
+<li>If something your partner says confuses you, or you don’t understand what’s going on, ask a question! Remember that good mathematics is elegant and simple; you help your partner by forcing them to try to explain things in such a manner.</li>
+<li>If you feel like your partner is slowing down your progress, keep in mind that (a) lab work is not a race! and (b) trying to help a peer get through the material helps clarify and reinforce the material for yourself as well!</li>
+</ul>
+<h1 id="problem-1-linguistic-manipulation">Problem 1: Linguistic Manipulation</h1>
+<p>As an exercise in reading, exploring, and understanding definitions, let’s analyze a definition we will see next week when we study regular languages, the <em>star operator</em>.</p>
+<div class="definition">
+<p><strong>Definition (Star Operator)</strong>: Let <span class="math inline">\(\Sigma\)</span> be an alphabet. Then <span class="math inline">\(\Sigma^*\)</span> is the set of all possible strings formed from letters drawn from <span class="math inline">\(\Sigma\)</span>:</p>
+<p><span class="math display">\[
+\Sigma^* = \{\, x_1 x_2 \cdots x_k \mid k \geq 0, \forall i \in [1, k] \ldotp x_i \in \Sigma \,\}.
+\]</span></p>
+</div>
+<ol type="1">
+<li>Let <span class="math inline">\(\Sigma = \{\, 0, 1 \,\}\)</span>. Give three examples of strings found in <span class="math inline">\(\Sigma^*\)</span>.</li>
+<li>Let <span class="math inline">\(\epsilon\)</span> (lowercase Greek epsilon) be the empty string, <em>i.e.</em>, the string with no characters. Is <span class="math inline">\(\epsilon \in \Sigma^*\)</span>? Why or why not?</li>
+<li>What is the size or <em>cardinality</em> of <span class="math inline">\(\Sigma^*\)</span>. Justify your answer in a sentence or two.</li>
+<li>Does your answer to the previous part hold for <em>any</em> choice of <span class="math inline">\(\Sigma\)</span>? If so, justify your answer in a sentence. If not, provide a counterexample <span class="math inline">\(\Sigma\)</span> where your answer to the previous part does not hold.</li>
+<li>Does <span class="math inline">\(\Sigma^* = \emptyset\)</span> for some alphabet <span class="math inline">\(\Sigma\)</span>? If so, give an example <span class="math inline">\(\Sigma\)</span> where this holds. Otherwise, justify your answer in a sentence.</li>
+</ol>
+<h1 id="problem-2-distinguishability">Problem 2: Distinguishability</h1>
+<p>In this problem, we’ll consider a property related to strings, <em>distinguishability</em>. While this concept will become useful to us when we discuss irregularity in a few weeks, its formal definition serves as a useful exercise in breaking part and analyzing mathematics.</p>
+<div class="definition">
+<p><strong>Definition (Distinguishability)</strong>: Let <span class="math inline">\(L\)</span> be a set of strings and <span class="math inline">\(x\)</span> and <span class="math inline">\(y\)</span> be strings (not necessarily in <span class="math inline">\(L\)</span>).</p>
+<ul>
+<li>We say that <span class="math inline">\(x\)</span> and <span class="math inline">\(y\)</span> are <em>distinguishable by <span class="math inline">\(L\)</span></em> if there exists a string <span class="math inline">\(z\)</span> (also not necessarily from <span class="math inline">\(L\)</span> itself) such that exactly one of <span class="math inline">\(xz\)</span> and <span class="math inline">\(yz\)</span> are in <span class="math inline">\(L\)</span>.</li>
+<li>We say that <span class="math inline">\(x\)</span> and <span class="math inline">\(y\)</span> are <em>indistinguishable by <span class="math inline">\(L\)</span></em> if they are not distinguishable.</li>
+</ul>
+<p>Furthermore, if <span class="math inline">\(x\)</span> and <span class="math inline">\(y\)</span> are strings drawn from <span class="math inline">\(L\)</span> and are indistinguishable, we write <span class="math inline">\(x \equiv_L y\)</span>.</p>
+</div>
+<p>(<em>N.B.</em>, we use <span class="math inline">\(L\)</span> as the variable for our set of strings because we will eventually call this set our <em>language</em> once we introduce finite automata.)</p>
+<ol type="1">
+<li><p>Let <span class="math inline">\(\Sigma = \{\, a, b \,\}\)</span> and <span class="math inline">\(L_1 = \{\, abba, baba, aabb, bbbb \,\}\)</span>. Give an example pair of strings that is distinguishable by <span class="math inline">\(L_1\)</span> and a pair of strings that are indistinguishable by <span class="math inline">\(L_1\)</span>. (<em>Hint</em>: again, note that these strings need not necessarily be in <span class="math inline">\(L_1\)</span>.)</p></li>
+<li><p>Now let <span class="math inline">\(L_2\)</span> be the infinite set of strings where the first and last characters are different:</p>
+<p><span class="math display">\[
+L_2 = \{\, w \mid w \in \Sigma^*, w = x_1 \cdots x_k, x_1 \neq x_k \,\}
+\]</span></p>
+<p>Construct two examples of pairs of strings that distinguishable and three pairs of strings that are indistinguishable by <span class="math inline">\(L_2\)</span>.</p></li>
+<li><p>Using the intuition you built up from the previous part, try to describe what it means to be <em>indistinguishable</em> at a high-level in a sentence or two.</p></li>
+<li><p><strong>(Optional)</strong> Recall the definition of equivalence relation from the reading. Argue why the indistinguishability relation <span class="math inline">\((\equiv_L)\)</span> is an equivalence, appealing to the formal definition of an equivalence relation. If you’d like, also formally prove this fact.</p></li>
+</ol>
+:ET

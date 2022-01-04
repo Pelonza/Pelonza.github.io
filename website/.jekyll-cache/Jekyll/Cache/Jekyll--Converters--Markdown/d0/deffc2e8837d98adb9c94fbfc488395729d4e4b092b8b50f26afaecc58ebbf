@@ -1,0 +1,72 @@
+I"�<h1 id="problem-to-infinity-and-beyond">Problem: To Infinity and Beyond</h1>
+<ol type="a">
+<li>There’s an infinite number of strings <span class="math inline">\(w \in \Sigma^*\)</span>, so the Turing machine does not terminate if <span class="math inline">\(D_1\)</span> and <span class="math inline">\(D_2\)</span> are not equal.</li>
+<li>If we simulate <span class="math inline">\(D_1\)</span> and <span class="math inline">\(D_2\)</span> in a step-by-step, pairwise fashion, we observe there are at most <span class="math inline">\(|Q_1| \times |Q_2|\)</span> states that both machines can be in where <span class="math inline">\(Q_1\)</span> and <span class="math inline">\(Q_2\)</span> are the states of <span class="math inline">\(D_1\)</span> and <span class="math inline">\(D_2\)</span>, respectively. Any string <span class="math inline">\(w\)</span> with length greater than <span class="math inline">\(|Q_1| \times |Q_2|\)</span> will necessarily enter a loop in either <span class="math inline">\(D_1\)</span> and <span class="math inline">\(D_2\)</span> that would have been encountered early in the simulation of the pair of machines on <span class="math inline">\(w\)</span>. Thus, if <span class="math inline">\(D_1\)</span> and <span class="math inline">\(D_2\)</span> have differing behavior on <span class="math inline">\(w\)</span> at this point, we would have seen such a deviation early in the string’s execution during the first <span class="math inline">\(|Q_1| \times |Q_2|\)</span> steps. Therefore, it is sufficient to only test all strings of size at most <span class="math inline">\(|Q_1| \times |Q_2|\)</span>, a finite amount.</li>
+</ol>
+<h1 id="problem-can-you-do-it-yes-you-can">Problem: Can You Do It? Yes You Can!</h1>
+<ol type="a">
+<li>For every accepting state <span class="math inline">\(q\)</span> of <span class="math inline">\(D\)</span>, determine if any accepting state of <span class="math inline">\(D\)</span> is reachable from <span class="math inline">\(q\)</span> in one or more steps of execution. If no such accepting state fulfills this property, then no string of <span class="math inline">\(D\)</span> is a prefix of another and so it is prefix-free.</li>
+<li>The algorithm for determining prefix-freeness for DFAs fails for TMs when we attempt to determine reachability. Reachability demands that we know the contents of the tape which we cannot know in the general case without simulating the TM on a specific input.</li>
+</ol>
+<h1 id="problem-countability">Problem: Countability</h1>
+<ol type="a">
+<li><p>Let <span class="math inline">\(⟦w⟧\)</span> be the binary interpretation of <span class="math inline">\(w\)</span> (where leading 0s are ignored). Then our bijection from <span class="math inline">\(L\)</span> to <span class="math inline">\(\mathbb{N}\)</span> is:</p>
+<p><span class="math display">\[
+f(w) = 2^{|w|}-2 + ⟦w⟧.
+\]</span></p></li>
+<li><p>If <span class="math inline">\(|\Sigma| = n\)</span>, and let <span class="math inline">\(⟦w⟧\)</span> be the <span class="math inline">\(n\)</span>-ary interpretation of <span class="math inline">\(w\)</span>, then we can generalize <span class="math inline">\(f(w)\)</span> to be:</p>
+<p><span class="math display">\[
+f(w) = n^{|w|}-n + ⟦w⟧.
+\]</span></p></li>
+<li><p>Observe that a Java program is a string composed from a finite alphabet. From (b), we can immediately conclude that there is a bijection between Java programs and <span class="math inline">\(\mathbb{N}\)</span>.</p></li>
+</ol>
+<h1 id="problem-hey-wait-second">Problem: Hey, Wait Second</h1>
+<p>Natural numbers are finite sequences of digits whereas real numbers are infinite sequences of digits. Thus, the string we create from the digitalization process is not a well-formed natural number.</p>
+<h1 id="problem-running-the-diagonal-line">Problem: Running the (Diagonal) Line</h1>
+<p><em>Proof</em>. Assume for the sake of contradiction that <span class="math inline">\(\mathsf{HALT}_{\mathsf{TM}}\)</span> is decidable; let <span class="math inline">\(H\)</span> decide it. Define Turing machine <span class="math inline">\(D\)</span> that takes another Turing machine <span class="math inline">\(M\)</span> as input as:</p>
+<ul>
+<li><span class="math inline">\(D\)</span> = On input <span class="math inline">\(M\)</span>:
+<ul>
+<li>Run <span class="math inline">\(H\)</span> on inputs <span class="math inline">\(M\)</span> and <span class="math inline">\(\langle M \rangle\)</span>.
+<ul>
+<li>If <span class="math inline">\(H\)</span> accepts, then go into an infinite loop.</li>
+<li>If <span class="math inline">\(H\)</span> rejects, then <em>accept</em>.</li>
+</ul></li>
+</ul></li>
+</ul>
+<p>Now observe what happens when we run <span class="math inline">\(D\)</span> on <span class="math inline">\(\langle D \rangle\)</span>.</p>
+<ul>
+<li>If <span class="math inline">\(D\)</span> accepts <span class="math inline">\(\langle D \rangle\)</span> then it was because <span class="math inline">\(H\)</span> rejected <span class="math inline">\(D\)</span> and <span class="math inline">\(\langle D \rangle\)</span>, implying <span class="math inline">\(D\)</span> went into an infinite loop on itself.</li>
+<li>If <span class="math inline">\(D\)</span> goes into an infinite loop on <span class="math inline">\(\langle D \rangle\)</span> then it was because <span class="math inline">\(H\)</span> accepted <span class="math inline">\(D\)</span> and <span class="math inline">\(\langle D \rangle\)</span>, implying <span class="math inline">\(D\)</span> halted on itself.</li>
+</ul>
+<p>Both cases induce a contradiction, so our original assumption that <span class="math inline">\(\mathsf{HALT}_{\mathsf{TM}}\)</span> was decidable must be incorrect.</p>
+<h1 id="problem-it-hurts-my-head">Problem: It Hurts My Head</h1>
+<p>In both cases, we reduce from <span class="math inline">\(A_\mathsf{TM}\)</span> with function <span class="math inline">\(f\)</span>.</p>
+<ol type="a">
+<li><p><span class="math inline">\(f(M, w) = M&#39;\)</span> where:</p>
+<ul>
+<li><span class="math inline">\(M&#39;\)</span> = On input <span class="math inline">\(x\)</span>:
+<ul>
+<li>If <span class="math inline">\(x = 01\)</span>, then accept <span class="math inline">\(x\)</span>.</li>
+<li>Run <span class="math inline">\(M\)</span> on <span class="math inline">\(w\)</span>.
+<ul>
+<li>If <span class="math inline">\(M\)</span> accepts <span class="math inline">\(w\)</span>, then accept if <span class="math inline">\(x = 10\)</span>.</li>
+<li>If <span class="math inline">\(M\)</span> rejects <span class="math inline">\(w\)</span>, then reject.</li>
+</ul></li>
+</ul></li>
+</ul></li>
+<li><p><span class="math inline">\(f(M, w) = (M_1, w)\)</span> where:</p>
+<ul>
+<li><p><span class="math inline">\(M&#39;\)</span> is identical to <span class="math inline">\(M\)</span> except that if its alphabet mentions ‘$’ then rewrite <span class="math inline">\(M&#39;\)</span> to mention <span class="math inline">\(\hat{\$}\)</span> instead.</p></li>
+<li><p><span class="math inline">\(M_1\)</span> = On input <span class="math inline">\(x\)</span>:</p>
+<ul>
+<li>If <span class="math inline">\(x \neq w\)</span> then reject.</li>
+<li>Run <span class="math inline">\(M\)</span> on <span class="math inline">\(w\)</span>.
+<ul>
+<li>If <span class="math inline">\(M\)</span> accepts <span class="math inline">\(w\)</span>, then write ‘$’ on the tape and accept.</li>
+<li>If <span class="math inline">\(M\)</span> rejects <span class="math inline">\(w\)</span>, then reject.</li>
+</ul></li>
+</ul></li>
+</ul></li>
+</ol>
+:ET

@@ -1,0 +1,64 @@
+I"�"<p>In this course, we will use <a href="https://daringfireball.net/projects/markdown/">Markdown</a> and common extensions for rendering mathematics. Markdown is a markup language is designed to be easily readable in its plaintext source format, but also flexible enough to capture common structure found in most documents. Because of its simplicity, Markdown is versatile and can be compiled to a variety of document formats, including PDF and HTML.</p>
+<h1 id="markdown-tools">Markdown Tools</h1>
+<p>There are tons Markdown editors and compilers out there. For this course, we are not picky about what you use as long as it doesn’t get in the way of your learning. Here are a few tools that you might consider based on your experience with other environments:</p>
+<h2 id="any-text-editor-and-pandoc">Any Text Editor And Pandoc</h2>
+<p>If you are comfortable working at the Unix terminal, <a href="https://pandoc.org">Pandoc</a> is a universal translator for document formats. You can write your document in any readily available plaintext text editor, <em>e.g.</em>, Vim or Emacs, and as needed, run Pandoc to convert your Markdown into a PDF. While simple, the downside of this approach is that it doesn’t provide a live preview of your document. However, Markdown source is readable enough on its own that live preview isn’t a necessity.</p>
+<p>For example, once installed:</p>
+<pre class="terminal"><code>$&gt; pandoc document.md -o document.pdf</code></pre>
+<p>Will convert Markdown file <code>document.md</code> into a PDF, <code>document.pdf</code>. Pandoc is available on MathLAN (the department’s Linux cluster) if you happen to do your work on it.</p>
+<h2 id="visual-studio-code">Visual Studio Code</h2>
+<p>A general development environment that is gaining in popularity is <a href="https://code.visualstudio.com/">Visual Studio Code</a>. If you use Visual Studio Code or are interesting in picking it up, it is not difficult to install it along with the <a href="https://marketplace.visualstudio.com/items?itemName=goessner.mdmath">Markdown+Math extension</a>. With VSCode, you will be able to edit Markdown with a live preview. However, you will need to a do a little bit of juggling to export your work to a final PDF for submission. You will either need to convert the file to HTML and then use the “print to PDF” feature of your operating system or use a conversion tool like Pandoc.</p>
+<h2 id="dedicated-desktop-applications">Dedicated Desktop Applications</h2>
+<p>In addition to these solutions that integrate into existing developer workflows, there are also <a href="https://www.oberlo.com/blog/markdown-editors">many standalone Markdown editors</a>. Some of these are paid (avoid those, unless you <em>really</em> like the tool), and some of these are free. Ultimately, you need an editor that:</p>
+<ol type="1">
+<li>Supports math extensions.</li>
+<li>Gives you a live preview of your work.</li>
+<li>Has a way to output to PDF.</li>
+</ol>
+<p>One such option is <a href="https://typora.io/">Typora</a> which is currently free while it is still in beta.</p>
+<h2 id="cloud-hosted-options">Cloud-hosted Options</h2>
+<p>Finally, if you aren’t interested in installing programs, there are a number of cloud services that offer Markdown editing support. The main one I’ll recommend is <a href="https://hackmd.io/">HackMD</a> which you will see me occasionally use in class. Like VSCode+MDMath, outputting to PDF is a bit janky; you will ultimately need to “print to PDF” from your browser.</p>
+<h1 id="learning-markdown">Learning Markdown</h1>
+<p>Once you have a Markdown workflow in place, the good news is that Markdown is easy to learn. Here is a brief code snippet exhibiting all of the features we need for the course:</p>
+<div class="sourceCode" id="cb2"><pre class="sourceCode md"><code class="sourceCode markdown"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="fu"># This is a top-level header!</span></span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>Look, I can write paragraphs! Amazing! I write them as blocks</span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a>of text. I can add in newlines as necessary to make things more</span>
+<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a>readable, but a new paragraph starts...</span>
+<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a>...when I add a blank newline in the middle. In addition, I can</span>
+<span id="cb2-8"><a href="#cb2-8" aria-hidden="true" tabindex="-1"></a>**bold** text and _italicize text_ as well. I can also write in</span>
+<span id="cb2-9"><a href="#cb2-9" aria-hidden="true" tabindex="-1"></a>monospace font for inline code like this: <span class="in">`(string-append s1 s2)`</span>.</span>
+<span id="cb2-10"><a href="#cb2-10" aria-hidden="true" tabindex="-1"></a>(p.s., those are backticks).</span>
+<span id="cb2-11"><a href="#cb2-11" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-12"><a href="#cb2-12" aria-hidden="true" tabindex="-1"></a><span class="fu">## Here&#39;s a subsection header!</span></span>
+<span id="cb2-13"><a href="#cb2-13" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-14"><a href="#cb2-14" aria-hidden="true" tabindex="-1"></a>I can also make lists with... bullets!</span>
+<span id="cb2-15"><a href="#cb2-15" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-16"><a href="#cb2-16" aria-hidden="true" tabindex="-1"></a><span class="ss">+   </span>Note that to get nested bulleted lists.</span>
+<span id="cb2-17"><a href="#cb2-17" aria-hidden="true" tabindex="-1"></a><span class="ss">+   </span>I need to use 4-space indentation.</span>
+<span id="cb2-18"><a href="#cb2-18" aria-hidden="true" tabindex="-1"></a><span class="ss">    -   </span>Like this!</span>
+<span id="cb2-19"><a href="#cb2-19" aria-hidden="true" tabindex="-1"></a><span class="ss">    -   </span>You can use stars, pluses, or minuses for bullets...</span>
+<span id="cb2-20"><a href="#cb2-20" aria-hidden="true" tabindex="-1"></a><span class="ss">    -   </span>...Markdown doesn&#39;t care.</span>
+<span id="cb2-21"><a href="#cb2-21" aria-hidden="true" tabindex="-1"></a><span class="ss">+   </span>You can also have numbered lists...</span>
+<span id="cb2-22"><a href="#cb2-22" aria-hidden="true" tabindex="-1"></a><span class="ss">    1.  </span>By using numbers!</span>
+<span id="cb2-23"><a href="#cb2-23" aria-hidden="true" tabindex="-1"></a><span class="ss">    2.  </span>Isn&#39;t that neat?</span>
+<span id="cb2-24"><a href="#cb2-24" aria-hidden="true" tabindex="-1"></a><span class="ss">    3.  </span>Wow!</span>
+<span id="cb2-25"><a href="#cb2-25" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-26"><a href="#cb2-26" aria-hidden="true" tabindex="-1"></a>Here is a quote block, useful for writing prose that should stick out.</span>
+<span id="cb2-27"><a href="#cb2-27" aria-hidden="true" tabindex="-1"></a>You might use this to state a propert or claim</span>
+<span id="cb2-28"><a href="#cb2-28" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-29"><a href="#cb2-29" aria-hidden="true" tabindex="-1"></a><span class="at">&gt; **Claim**: the grass is</span></span>
+<span id="cb2-30"><a href="#cb2-30" aria-hidden="true" tabindex="-1"></a><span class="at">&gt; always greener on the other side of the fence.</span></span>
+<span id="cb2-31"><a href="#cb2-31" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-32"><a href="#cb2-32" aria-hidden="true" tabindex="-1"></a>I can also write code blocks using triple backticks:</span>
+<span id="cb2-33"><a href="#cb2-33" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-34"><a href="#cb2-34" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb2-35"><a href="#cb2-35" aria-hidden="true" tabindex="-1"></a><span class="in">(define (length l)</span></span>
+<span id="cb2-36"><a href="#cb2-36" aria-hidden="true" tabindex="-1"></a><span class="in">  (match l</span></span>
+<span id="cb2-37"><a href="#cb2-37" aria-hidden="true" tabindex="-1"></a><span class="in">    [&#39;() 0]</span></span>
+<span id="cb2-38"><a href="#cb2-38" aria-hidden="true" tabindex="-1"></a><span class="in">    [(cons _ xs) (+ 1 (length xs))]))</span></span>
+<span id="cb2-39"><a href="#cb2-39" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span></code></pre></div>
+<p>Try copy-pasting this into your Markdown editor to see the results!</p>
+<p>For additional features, you can checkout the <a href="https://www.markdownguide.org/">Markdown Guide</a> a free reference for the language.</p>
+:ET

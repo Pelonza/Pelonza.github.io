@@ -1,0 +1,22 @@
+totals:
+  labs:         35
+  demos:        9
+  las:          18
+  explorations: 4
+
+tiers:
+  - grade: C
+    labs:         26xS
+    demos:        1xR+, 6xM+, 2xE
+    las:          12xS
+    explorations: 1xS
+  - grade: B
+    labs:         29xS
+    demos:        4xM+, 5xE
+    las:          14xS
+    explorations: 2xS
+  - grade: A
+    labs:         32xS
+    demos:        2xM+, 7xE
+    las:          16xS
+    explorations: 3xS

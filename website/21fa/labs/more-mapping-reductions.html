@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>More Mapping Reductions</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bulma/0.7.5/css/bulma.min.css">
+  <link rel="stylesheet" href="/csc341/css/style.css">
+  <link rel="stylesheet" href="/csc341/css/syntax.css">
+  <link rel="stylesheet" href="/csc341/css/syntax-drracket.css">
+  <script defer src="https://use.fontawesome.com/releases/v5.3.1/js/all.js"></script>
+  
+  <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+  <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+  
+  
+  
+</head>
+
+  </head>
+  <body>
+    <nav class="navbar is-primary" role="navigation" aria-label="main navigation">
+  <div class="navbar-brand">
+    <a class="navbar-item" href="/csc341/">
+      <img src="/csc341/img/laurel-white.png">
+      &nbsp;
+      CSC 341 (21fa)
+    </a>
+
+    <a role="button" class="navbar-burger burger" aria-label="menu" aria-expanded="false" data-target="navbarBasicExample">
+      <span aria-hidden="true"></span>
+      <span aria-hidden="true"></span>
+      <span aria-hidden="true"></span>
+    </a>
+  </div>
+
+  <div id="navbarBasicExample" class="navbar-menu">
+    <div class="navbar-start">
+      <a class="navbar-item" href="/csc341/syllabus">
+        Syllabus
+      </a>
+      <a class="navbar-item" href="/csc341/resources">
+        Resources
+      </a>
+      
+      <a class="navbar-item" href="https://teams.microsoft.com/l/team/19%3avJm8Wpx7VaDe72Q53lhFS8hKbE8ZqBMHkz-HLvwbzag1%40thread.tacv2/conversations?groupId=621c250a-ec62-4c30-afbd-0e3b7efa7606&tenantId=524f9e3e-faca-4f64-b3ec-adb2baee8807
+">Teams</a>
+      
+      
+      <a class="navbar-item" href="https://www.gradescope.com/courses/299977
+">Gradescope</a>
+      
+      <a class="navbar-item" href="/csc341/editor">
+        Editor
+      </a>
+    </div>
+  </div>
+</nav>
+
+<!-- Adapted from: https://bulma.io/documentation/components/navbar/ -->
+<script>
+  document.addEventListener('DOMContentLoaded', () => {
+
+    // Get all "navbar-burger" elements
+    const $navbarBurgers = Array.prototype.slice.call(document.querySelectorAll('.navbar-burger'), 0);
+
+    // Check if there are any navbar burgers
+    if ($navbarBurgers.length > 0) {
+
+      // Add a click event on each of them
+      $navbarBurgers.forEach( el => {
+        el.addEventListener('click', () => {
+
+          // Get the target from the "data-target" attribute
+          const target = el.dataset.target;
+          const $target = document.getElementById(target);
+
+          // Toggle the "is-active" class on both the "navbar-burger" and the "navbar-menu"
+          el.classList.toggle('is-active');
+          $target.classList.toggle('is-active');
+
+        });
+      });
+    }
+
+  });
+</script>
+
+    <section class="section">
+      <div class="container">
+        <h1 class="title">
+          CSC 341 (Fall 2021)
+        </h1>
+        <h1 class="subtitle">
+          
+            Lab: More Mapping Reductions
+          
+        </h1>
+      </div>
+    </section>
+    <section class="content">
+      <div class="container">
+        
+        <p><span class="math inline">\(\newcommand{\NP}{\mathsf{NP}}\newcommand{\desc}[1]{\langle #1 \rangle}\)</span></p>
+<h1 id="problem-1-graph-reductions">Problem 1: Graph Reductions</h1>
+<p>Consider the following graph problem, <em>independent set</em>:</p>
+<p><span class="math display">\[
+\mathsf{INDSET} = \{\, \desc{G, k} \mid \text{\( G \) has a \( k \)-vertex independent set} \,\}.
+\]</span></p>
+<p>An <em>independent set</em>, is a subset of the vertices of a graph where no pair of vertices in the independent set have an edge between them.</p>
+<p>Like the previous lab, let’s go through a systematic process for proving this claim.</p>
+<ol type="a">
+<li><p>First, <strong>explore the problem space</strong>. Come up with two examples of instances of <span class="math inline">\(\mathsf{INDSET}\)</span>, one where there is a vertex cover and one where there is not a vertex cover.</p></li>
+<li><p>Next, <strong>show that <span class="math inline">\(\mathsf{INDSET} \in \NP\)</span></strong>.</p></li>
+<li><p>Now, <strong>identify the inputs to <span class="math inline">\(\mathsf{CLIQUE}\)</span> and <span class="math inline">\(\mathsf{INDSET}\)</span></strong>.</p></li>
+<li><p>With this, <strong>identify the inputs and outputs of the reduction function</strong> we must design as well as the <strong>correctness condition</strong> for that reduction function based on its type.</p></li>
+<li><p>To begin designing the reduction function, let’s first <strong>decompose the inputs and outputs of the reduction function into components</strong> that we can attempt to draw associations between.</p></li>
+<li><p>Now, onto exploration of designs. In the previous lab, we essentially “forced” <span class="math inline">\(\mathsf{PUZZLE}\)</span> to solve <span class="math inline">\(\mathsf{3SAT}\)</span>. However, this perspective on designing the reduction will not be as fruitful with these problems even though they operate on the same domain. To make forward progress, I encourage you to instead consider how <span class="math inline">\(\mathsf{CLIQUE}\)</span> and <span class="math inline">\(\mathsf{INDSET}\)</span> are actually <em>the same problem</em>. More concretely, I recommend looking at the definition of clique and independent set and analyzing their relationship with each other.</p>
+<p>Just like the previous lab, <strong>come up with at least two potential designs</strong> for the reduction function and <strong>push them through on a toy <span class="math inline">\(\mathsf{CLIQUE}\)</span> instance</strong>. For each design that does not work, describe what was broken and how you could potentially fix it.</p>
+<p>(<em>Hint</em>: it might be useful to think about <em>graph complements</em> for this reduction.)</p></li>
+<li><p>Finally, once you have a plausible reduction strategy, formally prove that <span class="math inline">\(\mathsf{CLIQUE} \leq_p \mathsf{INDSET}\)</span>.</p></li>
+</ol>
+<h1 id="problem-2-more-graph-reductions">Problem 2: More Graph Reductions</h1>
+<p>Here is another <span class="math inline">\(\NP\)</span>-completeness problem for you to consider, following the trajectory of Karp and his 21 <span class="math inline">\(\NP\)</span>-complete problems:</p>
+<p><span class="math display">\[
+\mathsf{SETPACK} = \{\, \desc{\mathcal{U}, S, k} \mid \text{\( S \) is a family of subsets of \( \mathcal{U} \), there is a set packing of $S$ of size at least $k$.} \,\}.
+\]</span></p>
+<p>A <em>set packing</em> of size <span class="math inline">\(k\)</span> is a family <span class="math inline">\(S\)</span> of subsets of <span class="math inline">\(\mathcal{U}\)</span> with <span class="math inline">\(|U| \geq k\)</span> that are pairwise disjoint, <em>i.e.</em>, no sets share an element in common. Clearly, the empty set is a valid set packing for any set—instead, we are interested in maximizing the size of the set packing while obeying the restriction that no pairs of sets in the packing share a common element.</p>
+<p>As with the previous lab questions, systematically work through the process of showing that <span class="math inline">\(\mathsf{SETPACK}\)</span> is indeed <span class="math inline">\(\NP\)</span>-complete. In your deliberations, you should plan to reduce the <span class="math inline">\(\mathsf{INDSET}\)</span> problem to <span class="math inline">\(\mathsf{SETPACK}\)</span>.</p>
+<p>(<em>Hint</em>: here, the first perspective on reductions will be more useful. Force <span class="math inline">\(\mathsf{SETPACK}\)</span> to solve a <span class="math inline">\(\mathsf{INDSET}\)</span> instance for you.)</p>
+
+      </div>
+    </section>
+    <footer class="footer is-size-7 has-text-centered">
+  <a rel="license" href="http://creativecommons.org/licenses/by-sa/4.0/"><img alt="Creative Commons License" style="border-width:0" src="https://i.creativecommons.org/l/by-sa/4.0/80x15.png" /></a><br />This work is licensed under a <a rel="license" href="http://creativecommons.org/licenses/by-sa/4.0/">Creative Commons Attribution-ShareAlike 4.0 International License</a>.<br/>
+  Made with <a href="https://bulma.io">Bulma</a>, <a href="https://jekyllrb.com">Jekyll</a>, <a href="https://www.brailleinstitute.org/freefont">Atkinson Hyperlegible</a>, and <a href="https://github.com/JetBrains/JetBrainsMono">JetBrains Mono</a>.
+</footer>
+
+  </body>
+</html>

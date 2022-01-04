@@ -1,0 +1,3 @@
+$pdflatex="lualatex -interaction=nonstopmode -shell-escape -output-directory=build %O %S";
+$out_dir="latex.out";
+

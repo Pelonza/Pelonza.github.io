@@ -1,0 +1,14 @@
+I"}<h1 id="classical-np-complete-problems">Classical NP-Complete Problems</h1>
+<p>We’ll continue our discussion of NP-completeness by studying mapping reductions of classic NP-complete problems in detail.</p>
+<ul>
+<li>Review Sipser 7.5 “Additional NP-Complete Problems”.</li>
+</ul>
+<hr />
+<p><strong>Reading Problem (Reductions)</strong></p>
+<p>Complete and submit one of the two NP-complete problems introduced in last class’s daily:</p>
+<ol type="1">
+<li>Prove that vertex cover (<span class="math inline">\(\mathsf{COVER}\)</span>) is NP-complete.</li>
+<li>Sipser 7.28. Prove that the card puzzle problem (<span class="math inline">\(\mathsf{PUZZLE}\)</span>) is NP-complete.</li>
+</ol>
+<p>Remember to prove both parts of the definition of NP-completeness: membership in NP and NP-hardness. Make sure that you also argue both directions of the reduction’s correctness condition.</p>
+:ET

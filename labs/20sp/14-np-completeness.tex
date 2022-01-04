@@ -1,0 +1,55 @@
+\documentclass[11pt]{book}
+
+\setcounter{chapter}{14}
+\newcommand{\docclass}{CSC 341 (20sp)}
+\newcommand{\doctitle}{NP-Completeness}
+\newcommand{\docauthor}{Peter-Michael Osera}
+
+\usepackage{reading}
+
+\begin{document}
+
+\begin{center}
+  \large\textbf{{\doctitle}}
+\end{center}
+
+\vspace{2em}
+
+%%%%% Problem-specific Macros %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\newcommand{\desc}[1]{\ensuremath{\langle #1 \rangle}}
+\newcommand{\NP}{\ensuremath{\mathsf{NP}}\xspace}
+\newcommand{\lang}[1]{\ensuremath{\mathsf{#1}}\xspace}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{problem}{Bridging the Gap}
+  Let \( A \) be a decidable language and \( V \) be a polynomial-time verifier for the language.
+  Recall that a verifier is an algorithm that checks whether a candidate solution to the problem is indeed an actual solution.
+  Give a generic non-deterministic turing machine \( N \) that decides \( A \) in polynomial time in terms of \( V \).
+\end{problem}
+
+\vspace{2.5in}
+
+\begin{problem}{Membership}
+  Show that each of the following languages are in \NP.
+  \begin{enumerate}
+    \item \( A_1 = \{ \desc{P} \mid \text{\( P \) is a satisfiable boolean formula} \} \).
+    \item \( A_2 = \{ \desc{S, t} \mid \text{\( S \subseteq \mathbb{Z} \) and there exists \( x_1, \ldots, x_k \in S \) such that \( \sum_{i}^{k} x_i = t \)} \} \).
+    \item \( A_3 = \{ \desc{G, V', k} \mid \text{\( G = (V, E) \) is a graph and \( V' \subseteq V \) is a \( k \)-covering of \( G \)} \} \).
+  \end{enumerate}
+\end{problem}
+
+\newpage
+
+\begin{problem}{Completeness}
+  Define the following languages:
+  \begin{align*}
+    \lang{CLIQUE} =&\; \{ \desc{G, k} \mid \text{\( G \) is a graph and \( G \) contains a \( k \)-clique} \} \\
+    \lang{ISO}    =&\; \{ \desc{G, H} \mid \text{\( G \) and \( H \) are graphs and there is a subset \( G' \) of \( G \) is isomorphic to \( H \)} \}.
+  \end{align*}
+  Show that \( \lang{CLIQUE} \leq_p \lang{ISO} \).
+  (\emph{Hint}: what is the type of the mapping function \( f \) in this case?)
+\end{problem}
+
+\end{document}

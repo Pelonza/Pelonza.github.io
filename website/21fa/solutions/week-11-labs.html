@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Week 11 Lab Solutions</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bulma/0.7.5/css/bulma.min.css">
+  <link rel="stylesheet" href="/csc341/css/style.css">
+  <link rel="stylesheet" href="/csc341/css/syntax.css">
+  <link rel="stylesheet" href="/csc341/css/syntax-drracket.css">
+  <script defer src="https://use.fontawesome.com/releases/v5.3.1/js/all.js"></script>
+  
+  <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+  <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+  
+  
+  
+</head>
+
+  </head>
+  <body>
+    <nav class="navbar is-primary" role="navigation" aria-label="main navigation">
+  <div class="navbar-brand">
+    <a class="navbar-item" href="/csc341/">
+      <img src="/csc341/img/laurel-white.png">
+      &nbsp;
+      CSC 341 (21fa)
+    </a>
+
+    <a role="button" class="navbar-burger burger" aria-label="menu" aria-expanded="false" data-target="navbarBasicExample">
+      <span aria-hidden="true"></span>
+      <span aria-hidden="true"></span>
+      <span aria-hidden="true"></span>
+    </a>
+  </div>
+
+  <div id="navbarBasicExample" class="navbar-menu">
+    <div class="navbar-start">
+      <a class="navbar-item" href="/csc341/syllabus">
+        Syllabus
+      </a>
+      <a class="navbar-item" href="/csc341/resources">
+        Resources
+      </a>
+      
+      <a class="navbar-item" href="https://teams.microsoft.com/l/team/19%3avJm8Wpx7VaDe72Q53lhFS8hKbE8ZqBMHkz-HLvwbzag1%40thread.tacv2/conversations?groupId=621c250a-ec62-4c30-afbd-0e3b7efa7606&tenantId=524f9e3e-faca-4f64-b3ec-adb2baee8807
+">Teams</a>
+      
+      
+      <a class="navbar-item" href="https://www.gradescope.com/courses/299977
+">Gradescope</a>
+      
+      <a class="navbar-item" href="/csc341/editor">
+        Editor
+      </a>
+    </div>
+  </div>
+</nav>
+
+<!-- Adapted from: https://bulma.io/documentation/components/navbar/ -->
+<script>
+  document.addEventListener('DOMContentLoaded', () => {
+
+    // Get all "navbar-burger" elements
+    const $navbarBurgers = Array.prototype.slice.call(document.querySelectorAll('.navbar-burger'), 0);
+
+    // Check if there are any navbar burgers
+    if ($navbarBurgers.length > 0) {
+
+      // Add a click event on each of them
+      $navbarBurgers.forEach( el => {
+        el.addEventListener('click', () => {
+
+          // Get the target from the "data-target" attribute
+          const target = el.dataset.target;
+          const $target = document.getElementById(target);
+
+          // Toggle the "is-active" class on both the "navbar-burger" and the "navbar-menu"
+          el.classList.toggle('is-active');
+          $target.classList.toggle('is-active');
+
+        });
+      });
+    }
+
+  });
+</script>
+
+    <section class="section">
+      <div class="container">
+        <h1 class="title">
+          CSC 341 (Fall 2021)
+        </h1>
+        <h1 class="subtitle">
+          
+            Week 11 Lab Solutions
+          
+        </h1>
+      </div>
+    </section>
+    <section class="content">
+      <div class="container">
+        
+        <p><span class="math display">\[
+\newcommand{\tile}[2]{\left[\frac{\texttt{#1}}{\texttt{#2}}\right]}
+\newcommand{\desc}[1]{\langle #1 \rangle}
+\]</span></p>
+<h1 id="lab-machine-behavior-undecidability">Lab: Machine Behavior Undecidability</h1>
+<h2 id="problem-1-enter-the-machine">Problem 1: Enter the Machine</h2>
+<p><span class="math display">\[
+\mathsf{USELESS} = \{\, \langle M \rangle \mid \text{\( M \) is a TM with at least one useless state} \,\}.
+\]</span></p>
+<h2 id="problem-2-mappings">Problem 2: Mappings</h2>
+<p><span class="math inline">\(f\)</span> takes an input to <span class="math inline">\(A_\mathsf{TM}\)</span>, a Turing machine <span class="math inline">\(M\)</span> and input <span class="math inline">\(w\)</span> to that Turing machine as input, and produces an input to <span class="math inline">\(\mathsf{USELESS}\)</span>, a Turing machine <span class="math inline">\(M&#39;\)</span>, as output.</p>
+<h2 id="problem-3-the-condition">Problem 3: The Condition</h2>
+<p><span class="math inline">\(M\)</span> accepts <span class="math inline">\(w\)</span> if and only if <span class="math inline">\(M&#39;\)</span> has at least one useless state.</p>
+<h2 id="problem-4-the-construction">Problem 4: The Construction</h2>
+<div class="proof">
+<p><em>Proof</em>. Assume for the sake of contradiction that <span class="math inline">\(\mathsf{USELESS}\)</span> is undecidable, so let <span class="math inline">\(D\)</span> decide it. Define a decider for <span class="math inline">\(A_\mathsf{TM}\)</span>, <span class="math inline">\(A\)</span>, as follows:</p>
+<p><span class="math inline">\(A\)</span> = On input <span class="math inline">\(\langle M, w \rangle\)</span>:</p>
+<ul>
+<li>Define a Turing machine <span class="math inline">\(M&#39;\)</span> that possesses a distinguished state <span class="math inline">\(q_\mathsf{last}\)</span> that can be only be reached from <span class="math inline">\(q_\mathsf{start}\)</span> and reading a special symbol <span class="math inline">\(\omega\)</span> that does not appear anywhere else in <span class="math inline">\(M\)</span> or <span class="math inline">\(M&#39;\)</span>. Define <span class="math inline">\(M&#39;\)</span> as follows:
+<ul>
+<li><span class="math inline">\(M&#39;\)</span> = On input <span class="math inline">\(x\)</span>:
+<ul>
+<li>If <span class="math inline">\(x = \epsilon\)</span>, then visit every one of the states of <span class="math inline">\(M&#39;\)</span> except for <span class="math inline">\(q_\mathsf{last}\)</span>. Do so by writing a special symbol <span class="math inline">\(@\)</span> on the tape head that is not mentioned in any of the other transitions of <span class="math inline">\(M&#39;\)</span>. Then use this tape symbol to transition to every state (except for <span class="math inline">\(q_\mathsf{last}\)</span>) in lexicographical order.</li>
+<li>If <span class="math inline">\(M\)</span> accepts <span class="math inline">\(w\)</span>, transition to <span class="math inline">\(q_\mathsf{start}\)</span>, write an <span class="math inline">\(\omega\)</span> to the tape, and then use that to transition to <span class="math inline">\(q_\mathsf{last}\)</span>.</li>
+<li>Regardless of which branch we take, end by infinite looping anywhere on <span class="math inline">\(M&#39;\)</span></li>
+</ul></li>
+</ul></li>
+<li>Run <span class="math inline">\(D\)</span> on <span class="math inline">\(M&#39;\)</span> and do the opposite of what <span class="math inline">\(D\)</span> does.</li>
+</ul>
+</div>
+<p>Note that we must use a general reduction instead of a mapping reduction because the rejection and infinite loop cases require that <span class="math inline">\(M&#39;\)</span> do positive behavior; they must transition to <span class="math inline">\(q_\mathsf{last}\)</span>. Since we cannot get positive behavior out of the infinite loop, we instead use complementary behavior and negate the results of the assumed decider for <span class="math inline">\(\mathsf{USELESS}\)</span>.</p>
+<h2 id="problem-5-the-proof-of-correctness">Problem 5: The Proof of Correctness</h2>
+<div class="proof">
+<p>Observe that <span class="math inline">\(M&#39;\)</span> reaches all of its states on input <span class="math inline">\(\epsilon\)</span> except for <span class="math inline">\(q_\mathsf{last}\)</span>. Thus, we only need to reason about whether a particular case reaches <span class="math inline">\(q_\mathsf{last}\)</span>.</p>
+<ul>
+<li>When <span class="math inline">\(M\)</span> accepts <span class="math inline">\(w\)</span>, we transition to <span class="math inline">\(q_\mathsf{last}\)</span> explicitly so <span class="math inline">\(M&#39;\)</span> has no useless states. Therefore, <span class="math inline">\(D\)</span> rejects <span class="math inline">\(M&#39;\)</span> and <span class="math inline">\(A\)</span> (the assumed decider for <span class="math inline">\(A_\mathsf{TM}\)</span>) accepts.</li>
+<li>When <span class="math inline">\(M\)</span> rejects <span class="math inline">\(w\)</span>, we do not reach <span class="math inline">\(q_\mathsf{last}\)</span>. Therefore, <span class="math inline">\(D\)</span> accepts <span class="math inline">\(M&#39;\)</span> and <span class="math inline">\(A\)</span> rejects.</li>
+<li>When <span class="math inline">\(M\)</span> loops on <span class="math inline">\(w\)</span>, we do not reach <span class="math inline">\(q_\mathsf{last}\)</span>. Therefore, <span class="math inline">\(D\)</span> accepts <span class="math inline">\(M&#39;\)</span> and <span class="math inline">\(A\)</span> rejects.</li>
+</ul>
+</div>
+<h1 id="lab-pcp">Lab: PCP</h1>
+<h2 id="problem-honey-bunches-of-oats">Problem: Honey Bunches of Oats</h2>
+<p>An example match:</p>
+<p><span class="math display">\[
+\tile{ab}{abab}, \tile{ab}{abab}, \tile{aba}{b}, \tile{b}{a}, \tile{b}{a}, \tile{aa}{a}, \tile{aa}{a}.
+\]</span></p>
+<div class="proof">
+<p><em>Proof</em>. Let <span class="math inline">\(T\)</span> be the set of tiles and for each tile <span class="math inline">\(t \in T\)</span>, let <span class="math inline">\(|t|\)</span> be the difference of the number of <span class="math inline">\(a\)</span>s on top of <span class="math inline">\(t\)</span> and the number of <span class="math inline">\(a\)</span>s on the bottom of <span class="math inline">\(t\)</span>. Then <span class="math inline">\(T\)</span> has a solution if and only if the following equation has a solution:</p>
+<p><span class="math display">\[
+\sum_{t \in T} |t| \cdot x_t = 0.
+\]</span></p>
+<p>Where each <span class="math inline">\(x_t\)</span> is a natural number denoting the number of occurrences of <span class="math inline">\(t\)</span> in a candidate solution. Such linear equations are always solvable, <em>e.g.</em>, by Gaussian elimination, and thus this restricted version of PCP is decidable.</p>
+</div>
+<h1 id="lab-rices-theorem">Lab: Rice’s Theorem</h1>
+<h2 id="problem-1-language-property-example">Problem 1: Language Property Example</h2>
+<p><span class="math inline">\(P\)</span> is a machine property, not a language property! For example, let <span class="math inline">\(M_1\)</span> and <span class="math inline">\(M_2\)</span> be Turing machines that reject all strings so <span class="math inline">\(L(M_1) = L(M_2) = \emptyset\)</span>. However, let <span class="math inline">\(M_1\)</span> write ‘$’ on the tape before rejecting whereas <span class="math inline">\(M_2\)</span> rejects immediately. Then <span class="math inline">\(M_1 \in P\)</span> and <span class="math inline">\(M_2 \notin P\)</span>.</p>
+<h2 id="problem-2-core-reduction">Problem 2: Core Reduction</h2>
+<div class="proof">
+<p>Let <span class="math inline">\(T\)</span> be a TM such that <span class="math inline">\(\desc{T} \in P\)</span> and let <span class="math inline">\(\desc{T_\emptyset} \notin P\)</span>. Define the mapping reduction <span class="math inline">\(f(M, w) = M&#39;\)</span> where <span class="math inline">\(M&#39;\)</span> is defined as follows:</p>
+<p><span class="math inline">\(M&#39; =\)</span> On input <span class="math inline">\(x\)</span>:</p>
+<ul>
+<li>Run <span class="math inline">\(M\)</span> on <span class="math inline">\(w\)</span>.
+<ul>
+<li>If <span class="math inline">\(M\)</span> accepts <span class="math inline">\(w\)</span>, run <span class="math inline">\(T\)</span> on <span class="math inline">\(x\)</span> and do what <span class="math inline">\(T\)</span> does.</li>
+<li>If <span class="math inline">\(M\)</span> rejects <span class="math inline">\(w\)</span>, reject <span class="math inline">\(x\)</span>.</li>
+</ul></li>
+</ul>
+<p>Observe that if <span class="math inline">\(M\)</span> accepts <span class="math inline">\(w\)</span> when <span class="math inline">\(M&#39; \in P\)</span> because <span class="math inline">\(M&#39;\)</span> identically to <span class="math inline">\(T\)</span> which is assumed to be in <span class="math inline">\(P\)</span>. If <span class="math inline">\(M\)</span> does not accept <span class="math inline">\(w\)</span>, then <span class="math inline">\(L(M&#39;) = \emptyset\)</span> and thus it behaves identically to <span class="math inline">\(T_\emptyset\)</span> which is assumed to not be in <span class="math inline">\(P\)</span>.</p>
+<p>Finally, note that since <span class="math inline">\(P\)</span> is a language property, membership of <span class="math inline">\(P\)</span> is determined entirely by the strings that <span class="math inline">\(M&#39;\)</span> accepts, so any additional behavior of <span class="math inline">\(M&#39;\)</span> beyond simulation of <span class="math inline">\(T\)</span> does not affect whether <span class="math inline">\(M&#39;\)</span> is in <span class="math inline">\(P\)</span>.</p>
+</div>
+<h2 id="problem-3-the-first-constraint">Problem 3: The First Constraint</h2>
+<p>The non-trivial property allows us to posit the existence of a pair of Turing machines, one of which is in <span class="math inline">\(P\)</span> and the other not in <span class="math inline">\(P\)</span>.</p>
+<h2 id="problem-4-the-final-fix-up">Problem 4: The Final Fix-Up</h2>
+<p>Assume that we have a decider for <span class="math inline">\(\overline{P}\)</span>, call it <span class="math inline">\(\overline{D}\)</span>. A decider for <span class="math inline">\(P\)</span>, call it <span class="math inline">\(D\)</span> operates by running <span class="math inline">\(\overline{D}\)</span> and doing the opposite of what it does. Because <span class="math inline">\(\overline{D}\)</span> is a decider, we do not need to worry about whether <span class="math inline">\(\overline{D}\)</span> loops.</p>
+
+      </div>
+    </section>
+    <footer class="footer is-size-7 has-text-centered">
+  <a rel="license" href="http://creativecommons.org/licenses/by-sa/4.0/"><img alt="Creative Commons License" style="border-width:0" src="https://i.creativecommons.org/l/by-sa/4.0/80x15.png" /></a><br />This work is licensed under a <a rel="license" href="http://creativecommons.org/licenses/by-sa/4.0/">Creative Commons Attribution-ShareAlike 4.0 International License</a>.<br/>
+  Made with <a href="https://bulma.io">Bulma</a>, <a href="https://jekyllrb.com">Jekyll</a>, <a href="https://www.brailleinstitute.org/freefont">Atkinson Hyperlegible</a>, and <a href="https://github.com/JetBrains/JetBrainsMono">JetBrains Mono</a>.
+</footer>
+
+  </body>
+</html>

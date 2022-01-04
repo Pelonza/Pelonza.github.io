@@ -1,0 +1,190 @@
+\documentclass[12pt]{article}
+
+%%%%% Document Information (FILL THIS IN!) %%%%%
+\newcommand{\authorname}{(Name)}
+\newcommand{\grinnellusername}{(Username)}
+
+\newcommand{\coursenumber}{CSC 341}
+\newcommand{\assignmentname}{Demo Exercises \#3}
+\newcommand{\assignmentversion}{1}
+
+%%%%% Fonts and Encodings %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\usepackage[T1]{fontenc}
+\usepackage{libertine}
+
+%%%%% General %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{enumitem}
+\usepackage{fancyvrb}
+\usepackage[amsmath, amsthm, thmmarks]{ntheorem}
+\usepackage{microtype}
+\usepackage{url}
+\usepackage[svgnames]{xcolor}
+\usepackage{xspace}
+
+%%%%% Page Formatting %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\usepackage[
+  top=1in,
+  bottom=1in,
+  left=1in,
+  right=1in,
+  includefoot,
+  paperwidth=8.5in,
+  paperheight=11in
+]{geometry}
+
+\usepackage{fancyhdr}
+\setlength{\headheight}{15.2pt}
+\pagestyle{fancy}
+
+\fancyhead{}
+\fancyfoot{}
+\lhead{\coursenumber{}---\assignmentname{} (ver. \assignmentversion), \authorname{} [\grinnellusername{}]}
+\cfoot{\thepage}
+
+%%%%% Code %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\usepackage{listings}
+\usepackage{xcolor}
+
+% Adapted from: https://en.wikibooks.org/wiki/LaTeX/Source_Code_Listings
+\definecolor{mygreen}{rgb}{0,0.6,0}
+\definecolor{mygray}{rgb}{0.5,0.5,0.5}
+\definecolor{mymauve}{rgb}{0.58,0,0.82}
+
+\lstset{ 
+  backgroundcolor=\color{white},      % choose the background color; you must add \usepackage{color} or \usepackage{xcolor}; should come as last argument
+  basicstyle=\ttfamily\footnotesize,  % the size of the fonts that are used for the code
+  breakatwhitespace=false,            % sets if automatic breaks should only happen at whitespace
+  breaklines=true,                    % sets automatic line breaking
+  captionpos=b,                       % sets the caption-position to bottom
+  commentstyle=\color{mygreen},       % comment style
+  keepspaces=true,                    % keeps spaces in text, useful for keeping indentation of code (possibly needs columns=flexible)
+  keywordstyle=\color{blue},          % keyword style
+  language=Java,                      % the language of the code
+  stringstyle=\color{mymauve},        % string literal style
+}
+
+%%%%% Basic Macros and Definitions %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\newtheorem{claim}{Claim}
+\newtheorem{invariant}{Invariant}
+\newtheorem{defn}{Definition}
+\newtheorem{thm}{Theorem}
+\newtheorem{lemma}{Lemma}
+
+\newcommand{\ie}{\emph{i.e.}\xspace}
+\newcommand{\eg}{\emph{e.g.}\xspace}
+
+\newcounter{ProblemCounter}
+\newenvironment{problem}[1][]
+  {\refstepcounter{ProblemCounter}\noindent\textbf{Problem \theProblemCounter{} (#1)}\quad}
+  {\newpage}
+
+\newcommand{\answerbelow}{\noindent\makebox[\linewidth]{\rule{\textwidth}{0.4pt}}}
+
+
+%%%%% Problem-specific Macros %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\DeclareMathOperator{\Embeds}{\textsf{embeds}}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{document}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{problem}[Outside the Box]
+
+The pumping lemma for context-free language extends the notion of ``pumping'' a
+single pattern in a regular language to mutiple patterns in a context-free
+language.
+
+\begin{lemma}[Pumping Lemma (Context-free) Languages]
+  If \( A \) is context-free, then there exists a pumping length \( p \in
+  \mathbb{N} \) such that for any string \( s \in A \) with \( |s| \geq p \),
+  it may be decomposed into \( s = uvxyz \) with the following constraints:
+  \begin{enumerate}
+    \item \( \forall i \geq 0 \), \( uv^{i}xy^{i}z \in A \).
+    \item \( |vy| > 0 \).
+    \item \( |vxy| \leq p \).
+  \end{enumerate}
+\end{lemma}
+Consider the language \( L = \{ a^i b^j c^k \mid i < j \wedge i < k \} \) and the
+following partial proof that \( L \) is not context-free with the pumping
+lemma:
+\begin{proof}
+  Assume for the sake of contradiction that \( L \) is context-free.  The pumping
+  lemma applies so there exists a pumping length \( p \) for which the lemma
+  applies.  Consider \( s = a^{p} b^{p+1} c^{p+1} \in s, |s| \geq p \).
+\end{proof}
+
+\begin{enumerate}[label=(\alph*)]
+  \item We can think of the constraints of the pumping stating that (i) at
+    least one of \( v \) and \( y \) is non-empty and (ii) the substring \( vxy
+    \) is an (at-most) \( p \) sized substring of \( s \).  With this in mind,
+    describe all the possible the shapes of \( vxy \).  (\emph{Hint}: think of
+    \( vxy \) as a sliding window across \( s \) \ldots)
+  \item Consider one of these cases: \( vxy \) rests entirely in the region of
+    \( a \)s. Apply the first constraint of the pumping lemma to arrive at a
+    contradiction in this case of the proof.
+  \item Complete the remaining cases of the proof, demonstrating that no matter
+    what case we're in, we arrive at a contradiction. (\emph{Hint}: you don't
+    have to make a similar argument for every case that you listed above.
+    Think about how the cases are related and group them together to make your
+    proof more concise.)
+\end{enumerate}
+
+% FILL IN YOUR ANSWER HERE
+
+\end{problem}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{problem}[Kata]
+  Turing machines are theoretically capable of any computation that a
+  traditional computing device can perform.  However it is sometimes difficult
+  to see that when a Turing machine is seemingly so minimalistic.  In this
+  problem, we'll explore how to implement common patterns of behavior with a
+  Turing machine that serve as building blocks for more complicated behaviors.
+
+  For each of these descriptions of Turing machine behavior, give an
+  implementation-level description of a Turing machine as a diagram that
+  immediately exhibits that behavior.  The Turing machine does not need to
+  accept any particular language beyond what is explicitly specified in the
+  description.  In all cases, assume \( \Sigma = \{ 0, 1 \} \) and allow the
+  tape alphabet to expand to handle any additional characters required by the
+  descriptions.
+  \begin{enumerate}[itemsep=0pt, label=(\alph*)]
+    \item Traverse the tape and place a dollar sign (\$) at the \emph{end} of the tape.
+    \item Sweep the entire tape, replace each $0$ with an $x$.
+    \item Place a dollar sign (\$) at the \emph{beginning} of the tape.
+    \item Insert a blank symbol in between every character of the tape.  If the
+      tape has shape:
+      \[
+        w_0 \cdots w_k
+      \]
+      Then the tape contents should be:
+      \[
+        w_0\texttt{\textvisiblespace}w_1\texttt{\textvisiblespace}\cdots\texttt{\textvisiblespace}w_k
+      \]
+      where ``\texttt{\textvisiblespace}'' represents a blank symbol.
+    \item Duplicate the tape, separating the copy from the original with a
+      dollar sign (\$).  If the input string has shape:
+      \[
+        w_0 \cdots w_k
+      \]
+      Then the tape contents should be:
+      \[
+        w_0 \cdots w_k \$ w_0 \cdots w_k
+      \]
+      after you are done.
+  \end{enumerate}
+
+  % FILL IN YOUR ANSWER HERE
+
+\end{problem}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\end{document}

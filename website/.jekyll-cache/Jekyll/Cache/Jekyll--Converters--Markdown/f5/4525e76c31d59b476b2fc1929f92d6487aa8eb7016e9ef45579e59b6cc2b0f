@@ -1,0 +1,28 @@
+I"<h1 id="problem-1-go-to-implementation">Problem 1: Go To Implementation</h1>
+<ol type="1">
+<li><p>Describe how you might <em>implement</em> a deterministic finite automata efficiently. Describe how you would (a) represent each of the components of the DFA and (b) simulate the transition function on a particular input. What is the time and space complexity of the process of simulating a DFA?</p></li>
+<li><p>In contrast, describe how you might <em>execute</em> the matching procedure of a regular expression directly using recursion. What is the time and space complexity of directly executing a regular expression?</p></li>
+<li><p>Many implementations of regular expressions, <em>e.g.</em>,, in Python provide a function to <em>compile</em> a regular expression into an optimized form as an alternative to direct interpretation. Based on your knowledge of the relationship of DFAs, NFAs, and regular expressions and the above analysis, what do you believe happens if you compile a regular expression?</p></li>
+</ol>
+<h1 id="problem-2-all-or-nothing">Problem 2: All or Nothing</h1>
+<p>Give an algorithm to determine whether a DFA <span class="math inline">\(D\)</span> accepts <em>all</em> strings, <em>i.e.</em>, <span class="math inline">\(L(D) = Σ^*\)</span>. Prove that your algorithm is correct.</p>
+<h1 id="problem-3-thats-regular-optional">Problem 3: That’s Regular? (Optional)</h1>
+<p>(Adapted from Sipser 1.32) It may seem like the class of regular languages is restricted to simple analyses on limited alphabets. However, with appropriate encodings, we can capture some surprisingly fundamental sorts of computation.</p>
+<p>Consider the following alphabet:</p>
+<p><span class="math display">\[
+\Sigma_3 = \Bigg\{ \begin{bmatrix}0 \\ 0 \\ 0\end{bmatrix}, \begin{bmatrix}0 \\ 0 \\ 1\end{bmatrix}, \begin{bmatrix}0 \\ 1 \\ 0\end{bmatrix}, \ldots, \begin{bmatrix}1 \\ 1 \\ 1\end{bmatrix} \Bigg\}.
+\]</span></p>
+<p><span class="math inline">\(\Sigma_3\)</span> contains all size 3 columns of 0s and 1s. A string of symbols in <span class="math inline">\(\Sigma_3\)</span> gives three rows of 0s and 1s. Consider each row to be a binary number and let:</p>
+<p><span class="math display">\[
+B = \{\, w \in \Sigma^*_3 \mid \text{The bottom row of \( w \) is the sum of the top two rows} \,\}.
+\]</span></p>
+<p>For example,</p>
+<p><span class="math display">\[
+\begin{bmatrix}0 \\ 0 \\ 1\end{bmatrix} \begin{bmatrix}1 \\ 0 \\ 0\end{bmatrix} \begin{bmatrix}1 \\ 1 \\ 0\end{bmatrix} \in B,
+\]</span></p>
+<p>but: <span class="math display">\[
+\begin{bmatrix}0 \\ 0 \\ 1\end{bmatrix} \begin{bmatrix}1 \\ 0 \\ 1\end{bmatrix} \not\in B.
+\]</span></p>
+<p>Observe that in the first case, we carry from the <span class="math inline">\(2^0 = 1\)</span>s place to the <span class="math inline">\(2^1 = 2\)</span>s place. If we we were to carry from the <span class="math inline">\(2^2 = 4\)</span>s place, we would end up dropping the carry as this is the last column (<em>i.e.</em>, there is no <span class="math inline">\(2^3 = 8\)</span>s place).</p>
+<p>Show that <span class="math inline">\(B\)</span> is regular. To do this, note that we’ve already proven language reversal, <span class="math inline">\(L^R\)</span>, is closed under the regular languages. You will likely find it easier to work with <span class="math inline">\(B^R\)</span> instead.</p>
+:ET

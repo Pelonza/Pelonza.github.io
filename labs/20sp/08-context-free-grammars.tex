@@ -1,0 +1,77 @@
+\documentclass[11pt]{book}
+
+\setcounter{chapter}{8}
+\newcommand{\docclass}{CSC 341 (20sp)}
+\newcommand{\doctitle}{Context-free Grammars}
+\newcommand{\docauthor}{Peter-Michael Osera}
+
+\usepackage{reading}
+
+\begin{document}
+
+\begin{center}
+  \large\textbf{{\doctitle}}
+\end{center}
+
+\vspace{2em}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{problem}{The Basics}
+
+(Adapted from Sipser 2.3.)
+Answer each part for the following context-free grammar G.
+
+\begin{align*}
+  R →&\; XRX \mid S \\
+  S →&\; \texttt{a}T\texttt{b} \mid \texttt{b}T\texttt{a} \\
+  T →&\; XTX \mid X \mid ϵ \\
+  X →&\; \texttt{a} \mid \texttt{b}
+\end{align*}
+
+\begin{enumerate}[label=(\alph*)]
+  \item What are the variables of \( G \)?
+  \item What are the terminals of \( G \)?
+  \item Which is the start variable of \( G \)?
+  \item Give three strings in \( L(G) \).
+  \item Give three strings \emph{not} in \( L(G) \).
+  \item True or False: \( T \overset{*}{⇒} \texttt{aba} \).
+    If true, give a derivation for the string.
+  \item True of false: \( XXX \overset{*}{⇒} \texttt{aba} \).
+    If true, give a derivation for the string.
+  \item True or False: \( T \overset{*}{⇒} XX \).
+  \item Give a description in English of \( L(G) \).
+\end{enumerate}
+
+\end{problem}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\newpage
+
+\begin{problem}{Conditional Ambiguity}
+
+In C-like programming languages, conditional statements frequently have the following form:
+
+\begin{align*}
+  expr →&\; \texttt{true} \mid \texttt{false} \mid \cdots \\
+  stmt →&\; \texttt{if}\;expr\;\texttt{then}\;stmt \mid \texttt{if}\;expr\;\texttt{then}\;stmt\;\texttt{else}\;stmt \mid \texttt{skip} \mid \cdots
+\end{align*}
+
+(The \texttt{skip} statement is a statement that does nothing.
+For our purposes, it acts as a "base case" to the \( stmt \) production.
+You could substitute any "real" base statement such as a call to a function, \eg, \texttt{printf} instead.)
+
+\begin{enumerate}
+  \item Give a string and two parse trees demonstrating the ambiguity of this grammar.
+  \item Which of the two parse trees is the "preferred" interpretation?
+  \item Translate your toy example to an equivalent C program and try it out, \eg, with \texttt{gcc} or \texttt{clang}.
+    Which of the two parse trees is the one that your chosen compiler produces?
+  \item Change the grammar above to remove the ambiguity.
+    You may try to preserve the original syntax of the conditional statement, but you may also add additional syntax to remove the ambiguity.
+    Your solution should be as faithful to good C programming practices as possible.
+\end{enumerate}
+
+\end{problem}
+
+\end{document}

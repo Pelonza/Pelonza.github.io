@@ -1,0 +1,5 @@
+I"�<p>Today, we’ll look at sublinear space complexity, the classes <span class="math inline">\(\mathsf{L}\)</span> and <span class="math inline">\(\mathsf{NL}\)</span>. Curiously enough, we must adjust our model of computation slightly to be able to accurately capture what we mean by “less than linear space.”</p>
+<ul>
+<li>Ch 8.4 “The Classes L and NL” (pp. 348) up to Chapter 8.6 “NL Equals CoNL” (pp. 353).</li>
+</ul>
+:ET

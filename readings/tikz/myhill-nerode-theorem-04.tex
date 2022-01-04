@@ -1,0 +1,10 @@
+\begin{tikzpicture}[shorten >=1pt, node distance=2cm, on grid, auto]
+   \node[state, initial, accepting] (q_1) {$q_1$};
+   \node[state] (q_2) [right=of q_1] {$q_2$};
+    \path[->]
+    (q_1) edge [bend left] node [above] {0} (q_2)
+          edge [loop above] node {1} ()
+    (q_2) edge [bend left] node [below] {0} (q_1)
+          edge [loop above] node {1} ()
+    ;
+\end{tikzpicture}

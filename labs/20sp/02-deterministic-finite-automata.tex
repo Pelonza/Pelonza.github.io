@@ -1,0 +1,88 @@
+\documentclass[11pt]{book}
+
+\setcounter{chapter}{2}
+\newcommand{\docclass}{CSC 341 (20sp)}
+\newcommand{\doctitle}{Deterministic Finite Automata}
+\newcommand{\docauthor}{Peter-Michael Osera}
+
+\usepackage{reading}
+
+\begin{document}
+
+\begin{center}
+  (Turn-in problems are indicated with a dagger \turninproblem{}.)
+\end{center}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{problem}{Connect the Dots}
+
+Answer the following questions about the fundamental definitions that connect languages, machines, and computation.
+
+\vspace{1em}
+
+\noindent (a) What do the metavariables \( Σ \), \( Σ^* \), and \( L \) traditionally represent?
+  Give a concrete example that covers all three concepts.
+
+\vspace{1in}
+
+\noindent (b) What are the \emph{types} of the five components of a finite automata: \( (Q, \Sigma, \delta, q_0, F) \)?
+
+\vspace{1in}
+
+\noindent (c) What does \( L(M) \) conventionally mean?
+  If \( L(M) = A \), what is the relationship between \( M \) and \( A \)?
+
+\vspace{1in}
+
+\noindent (d) If we want to \emph{prove} that ``\( M \) accepts \( w \)'', what we must we do?
+
+\vspace{1in}
+
+\end{problem}
+
+\newpage
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{problem}{Reasoning About DFAs}
+  Consider the following DFA \( D \):
+\begin{center}
+  \begin{tikzpicture}[shorten >=1pt,node distance=4.0cm,on grid,auto]
+    \node[state, initial]   (q_0)                {\( q_0 \)};
+    \node[state]            (q_1) [right=of q_0] {\( q_1 \)};
+    \node[state]            (q_2) [below=of q_0] {\( q_2 \)};
+    \node[state, accepting] (q_3) [below=of q_1] {\( q_3 \)};
+    \path[->]
+      (q_0) edge [bend left] node {0} (q_3)
+            edge [bend right] node {1} (q_2)
+      (q_1) edge [bend right] node {0} (q_2)
+            edge [bend left=45] node {1} (q_3)
+      (q_2) edge [bend right] node {0} (q_1)
+            edge [bend left=45] node {1} (q_0)
+      (q_3) edge [bend left] node {0} (q_0)
+            edge [bend right] node {1} (q_1);
+  \end{tikzpicture}
+\end{center}
+
+\noindent (b) We can each think of state of a finite automata as encoding an \emph{property} about the current computation.
+  Describe an appropriate property for each of \( q_0 \), \( q_1 \), \( q_2 \), and \( q_3 \).
+
+\vspace{1in}
+
+\noindent (a) Using these properties, give a formal description of \( L(D) \).
+
+\vspace{1in}
+
+\end{problem}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{problem}{closure}
+  \turninproblem{} Define the \emph{reversal} of a string \( w = w_0 w_1 \cdots w_n \) to be \( w^R = w_n \cdots w_1 w_0 \).
+  Using this definition, we can define the reversal of a language \( A \) to be \( L^R = \{ w^R \;|\; w \in L \} \).
+Suppose that some DFA \( D \) recognizes \( L \), \ie, \( L(D) = A \).
+Prove that there exists a DFA \( D' \) that recognizes \( L^R \).
+\end{problem}
+
+\end{document}

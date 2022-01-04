@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Exploring the Regular Models</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bulma/0.7.5/css/bulma.min.css">
+  <link rel="stylesheet" href="/csc341/css/style.css">
+  <link rel="stylesheet" href="/csc341/css/syntax.css">
+  <link rel="stylesheet" href="/csc341/css/syntax-drracket.css">
+  <script defer src="https://use.fontawesome.com/releases/v5.3.1/js/all.js"></script>
+  
+  <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+  <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+  
+  
+  
+</head>
+
+  </head>
+  <body>
+    <nav class="navbar is-primary" role="navigation" aria-label="main navigation">
+  <div class="navbar-brand">
+    <a class="navbar-item" href="/csc341/">
+      <img src="/csc341/img/laurel-white.png">
+      &nbsp;
+      CSC 341 (21fa)
+    </a>
+
+    <a role="button" class="navbar-burger burger" aria-label="menu" aria-expanded="false" data-target="navbarBasicExample">
+      <span aria-hidden="true"></span>
+      <span aria-hidden="true"></span>
+      <span aria-hidden="true"></span>
+    </a>
+  </div>
+
+  <div id="navbarBasicExample" class="navbar-menu">
+    <div class="navbar-start">
+      <a class="navbar-item" href="/csc341/syllabus">
+        Syllabus
+      </a>
+      <a class="navbar-item" href="/csc341/resources">
+        Resources
+      </a>
+      
+      <a class="navbar-item" href="https://teams.microsoft.com/l/team/19%3avJm8Wpx7VaDe72Q53lhFS8hKbE8ZqBMHkz-HLvwbzag1%40thread.tacv2/conversations?groupId=621c250a-ec62-4c30-afbd-0e3b7efa7606&tenantId=524f9e3e-faca-4f64-b3ec-adb2baee8807
+">Teams</a>
+      
+      
+      <a class="navbar-item" href="https://www.gradescope.com/courses/299977
+">Gradescope</a>
+      
+      <a class="navbar-item" href="/csc341/editor">
+        Editor
+      </a>
+    </div>
+  </div>
+</nav>
+
+<!-- Adapted from: https://bulma.io/documentation/components/navbar/ -->
+<script>
+  document.addEventListener('DOMContentLoaded', () => {
+
+    // Get all "navbar-burger" elements
+    const $navbarBurgers = Array.prototype.slice.call(document.querySelectorAll('.navbar-burger'), 0);
+
+    // Check if there are any navbar burgers
+    if ($navbarBurgers.length > 0) {
+
+      // Add a click event on each of them
+      $navbarBurgers.forEach( el => {
+        el.addEventListener('click', () => {
+
+          // Get the target from the "data-target" attribute
+          const target = el.dataset.target;
+          const $target = document.getElementById(target);
+
+          // Toggle the "is-active" class on both the "navbar-burger" and the "navbar-menu"
+          el.classList.toggle('is-active');
+          $target.classList.toggle('is-active');
+
+        });
+      });
+    }
+
+  });
+</script>
+
+    <section class="section">
+      <div class="container">
+        <h1 class="title">
+          CSC 341 (Fall 2021)
+        </h1>
+        <h1 class="subtitle">
+          
+            Lab: Exploring the Regular Models
+          
+        </h1>
+      </div>
+    </section>
+    <section class="content">
+      <div class="container">
+        
+        <h1 id="problem-1-go-to-implementation">Problem 1: Go To Implementation</h1>
+<ol type="1">
+<li><p>Describe how you might <em>implement</em> a deterministic finite automata efficiently. Describe how you would (a) represent each of the components of the DFA and (b) simulate the transition function on a particular input. What is the time and space complexity of the process of simulating a DFA?</p></li>
+<li><p>In contrast, describe how you might <em>execute</em> the matching procedure of a regular expression directly using recursion. What is the time and space complexity of directly executing a regular expression?</p></li>
+<li><p>Many implementations of regular expressions, <em>e.g.</em>,, in Python provide a function to <em>compile</em> a regular expression into an optimized form as an alternative to direct interpretation. Based on your knowledge of the relationship of DFAs, NFAs, and regular expressions and the above analysis, what do you believe happens if you compile a regular expression?</p></li>
+</ol>
+<h1 id="problem-2-all-or-nothing">Problem 2: All or Nothing</h1>
+<p>Give an algorithm to determine whether a DFA <span class="math inline">\(D\)</span> accepts <em>all</em> strings, <em>i.e.</em>, <span class="math inline">\(L(D) = Σ^*\)</span>. Prove that your algorithm is correct.</p>
+<h1 id="problem-3-thats-regular-optional">Problem 3: That’s Regular? (Optional)</h1>
+<p>(Adapted from Sipser 1.32) It may seem like the class of regular languages is restricted to simple analyses on limited alphabets. However, with appropriate encodings, we can capture some surprisingly fundamental sorts of computation.</p>
+<p>Consider the following alphabet:</p>
+<p><span class="math display">\[
+\Sigma_3 = \Bigg\{ \begin{bmatrix}0 \\ 0 \\ 0\end{bmatrix}, \begin{bmatrix}0 \\ 0 \\ 1\end{bmatrix}, \begin{bmatrix}0 \\ 1 \\ 0\end{bmatrix}, \ldots, \begin{bmatrix}1 \\ 1 \\ 1\end{bmatrix} \Bigg\}.
+\]</span></p>
+<p><span class="math inline">\(\Sigma_3\)</span> contains all size 3 columns of 0s and 1s. A string of symbols in <span class="math inline">\(\Sigma_3\)</span> gives three rows of 0s and 1s. Consider each row to be a binary number and let:</p>
+<p><span class="math display">\[
+B = \{\, w \in \Sigma^*_3 \mid \text{The bottom row of \( w \) is the sum of the top two rows} \,\}.
+\]</span></p>
+<p>For example,</p>
+<p><span class="math display">\[
+\begin{bmatrix}0 \\ 0 \\ 1\end{bmatrix} \begin{bmatrix}1 \\ 0 \\ 0\end{bmatrix} \begin{bmatrix}1 \\ 1 \\ 0\end{bmatrix} \in B,
+\]</span></p>
+<p>but: <span class="math display">\[
+\begin{bmatrix}0 \\ 0 \\ 1\end{bmatrix} \begin{bmatrix}1 \\ 0 \\ 1\end{bmatrix} \not\in B.
+\]</span></p>
+<p>Observe that in the first case, we carry from the <span class="math inline">\(2^0 = 1\)</span>s place to the <span class="math inline">\(2^1 = 2\)</span>s place. If we we were to carry from the <span class="math inline">\(2^2 = 4\)</span>s place, we would end up dropping the carry as this is the last column (<em>i.e.</em>, there is no <span class="math inline">\(2^3 = 8\)</span>s place).</p>
+<p>Show that <span class="math inline">\(B\)</span> is regular. To do this, note that we’ve already proven language reversal, <span class="math inline">\(L^R\)</span>, is closed under the regular languages. You will likely find it easier to work with <span class="math inline">\(B^R\)</span> instead.</p>
+
+      </div>
+    </section>
+    <footer class="footer is-size-7 has-text-centered">
+  <a rel="license" href="http://creativecommons.org/licenses/by-sa/4.0/"><img alt="Creative Commons License" style="border-width:0" src="https://i.creativecommons.org/l/by-sa/4.0/80x15.png" /></a><br />This work is licensed under a <a rel="license" href="http://creativecommons.org/licenses/by-sa/4.0/">Creative Commons Attribution-ShareAlike 4.0 International License</a>.<br/>
+  Made with <a href="https://bulma.io">Bulma</a>, <a href="https://jekyllrb.com">Jekyll</a>, <a href="https://www.brailleinstitute.org/freefont">Atkinson Hyperlegible</a>, and <a href="https://github.com/JetBrains/JetBrainsMono">JetBrains Mono</a>.
+</footer>
+
+  </body>
+</html>

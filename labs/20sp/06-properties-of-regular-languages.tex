@@ -1,0 +1,74 @@
+\documentclass[11pt]{book}
+
+\setcounter{chapter}{6}
+\newcommand{\docclass}{CSC 341 (20sp)}
+\newcommand{\doctitle}{Properties of the Regular Models}
+\newcommand{\docauthor}{Peter-Michael Osera}
+
+\usepackage{reading}
+
+\begin{document}
+
+\begin{center}
+  (Turn-in problems are indicated with a dagger \turninproblem{}.)
+\end{center}
+
+\begin{center}
+  \large\textbf{{\doctitle}}
+\end{center}
+
+\vspace{2em}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\newcommand{\vect}[3]{\begin{bmatrix}#1 \\ #2 \\ #3\end{bmatrix}}
+
+\begin{problem}{All-NFAs}
+
+(Sipser 1.38)
+An \emph{all}-NFA \( M \) is a 5-tuple \( (Q, \Sigma, \delta, q_0, F) \) that accepts \( x \in \Sigma^* \) if \emph{every} possible state that \( M \) could be in after reading input \( x \) is a state from \( F \).
+Note, in contrast, that an ordinary NFA accepts a string if \emph{some} state among these possible states is an accept state.
+Prove that all-NFAs recognize the class of regular languages.
+(\emph{Hint}: you need to prove equivalence in \emph{both} directions.)
+
+\vspace{2in}
+
+\begin{problem}{That's Regular?}
+
+(Sipser 1.32)
+Let
+\[
+  \Sigma_3 = \Bigg\{ \vect{0}{0}{0}, \vect{0}{0}{1}, \vect{0}{1}{0}, \ldots, \vect{1}{1}{1} \Bigg\}.
+\]
+\( \Sigma_3 \) contains all size 3 columsn of 0s and 1s.
+A string of symbols in \( \Sigma_3 \) gives three rows of 0s and 1s.
+Consider each row to be a binary number and let
+\[
+  B = \{ w \in \Sigma^*_3 \mid \text{The bottom row of \( w \) is the sum of the top two rows} \}.
+\]
+For example,
+\[
+  \vect{0}{0}{1} \vect{1}{0}{0} \vect{1}{1}{0} \in B
+\]
+but
+\[
+  \vect{0}{0}{1} \vect{1}{0}{1} \not\in B.
+\]
+Show that \( B \) is regular.
+To do this, note that we've already proven language reversal, \( L^R \), is closed under the regular languages.
+You will likely find it easier to work with \( B^R \) instead.
+
+\end{problem}
+
+\newpage
+
+\end{problem}
+
+\begin{problem}{All Or Nothing \turninproblem}
+
+Give an algorithm to determine whether a DFA \( D \) accepts \emph{all} strings, \ie, \( L(D) = Σ^* \).
+Argue informally why your algorithm works.
+
+\end{problem}
+
+\end{document}

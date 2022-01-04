@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Week 9 Lab Solutions</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bulma/0.7.5/css/bulma.min.css">
+  <link rel="stylesheet" href="/csc341/css/style.css">
+  <link rel="stylesheet" href="/csc341/css/syntax.css">
+  <link rel="stylesheet" href="/csc341/css/syntax-drracket.css">
+  <script defer src="https://use.fontawesome.com/releases/v5.3.1/js/all.js"></script>
+  
+  <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+  <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+  
+  
+  
+</head>
+
+  </head>
+  <body>
+    <nav class="navbar is-primary" role="navigation" aria-label="main navigation">
+  <div class="navbar-brand">
+    <a class="navbar-item" href="/csc341/">
+      <img src="/csc341/img/laurel-white.png">
+      &nbsp;
+      CSC 341 (21fa)
+    </a>
+
+    <a role="button" class="navbar-burger burger" aria-label="menu" aria-expanded="false" data-target="navbarBasicExample">
+      <span aria-hidden="true"></span>
+      <span aria-hidden="true"></span>
+      <span aria-hidden="true"></span>
+    </a>
+  </div>
+
+  <div id="navbarBasicExample" class="navbar-menu">
+    <div class="navbar-start">
+      <a class="navbar-item" href="/csc341/syllabus">
+        Syllabus
+      </a>
+      <a class="navbar-item" href="/csc341/resources">
+        Resources
+      </a>
+      
+      <a class="navbar-item" href="https://teams.microsoft.com/l/team/19%3avJm8Wpx7VaDe72Q53lhFS8hKbE8ZqBMHkz-HLvwbzag1%40thread.tacv2/conversations?groupId=621c250a-ec62-4c30-afbd-0e3b7efa7606&tenantId=524f9e3e-faca-4f64-b3ec-adb2baee8807
+">Teams</a>
+      
+      
+      <a class="navbar-item" href="https://www.gradescope.com/courses/299977
+">Gradescope</a>
+      
+      <a class="navbar-item" href="/csc341/editor">
+        Editor
+      </a>
+    </div>
+  </div>
+</nav>
+
+<!-- Adapted from: https://bulma.io/documentation/components/navbar/ -->
+<script>
+  document.addEventListener('DOMContentLoaded', () => {
+
+    // Get all "navbar-burger" elements
+    const $navbarBurgers = Array.prototype.slice.call(document.querySelectorAll('.navbar-burger'), 0);
+
+    // Check if there are any navbar burgers
+    if ($navbarBurgers.length > 0) {
+
+      // Add a click event on each of them
+      $navbarBurgers.forEach( el => {
+        el.addEventListener('click', () => {
+
+          // Get the target from the "data-target" attribute
+          const target = el.dataset.target;
+          const $target = document.getElementById(target);
+
+          // Toggle the "is-active" class on both the "navbar-burger" and the "navbar-menu"
+          el.classList.toggle('is-active');
+          $target.classList.toggle('is-active');
+
+        });
+      });
+    }
+
+  });
+</script>
+
+    <section class="section">
+      <div class="container">
+        <h1 class="title">
+          CSC 341 (Fall 2021)
+        </h1>
+        <h1 class="subtitle">
+          
+            Week 9 Lab Solutions
+          
+        </h1>
+      </div>
+    </section>
+    <section class="content">
+      <div class="container">
+        
+        <h1 id="problem-proper-endpoints">Problem: Proper Endpoints</h1>
+<p>A logspace Turing machine that decides <span class="math inline">\(L\)</span> will keep a counter, encoded in binary, that tracks the number of <code>(</code> seen. The input is read left-to-right. When a <code>(</code> is encountered, the counter is incremented. When a <code>)</code> is encountered, the counter is decremented.</p>
+<p>During the course of execution, the Turing machine rejects if the counter ever goes negative. The Turing machine also rejects if the end of the input is reached and the counter is non-zero. Otherwise, the Turing machine accepts.</p>
+<h1 id="problem-problem-complements">Problem: Problem Complements</h1>
+<ol type="a">
+<li>The first formula is in <span class="math inline">\(\mathsf{SAT}\)</span>. For example, the formula is satisified when <span class="math inline">\(x_1\)</span>, <span class="math inline">\(x_2\)</span>, and <span class="math inline">\(x_3\)</span> are all set to true.</li>
+<li>The second formula is in <span class="math inline">\(\overline{\mathsf{SAT}}\)</span>. Observe that to enable the first two clauses, <span class="math inline">\(x_1\)</span> and <span class="math inline">\(x_2\)</span> must be set to opposite truth values. However, if this is the case, then one of the last two clauses cannot be enabled.</li>
+</ol>
+<h1 id="problem-verifying-complements">Problem: Verifying Complements</h1>
+<ol type="a">
+<li><p>Since <span class="math inline">\(A\)</span> is in <span class="math inline">\(\mathsf{NP}\)</span> we know that there exists a polynomial time verifier <span class="math inline">\(V\)</span> for <span class="math inline">\(A\)</span>. However, it is not clear how to turn <span class="math inline">\(V\)</span> into a polynomial time verifier for <span class="math inline">\(\overline{A}\)</span>. If <span class="math inline">\(V(w, c)\)</span> accepts, we can safely reject because this would imply that <span class="math inline">\(w \in A\)</span> and thus <span class="math inline">\(w \notin \overline{A}\)</span>. However, if <span class="math inline">\(V(w, c)\)</span> rejects, it may not be because <span class="math inline">\(w \notin A\)</span>; it may be because the certificate is wrong. We would then need to enumerate all the possible certificates <span class="math inline">\(c\)</span> and verify that <span class="math inline">\(V\)</span> rejects all such certificates. However, enumerating such certificates requires more than polynomial time.</p></li>
+<li><p>The reverse direction is similar. Answers from a verifier for instances of <span class="math inline">\(\overline{A}\)</span> do not translate into a suitably efficient algorithm for verifying instances of <span class="math inline">\(\overline{A}\)</span></p></li>
+</ol>
+<h1 id="problem-easy-complements">Problem: Easy Complements</h1>
+<ol type="a">
+<li>We show both directions of the set equality:</li>
+</ol>
+<div class="proof">
+<p><strong>Claim</strong>: <span class="math inline">\(\mathsf{P} \subseteq \mathsf{coP}\)</span>.</p>
+<p><em>Proof</em>. Let <span class="math inline">\(A \in P\)</span> and <span class="math inline">\(M\)</span> be a TM that decides <span class="math inline">\(P\)</span>. Modify <span class="math inline">\(M\)</span> to create <span class="math inline">\(M&#39;\)</span> by turning <span class="math inline">\(q_\text{accept}\)</span> into <span class="math inline">\(q_\text{reject}\)</span> and vice versa. Observe that <span class="math inline">\(L(M&#39;) = \overline{A} \in \mathsf{coP}\)</span> and <span class="math inline">\(M&#39;\)</span> runs in polynomial time because it is identical to <span class="math inline">\(M\)</span> except for its acceptance and rejection states.</p>
+<p><strong>Claim</strong>: <span class="math inline">\(\mathsf{coP} \subseteq \mathsf{P}\)</span></p>
+<p>Proof. The proof is identical to the previous case.</p>
+</div>
+<ol start="2" type="a">
+<li>Applying this construction to show <span class="math inline">\(\mathsf{NP} = \mathsf{coNP}\)</span> does not work because of the asymmetric nature of nondeterminism. Only <em>some</em> branch of a nondeterministic computation must accept for the overall Turing machine to accept. However, <em>all</em> nondeterministic branches must fail for the overall Turing machine to fail. Because of this, we can’t simply flip states—we must conceive of a way to “collect up” all the results of nondeterministic branches and analyze. However, nondeterminism does not allow us to share information between branches.</li>
+</ol>
+<h1 id="problem-complexity-soup">Problem: Complexity Soup</h1>
+<p><span class="math display">\[\begin{gather*}
+\mathsf{L} \subseteq \mathsf{NL} = \mathsf{coNL} \subseteq \mathsf{P} \subseteq \mathsf{NP} \subseteq \\
+\mathsf{PSPACE} = \mathsf{NPSPACE} \subseteq \mathsf{EXPTIME} \subseteq \mathsf{EXPSPACE}.
+\end{gather*}\]</span></p>
+<p>Here is a canonical complete problem for each class:</p>
+<ul>
+<li><span class="math inline">\(\mathsf{L}\)</span>-complete: <span class="math inline">\(\mathsf{UPATH}\)</span>, determining whether there is a path between two points in an undirected graph.</li>
+<li><span class="math inline">\(\mathsf{NL}\)</span>-complete: <span class="math inline">\(\mathsf{PATH}\)</span>, determining whether there is a path between two points in directed graph (also known as <span class="math inline">\(s\)</span>-<span class="math inline">\(t\)</span> connectivity).</li>
+<li><span class="math inline">\(\mathsf{P}\)</span>-complete: <span class="math inline">\(\mathsf{UNARY{-}BOUNDED{-}HALT}\)</span>, determining whether a Turing machine halts on a given input in at most <span class="math inline">\(n\)</span> steps with <span class="math inline">\(n\)</span> given in a unary encoding.</li>
+<li><span class="math inline">\(\mathsf{NP}\)</span>-complete: <span class="math inline">\(\mathsf{SAT}\)</span>, the boolean satisfiability problem.</li>
+<li><span class="math inline">\(\mathsf{PSPACE}\)</span>-complete: <span class="math inline">\(\mathsf{TQBF}\)</span>, the totally quantified boolean satisfiability problem.</li>
+<li><span class="math inline">\(\mathsf{EXPTIME}\)</span>-complete: <span class="math inline">\(\mathsf{BINARY{-}BOUNDED{-}HALT}\)</span>, same as <span class="math inline">\(\mathsf{UNARY{-}BOUNDED{-}HALT}\)</span> but with the input number of steps given in binary.</li>
+<li><span class="math inline">\(\mathsf{EXPSPACE}\)</span>-complete: <span class="math inline">\(R_{\textsf{eq}\uparrow}\)</span>, determining whether two regular expressions involving the exponentiation operator are equal.</li>
+</ul>
+
+      </div>
+    </section>
+    <footer class="footer is-size-7 has-text-centered">
+  <a rel="license" href="http://creativecommons.org/licenses/by-sa/4.0/"><img alt="Creative Commons License" style="border-width:0" src="https://i.creativecommons.org/l/by-sa/4.0/80x15.png" /></a><br />This work is licensed under a <a rel="license" href="http://creativecommons.org/licenses/by-sa/4.0/">Creative Commons Attribution-ShareAlike 4.0 International License</a>.<br/>
+  Made with <a href="https://bulma.io">Bulma</a>, <a href="https://jekyllrb.com">Jekyll</a>, <a href="https://www.brailleinstitute.org/freefont">Atkinson Hyperlegible</a>, and <a href="https://github.com/JetBrains/JetBrainsMono">JetBrains Mono</a>.
+</footer>
+
+  </body>
+</html>

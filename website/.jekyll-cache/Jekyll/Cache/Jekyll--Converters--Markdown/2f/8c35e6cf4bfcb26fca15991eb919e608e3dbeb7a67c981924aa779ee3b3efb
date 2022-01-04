@@ -1,0 +1,35 @@
+I"�<h1 id="problem-1-interpretation">Problem 1: Interpretation</h1>
+<figure>
+<img src="/csc341/img/nfas.png" alt="Example NFAs" /><figcaption aria-hidden="true">Example NFAs</figcaption>
+</figure>
+<ol type="a">
+<li><p>Determine whether the strings:</p>
+<ul>
+<li><span class="math inline">\(101\)</span></li>
+<li><span class="math inline">\(0111\)</span></li>
+<li><span class="math inline">\(1010\)</span></li>
+<li><span class="math inline">\(\epsilon\)</span></li>
+</ul>
+<p>Are accepted by the NFAs above.</p></li>
+<li><p>Give a formal description of the languages that each of the NFAs above recognize.</p></li>
+</ol>
+<h1 id="problem-2-nondeterministic-design-patterns">Problem 2: Nondeterministic Design Patterns</h1>
+<p>Construct an NFA that productively takes advantage of nondeterminism to recognize each of the following languages. In the following languages, <span class="math inline">\(\Sigma = \{\, 0, 1 \,\}\)</span>.</p>
+<ul>
+<li><strong>Guessing</strong>: <span class="math inline">\(L_1 = \{\, x \mid x \in \Sigma^*, \text{$x$ contains $01010$} \,\}\)</span>.</li>
+<li><strong>Language Union</strong>: <span class="math inline">\(L_2 = \{\, x \mid x \in \Sigma^*, \text{$x$ has an odd number of $0$s or ends in three $1$s} \,\}\)</span>. (<em>Hint</em>: build machines that recognize “odd <span class="math inline">\(0\)</span>s” and “ends in three <span class="math inline">\(1\)</span>s” separately and then combine them with nondeterminism!)</li>
+</ul>
+<h1 id="problem-3-infinite-nicolas-cages">Problem 3: Infinite Nicolas Cages?</h1>
+<p>Consider the following partial NFA that features an “epsilon loop.” The remainder of the NFA does some computation on <span class="math inline">\(q_0\)</span> which is irrelevant for our purposes.</p>
+<pre><code>  ┌───ϵ───┐
+  ↓       │
+→ q0 -ϵ→ q1
+  │
+  └── ⋯</code></pre>
+<p>And consider the following critique of this construction:</p>
+<blockquote>
+<p>This NFA is impossible! The epsilon loop will spawn an infinite number of threads of execution!</p>
+</blockquote>
+<p>Explain in a few sentences why such a situation is “ok” by appealing to the formal definitions of a NFA.</p>
+<p>(<em>Hint</em>: do the definitions prescribe how we should execute a NFA?)</p>
+:ET

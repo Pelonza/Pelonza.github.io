@@ -1,0 +1,14 @@
+I"C<h1 id="p-vs-np">P vs NP</h1>
+<p>We’ll wrap-up our discussion of NP-Completeness by reviewing the NP-completeness proof technique. With the time remaining we’ll contextualize the <a href="https://en.wikipedia.org/wiki/P_versus_NP_problem">Million Dollar P vs NP Problem</a> before we move onto space complexity! If you’re interested in learning more about the current state of the P vs NP problem, read this excellent overview by theory of computation researcher Scott Aaronson.</p>
+<ul>
+<li>Scott Aaronson. <span class="math inline">\(\mathsf{P} \stackrel{?}{=} \mathsf{NP}\)</span>. <a href="https://www.scottaaronson.com/papers/pnp.pdf" class="uri">https://www.scottaaronson.com/papers/pnp.pdf</a></li>
+</ul>
+<hr />
+<p><strong>Reading Problem (Reductions Concluded)</strong></p>
+<p>Complete and submit the <em>other</em> of the two NP-complete problems introduced in Monday’s daily:</p>
+<ol type="1">
+<li>Prove that vertex cover (<span class="math inline">\(\mathsf{COVER}\)</span>) is NP-complete.</li>
+<li>Sipser 7.28. Prove that the card puzzle problem (<span class="math inline">\(\mathsf{PUZZLE}\)</span>) is NP-complete.</li>
+</ol>
+<p>Remember to prove both parts of the definition of NP-completeness: membership in NP and NP-hardness. Make sure that you also argue both directions of the reduction’s correctness condition.</p>
+:ET

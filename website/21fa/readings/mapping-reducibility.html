@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Mapping Reducibility</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bulma/0.7.5/css/bulma.min.css">
+  <link rel="stylesheet" href="/csc341/css/style.css">
+  <link rel="stylesheet" href="/csc341/css/syntax.css">
+  <link rel="stylesheet" href="/csc341/css/syntax-drracket.css">
+  <script defer src="https://use.fontawesome.com/releases/v5.3.1/js/all.js"></script>
+  
+  <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+  <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+  
+  
+  
+</head>
+
+  </head>
+  <body>
+    <nav class="navbar is-primary" role="navigation" aria-label="main navigation">
+  <div class="navbar-brand">
+    <a class="navbar-item" href="/csc341/">
+      <img src="/csc341/img/laurel-white.png">
+      &nbsp;
+      CSC 341 (21fa)
+    </a>
+
+    <a role="button" class="navbar-burger burger" aria-label="menu" aria-expanded="false" data-target="navbarBasicExample">
+      <span aria-hidden="true"></span>
+      <span aria-hidden="true"></span>
+      <span aria-hidden="true"></span>
+    </a>
+  </div>
+
+  <div id="navbarBasicExample" class="navbar-menu">
+    <div class="navbar-start">
+      <a class="navbar-item" href="/csc341/syllabus">
+        Syllabus
+      </a>
+      <a class="navbar-item" href="/csc341/resources">
+        Resources
+      </a>
+      
+      <a class="navbar-item" href="https://teams.microsoft.com/l/team/19%3avJm8Wpx7VaDe72Q53lhFS8hKbE8ZqBMHkz-HLvwbzag1%40thread.tacv2/conversations?groupId=621c250a-ec62-4c30-afbd-0e3b7efa7606&tenantId=524f9e3e-faca-4f64-b3ec-adb2baee8807
+">Teams</a>
+      
+      
+      <a class="navbar-item" href="https://www.gradescope.com/courses/299977
+">Gradescope</a>
+      
+      <a class="navbar-item" href="/csc341/editor">
+        Editor
+      </a>
+    </div>
+  </div>
+</nav>
+
+<!-- Adapted from: https://bulma.io/documentation/components/navbar/ -->
+<script>
+  document.addEventListener('DOMContentLoaded', () => {
+
+    // Get all "navbar-burger" elements
+    const $navbarBurgers = Array.prototype.slice.call(document.querySelectorAll('.navbar-burger'), 0);
+
+    // Check if there are any navbar burgers
+    if ($navbarBurgers.length > 0) {
+
+      // Add a click event on each of them
+      $navbarBurgers.forEach( el => {
+        el.addEventListener('click', () => {
+
+          // Get the target from the "data-target" attribute
+          const target = el.dataset.target;
+          const $target = document.getElementById(target);
+
+          // Toggle the "is-active" class on both the "navbar-burger" and the "navbar-menu"
+          el.classList.toggle('is-active');
+          $target.classList.toggle('is-active');
+
+        });
+      });
+    }
+
+  });
+</script>
+
+    <section class="section">
+      <div class="container">
+        <h1 class="title">
+          CSC 341 (Fall 2021)
+        </h1>
+        <h1 class="subtitle">
+          
+            Reading: Mapping Reducibility
+          
+        </h1>
+      </div>
+    </section>
+    <section class="content">
+      <div class="container">
+        
+        <h1 id="mapping-reducibility">Mapping Reducibility</h1>
+<p>This upcoming week, we will study NP-completeness in depth. Our goals are threefold:</p>
+<ol type="1">
+<li>Refine our skills of developing mapping reductions between problems of increasingly disparate nature.</li>
+<li>Identify the types of problems that are NP-complete.</li>
+<li>Gain context into the famous <span class="math inline">\(\textsf{P} = \textsf{NP}\)</span> problem.</li>
+</ol>
+<p>To do this, we need to utilize our skills of rigorous mathematical reasoning and mathematical fortitude to effectively explore a large space of possibilities for our reductions and ultimately settle on a correct one.</p>
+<ul>
+<li>Review Sipser 7.4 “Polynomial Time Reducibility” to “The Cook-Levine Theorem” Read and study Theorem 7.32 (<span class="math inline">\(\textsf{3SAT} \leq_p \textsf{CLIQUE}\)</span>) in detail.</li>
+<li>Skim Sipser 7.5 “Additional NP-Complete Problems”. Read and study Theorem 7.44 (<span class="math inline">\(\textsf{VERTEX-COVER}\)</span> is NP-complete) in detail.</li>
+</ul>
+<hr />
+<p><strong>Reading Problem (Details)</strong></p>
+<ol type="1">
+<li>In the construction of the <span class="math inline">\(\textsf{CLIQUE}\)</span> instance in Theorem 7.32, it is noted that “no edge is present between two nodes of contradictory labels”. Suppose that this restriction was lifted so that there <em>is</em> an edge present between nodes with contradictory labels. Identify specifically where the proof of correctness fails with this change.</li>
+<li>In the construction of the <span class="math inline">\(\textsf{VERTEX-COVER}\)</span> instance in Theorem 7.44, the size of the vertex cover is set to be <span class="math inline">\(k = m + 2l\)</span> where <span class="math inline">\(m\)</span> is the number of variables and <span class="math inline">\(l\)</span> is the number of clauses in <span class="math inline">\(\phi\)</span>, the input <span class="math inline">\(\textsf{3-SAT}\)</span> instance. How does this formula for <span class="math inline">\(k\)</span> relate to the choice of vertices in the cover for the group, <em>i.e.</em>, explain where <span class="math inline">\(m\)</span> and <span class="math inline">\(2l\)</span> come from in terms of the construction of the potential cover and explain why these are the correct values.</li>
+</ol>
+
+      </div>
+    </section>
+    <footer class="footer is-size-7 has-text-centered">
+  <a rel="license" href="http://creativecommons.org/licenses/by-sa/4.0/"><img alt="Creative Commons License" style="border-width:0" src="https://i.creativecommons.org/l/by-sa/4.0/80x15.png" /></a><br />This work is licensed under a <a rel="license" href="http://creativecommons.org/licenses/by-sa/4.0/">Creative Commons Attribution-ShareAlike 4.0 International License</a>.<br/>
+  Made with <a href="https://bulma.io">Bulma</a>, <a href="https://jekyllrb.com">Jekyll</a>, <a href="https://www.brailleinstitute.org/freefont">Atkinson Hyperlegible</a>, and <a href="https://github.com/JetBrains/JetBrainsMono">JetBrains Mono</a>.
+</footer>
+
+  </body>
+</html>

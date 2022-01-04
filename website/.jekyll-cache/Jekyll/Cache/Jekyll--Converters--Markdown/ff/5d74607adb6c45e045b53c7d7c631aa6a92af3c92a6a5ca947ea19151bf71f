@@ -1,0 +1,53 @@
+I"<p><span class="math display">\[
+\newcommand{\prob}[1]{\mathsf{#1}}
+\newcommand{\Atm}{A_\mathsf{TM}}
+\newcommand{\desc}[1]{\langle #1 \rangle}
+\]</span></p>
+<h1 id="problem-1-enter-the-machine">Problem 1: Enter the Machine</h1>
+<p>Many problems concerning properties of models of computations turn out to be decidable. We can break this up into two sorts:</p>
+<ol type="1">
+<li><em>Language properties</em> that concern the strings that a machine accepts.</li>
+<li><em>Behavioral properties</em> that concern how a machine operates.</li>
+</ol>
+<p>In this problem, we will discuss properties of the second sort. Because these properties are not tied to the acceptance/rejection behavior of the machine, most undecidablity proofs of these properties all follow a strict formula.</p>
+<p>Let’s consider such a problem from the textbook:</p>
+<blockquote>
+<p>(Sipser 5.13) A useless state in a Turing machine is one that is never entered on any input string. Consider the problem of determining whether a Turing machine has any useless states. Formulate this problem as a language and show it is undecidable.</p>
+</blockquote>
+<p>First, let’s do what Sipser says! First formulate this problem as a language <span class="math inline">\(\prob{USELESS}\)</span>. Importantly, identify what an assumed decider <span class="math inline">\(D\)</span> for <span class="math inline">\(\prob{USELESS}\)</span> takes as input.</p>
+<h1 id="problem-2-mappings">Problem 2: Mappings</h1>
+<p>Now let’s show that <span class="math inline">\(\prob{USELESS}\)</span> is undecidable by a mapping reduction from <span class="math inline">\(\Atm\)</span>. To do so, we’ll follow the strategy suggested in the handout that accompanied today’s reading. First let’s establish what our mapping function should look like and how it should behave.</p>
+<p>The heart of the mapping reduction is a mapping from inputs to <span class="math inline">\(\Atm\)</span> to <span class="math inline">\(\prob{USELESS}\)</span>. What does the mapping function <span class="math inline">\(f\)</span> take as input and produce as output?</p>
+<h1 id="problem-3-the-condition">Problem 3: The Condition</h1>
+<p>Once we know the types of the mapping reduction, we now need to reason about the correctness condition linking acceptance between <span class="math inline">\(\Atm\)</span> and <span class="math inline">\(\prob{USELESS}\)</span>.</p>
+<p>Let <span class="math inline">\(\desc{M, w}\)</span> be inputs to a decider for <span class="math inline">\(\Atm\)</span> and <span class="math inline">\(\desc{M&#39;}\)</span> the input to a decider for <span class="math inline">\(\prob{USELESS}\)</span>. Give the correctness condition for <span class="math inline">\(f\)</span> based on these inputs.</p>
+<h1 id="problem-4-the-construction">Problem 4: The Construction</h1>
+<p>We have now established our correctness condition for our construction. Based on this condition, we need to figure out a way to have our machine <span class="math inline">\(M&#39;\)</span> <em>conditionally</em> have the property of <span class="math inline">\(\prob{USELESS}\)</span>: <span class="math inline">\(M&#39;\)</span> has a useless state. Recall that a state is useless if no input string causes <span class="math inline">\(M&#39;\)</span> to enter that state. Because the transitions of a Turing machine are dependent on the positions of the tape head and contents of the tape at that position, we need to know how a Turing machine executes in order to determine if it contains a useless state. This is ultimately why <span class="math inline">\(\Atm\)</span> can be reduced to <span class="math inline">\(\prob{USELESS}\)</span>.</p>
+<p>For the purposes of our construction, however, we want to conditionally make <span class="math inline">\(M&#39;\)</span> have a useless state in such a way that it is painfully obvious that this is the case. This will simplify our reasoning when we go to make sure that <span class="math inline">\(M&#39;\)</span> obeys the correct condition outlined above. Two ways that we might go about this are:</p>
+<ol type="1">
+<li>Give <span class="math inline">\(M&#39;\)</span> a state <span class="math inline">\(u\)</span> that has no physical transition to it from any other state in ( M’ ). It is obvious that <span class="math inline">\(u\)</span> is useless because there is no way to reach it in this situation.</li>
+<li>Give <span class="math inline">\(M&#39;\)</span> a state <span class="math inline">\(u\)</span> that is connected from some other state in the Turing machine, but make that transition involve reading a tape symbol that provably never appears on the tape, <em>e.g.</em>, by ensuring that it is a alphabet symbol and it is not mentioned in the read position of any transition of the Turing Machine.</li>
+</ol>
+<p>The first option does not not work for our purposes because the transitions are fixed when <span class="math inline">\(M&#39;\)</span> is constructed; we can’t condition the existence of a transition based on whether <span class="math inline">\(M\)</span> accepts <span class="math inline">\(w\)</span>. However, the second option is controllable at runtime—we can condition the appearance of the symbol that will allow us to transition to our useless state on whether <span class="math inline">\(M\)</span> accepts <span class="math inline">\(w\)</span>.</p>
+<p>Putting all of this together, we have the following skeleton for the construction of our mapping function and the Turing machine <span class="math inline">\(M&#39;\)</span> it produces:</p>
+<hr />
+<p><span class="math inline">\(M&#39; =\)</span> On input <span class="math inline">\(x\)</span>:</p>
+<ul>
+<li>Run <span class="math inline">\(M\)</span> on <span class="math inline">\(w\)</span>.
+<ul>
+<li>If <span class="math inline">\(M\)</span> accepts: <em><span class="math inline">\(M&#39;\)</span> should have a useless state</em>.</li>
+<li>If <span class="math inline">\(M\)</span> rejects: <em><span class="math inline">\(M&#39;\)</span> should not have a useless state</em>.</li>
+</ul></li>
+</ul>
+<hr />
+<p>Note that also in the case where <span class="math inline">\(M\)</span> loops on <span class="math inline">\(w\)</span>, we want to have the same behavior as the rejection case.</p>
+<p>Use this information to complete the construction of <span class="math inline">\(M&#39;\)</span> as specified above.</p>
+<h1 id="problem-5-the-proof-of-correctness">Problem 5: The Proof of Correctness</h1>
+<p>Finally, we need to verify that <span class="math inline">\(M&#39;\)</span> does the right thing. Rather than proving our correctness condition instead (which is a biconditional), I find it easier to reason about the three cases that might occur as a result of <span class="math inline">\(M\)</span>’s execution of <span class="math inline">\(w\)</span> (convince yourself these three cases cover the two cases of the biconditional you derived above):</p>
+<ul>
+<li><span class="math inline">\(M\)</span> accept <span class="math inline">\(w\)</span>.</li>
+<li><span class="math inline">\(M\)</span> rejects <span class="math inline">\(w\)</span>.</li>
+<li><span class="math inline">\(M\)</span> loops on <span class="math inline">\(w\)</span>.</li>
+</ul>
+<p>Prove that <span class="math inline">\(M&#39;\)</span> has the appropriate behavior for the three cases outlined above with respect to your correctness condition for the mapping function.</p>
+:ET

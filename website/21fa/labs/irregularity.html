@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Irregularity</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bulma/0.7.5/css/bulma.min.css">
+  <link rel="stylesheet" href="/csc341/css/style.css">
+  <link rel="stylesheet" href="/csc341/css/syntax.css">
+  <link rel="stylesheet" href="/csc341/css/syntax-drracket.css">
+  <script defer src="https://use.fontawesome.com/releases/v5.3.1/js/all.js"></script>
+  
+  <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+  <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+  
+  
+  
+</head>
+
+  </head>
+  <body>
+    <nav class="navbar is-primary" role="navigation" aria-label="main navigation">
+  <div class="navbar-brand">
+    <a class="navbar-item" href="/csc341/">
+      <img src="/csc341/img/laurel-white.png">
+      &nbsp;
+      CSC 341 (21fa)
+    </a>
+
+    <a role="button" class="navbar-burger burger" aria-label="menu" aria-expanded="false" data-target="navbarBasicExample">
+      <span aria-hidden="true"></span>
+      <span aria-hidden="true"></span>
+      <span aria-hidden="true"></span>
+    </a>
+  </div>
+
+  <div id="navbarBasicExample" class="navbar-menu">
+    <div class="navbar-start">
+      <a class="navbar-item" href="/csc341/syllabus">
+        Syllabus
+      </a>
+      <a class="navbar-item" href="/csc341/resources">
+        Resources
+      </a>
+      
+      <a class="navbar-item" href="https://teams.microsoft.com/l/team/19%3avJm8Wpx7VaDe72Q53lhFS8hKbE8ZqBMHkz-HLvwbzag1%40thread.tacv2/conversations?groupId=621c250a-ec62-4c30-afbd-0e3b7efa7606&tenantId=524f9e3e-faca-4f64-b3ec-adb2baee8807
+">Teams</a>
+      
+      
+      <a class="navbar-item" href="https://www.gradescope.com/courses/299977
+">Gradescope</a>
+      
+      <a class="navbar-item" href="/csc341/editor">
+        Editor
+      </a>
+    </div>
+  </div>
+</nav>
+
+<!-- Adapted from: https://bulma.io/documentation/components/navbar/ -->
+<script>
+  document.addEventListener('DOMContentLoaded', () => {
+
+    // Get all "navbar-burger" elements
+    const $navbarBurgers = Array.prototype.slice.call(document.querySelectorAll('.navbar-burger'), 0);
+
+    // Check if there are any navbar burgers
+    if ($navbarBurgers.length > 0) {
+
+      // Add a click event on each of them
+      $navbarBurgers.forEach( el => {
+        el.addEventListener('click', () => {
+
+          // Get the target from the "data-target" attribute
+          const target = el.dataset.target;
+          const $target = document.getElementById(target);
+
+          // Toggle the "is-active" class on both the "navbar-burger" and the "navbar-menu"
+          el.classList.toggle('is-active');
+          $target.classList.toggle('is-active');
+
+        });
+      });
+    }
+
+  });
+</script>
+
+    <section class="section">
+      <div class="container">
+        <h1 class="title">
+          CSC 341 (Fall 2021)
+        </h1>
+        <h1 class="subtitle">
+          
+            Lab: Irregularity
+          
+        </h1>
+      </div>
+    </section>
+    <section class="content">
+      <div class="container">
+        
+        <h1 id="problem-1-pumps">Problem 1: Pumps</h1>
+<ol type="a">
+<li><p>Revisit the first proof of irregularity in the book (example 1.73, pp. 80, <span class="math inline">\(B = \{ 0^n 1^n \mid n ≥ 0 \}\)</span> is irregular). For each of the variables introduced in the proof, say whether that variable is <em>held arbitrary</em> or <em>chosen</em> to be a particular value.</p>
+<ul>
+<li><span class="math inline">\(p\)</span>.</li>
+<li><span class="math inline">\(s\)</span>.</li>
+<li><span class="math inline">\(x\)</span>, <span class="math inline">\(y\)</span>, and <span class="math inline">\(z\)</span>.</li>
+<li><span class="math inline">\(i\)</span>.</li>
+</ul></li>
+<li><p>In the proof, Sipser chooses the string <span class="math inline">\(0^p 1^p\)</span> to analyze. By the conditions of the pumping lemma, draw in the diagram of the string below where <span class="math inline">\(x\)</span>, <span class="math inline">\(y\)</span>, and <span class="math inline">\(z\)</span> must lie.</p>
+<p><span class="math display">\[
+\underbrace{0\;\cdots\;0}_{p}\;\underbrace{1\;\cdots\;1}_{p}
+\]</span></p>
+<p>(<em>Note</em>: it might be useful to reproduce this diagram in monospace font using a code block and then indicate where x, y, and z exist in the string using ASCII art.)</p></li>
+<li><p>There are many choices of strings that satisfy the conditions of the pumping lemma, but not all of them lead to contradictions. For each of the candidate strings below, determine whether (i) the string satisfies the conditions of the pumping lemma, and if so, (ii) what does the pumping lemma say about the shape of <span class="math inline">\(x\)</span>, <span class="math inline">\(y\)</span>, and <span class="math inline">\(z\)</span>, and (iii) whether we can complete a pumping lemma proof using this string. Finally, if you can complete proof with the string, do so.</p>
+<ul>
+<li><span class="math inline">\(0^5 1^5\)</span>.</li>
+<li><span class="math inline">\(0^{2p} 1^{2p}\)</span>.</li>
+<li><span class="math inline">\(0^{p/2} 1^{p/2}\)</span>.</li>
+</ul></li>
+</ol>
+<h1 id="problem-2-nope-not-regular">Problem 2: Nope, Not Regular</h1>
+<p>Consider the language <span class="math inline">\(A = \{\, www \mid w \in \Sigma^* \,\}\)</span> with <span class="math inline">\(\Sigma = \{\, 0, 1 \,\}\)</span>. Prove that <span class="math inline">\(A\)</span> is irregular with the pumping lemma using the template discussed in class.</p>
+<h1 id="problem-3-nope-definitely-regular-optional">Problem 3: Nope, Definitely Regular (Optional)</h1>
+<p>(Sipser 1.30). Consider the language <span class="math inline">\(A = 0^* 1^*\)</span>. The following is an erroneous “proof” that <span class="math inline">\(A\)</span> is irregular.</p>
+<div class="proof">
+<p><em>Proof</em>. Assume for the sake of contradiction that <span class="math inline">\(A\)</span> is regular. Then the pumping lemma applies. Let <span class="math inline">\(p\)</span> be the pumping length and choose <span class="math inline">\(s = 0^p 1^p ∈ A\)</span>. Observe that <span class="math inline">\(|0^p 1^p| = 2p \geq p\)</span>. Let <span class="math inline">\(s = xyz\)</span> according to the conditions of the pumping lemma. There are three cases to consider:</p>
+<ol type="1">
+<li>The string <span class="math inline">\(y\)</span> only contains <span class="math inline">\(0s\)</span>. Therefore <span class="math inline">\(xyyz \notin A\)</span> because it has has more <span class="math inline">\(0\)</span>s than <span class="math inline">\(1\)</span>s.</li>
+<li>The string <span class="math inline">\(y\)</span> only contains <span class="math inline">\(1\)</span>s. Likewise, <span class="math inline">\(xyyz \notin A\)</span> because it has more <span class="math inline">\(1\)</span>s than <span class="math inline">\(0\)</span>s.</li>
+<li>The string <span class="math inline">\(y\)</span> contains a substring of <span class="math inline">\(0\)</span>s followed by a substring of <span class="math inline">\(1\)</span>s. The string <span class="math inline">\(xyyz \notin A\)</span> because the substring <span class="math inline">\(yy\)</span> will be of the form <span class="math inline">\(0^a 1^b 0^a 1^b\)</span> for some constants <span class="math inline">\(a\)</span> and <span class="math inline">\(b\)</span>.</li>
+</ol>
+<p>In all cases, we arrive at a logical contradiction. Therefore, our original assumption that <span class="math inline">\(A\)</span> is regular must be false; therefore, <span class="math inline">\(A\)</span> is irregular.</p>
+<div class="qed">
+□
+</div>
+</div>
+<ul>
+<li>In a few sentences, describe the erroneous step(s) of reasoning in the proof.</li>
+<li>Prove that <span class="math inline">\(A\)</span> is actually regular.</li>
+</ul>
+
+      </div>
+    </section>
+    <footer class="footer is-size-7 has-text-centered">
+  <a rel="license" href="http://creativecommons.org/licenses/by-sa/4.0/"><img alt="Creative Commons License" style="border-width:0" src="https://i.creativecommons.org/l/by-sa/4.0/80x15.png" /></a><br />This work is licensed under a <a rel="license" href="http://creativecommons.org/licenses/by-sa/4.0/">Creative Commons Attribution-ShareAlike 4.0 International License</a>.<br/>
+  Made with <a href="https://bulma.io">Bulma</a>, <a href="https://jekyllrb.com">Jekyll</a>, <a href="https://www.brailleinstitute.org/freefont">Atkinson Hyperlegible</a>, and <a href="https://github.com/JetBrains/JetBrainsMono">JetBrains Mono</a>.
+</footer>
+
+  </body>
+</html>

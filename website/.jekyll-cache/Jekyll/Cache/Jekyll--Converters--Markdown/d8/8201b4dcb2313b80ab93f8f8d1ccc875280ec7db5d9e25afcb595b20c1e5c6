@@ -1,0 +1,25 @@
+I"Ô<h1 id="problem-the-puzzle-game">Problem: The Puzzle Game</h1>
+<p>Recall the <em>puzzle</em> problem, <span class="math inline">\(\text{PUZZLE}\)</span>, from a previous lab:</p>
+<blockquote>
+<p>You are given a box and a collection of cards as indicated in the following figure. Because of the pegs in the box and the notches in the cards, each card will fit in the box in either of two ways. Each card contains two columns of holes, some of which may not be punched out. The puzzle is solved by placing all the cards in the box so as to completely cover the bottom of the box (<em>i.e.</em>, every hole position is blocked by at least one card that has no hole there).</p>
+</blockquote>
+<p>Consider a related problem, the two-player <em>puzzle game</em>, <span class="math inline">\(\text{PUZZLE-GAME}\)</span>. The game consists of an <em>ordered</em> stack of cards as described in <span class="math inline">\(\textsf{PUZZLE}\)</span>. Players take turns placing the cards in order into the box, choosing whether or not the card is flipped. After placing all the cards, player one wins if all the hole positions are covered in the stack; player two wins if this is not the case.</p>
+<p>Define: <span class="math display">\[
+\text{PUZZLE-GAME} = \{\, C \mid \text{\( C \) is an ordered stack of puzzle cards and player 1 has a winning strategy} \,\}.
+\]</span></p>
+<p>In this problem, weâ€™ll show that <span class="math inline">\(\text{PUZZLE-GAME}\)</span> is <span class="math inline">\(\mathsf{PSPACE}\)</span>-complete.</p>
+<ol type="1">
+<li><p>Show that <span class="math inline">\(\text{PUZZLE-GAME} \in \mathsf{PSPACE}\)</span>.</p></li>
+<li><p>From the reading, you know that:</p>
+<p><span class="math display">\[
+\text{FORMULA-GAME} = \{\, \phi \mid \text{\( \phi \) is a TQBF and player 1 has a winning strategy} \,\}.
+\]</span></p>
+<p>is <span class="math inline">\(\mathsf{PSPACE}\)</span>-complete. Furthermore, the restriction of the boolean formulas to 3-cnf form is also <span class="math inline">\(\mathsf{PSPACE}\)</span>-complete. Use this fact to construct a polynomial time mapping function from the 3-cnf version of <span class="math inline">\(\textsf{FORMULA-GAME}\)</span> to <span class="math inline">\(\textsf{PUZZLE{-}GAME}\)</span>, demonstrating that <span class="math inline">\(\textsf{PUZZLE-GAME}\)</span> is <span class="math inline">\(\mathsf{PSPACE}\)</span>-hard. In a few sentences, argue why your construction is correct.</p>
+<p>(<em>Hint</em>: Adopt the solution for <span class="math inline">\(\textsf{PUZZLE}\)</span> directly.)</p></li>
+<li><p>Show your construction is correct by giving an example of the output of your mapping function on the following TQBF in 3-cnf form:</p>
+<p><span class="math display">\[
+\exists x_1 \forall x_2 \exists x_3 \ldotp [ (x_1 \vee x_2 \vee x_1) \wedge (x_2 \vee x_3 \vee x_3) \wedge (\overline{x_2} \vee \overline{x_3} \vee \overline{x_3}) ]
+\]</span></p>
+<p>As well as a winning strategy for player 1 on the resulting puzzle game.</p></li>
+</ol>
+:ET

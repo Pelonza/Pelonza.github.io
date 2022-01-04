@@ -1,0 +1,199 @@
+\documentclass[12pt]{article}
+
+%%%%% Document Information (FILL THIS IN!) %%%%%
+\newcommand{\authornames}{(Names)}
+
+\newcommand{\coursenumber}{CSC 341}
+\newcommand{\assignmentname}{Weekly Exercises \#13}
+\newcommand{\assignmentversion}{1}
+
+%%%%% Fonts and Encodings %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\usepackage[T1]{fontenc}
+\usepackage{libertine}
+
+%%%%% General %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage[shortlabels]{enumitem}
+\setlist{nosep}
+\usepackage{framed}
+\usepackage{fancyvrb}
+\usepackage[amsmath, amsthm, thmmarks]{ntheorem}
+\usepackage{microtype}
+\usepackage{url}
+\usepackage[svgnames]{xcolor}
+\usepackage{xspace}
+
+\usepackage{tikz}
+
+%%%%% Page Formatting %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\usepackage[
+  top=1in,
+  bottom=1in,
+  left=1in,
+  right=1in,
+  includefoot,
+  paperwidth=8.5in,
+  paperheight=11in
+]{geometry}
+
+\usepackage{fancyhdr}
+\setlength{\headheight}{15.2pt}
+\pagestyle{fancy}
+
+\fancyhead{}
+\fancyfoot{}
+\lhead{\coursenumber{}---\assignmentname{} (ver. \assignmentversion), \authornames{}}
+\cfoot{\thepage}
+
+%%%%% Code %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\usepackage{listings}
+\usepackage{xcolor}
+
+% Adapted from: https://en.wikibooks.org/wiki/LaTeX/Source_Code_Listings
+\definecolor{mygreen}{rgb}{0,0.6,0}
+\definecolor{mygray}{rgb}{0.5,0.5,0.5}
+\definecolor{mymauve}{rgb}{0.58,0,0.82}
+
+\lstset{ 
+  backgroundcolor=\color{white},      % choose the background color; you must add \usepackage{color} or \usepackage{xcolor}; should come as last argument
+  basicstyle=\ttfamily\footnotesize,  % the size of the fonts that are used for the code
+  breakatwhitespace=false,            % sets if automatic breaks should only happen at whitespace
+  breaklines=true,                    % sets automatic line breaking
+  captionpos=b,                       % sets the caption-position to bottom
+  commentstyle=\color{mygreen},       % comment style
+  keepspaces=true,                    % keeps spaces in text, useful for keeping indentation of code (possibly needs columns=flexible)
+  keywordstyle=\color{blue},          % keyword style
+  language=Python,                    % the language of the code
+  stringstyle=\color{mymauve},        % string literal style
+}
+
+%%%%% Basic Macros and Definitions %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\newtheorem{claim}{Claim}
+\newtheorem{invariant}{Invariant}
+\newtheorem{defn}{Definition}
+\newtheorem{thm}{Theorem}
+\newtheorem{lemma}{Lemma}
+
+\newcommand{\bigO}[1]{\ensuremath{\mathcal{O}(#1)}}
+
+\newcommand{\ie}{\emph{i.e.}\xspace}
+\newcommand{\eg}{\emph{e.g.}\xspace}
+\newcommand{\hint}[1]{(\emph{Hint}: #1)}
+\newcommand{\note}[1]{(\emph{Note}: #1)}
+
+\newcounter{ProblemCounter}
+\newenvironment{problem}[1][]
+  {\refstepcounter{ProblemCounter}\noindent\textbf{Problem \theProblemCounter{} (#1)}\quad}
+  {\newpage}
+
+\newcommand{\answerbelow}{\noindent\makebox[\linewidth]{\rule{\textwidth}{0.4pt}}}
+
+%%%%% Problem-specific Macros %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\newcommand{\prob}[1]{\ensuremath{\textsf{#1}}\xspace}
+\newcommand{\desc}[1]{\ensuremath{\langle #1 \rangle}}
+\newcommand{\comp}[1]{\ensuremath{\overline{#1}}\xspace}
+
+\newcommand{\nats}{\ensuremath{\mathbb{N}}\xspace}
+\newcommand{\dfa}{\textsf{DFA}\xspace}
+\newcommand{\EQdfa}{\ensuremath{EQ_\mathsf{DFA}\xspace}}
+\newcommand{\Atm}{\ensuremath{A_\mathsf{TM}}\xspace}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{document}
+
+\begin{problem}[Formation]
+
+Before you begin the group activity for this week, identify:
+\begin{itemize}
+  \item A \emph{Scribe}: who will be responsible for creating a shared document
+    and turning in your solutions for this week's problems.
+  \item A \emph{Timekeeper}: who will keep track of the timer for weekly
+    activities that require timekeeping.
+  \item A \emph{Driver}: who will be responsible for asking people to share or
+    otherwise kickstarting conversation if group chat slows down.
+\end{itemize}
+
+For this problem, simply identify your teammate's roles in the space below.
+
+If you cannot attend a given class period, please work with your group on how
+you will contribute to the group's work either asynchronously (\eg, by doing
+the work yourself) or outside of the class period (\eg, by chatting or meeting
+outside of class).  If there are any issues in coordinating work in your group,
+please let me know as soon as possible!
+
+\answerbelow
+% FILL IN YOUR ANSWER HERE
+
+\end{problem}
+
+%%%%% Monday: Universality and Reversibility %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{problem}[There And Back At Again]
+
+In the reading, we introduced a circuit-based model of computation.  For these
+exercises, we'll consider two important ideas related to this model:
+\emph{universality} and \emph{reversibility}.
+
+\begin{enumerate}
+  \item As a warm-up, spend 5 minutes individually to design a circuit that
+    computes the XOR of two input variables.  The XOR function returns 1 if
+    exactly one of its inputs is a 1.  \hint{To do this quickly, express XOR in
+    boolean logic in terms of \( (\wedge) \), \( (\vee) \), and \( (\neg) \)
+    and then translate your resulting proposition into a circuit.}
+
+    Come back as a group and compare your answers.  Give your final solution in
+    your write-up.
+  \item Example 9.29 of the book describes how this XOR circuit can be used to
+    implement a family of parity circuits that detect whether an input of size
+    \( n \) has an odd number of 1s.  With your group, spend 2--3 minutes
+    discussing why this approach implies that the parity function has circuit
+    complexity \bigO{n}.
+  \item We say that a collection of gates is \emph{universal} if any circuit
+    can be written in terms of these gates.  The book presents the circuit
+    complexity model using AND, OR, and NOT gates.  These gates are universal
+    for boolean logic, but it turns out we can do even better!  Consider the
+    NAND gate.  It computes the negation of the AND operator as follows:
+    \begin{center}
+      \begin{tabular}{ccc}
+        \textbf{X} & \textbf{Y} & \textbf{NAND} \\
+        0          & 0          & 1             \\
+        0          & 1          & 1             \\
+        1          & 0          & 1             \\
+        1          & 1          & 0
+      \end{tabular}
+    \end{center}
+    Spent 10 minutes individually showing that the NAND gate alone is universal
+    for boolean logic by showing how AND, OR, and NOT can be expressed in terms
+    of NAND.  Feel free to assign one gate to each group member.  Come back as
+    a group to share and agree upon your solutions, adding them to your
+    write-up.
+  \item We say that a logic gate \( f \) is \emph{reversible} if it is the case
+    that for any output \( y \) there is a unique input \( x \) such that \(
+    f(x) = y \).  As a consequence, there must exist an inverse gate \( f' \)
+    such that \( f(y) = x \).  As a group, spend 10--15 minutes answering the
+    following questions about reversible gates:
+    \begin{itemize}
+      \item Is OR a reversible gate?  Is XOR a reversible gate?  Why or why not
+        in each case.
+      \item Can any of our other binary operation gates be reversible, \eg,
+        AND, OR, NAND, etc.?  Why or why not?
+      \item With an answer to the previous question in mind, design a
+        reversible version of the XOR gate.  The gate will have a different
+        number of outputs than the traditional XOR gate but allow you to
+        recover the XOR computation from the result.
+    \end{itemize}
+\end{enumerate}
+
+\answerbelow
+% FILL IN YOUR ANSWER HERE
+
+\end{problem}
+
+%%%%% Monday and Friday: Quantum Computation (Nothing to Do!) %%%%%%%%%%%%%%%%%%
+
+
+\end{document}

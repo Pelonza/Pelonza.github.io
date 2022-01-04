@@ -1,0 +1,9 @@
+I"r<h1 id="space-complexity">Space Complexity</h1>
+<p>Enough about time, now it’s time for spaaaaaaaaaaaaaaaaaace.</p>
+<ul>
+<li>Sipser, Chapter 8 “Space Complexity” to start of 8.1; 8.2 “The Class PSPACE”</li>
+</ul>
+<hr />
+<p><strong>Reading Problem (Space for Nothing, Time for Free)</strong></p>
+<p>The reading proves that while <span class="math inline">\(\mathsf{SAT}\)</span> is NP-complete, it only takes a linear amount of space, <em>i.e.</em>, it is in PSPACE. Adapt this proof technique to show that <span class="math inline">\(\mathsf{CLIQUE}\)</span> discussed in the previous chapter is also in PSPACE.</p>
+:ET

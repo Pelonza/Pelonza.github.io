@@ -1,0 +1,24 @@
+I"�<h1 id="properties-and-variants-and-the-church-turing-thesis">Properties and Variants and the Church-Turing Thesis</h1>
+<p>Now that we’ve gotten accustomed to the variety of operations we can emulate with Turing machines, we’ll now take a look at the properties of Turing machines. In particular, we’ll look at <em>closure properties</em> and <em>equivalent models of computation</em> and see how <em>robust</em> the Turing machine model is even though it is minimal. In addition, we’ll also examine the <em>Church-Turing Thesis</em> which states something profound about the computational power of Turing machines.</p>
+<h2 id="a-note-on-descriptions">A Note On Descriptions</h2>
+<p>The book discusses this concept in chapter 3.3, but it is worthwhile to talk about the <em>different levels of descriptions</em> we can give for Turing machines now that their behavior is rapidly getting more and more complex.</p>
+<ul>
+<li>A <em>formal description</em> of a Turing machine is a precise description given either graphically (if the Turing machine is concrete) or symbolically (if the Turing machine is abstract).</li>
+<li>An <em>implementation description</em> is a step-by-step procedure that describes how the Turing machine behaves at a low level, <em>i.e.</em>, in terms of tape head behavior.</li>
+<li>A <em>high-level description</em> describes how a Turing machine behaves at a high level, <em>i.e.</em>, in terms of problem-specific operations that we assume are implementable using low-level Turing machine movements.</li>
+</ul>
+<p>When should we choose one description over the other? Through last class (and for Demonstration Set #3), you should be giving formal descriptions of Turing machine behavior since we’re concerned with capturing the low-level behavior of the model. However, from this point forward, our low-level descriptions will be too unwieldy to provide for every machine we must consider. So we will have to choose between implementation and high-level descriptions depending on what the machine’s underlying language is about.</p>
+<ul>
+<li>Give an implementation description when the language concerns the low-level operations of the Turing machine.</li>
+<li>Give a high-level description when the language is about specific problem domain and not the inner workings of the underlying Turing machine.</li>
+</ul>
+<p>In essence, we have to ask ourselves what is the “hard part” about the computation described in the language. If the hard part is about getting a Turing machine to perform a certain kind of computation, then an implementation description is appropriate. Otherwise, a high-level description gets to the point without introducing unnecessary detail.</p>
+<h2 id="reading">Reading</h2>
+<ul>
+<li>Sipser, chapter 3.2 “Variants of Turing Machines” to the end of the chapter 3.</li>
+</ul>
+<hr />
+<p><strong>Reading Problem (Stack ’Em Up)</strong></p>
+<p>(Adapted from Sipser 3.9).</p>
+<p>(Consider an array data structure that allows for arbitrary (index-based) read-write access of its elements. Describe a procedure whereby <em>two</em> stack data structures (that only allow pushing and popping of the top of the stack) can simulate an array. (<em>Hint</em>: place the stacks top-to-top.)</p>
+:ET

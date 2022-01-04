@@ -1,0 +1,2176 @@
+<!DOCTYPE html>
+<html>
+  <head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>CSC 341: Automata, Formal Languages, and Computational Complexity
+</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bulma/0.7.5/css/bulma.min.css">
+  <link rel="stylesheet" href="/csc341/css/style.css">
+  <link rel="stylesheet" href="/csc341/css/syntax.css">
+  <link rel="stylesheet" href="/csc341/css/syntax-drracket.css">
+  <script defer src="https://use.fontawesome.com/releases/v5.3.1/js/all.js"></script>
+  
+  
+  
+</head>
+
+  <body>
+    <nav class="navbar is-primary" role="navigation" aria-label="main navigation">
+  <div class="navbar-brand">
+    <a class="navbar-item" href="/csc341/">
+      <img src="/csc341/img/laurel-white.png">
+      &nbsp;
+      CSC 341 (21fa)
+    </a>
+
+    <a role="button" class="navbar-burger burger" aria-label="menu" aria-expanded="false" data-target="navbarBasicExample">
+      <span aria-hidden="true"></span>
+      <span aria-hidden="true"></span>
+      <span aria-hidden="true"></span>
+    </a>
+  </div>
+
+  <div id="navbarBasicExample" class="navbar-menu">
+    <div class="navbar-start">
+      <a class="navbar-item" href="/csc341/syllabus">
+        Syllabus
+      </a>
+      <a class="navbar-item" href="/csc341/resources">
+        Resources
+      </a>
+      
+      <a class="navbar-item" href="https://teams.microsoft.com/l/team/19%3avJm8Wpx7VaDe72Q53lhFS8hKbE8ZqBMHkz-HLvwbzag1%40thread.tacv2/conversations?groupId=621c250a-ec62-4c30-afbd-0e3b7efa7606&tenantId=524f9e3e-faca-4f64-b3ec-adb2baee8807
+">Teams</a>
+      
+      
+      <a class="navbar-item" href="https://www.gradescope.com/courses/299977
+">Gradescope</a>
+      
+      <a class="navbar-item" href="/csc341/editor">
+        Editor
+      </a>
+    </div>
+  </div>
+</nav>
+
+<!-- Adapted from: https://bulma.io/documentation/components/navbar/ -->
+<script>
+  document.addEventListener('DOMContentLoaded', () => {
+
+    // Get all "navbar-burger" elements
+    const $navbarBurgers = Array.prototype.slice.call(document.querySelectorAll('.navbar-burger'), 0);
+
+    // Check if there are any navbar burgers
+    if ($navbarBurgers.length > 0) {
+
+      // Add a click event on each of them
+      $navbarBurgers.forEach( el => {
+        el.addEventListener('click', () => {
+
+          // Get the target from the "data-target" attribute
+          const target = el.dataset.target;
+          const $target = document.getElementById(target);
+
+          // Toggle the "is-active" class on both the "navbar-burger" and the "navbar-menu"
+          el.classList.toggle('is-active');
+          $target.classList.toggle('is-active');
+
+        });
+      });
+    }
+
+  });
+</script>
+
+    <section class="section">
+      <div class="container">
+        <h1 class="title">CSC 341</h1>
+        <h1 class="subtitle"><a href="/csc341/">Automata, Formal Languages, and Computational Complexity (Fall 2021)</a></h1>
+        <ul>
+          <li><strong>Course</strong>: CSC 341 (Fall 2021), <a href="https://grinnell.edu">Grinnell College</a></li>
+          <li><strong>Instructor</strong>: <a href="https://iampmo.com">Peter-Michael Osera</a>, (<a href="https://osera.cs.grinnell.edu/contact">Schedule and Office Hours</a>)</li>
+          
+          <li><strong>Mentor</strong>: Lilith Hafner </li>
+          
+          <li><strong>Meeting Times</strong>: MWF 1:00 PM–1:50 PM (Science 3820)
+
+        </ul>
+      </div>
+    </section>
+
+    <section class="content">
+      <div class="container">
+        <p>In your journey through computation, you likely have noticed that many problems can be solved with the same solution through a skill you have honed called abstraction. Through this process, you may have noticed more nuanced connections between problems. Some problems require some translation before being solved using the solution to another problem. Other problems are immune this sort of transformation and feel fundamentally more difficult than others. Some problems feel downright impossible to solve—are they actually impossible?</p>
+<p>In this course, we study the theory of computation where we use mathematics to model problems of increasing complexity and study their relationships with each other. By going through this modeling process, we can:</p>
+<ul>
+<li>Deeply understand a problem and its potential corner cases.</li>
+<li>Prove properties of a problem, e.g., the correctness a candidate solutions.</li>
+<li>Reduce a problem to another problem, i.e, formally solve one problem in terms of another.</li>
+<li>Categorize a problem as easier or harder than other problems in a precise way.</li>
+</ul>
+<p>By the end of the course, we will explore the limits of computation. Are there problems that are intractable in practice? Are there problems that can provably never have a solution?</p>
+
+      </div>
+    </section>
+
+    <section class="content">
+      <div class="container">
+        <h2 class="title">Schedule</h2>
+
+        <table class="table is-striped is-fullwidth is-narrow is-hoverable">
+          <thead>
+            <tr>
+              <th>Date</th>
+              <th>Topic/Reading</th>
+              <th>Lab</th>
+              <th>Deliverables</th>
+            </tr>
+          </thead>
+          <tbody>
+            
+              
+                <tr>
+                  <th>
+                    F
+                    08/27
+                  </th>
+                  <td>
+                    
+                      
+                      
+                      
+                      
+                        Introductions
+                      
+                    
+                  </td>
+                  <td>
+                    
+                  </td>
+                  <td>
+                    
+                  </td>
+                </tr>
+              
+            
+              
+                <tr>
+                  <th class="week" colspan="4">Week 1: Preliminaries</th>
+                </tr>
+              
+            
+              
+                <tr>
+                  <th>
+                    M
+                    08/30
+                  </th>
+                  <td>
+                    
+                      
+                      
+                      
+                      
+                        
+                        <a href="/csc341/readings/review-of-mathematical-literacy.html">Review of Mathematical Literacy</a>
+                      
+                    
+                  </td>
+                  <td>
+                    
+                      
+                      
+                      
+                      
+                        
+                        <a href="/csc341/labs/interpreting-definitions.html">Interpreting Definitions</a>
+                      
+                    
+                  </td>
+                  <td>
+                    
+                      <ul>
+                        
+                          
+                            <li>
+                              <strong>
+                                
+                                
+                                
+                                
+                                  
+                                  <a href="/csc341/demos/demo-1.html">Demo #1
+</a>
+                                 out
+                              </strong>
+                            </li>
+                          
+                        
+                      </ul>
+                    
+                  </td>
+                </tr>
+              
+            
+              
+                <tr>
+                  <th>
+                    W
+                    09/01
+                  </th>
+                  <td>
+                    
+                      
+                      
+                      
+                      
+                        
+                        <a href="/csc341/readings/constructive-and-classical-proof.html">Constructive and Classical Proof</a>
+                      
+                    
+                  </td>
+                  <td>
+                    
+                      
+                      
+                      
+                      
+                        
+                        <a href="/csc341/labs/formal-proof.html">Formal Proof</a>
+                      
+                    
+                  </td>
+                  <td>
+                    
+                  </td>
+                </tr>
+              
+            
+              
+                <tr>
+                  <th>
+                    F
+                    09/03
+                  </th>
+                  <td>
+                    
+                      
+                      
+                      
+                      
+                        
+                        <a href="/csc341/readings/deterministic-finite-automata.html">Deterministic Finite Automata</a>
+                      
+                    
+                  </td>
+                  <td>
+                    
+                      
+                      
+                      
+                      
+                        
+                        <a href="/csc341/labs/dfa-basics.html">DFA Basics</a>
+                      
+                    
+                  </td>
+                  <td>
+                    
+                  </td>
+                </tr>
+              
+            
+              
+                <tr>
+                  <th class="week" colspan="4">Week 2: Finite Automata</th>
+                </tr>
+              
+            
+              
+                <tr>
+                  <th>
+                    M
+                    09/06
+                  </th>
+                  <td>
+                    
+                      
+                      
+                      
+                      
+                        
+                        <a href="/csc341/readings/design-with-finite-automata.html">Design with Finite Automata</a>
+                      
+                    
+                  </td>
+                  <td>
+                    
+                      
+                      
+                      
+                      
+                        
+                        <a href="/csc341/labs/dfa-design.html">DFA Design</a>
+                      
+                    
+                  </td>
+                  <td>
+                    
+                      <ul>
+                        
+                          
+                            <li>
+                              <strong>
+                                
+                                
+                                
+                                
+                                  
+                                  <a href="/csc341/demos/demo-2.html">Demo #2
+</a>
+                                 out
+                              </strong>
+                            </li>
+                          
+                        
+                          
+                            <li>Demo #1
+ due</li>
+                          
+                        
+                      </ul>
+                    
+                  </td>
+                </tr>
+              
+            
+              
+                <tr>
+                  <th>
+                    W
+                    09/08
+                  </th>
+                  <td>
+                    
+                      
+                      
+                      
+                      
+                        
+                        <a href="/csc341/readings/nondeterminism.html">Nondeterminism</a>
+                      
+                    
+                  </td>
+                  <td>
+                    
+                      
+                      
+                      
+                      
+                        
+                        <a href="/csc341/labs/exploring-nondeterminism.html">Exploring Nondeterminism</a>
+                      
+                    
+                  </td>
+                  <td>
+                    
+                  </td>
+                </tr>
+              
+            
+              
+                <tr>
+                  <th>
+                    F
+                    09/10
+                  </th>
+                  <td>
+                    
+                      
+                      
+                      
+                      
+                        Equivalence of Models
+                      
+                    
+                  </td>
+                  <td>
+                    
+                      
+                      
+                      
+                      
+                        
+                        <a href="/csc341/labs/finding-essence.html">Finding Essence</a>
+                      
+                    
+                  </td>
+                  <td>
+                    
+                  </td>
+                </tr>
+              
+            
+              
+                <tr>
+                  <th class="week" colspan="4">Week 3: Regularity</th>
+                </tr>
+              
+            
+              
+                <tr>
+                  <th>
+                    M
+                    09/13
+                  </th>
+                  <td>
+                    
+                      
+                      
+                      
+                      
+                        
+                        <a href="/csc341/readings/closure-properties.html">Closure Properties</a>
+                      
+                    
+                  </td>
+                  <td>
+                    
+                      
+                      
+                      
+                      
+                        
+                        <a href="/csc341/labs/closure-problems.html">Closure Problems</a>
+                      
+                    
+                  </td>
+                  <td>
+                    
+                      <ul>
+                        
+                          
+                            <li>
+                              <strong>
+                                
+                                
+                                
+                                
+                                  
+                                  <a href="/csc341/demos/demo-3.html">Demo #3
+</a>
+                                 out
+                              </strong>
+                            </li>
+                          
+                        
+                          
+                            <li>Demo #2
+ due</li>
+                          
+                        
+                      </ul>
+                    
+                  </td>
+                </tr>
+              
+            
+              
+                <tr>
+                  <th>
+                    W
+                    09/15
+                  </th>
+                  <td>
+                    
+                      
+                      
+                      
+                      
+                        
+                        <a href="/csc341/readings/regular-expressions.html">Regular Expressions</a>
+                      
+                    
+                  </td>
+                  <td>
+                    
+                      
+                      
+                      
+                      
+                        
+                        <a href="/csc341/labs/regular-expressions.html">Regular Expressions</a>
+                      
+                    
+                  </td>
+                  <td>
+                    
+                      <ul>
+                        
+                          
+                            <li>Demo #1 revisions
+ due</li>
+                          
+                        
+                      </ul>
+                    
+                  </td>
+                </tr>
+              
+            
+              
+                <tr>
+                  <th>
+                    F
+                    09/17
+                  </th>
+                  <td>
+                    
+                      
+                      
+                      
+                      
+                        
+                        <a href="/csc341/readings/analysis-of-regular-models.html">Analysis of Regular Models</a>
+                      
+                    
+                  </td>
+                  <td>
+                    
+                      
+                      
+                      
+                      
+                        
+                        <a href="/csc341/labs/exploring-the-regular-models.html">Exploring the Regular Models</a>
+                      
+                    
+                  </td>
+                  <td>
+                    
+                  </td>
+                </tr>
+              
+            
+              
+                <tr>
+                  <th class="week" colspan="4">Week 4: Beyond Regularity</th>
+                </tr>
+              
+            
+              
+                <tr>
+                  <th>
+                    M
+                    09/20
+                  </th>
+                  <td>
+                    
+                      
+                      
+                      
+                      
+                        
+                        <a href="/csc341/readings/irregularity-and-the-pumping-lemma.html">Irregularity and the Pumping Lemma</a>
+                      
+                    
+                  </td>
+                  <td>
+                    
+                      
+                      
+                      
+                      
+                        
+                        <a href="/csc341/labs/irregularity.html">Irregularity</a>
+                      
+                    
+                  </td>
+                  <td>
+                    
+                      <ul>
+                        
+                          
+                            <li>
+                              <strong>
+                                
+                                
+                                
+                                
+                                  
+                                  <a href="/csc341/demos/demo-4.html">Demo #4
+</a>
+                                 out
+                              </strong>
+                            </li>
+                          
+                        
+                          
+                            <li>Demo #3
+ due</li>
+                          
+                        
+                      </ul>
+                    
+                  </td>
+                </tr>
+              
+            
+              
+                <tr>
+                  <th>
+                    W
+                    09/22
+                  </th>
+                  <td>
+                    
+                      
+                      
+                      
+                      
+                        
+                        <a href="/csc341/readings/myhill-nerode-theorem.html">Myhill-Nerode Theorem</a>
+                      
+                    
+                  </td>
+                  <td>
+                    
+                      
+                      
+                      
+                      
+                        
+                        <a href="/csc341/labs/applying-myhill-nerode.html">Applying Myhill-Nerode</a>
+                      
+                    
+                  </td>
+                  <td>
+                    
+                      <ul>
+                        
+                          
+                            <li>Demo #2 revisions
+ due</li>
+                          
+                        
+                      </ul>
+                    
+                  </td>
+                </tr>
+              
+            
+              
+                <tr>
+                  <th>
+                    F
+                    09/24
+                  </th>
+                  <td>
+                    
+                      
+                      
+                      
+                      
+                        
+                        <a href="/csc341/readings/context-free-grammars.html">Context-Free Grammars</a>
+                      
+                    
+                  </td>
+                  <td>
+                    
+                      
+                      
+                      
+                      
+                        
+                        <a href="/csc341/labs/context-free-grammars.html">Context-free Grammars</a>
+                      
+                    
+                  </td>
+                  <td>
+                    
+                  </td>
+                </tr>
+              
+            
+              
+                <tr>
+                  <th class="week" colspan="4">Week 5: Turing Machines</th>
+                </tr>
+              
+            
+              
+                <tr>
+                  <th>
+                    M
+                    09/27
+                  </th>
+                  <td>
+                    
+                      
+                      
+                      
+                      
+                        
+                        <a href="/csc341/readings/introduction-to-turing-machines.html">Introduction to Turing Machines</a>
+                      
+                    
+                  </td>
+                  <td>
+                    
+                      
+                      
+                      
+                      
+                        
+                        <a href="/csc341/labs/introduction-to-turing-machines.html">Introduction to Turing Machines</a>
+                      
+                    
+                  </td>
+                  <td>
+                    
+                      <ul>
+                        
+                          
+                            <li>Demo #4
+ due</li>
+                          
+                        
+                      </ul>
+                    
+                  </td>
+                </tr>
+              
+            
+              
+                <tr>
+                  <th>
+                    W
+                    09/29
+                  </th>
+                  <td>
+                    
+                      
+                      
+                      
+                      
+                        
+                        <a href="/csc341/readings/variants-and-the-church-turing-thesis.html">Variants and The Church-Turing Thesis</a>
+                      
+                    
+                  </td>
+                  <td>
+                    
+                      
+                      
+                      
+                      
+                        
+                        <a href="/csc341/labs/properties-and-variants-of-tms.html">Properties and Variants of TMs</a>
+                      
+                    
+                  </td>
+                  <td>
+                    
+                      <ul>
+                        
+                          
+                            <li>Demo #3 revisions
+ due</li>
+                          
+                        
+                      </ul>
+                    
+                  </td>
+                </tr>
+              
+            
+              
+                <tr>
+                  <th>
+                    F
+                    10/01
+                  </th>
+                  <td>
+                    
+                      
+                      
+                      
+                      
+                        (No class, LA day!)
+                      
+                    
+                  </td>
+                  <td>
+                    
+                  </td>
+                  <td>
+                    
+                      <ul>
+                        
+                          
+                            <li>
+                              <strong>
+                                
+                                
+                                
+                                
+                                  LA #1
+
+                                 out
+                              </strong>
+                            </li>
+                          
+                        
+                      </ul>
+                    
+                  </td>
+                </tr>
+              
+            
+              
+                <tr>
+                  <th class="week" colspan="4">Week 6: Time Complexity</th>
+                </tr>
+              
+            
+              
+                <tr>
+                  <th>
+                    M
+                    10/04
+                  </th>
+                  <td>
+                    
+                      
+                      
+                      
+                      
+                        
+                        <a href="/csc341/readings/time-complexity.html">Time Complexity</a>
+                      
+                    
+                  </td>
+                  <td>
+                    
+                      
+                      
+                      
+                      
+                        
+                        <a href="/csc341/labs/time-complexity.html">Time Complexity</a>
+                      
+                    
+                  </td>
+                  <td>
+                    
+                      <ul>
+                        
+                          
+                            <li>
+                              <strong>
+                                
+                                
+                                
+                                
+                                  
+                                  <a href="/csc341/demos/demo-5.html">Demo #5
+</a>
+                                 out
+                              </strong>
+                            </li>
+                          
+                        
+                      </ul>
+                    
+                  </td>
+                </tr>
+              
+            
+              
+                <tr>
+                  <th>
+                    W
+                    10/06
+                  </th>
+                  <td>
+                    
+                      
+                      
+                      
+                      
+                        
+                        <a href="/csc341/readings/np-completeness.html">NP-Completeness</a>
+                      
+                    
+                  </td>
+                  <td>
+                    
+                      
+                      
+                      
+                      
+                        
+                        <a href="/csc341/labs/np-completeness.html">NP-Completeness</a>
+                      
+                    
+                  </td>
+                  <td>
+                    
+                      <ul>
+                        
+                          
+                            <li>Demo #4 revisions
+ due</li>
+                          
+                        
+                      </ul>
+                    
+                  </td>
+                </tr>
+              
+            
+              
+                <tr>
+                  <th>
+                    F
+                    10/08
+                  </th>
+                  <td>
+                    
+                      
+                      
+                      
+                      
+                        
+                        <a href="/csc341/readings/the-cook-levine-theorem.html">The Cook-Levine Theorem</a>
+                      
+                    
+                  </td>
+                  <td>
+                    
+                      
+                      
+                      
+                      
+                        
+                        <a href="/csc341/labs/the-cook-levine-theorem.html">The Cook-Levine Theorem</a>
+                      
+                    
+                  </td>
+                  <td>
+                    
+                  </td>
+                </tr>
+              
+            
+              
+                <tr>
+                  <th class="week" colspan="4">Week 7: NP-Completeness</th>
+                </tr>
+              
+            
+              
+                <tr>
+                  <th>
+                    M
+                    10/11
+                  </th>
+                  <td>
+                    
+                      
+                      
+                      
+                      
+                        
+                        <a href="/csc341/readings/mapping-reducibility.html">Mapping Reducibility</a>
+                      
+                    
+                  </td>
+                  <td>
+                    
+                      
+                      
+                      
+                      
+                        
+                        <a href="/csc341/labs/mapping-reducibility.html">Mapping Reducibility</a>
+                      
+                    
+                  </td>
+                  <td>
+                    
+                      <ul>
+                        
+                          
+                            <li>
+                              <strong>
+                                
+                                
+                                
+                                
+                                  Exploration #1
+
+                                 out
+                              </strong>
+                            </li>
+                          
+                        
+                          
+                            <li>Demo #5
+ due</li>
+                          
+                        
+                      </ul>
+                    
+                  </td>
+                </tr>
+              
+            
+              
+                <tr>
+                  <th>
+                    W
+                    10/13
+                  </th>
+                  <td>
+                    
+                      
+                      
+                      
+                      
+                        
+                        <a href="/csc341/readings/classical-np-complete-problems.html">Classical NP-Complete Problems</a>
+                      
+                    
+                  </td>
+                  <td>
+                    
+                      
+                      
+                      
+                      
+                        
+                        <a href="/csc341/labs/more-mapping-reductions.html">More Mapping Reductions</a>
+                      
+                    
+                  </td>
+                  <td>
+                    
+                  </td>
+                </tr>
+              
+            
+              
+                <tr>
+                  <th>
+                    F
+                    10/15
+                  </th>
+                  <td>
+                    
+                      
+                      
+                      
+                      
+                        
+                        <a href="/csc341/readings/p-vs-np.html">P vs. NP</a>
+                      
+                    
+                  </td>
+                  <td>
+                    
+                  </td>
+                  <td>
+                    
+                  </td>
+                </tr>
+              
+            
+              
+                <tr>
+                  <th class="week" colspan="4">(Fall break: 10/18 to 10/22)</th>
+                </tr>
+              
+            
+              
+                <tr>
+                  <th class="week" colspan="4">Week 8: Space Complexity</th>
+                </tr>
+              
+            
+              
+                <tr>
+                  <th>
+                    M
+                    10/25
+                  </th>
+                  <td>
+                    
+                      
+                      
+                      
+                      
+                        
+                        <a href="/csc341/readings/space-complexity.html">Space Complexity</a>
+                      
+                    
+                  </td>
+                  <td>
+                    
+                      
+                      
+                      
+                      
+                        
+                        <a href="/csc341/labs/space-complexity.html">Space Complexity</a>
+                      
+                    
+                  </td>
+                  <td>
+                    
+                      <ul>
+                        
+                          
+                            <li>
+                              <strong>
+                                
+                                
+                                
+                                
+                                  
+                                  <a href="/csc341/demos/demo-6.html">Demo #6
+</a>
+                                 out
+                              </strong>
+                            </li>
+                          
+                        
+                      </ul>
+                    
+                  </td>
+                </tr>
+              
+            
+              
+                <tr>
+                  <th>
+                    W
+                    10/27
+                  </th>
+                  <td>
+                    
+                      
+                      
+                      
+                      
+                        
+                        <a href="/csc341/readings/savitchs-theorem.html">Savitchs Theorem</a>
+                      
+                    
+                  </td>
+                  <td>
+                    
+                      
+                      
+                      
+                      
+                        
+                        <a href="/csc341/labs/space-relationships.html">Space Relationships</a>
+                      
+                    
+                  </td>
+                  <td>
+                    
+                      <ul>
+                        
+                          
+                            <li>Demo #5 revisions
+ due</li>
+                          
+                        
+                      </ul>
+                    
+                  </td>
+                </tr>
+              
+            
+              
+                <tr>
+                  <th>
+                    F
+                    10/29
+                  </th>
+                  <td>
+                    
+                      
+                      
+                      
+                      
+                        
+                        <a href="/csc341/readings/pspace-and-pspace-completeness.html">PSPACE and PSPACE-Completeness</a>
+                      
+                    
+                  </td>
+                  <td>
+                    
+                      
+                      
+                      
+                      
+                        
+                        <a href="/csc341/labs/pspace-completeness.html">PSPACE-Completeness</a>
+                      
+                    
+                  </td>
+                  <td>
+                    
+                  </td>
+                </tr>
+              
+            
+              
+                <tr>
+                  <th class="week" colspan="4">Week 9: Complexity Wrap-Up</th>
+                </tr>
+              
+            
+              
+                <tr>
+                  <th>
+                    M
+                    11/01
+                  </th>
+                  <td>
+                    
+                      
+                      
+                      
+                      
+                        
+                        <a href="/csc341/readings/sublinear-space-complexity.html">Sublinear Space Complexity</a>
+                      
+                    
+                  </td>
+                  <td>
+                    
+                      
+                      
+                      
+                      
+                        
+                        <a href="/csc341/labs/complements-and-complexity.html">Complements and Complexity</a>
+                      
+                    
+                  </td>
+                  <td>
+                    
+                      <ul>
+                        
+                          
+                            <li>Demo #6
+ due</li>
+                          
+                        
+                      </ul>
+                    
+                  </td>
+                </tr>
+              
+            
+              
+                <tr>
+                  <th>
+                    W
+                    11/03
+                  </th>
+                  <td>
+                    
+                      
+                      
+                      
+                      
+                        
+                        <a href="/csc341/readings/hierarchy-theorems.html">Hierarchy Theorems</a>
+                      
+                    
+                  </td>
+                  <td>
+                    
+                      
+                      
+                      
+                      
+                        
+                        <a href="/csc341/labs/complexity-wrap-up.html">Complexity Wrap-Up</a>
+                      
+                    
+                  </td>
+                  <td>
+                    
+                  </td>
+                </tr>
+              
+            
+              
+                <tr>
+                  <th>
+                    F
+                    11/05
+                  </th>
+                  <td>
+                    
+                      
+                      
+                      
+                      
+                        (No class, LA day!)
+                      
+                    
+                  </td>
+                  <td>
+                    
+                  </td>
+                  <td>
+                    
+                      <ul>
+                        
+                          
+                            <li>
+                              <strong>
+                                
+                                
+                                
+                                
+                                  LA #2
+
+                                 out
+                              </strong>
+                            </li>
+                          
+                        
+                      </ul>
+                    
+                  </td>
+                </tr>
+              
+            
+              
+                <tr>
+                  <th class="week" colspan="4">Week 10: Computability</th>
+                </tr>
+              
+            
+              
+                <tr>
+                  <th>
+                    M
+                    11/08
+                  </th>
+                  <td>
+                    
+                      
+                      
+                      
+                      
+                        
+                        <a href="/csc341/readings/machine-analysis.html">Machine Analysis</a>
+                      
+                    
+                  </td>
+                  <td>
+                    
+                      
+                      
+                      
+                      
+                        
+                        <a href="/csc341/labs/machine-analysis.html">Machine Analysis</a>
+                      
+                    
+                  </td>
+                  <td>
+                    
+                      <ul>
+                        
+                          
+                            <li>
+                              <strong>
+                                
+                                
+                                
+                                
+                                  
+                                  <a href="/csc341/demos/demo-7.html">Demo #7
+</a>
+                                 out
+                              </strong>
+                            </li>
+                          
+                        
+                      </ul>
+                    
+                  </td>
+                </tr>
+              
+            
+              
+                <tr>
+                  <th>
+                    W
+                    11/10
+                  </th>
+                  <td>
+                    
+                      
+                      
+                      
+                      
+                        
+                        <a href="/csc341/readings/diagonalization.html">Diagonalization</a>
+                      
+                    
+                  </td>
+                  <td>
+                    
+                      
+                      
+                      
+                      
+                        
+                        <a href="/csc341/labs/diagonalization.html">Diagonalization</a>
+                      
+                    
+                  </td>
+                  <td>
+                    
+                      <ul>
+                        
+                          
+                            <li>Demo #6 revisions
+ due</li>
+                          
+                        
+                      </ul>
+                    
+                  </td>
+                </tr>
+              
+            
+              
+                <tr>
+                  <th>
+                    F
+                    11/12
+                  </th>
+                  <td>
+                    
+                      
+                      
+                      
+                      
+                        
+                        <a href="/csc341/readings/undecidability.html">Undecidability</a>
+                      
+                    
+                  </td>
+                  <td>
+                    
+                      
+                      
+                      
+                      
+                        
+                        <a href="/csc341/labs/undecidability.html">Undecidability</a>
+                      
+                    
+                  </td>
+                  <td>
+                    
+                  </td>
+                </tr>
+              
+            
+              
+                <tr>
+                  <th class="week" colspan="4">Week 11: Undecidability</th>
+                </tr>
+              
+            
+              
+                <tr>
+                  <th>
+                    M
+                    11/15
+                  </th>
+                  <td>
+                    
+                      
+                      
+                      
+                      
+                        
+                        <a href="/csc341/readings/undecidability-reductions.html">Undecidability Reductions</a>
+                      
+                    
+                  </td>
+                  <td>
+                    
+                      
+                      
+                      
+                      
+                        
+                        <a href="/csc341/labs/machine-behavior-undecidability.html">Machine Behavior Undecidability</a>
+                      
+                    
+                  </td>
+                  <td>
+                    
+                      <ul>
+                        
+                          
+                            <li>
+                              <strong>
+                                
+                                
+                                
+                                
+                                  
+                                  <a href="/csc341/demos/demo-8.html">Demo #8
+</a>
+                                 out
+                              </strong>
+                            </li>
+                          
+                        
+                          
+                            <li>Demo #7
+ due</li>
+                          
+                        
+                      </ul>
+                    
+                  </td>
+                </tr>
+              
+            
+              
+                <tr>
+                  <th>
+                    W
+                    11/17
+                  </th>
+                  <td>
+                    
+                      
+                      
+                      
+                      
+                        
+                        <a href="/csc341/readings/the-post-correspondence-problem.html">The Post-Correspondence Problem</a>
+                      
+                    
+                  </td>
+                  <td>
+                    
+                      
+                      
+                      
+                      
+                        
+                        <a href="/csc341/labs/pcp.html">PCP</a>
+                      
+                    
+                  </td>
+                  <td>
+                    
+                  </td>
+                </tr>
+              
+            
+              
+                <tr>
+                  <th>
+                    F
+                    11/19
+                  </th>
+                  <td>
+                    
+                      
+                      
+                      
+                      
+                        
+                        <a href="/csc341/readings/rices-theorem.html">Rices Theorem</a>
+                      
+                    
+                  </td>
+                  <td>
+                    
+                      
+                      
+                      
+                      
+                        
+                        <a href="/csc341/labs/rices-theorem.html">Rices Theorem</a>
+                      
+                    
+                  </td>
+                  <td>
+                    
+                  </td>
+                </tr>
+              
+            
+              
+                <tr>
+                  <th class="week" colspan="4">Week 12: Computability and Logic</th>
+                </tr>
+              
+            
+              
+                <tr>
+                  <th>
+                    M
+                    11/22
+                  </th>
+                  <td>
+                    
+                      
+                      
+                      
+                      
+                        
+                        <a href="/csc341/readings/recursion-and-logical-theories.html">Recursion and Logical Theories</a>
+                      
+                    
+                  </td>
+                  <td>
+                    
+                      
+                      
+                      
+                      
+                        
+                        <a href="/csc341/labs/quine-exploration.html">Quine Exploration</a>
+                      
+                    
+                  </td>
+                  <td>
+                    
+                      <ul>
+                        
+                          
+                            <li>Demo #8
+ due</li>
+                          
+                        
+                      </ul>
+                    
+                  </td>
+                </tr>
+              
+            
+              
+                <tr>
+                  <th>
+                    W
+                    11/24
+                  </th>
+                  <td>
+                    
+                      
+                      
+                      
+                      
+                        (No class, pre-Thanksgiving Break!)
+                      
+                    
+                  </td>
+                  <td>
+                    
+                  </td>
+                  <td>
+                    
+                      <ul>
+                        
+                          
+                            <li>Demo #7 revisions
+ due</li>
+                          
+                        
+                      </ul>
+                    
+                  </td>
+                </tr>
+              
+            
+              
+                <tr>
+                  <th class="week" colspan="4">(Thanksgiving Break: 11/25 and 11/26)</th>
+                </tr>
+              
+            
+              
+                <tr>
+                  <th class="week" colspan="4">Week 13: Approximation and Probabilistic Computation</th>
+                </tr>
+              
+            
+              
+                <tr>
+                  <th>
+                    M
+                    11/29
+                  </th>
+                  <td>
+                    
+                      
+                      
+                      
+                      
+                        
+                        <a href="/csc341/readings/approximate-computing.html">Approximate Computing</a>
+                      
+                    
+                  </td>
+                  <td>
+                    
+                      
+                      
+                      
+                      
+                        
+                        <a href="/csc341/labs/ptass.html">PTASs</a>
+                      
+                    
+                  </td>
+                  <td>
+                    
+                      <ul>
+                        
+                          
+                            <li>
+                              <strong>
+                                
+                                
+                                
+                                
+                                  
+                                  <a href="/csc341/demos/demo-9.html">Demo #9
+</a>
+                                 out
+                              </strong>
+                            </li>
+                          
+                        
+                      </ul>
+                    
+                  </td>
+                </tr>
+              
+            
+              
+                <tr>
+                  <th>
+                    W
+                    12/01
+                  </th>
+                  <td>
+                    
+                      
+                      
+                      
+                      
+                        
+                        <a href="/csc341/readings/approximation-with-linear-programming.html">Approximation with Linear Programming</a>
+                      
+                    
+                  </td>
+                  <td>
+                    
+                      
+                      
+                      
+                      
+                        
+                        <a href="/csc341/labs/approximation-with-linear-programming.html">Approximation with Linear Programming</a>
+                      
+                    
+                  </td>
+                  <td>
+                    
+                      <ul>
+                        
+                          
+                            <li>Demo #8 revisions
+ due</li>
+                          
+                        
+                      </ul>
+                    
+                  </td>
+                </tr>
+              
+            
+              
+                <tr>
+                  <th>
+                    F
+                    12/03
+                  </th>
+                  <td>
+                    
+                      
+                      
+                      
+                      
+                        Hardness of Approximation
+                      
+                    
+                  </td>
+                  <td>
+                    
+                      
+                      
+                      
+                      
+                        
+                        <a href="/csc341/labs/hardness-of-approximation.html">Hardness of Approximation</a>
+                      
+                    
+                  </td>
+                  <td>
+                    
+                  </td>
+                </tr>
+              
+            
+              
+                <tr>
+                  <th class="week" colspan="4">Week 14: The Future of Computation</th>
+                </tr>
+              
+            
+              
+                <tr>
+                  <th>
+                    M
+                    12/06
+                  </th>
+                  <td>
+                    
+                      
+                      
+                      
+                      
+                        
+                        <a href="/csc341/readings/solving-sat-efficiently.html">Solving SAT Efficiently</a>
+                      
+                    
+                  </td>
+                  <td>
+                    
+                      
+                      
+                      
+                      
+                        
+                        <a href="/csc341/labs/dpll.html">DPLL</a>
+                      
+                    
+                  </td>
+                  <td>
+                    
+                      <ul>
+                        
+                          
+                            <li>Demo #9
+ due</li>
+                          
+                        
+                      </ul>
+                    
+                  </td>
+                </tr>
+              
+            
+              
+                <tr>
+                  <th>
+                    W
+                    12/08
+                  </th>
+                  <td>
+                    
+                      
+                      
+                      
+                      
+                        The Theory of Computation
+                      
+                    
+                  </td>
+                  <td>
+                    
+                  </td>
+                  <td>
+                    
+                  </td>
+                </tr>
+              
+            
+              
+                <tr>
+                  <th>
+                    F
+                    12/10
+                  </th>
+                  <td>
+                    
+                      
+                      
+                      
+                      
+                        (No class, LA day!)
+                      
+                    
+                  </td>
+                  <td>
+                    
+                  </td>
+                  <td>
+                    
+                      <ul>
+                        
+                          
+                            <li>
+                              <strong>
+                                
+                                
+                                
+                                
+                                  LA #3
+
+                                 out
+                              </strong>
+                            </li>
+                          
+                        
+                      </ul>
+                    
+                  </td>
+                </tr>
+              
+            
+              
+                <tr>
+                  <th class="week" colspan="4">Finals Week</th>
+                </tr>
+              
+            
+              
+                <tr>
+                  <th>
+                    M
+                    12/13
+                  </th>
+                  <td>
+                    
+                  </td>
+                  <td>
+                    
+                  </td>
+                  <td>
+                    
+                      <ul>
+                        
+                          
+                            <li>
+                              <strong>
+                                
+                                
+                                
+                                
+                                  
+                                  <a href="/csc341/demos/exploration-2.html">Exploration #2
+</a>
+                                 out
+                              </strong>
+                            </li>
+                          
+                        
+                      </ul>
+                    
+                  </td>
+                </tr>
+              
+            
+              
+                <tr>
+                  <th>
+                    T
+                    12/14
+                  </th>
+                  <td>
+                    
+                  </td>
+                  <td>
+                    
+                  </td>
+                  <td>
+                    
+                      <ul>
+                        
+                          
+                            <li>
+                              <strong>
+                                
+                                
+                                
+                                
+                                  LA #4
+
+                                 out
+                              </strong>
+                            </li>
+                          
+                        
+                      </ul>
+                    
+                  </td>
+                </tr>
+              
+            
+              
+                <tr>
+                  <th>
+                    W
+                    12/15
+                  </th>
+                  <td>
+                    
+                  </td>
+                  <td>
+                    
+                  </td>
+                  <td>
+                    
+                      <ul>
+                        
+                          
+                            <li>Demo #9 revisions
+ due</li>
+                          
+                        
+                      </ul>
+                    
+                  </td>
+                </tr>
+              
+            
+              
+                <tr>
+                  <th>
+                    F
+                    12/17
+                  </th>
+                  <td>
+                    
+                  </td>
+                  <td>
+                    
+                  </td>
+                  <td>
+                    
+                      <ul>
+                        
+                          
+                            <li>All remaining work
+ due</li>
+                          
+                        
+                      </ul>
+                    
+                  </td>
+                </tr>
+              
+            
+          </tbody>
+        </table>
+
+        <h2 class="title">Learning Goals</h2>
+
+        <section class="content">
+          <ul>
+            
+            <li>
+              <strong>Learning Assessment 1</strong>
+              <ul>
+                
+                  <li>Represent a problem using a regular model of computation.</li>
+                
+                  <li>Prove closure and algorithmic properties of the regular languages.</li>
+                
+                  <li>Prove the irregularity of a problem.</li>
+                
+                  <li>Represent a problem using a context-free model of computation.</li>
+                
+                  <li>Represent a problem using a Turing machine.</li>
+                
+                  <li>Prove closure and algorithmic properties of Turing machines.</li>
+                
+              </ul>
+            </li>
+            
+            <li>
+              <strong>Learning Assessment 2</strong>
+              <ul>
+                
+                  <li>Prove that a problem is in a particular time complexity class.</li>
+                
+                  <li>Prove that a problem is NP-complete by way of a reduction.</li>
+                
+                  <li>Explain the practical ramifications of the P vs. NP problem.</li>
+                
+                  <li>Prove that a problem is in a particular space complexity class.</li>
+                
+                  <li>Describe the essential charactistics of problems belonging to each of the major complexity classes.</li>
+                
+                  <li>Describe the practical relationships between various time and space complexity classes.</li>
+                
+              </ul>
+            </li>
+            
+            <li>
+              <strong>Learning Assessment 3</strong>
+              <ul>
+                
+                  <li>Prove the decidability of a given machine analysis algorithm.</li>
+                
+                  <li>Prove the undecidability of a given problem by way of a reduction.</li>
+                
+                  <li>Prove the undecidability of a given problem through Rice's Theorem.</li>
+                
+                  <li>Describe the practical ramifications of computational undecidability.</li>
+                
+                  <li>Describe practical problem solving strategies for dealing with intractable problems.</li>
+                
+                  <li>Design and reason about an approximation algorithm to an optimization problem.</li>
+                
+              </ul>
+            </li>
+            
+          </ul>
+        </section>
+      </div>
+    </section>
+    <footer class="footer is-size-7 has-text-centered">
+  <a rel="license" href="http://creativecommons.org/licenses/by-sa/4.0/"><img alt="Creative Commons License" style="border-width:0" src="https://i.creativecommons.org/l/by-sa/4.0/80x15.png" /></a><br />This work is licensed under a <a rel="license" href="http://creativecommons.org/licenses/by-sa/4.0/">Creative Commons Attribution-ShareAlike 4.0 International License</a>.<br/>
+  Made with <a href="https://bulma.io">Bulma</a>, <a href="https://jekyllrb.com">Jekyll</a>, <a href="https://www.brailleinstitute.org/freefont">Atkinson Hyperlegible</a>, and <a href="https://github.com/JetBrains/JetBrainsMono">JetBrains Mono</a>.
+</footer>
+
+  </body>
+</html>

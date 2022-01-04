@@ -1,0 +1,31 @@
+I"4<h1 id="problem-1-the-basics">Problem 1: The Basics</h1>
+<p>(Adapted from Sipser 2.3.) Answer each part for the following context-free grammar <span class="math inline">\(G\)</span> with start symbol <span class="math inline">\(R\)</span>.</p>
+<p><span class="math display">\[\begin{align*}
+R \rightarrow&amp;\; XRX \mid S \\
+S \rightarrow&amp;\; aTb \mid bTa \\
+T \rightarrow&amp;\; XTX \mid X \mid \epsilon \\
+X \rightarrow&amp;\; a \mid b
+\end{align*}\]</span></p>
+<ol type="1">
+<li>What are the variables of <span class="math inline">\(G\)</span>?</li>
+<li>What are the terminals of <span class="math inline">\(G\)</span>?</li>
+<li>Give three strings in <span class="math inline">\(L(G)\)</span>.</li>
+<li>Give three strings <em>not</em> in <span class="math inline">\(L(G)\)</span>.</li>
+<li>Consider the string <span class="math inline">\(XXX\)</span>. Show via a derivation that <span class="math inline">\(XXX \overset{*}{\Rightarrow} aba\)</span>.</li>
+<li>Consider the string <span class="math inline">\(T\)</span>. Show via a derivation that <span class="math inline">\(T \overset{*}{\Rightarrow} aba\)</span>.</li>
+<li>Consider the string <span class="math inline">\(T\)</span>. Show via a derivation that <span class="math inline">\(T \overset{*}{\Rightarrow} XX\)</span>.</li>
+<li>Consider the string <span class="math inline">\(R\)</span>. Show vi a derivation that <span class="math inline">\(R \overset{*}{\Rightarrow} aabbb\)</span>.</li>
+<li>Give a description in English of <span class="math inline">\(L(G)\)</span>.</li>
+</ol>
+<h1 id="problem-2-conditional-ambiguity">Problem 2: Conditional Ambiguity</h1>
+<p>In C-like programming languages, conditional statements frequently have the following form:</p>
+<pre><code>expr -&gt; true | false | ...
+stmt -&gt; if expr then stmt | if expr then stmt else stmt | skip | ...</code></pre>
+<p>(The <code>skip</code> statement is a statement that does nothing. For our purposes, it acts as a “base case” to the <span class="math inline">\(stmt\)</span> production. You could substitute any “real” base statement such as a call to a function, <em>e.g.</em>, <code>printf()</code> instead.)</p>
+<ol type="1">
+<li><p>Give a string and two parse trees demonstrating the ambiguity of this grammar.</p></li>
+<li><p>Which of the two parse trees is the “preferred” interpretation?</p></li>
+<li><p>Translate your toy example to an equivalent C program and try it out, <em>e.g.</em>, with <code>gcc</code> or <code>clang</code>. Which of the two parse trees is the one that your chosen compiler produces?</p></li>
+<li><p>Change the grammar above to remove the ambiguity. You may try to preserve the original syntax of the conditional statement, but you may also add additional syntax to remove the ambiguity. Your solution should be as faithful to good C programming practices as possible.</p></li>
+</ol>
+:ET

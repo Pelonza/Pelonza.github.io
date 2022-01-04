@@ -1,0 +1,27 @@
+I"�<p>Whether we adopt the perspective of programmer or mathematician, we rely on modeling techniques such as mathematical sets or data structures to represent a subject, <em>e.g.,</em> general computation, in a way that is amendable for subsequent analysis. However, whereas programmers are primarily interested in <em>implementing</em> algorithms that operate over these subjects, mathematicians are primarily interested in <em>stating and proving properties</em> of our subjects. Mathematical proof, therefore, is our primary activity in this course.</p>
+<p>There are two broad classes of proof we will employ in this course:</p>
+<ul>
+<li><strong>Constructive proof</strong> arises whenever we can prove a property by building a thing. This may be a concrete object, <em>e.g.</em>, a machine that obeys a particular property, or a more abstract object, <em>e.g.</em>, an execution trace demonstrating that a machine accepts some input.</li>
+<li><strong>Classical proof</strong>, specifically <strong>proof by contradiction</strong>, arises whenever we want to prove the <em>absence</em> of some thing. For example, we might want to show that there does not exist a machine that fulfills a certain property. Provided that there are an infinite number of possible machines, we cannot exhaustively check that every machine does not fulfill the property in question. Instead, we argue by contradiction: (1) supposing that such a machine exists, and (2) showing that a logical contradiction arises from this assumption.</li>
+</ul>
+<p>Of special interest to us as computer scientists are constructive proof. Aconstruction of an abstract object that fulfills a property is really an <em>algorithm</em> for building objects that satisfies those properties. Thus, the study of constructive proof allows us to unite our two perspectives, programmer and mathematician, on the theory of computation.</p>
+<p>Regardless of the technique employed, all of our reasoning must obey the following mantra:</p>
+<blockquote>
+<p><strong>Go to definition!</strong></p>
+</blockquote>
+<p>That is, our reasoning must be rooted in the formal definitions of the objects involved. For example, we will write down precisely what a machine contains. Therefore, when we write a constructive proof involving such machines, we will need to specify all of the machines’ components in some form or another.</p>
+<p>In preparation for today’s class,</p>
+<ul>
+<li>(Re-)read Sipser §0.3 to review the structure and design of mathematical proof. We’ll also have more to say about the process in class.</li>
+<li>Try proving this following fact about graphs on your own. Challenge yourself to write as formal of a mathematical proof as possible.</li>
+</ul>
+<div class="definition">
+<p><strong>Definition (<span class="math inline">\(k\)</span>-colorability)</strong>: let a <em>coloring</em> of a graph <span class="math inline">\(G = (V, E)\)</span> be a function <span class="math inline">\(f : V \rightarrow C\)</span> from the vertices <span class="math inline">\(V\)</span> of <span class="math inline">\(G\)</span> to an abstract finite set of colors <span class="math inline">\(C\)</span> such that vertices connected together by an edge from <span class="math inline">\(E\)</span> have distinct colors. Call a graph <span class="math inline">\(k\)</span>-colorable if there exists such a set of colors <span class="math inline">\(C\)</span> and coloring function <span class="math inline">\(f\)</span> with <span class="math inline">\(|C| = k\)</span>.</p>
+</div>
+<div class="definition">
+<p><strong>Definition (Cycle)</strong>: a <em>cycle</em> in a graph <span class="math inline">\(G\)</span> is a sequence of vertices <span class="math inline">\(v_1, v_2, \ldots, v_k\)</span> of <span class="math inline">\(G\)</span> such that each adjacent pair of vertices <span class="math inline">\(v_i\)</span> and <span class="math inline">\(v_{i+1}\)</span> are connected by an edge in <span class="math inline">\(E\)</span> and <span class="math inline">\(v_k\)</span> and <span class="math inline">\(v_1\)</span> are also connected by an edge.</p>
+</div>
+<div class="claim">
+<p><strong>Claim</strong>: If a graph contains an odd-length cycle, then it is <em>not</em> 2-colorable.</p>
+</div>
+:ET

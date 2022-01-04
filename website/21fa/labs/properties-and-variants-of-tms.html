@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Properties And Variants Of Tms</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bulma/0.7.5/css/bulma.min.css">
+  <link rel="stylesheet" href="/csc341/css/style.css">
+  <link rel="stylesheet" href="/csc341/css/syntax.css">
+  <link rel="stylesheet" href="/csc341/css/syntax-drracket.css">
+  <script defer src="https://use.fontawesome.com/releases/v5.3.1/js/all.js"></script>
+  
+  <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+  <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+  
+  
+  
+</head>
+
+  </head>
+  <body>
+    <nav class="navbar is-primary" role="navigation" aria-label="main navigation">
+  <div class="navbar-brand">
+    <a class="navbar-item" href="/csc341/">
+      <img src="/csc341/img/laurel-white.png">
+      &nbsp;
+      CSC 341 (21fa)
+    </a>
+
+    <a role="button" class="navbar-burger burger" aria-label="menu" aria-expanded="false" data-target="navbarBasicExample">
+      <span aria-hidden="true"></span>
+      <span aria-hidden="true"></span>
+      <span aria-hidden="true"></span>
+    </a>
+  </div>
+
+  <div id="navbarBasicExample" class="navbar-menu">
+    <div class="navbar-start">
+      <a class="navbar-item" href="/csc341/syllabus">
+        Syllabus
+      </a>
+      <a class="navbar-item" href="/csc341/resources">
+        Resources
+      </a>
+      
+      <a class="navbar-item" href="https://teams.microsoft.com/l/team/19%3avJm8Wpx7VaDe72Q53lhFS8hKbE8ZqBMHkz-HLvwbzag1%40thread.tacv2/conversations?groupId=621c250a-ec62-4c30-afbd-0e3b7efa7606&tenantId=524f9e3e-faca-4f64-b3ec-adb2baee8807
+">Teams</a>
+      
+      
+      <a class="navbar-item" href="https://www.gradescope.com/courses/299977
+">Gradescope</a>
+      
+      <a class="navbar-item" href="/csc341/editor">
+        Editor
+      </a>
+    </div>
+  </div>
+</nav>
+
+<!-- Adapted from: https://bulma.io/documentation/components/navbar/ -->
+<script>
+  document.addEventListener('DOMContentLoaded', () => {
+
+    // Get all "navbar-burger" elements
+    const $navbarBurgers = Array.prototype.slice.call(document.querySelectorAll('.navbar-burger'), 0);
+
+    // Check if there are any navbar burgers
+    if ($navbarBurgers.length > 0) {
+
+      // Add a click event on each of them
+      $navbarBurgers.forEach( el => {
+        el.addEventListener('click', () => {
+
+          // Get the target from the "data-target" attribute
+          const target = el.dataset.target;
+          const $target = document.getElementById(target);
+
+          // Toggle the "is-active" class on both the "navbar-burger" and the "navbar-menu"
+          el.classList.toggle('is-active');
+          $target.classList.toggle('is-active');
+
+        });
+      });
+    }
+
+  });
+</script>
+
+    <section class="section">
+      <div class="container">
+        <h1 class="title">
+          CSC 341 (Fall 2021)
+        </h1>
+        <h1 class="subtitle">
+          
+            Lab: Properties And Variants Of Tms
+          
+        </h1>
+      </div>
+    </section>
+    <section class="content">
+      <div class="container">
+        
+        <h1 id="problem-1-multi-tape-kill">Problem 1: Multi-(tape) Kill</h1>
+<ol type="1">
+<li><p>Summarize each direction of the proof of equivalence of ordinary TMs and multi-tape Turing machines in a sentence a piece.</p></li>
+<li><p>Multi-tape Turing machines have a finite, fixed number of tapes at construction time. Suppose we tried extending the model so that the machine had an <em>infinite</em> number of tapes at construction time. Describe the fundamental difficulties we would encounter in trying to construct and execute such a model.</p></li>
+<li><p>In contrast, imagine extending the model so that the multi-tape model can have a <em>dynamic</em>, <em>unbounded</em> number of tapes. The model would need an operation to spawn a new tape and the transition function would need to be modified to operate over a list of tapes. In contrast to the infinite tape model, does this variant seem equivalent to ordinary TMs? Why?</p></li>
+</ol>
+<h1 id="problem-2-the-matrix">Problem 2: The Matrix</h1>
+<ol type="1">
+<li><p>Summarize each direction of the proof of equivalence of ordinary TMs and non-deterministic TMs in a sentence a piece.</p></li>
+<li><p>When converting NFAs to DFAs, we induced a <em>state explosion</em>, drastically increasing the space complexity of the automata. Where does this <em>space hit</em> occur in the NTM-to-TM transformation?</p></li>
+<li><p>Review the proof of the NTM-to-TM transformation in the book (theorem 3.16).</p>
+<ol type="a">
+<li>What is the purpose of the “address” in the construction?</li>
+<li>What does the TM do if a string is not accepted by the original NTM? How do we fix this problem?</li>
+</ol></li>
+</ol>
+<h1 id="problem-3-blah-blah-blah">Problem 3: Blah Blah Blah</h1>
+<ol type="1">
+<li><p>Summarize each direction of the proof of equivalence of ordinary TMs and enumerators in a sentence a piece.</p></li>
+<li><p>Give a formal description of <em>what</em> an enumerator is. Include a rigorous description of its components, its behavior, and the inclusion condition for its language, <em>i.e.</em>, the condition under which <span class="math inline">\(w \in L(E)\)</span> for some enumerator <span class="math inline">\(E\)</span></p></li>
+</ol>
+
+      </div>
+    </section>
+    <footer class="footer is-size-7 has-text-centered">
+  <a rel="license" href="http://creativecommons.org/licenses/by-sa/4.0/"><img alt="Creative Commons License" style="border-width:0" src="https://i.creativecommons.org/l/by-sa/4.0/80x15.png" /></a><br />This work is licensed under a <a rel="license" href="http://creativecommons.org/licenses/by-sa/4.0/">Creative Commons Attribution-ShareAlike 4.0 International License</a>.<br/>
+  Made with <a href="https://bulma.io">Bulma</a>, <a href="https://jekyllrb.com">Jekyll</a>, <a href="https://www.brailleinstitute.org/freefont">Atkinson Hyperlegible</a>, and <a href="https://github.com/JetBrains/JetBrainsMono">JetBrains Mono</a>.
+</footer>
+
+  </body>
+</html>

@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+
+<html>
+  <head>
+    {% include head.html %}
+  </head>
+  <body>
+    {% include nav.html %}
+    <section class="section">
+      <div class="container">
+        <h1 class="title">
+          {{ site.data.course.number }} ({{ site.data.course.semester }})
+        </h1>
+        <h1 class="subtitle">
+          {% if page.collection == "labs" %}
+            Lab: {{ page.title }}
+          {% elsif page.collection == "readings" %}
+            Reading: {{ page.title }}
+          {% else %}
+            {{ page.title }}
+          {% endif %}
+        </h1>
+      </div>
+    </section>
+    <section class="content">
+      <div class="container">
+        {% if page.draft %}
+        <center><strong>(This is a <emph>draft document</emph>! Please check back later for the final version.)</strong></center>
+        {% endif %}
+        {{ content }}
+      </div>
+    </section>
+    {% include footer.html %}
+  </body>
+</html>

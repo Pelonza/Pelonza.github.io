@@ -1,0 +1,69 @@
+\documentclass[11pt]{book}
+
+\setcounter{chapter}{11}
+\newcommand{\docclass}{CSC 341 (20sp)}
+\newcommand{\doctitle}{Properties and Variants}
+\newcommand{\docauthor}{Peter-Michael Osera}
+
+\usepackage{reading}
+
+\begin{document}
+
+\begin{center}
+  \large\textbf{{\doctitle}}
+\end{center}
+
+\vspace{2em}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{problem}{Multi-(tape) Kill}
+\begin{enumerate}[label=(\alph*)]
+  \item Summarize each direction of the proof of equivalence of ordinary TMs and multi-tape Turing machines in a sentence a piece.
+  \item Multi-tape Turing machines have a finite, fixed number of tapes at construction time.
+    Suppose we tried extending the model so that the machine had an \emph{infinite} number of tapes at construction time.
+    Describe the fundamental difficulties we would encounter in trying to construct and execute such a model.
+  \item In contrast, imagine extending the model so that the multi-tape model can have a \emph{dynamic}, \emph{unbounded} number of tapes.
+    The model would need an operation to spawn a new tape and the transition function would need to be modified to operate over a list of tapes.
+    In contrast to the infinite tape model, does this variant seem equivalent to ordinary TMs?
+    Why?
+\end{enumerate}
+\end{problem}
+
+\vspace{1.5in}
+
+\begin{problem}{The Matrix}
+\begin{enumerate}[label=(\alph*)]
+  \item Summarize each direction of the proof of equivalence of ordinary TMs and non-deterministic TMs in a sentence a piece.
+  \item When converting NFAs to DFAs, we induced a \emph{state explosion}, drastically increasing the space complexity of the automata.
+    Where does the \emph{space hit} occur in the NTM-to-TM transformation?
+  \item Review the proof of the NTM-to-TM transformation in the book (theorem 3.16).
+    (i) What is the purpose of the ``address'' in the construction?
+    (ii) What does the TM do if a string is not accepted by the original NTM?
+    How do we fix this problem?
+\end{enumerate}
+\end{problem}
+
+\newpage
+
+\begin{problem}{Blah Blah Blah}
+\begin{enumerate}[label=(\alph*)]
+  \item Summarize each direction of the proof of equivalence of ordinary TMs and enumerators in a sentence a piece.
+  \item Give a formal description of \emph{what} an enumerator is.
+    Include a rigorous description of its components, its behavior, and the inclusion condition for its language, \ie, the condition under which \( w \in L(E) \) for some enumerator \( E \)
+\end{enumerate}
+\end{problem}
+
+
+\vspace{5in}
+
+\noindent \textbf{Exam \#1 Topics}
+\begin{enumerate}
+  \item Machine descriptions (\eg, formal TM diagrams).
+  \item Language closure (\eg, show that \( L_1 \circ L_2 \) is closed under the regular languages).
+  \item Language non-inclusion (\eg, with the pumping lemmas or Myhill-Nerode).
+  \item Machine analysis (\eg, emptiness of a DFA's language).
+  \item Machine equivalence (\eg, show that 2-PDA is equivalento a TM).
+\end{enumerate}
+
+\end{document}

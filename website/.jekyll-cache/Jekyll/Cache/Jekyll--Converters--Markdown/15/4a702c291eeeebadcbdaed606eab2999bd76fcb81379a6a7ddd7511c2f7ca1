@@ -1,0 +1,14 @@
+I"<h1 id="problem-1-configurations">Problem 1: Configurations</h1>
+<p>Consider a Turing machine with <span class="math inline">\(q\)</span> states and <span class="math inline">\(g\)</span> possible tape symbols. Write down an expression for the number of possible configurations of this Turing machine with a tape size of <span class="math inline">\(n\)</span>. Explain your expression in a sentence or two.</p>
+<h1 id="problem-2-cycles">Problem 2: Cycles</h1>
+<p>Prove the following fact regarding halting Turing machines and configurations:</p>
+<div class="proof">
+<p><strong>Claim</strong>: A Turing machine that halts does not repeat a configuration.</p>
+</div>
+<h1 id="problem-3-upper-bounds">Problem 3: Upper Bounds</h1>
+<p>Observe that if a language is in <span class="math inline">\(\text{PSPACE}\)</span> then a Turing machine that recognizes it uses a polynomial amount of space. Use your results from the first two problems to prove the following claim:</p>
+<div class="proof">
+<p><strong>Claim</strong>: <span class="math inline">\(\text{PSPACE} \subseteq \text{EXPTIME}\)</span>.</p>
+</div>
+<p>(<em>Hint</em>: establish the number of configurations of such a Turing machine and use the previous problem’s claim to establish an upper-bound on the number of steps the Turing machine.)</p>
+:ET

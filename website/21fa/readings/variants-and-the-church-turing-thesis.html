@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Variants and the Church-Turing Thesis</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bulma/0.7.5/css/bulma.min.css">
+  <link rel="stylesheet" href="/csc341/css/style.css">
+  <link rel="stylesheet" href="/csc341/css/syntax.css">
+  <link rel="stylesheet" href="/csc341/css/syntax-drracket.css">
+  <script defer src="https://use.fontawesome.com/releases/v5.3.1/js/all.js"></script>
+  
+  <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+  <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+  
+  
+  
+</head>
+
+  </head>
+  <body>
+    <nav class="navbar is-primary" role="navigation" aria-label="main navigation">
+  <div class="navbar-brand">
+    <a class="navbar-item" href="/csc341/">
+      <img src="/csc341/img/laurel-white.png">
+      &nbsp;
+      CSC 341 (21fa)
+    </a>
+
+    <a role="button" class="navbar-burger burger" aria-label="menu" aria-expanded="false" data-target="navbarBasicExample">
+      <span aria-hidden="true"></span>
+      <span aria-hidden="true"></span>
+      <span aria-hidden="true"></span>
+    </a>
+  </div>
+
+  <div id="navbarBasicExample" class="navbar-menu">
+    <div class="navbar-start">
+      <a class="navbar-item" href="/csc341/syllabus">
+        Syllabus
+      </a>
+      <a class="navbar-item" href="/csc341/resources">
+        Resources
+      </a>
+      
+      <a class="navbar-item" href="https://teams.microsoft.com/l/team/19%3avJm8Wpx7VaDe72Q53lhFS8hKbE8ZqBMHkz-HLvwbzag1%40thread.tacv2/conversations?groupId=621c250a-ec62-4c30-afbd-0e3b7efa7606&tenantId=524f9e3e-faca-4f64-b3ec-adb2baee8807
+">Teams</a>
+      
+      
+      <a class="navbar-item" href="https://www.gradescope.com/courses/299977
+">Gradescope</a>
+      
+      <a class="navbar-item" href="/csc341/editor">
+        Editor
+      </a>
+    </div>
+  </div>
+</nav>
+
+<!-- Adapted from: https://bulma.io/documentation/components/navbar/ -->
+<script>
+  document.addEventListener('DOMContentLoaded', () => {
+
+    // Get all "navbar-burger" elements
+    const $navbarBurgers = Array.prototype.slice.call(document.querySelectorAll('.navbar-burger'), 0);
+
+    // Check if there are any navbar burgers
+    if ($navbarBurgers.length > 0) {
+
+      // Add a click event on each of them
+      $navbarBurgers.forEach( el => {
+        el.addEventListener('click', () => {
+
+          // Get the target from the "data-target" attribute
+          const target = el.dataset.target;
+          const $target = document.getElementById(target);
+
+          // Toggle the "is-active" class on both the "navbar-burger" and the "navbar-menu"
+          el.classList.toggle('is-active');
+          $target.classList.toggle('is-active');
+
+        });
+      });
+    }
+
+  });
+</script>
+
+    <section class="section">
+      <div class="container">
+        <h1 class="title">
+          CSC 341 (Fall 2021)
+        </h1>
+        <h1 class="subtitle">
+          
+            Reading: Variants and the Church-Turing Thesis
+          
+        </h1>
+      </div>
+    </section>
+    <section class="content">
+      <div class="container">
+        
+        <h1 id="properties-and-variants-and-the-church-turing-thesis">Properties and Variants and the Church-Turing Thesis</h1>
+<p>Now that we’ve gotten accustomed to the variety of operations we can emulate with Turing machines, we’ll now take a look at the properties of Turing machines. In particular, we’ll look at <em>closure properties</em> and <em>equivalent models of computation</em> and see how <em>robust</em> the Turing machine model is even though it is minimal. In addition, we’ll also examine the <em>Church-Turing Thesis</em> which states something profound about the computational power of Turing machines.</p>
+<h2 id="a-note-on-descriptions">A Note On Descriptions</h2>
+<p>The book discusses this concept in chapter 3.3, but it is worthwhile to talk about the <em>different levels of descriptions</em> we can give for Turing machines now that their behavior is rapidly getting more and more complex.</p>
+<ul>
+<li>A <em>formal description</em> of a Turing machine is a precise description given either graphically (if the Turing machine is concrete) or symbolically (if the Turing machine is abstract).</li>
+<li>An <em>implementation description</em> is a step-by-step procedure that describes how the Turing machine behaves at a low level, <em>i.e.</em>, in terms of tape head behavior.</li>
+<li>A <em>high-level description</em> describes how a Turing machine behaves at a high level, <em>i.e.</em>, in terms of problem-specific operations that we assume are implementable using low-level Turing machine movements.</li>
+</ul>
+<p>When should we choose one description over the other? Through last class (and for Demonstration Set #3), you should be giving formal descriptions of Turing machine behavior since we’re concerned with capturing the low-level behavior of the model. However, from this point forward, our low-level descriptions will be too unwieldy to provide for every machine we must consider. So we will have to choose between implementation and high-level descriptions depending on what the machine’s underlying language is about.</p>
+<ul>
+<li>Give an implementation description when the language concerns the low-level operations of the Turing machine.</li>
+<li>Give a high-level description when the language is about specific problem domain and not the inner workings of the underlying Turing machine.</li>
+</ul>
+<p>In essence, we have to ask ourselves what is the “hard part” about the computation described in the language. If the hard part is about getting a Turing machine to perform a certain kind of computation, then an implementation description is appropriate. Otherwise, a high-level description gets to the point without introducing unnecessary detail.</p>
+<h2 id="reading">Reading</h2>
+<ul>
+<li>Sipser, chapter 3.2 “Variants of Turing Machines” to the end of the chapter 3.</li>
+</ul>
+<hr />
+<p><strong>Reading Problem (Stack ’Em Up)</strong></p>
+<p>(Adapted from Sipser 3.9).</p>
+<p>(Consider an array data structure that allows for arbitrary (index-based) read-write access of its elements. Describe a procedure whereby <em>two</em> stack data structures (that only allow pushing and popping of the top of the stack) can simulate an array. (<em>Hint</em>: place the stacks top-to-top.)</p>
+
+      </div>
+    </section>
+    <footer class="footer is-size-7 has-text-centered">
+  <a rel="license" href="http://creativecommons.org/licenses/by-sa/4.0/"><img alt="Creative Commons License" style="border-width:0" src="https://i.creativecommons.org/l/by-sa/4.0/80x15.png" /></a><br />This work is licensed under a <a rel="license" href="http://creativecommons.org/licenses/by-sa/4.0/">Creative Commons Attribution-ShareAlike 4.0 International License</a>.<br/>
+  Made with <a href="https://bulma.io">Bulma</a>, <a href="https://jekyllrb.com">Jekyll</a>, <a href="https://www.brailleinstitute.org/freefont">Atkinson Hyperlegible</a>, and <a href="https://github.com/JetBrains/JetBrainsMono">JetBrains Mono</a>.
+</footer>
+
+  </body>
+</html>

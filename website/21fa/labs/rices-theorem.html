@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Rice's Theorem</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bulma/0.7.5/css/bulma.min.css">
+  <link rel="stylesheet" href="/csc341/css/style.css">
+  <link rel="stylesheet" href="/csc341/css/syntax.css">
+  <link rel="stylesheet" href="/csc341/css/syntax-drracket.css">
+  <script defer src="https://use.fontawesome.com/releases/v5.3.1/js/all.js"></script>
+  
+  <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+  <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+  
+  
+  
+</head>
+
+  </head>
+  <body>
+    <nav class="navbar is-primary" role="navigation" aria-label="main navigation">
+  <div class="navbar-brand">
+    <a class="navbar-item" href="/csc341/">
+      <img src="/csc341/img/laurel-white.png">
+      &nbsp;
+      CSC 341 (21fa)
+    </a>
+
+    <a role="button" class="navbar-burger burger" aria-label="menu" aria-expanded="false" data-target="navbarBasicExample">
+      <span aria-hidden="true"></span>
+      <span aria-hidden="true"></span>
+      <span aria-hidden="true"></span>
+    </a>
+  </div>
+
+  <div id="navbarBasicExample" class="navbar-menu">
+    <div class="navbar-start">
+      <a class="navbar-item" href="/csc341/syllabus">
+        Syllabus
+      </a>
+      <a class="navbar-item" href="/csc341/resources">
+        Resources
+      </a>
+      
+      <a class="navbar-item" href="https://teams.microsoft.com/l/team/19%3avJm8Wpx7VaDe72Q53lhFS8hKbE8ZqBMHkz-HLvwbzag1%40thread.tacv2/conversations?groupId=621c250a-ec62-4c30-afbd-0e3b7efa7606&tenantId=524f9e3e-faca-4f64-b3ec-adb2baee8807
+">Teams</a>
+      
+      
+      <a class="navbar-item" href="https://www.gradescope.com/courses/299977
+">Gradescope</a>
+      
+      <a class="navbar-item" href="/csc341/editor">
+        Editor
+      </a>
+    </div>
+  </div>
+</nav>
+
+<!-- Adapted from: https://bulma.io/documentation/components/navbar/ -->
+<script>
+  document.addEventListener('DOMContentLoaded', () => {
+
+    // Get all "navbar-burger" elements
+    const $navbarBurgers = Array.prototype.slice.call(document.querySelectorAll('.navbar-burger'), 0);
+
+    // Check if there are any navbar burgers
+    if ($navbarBurgers.length > 0) {
+
+      // Add a click event on each of them
+      $navbarBurgers.forEach( el => {
+        el.addEventListener('click', () => {
+
+          // Get the target from the "data-target" attribute
+          const target = el.dataset.target;
+          const $target = document.getElementById(target);
+
+          // Toggle the "is-active" class on both the "navbar-burger" and the "navbar-menu"
+          el.classList.toggle('is-active');
+          $target.classList.toggle('is-active');
+
+        });
+      });
+    }
+
+  });
+</script>
+
+    <section class="section">
+      <div class="container">
+        <h1 class="title">
+          CSC 341 (Fall 2021)
+        </h1>
+        <h1 class="subtitle">
+          
+            Lab: Rice's Theorem
+          
+        </h1>
+      </div>
+    </section>
+    <section class="content">
+      <div class="container">
+        
+        <p><span class="math display">\[
+\newcommand{\desc}[1]{\langle #1 \rangle}
+\]</span></p>
+<p>In this problem, we’ll walk through and complete a proof of Rice’s Theorem which was introduced in the reading.</p>
+<p>Let <span class="math inline">\(P\)</span> be a language whose strings are Turing machine descriptions that satisfy an arbitrary predicate <span class="math inline">\(f\)</span>, <em>i.e.</em>,</p>
+<p><span class="math display">\[
+P = \{\, \desc{M} \mid f(M) \,\}
+\]</span></p>
+<p>(<em>Note</em>: throughout this lab, <span class="math inline">\(P\)</span> will refer to this Turing machine, not the complexity class <span class="math inline">\(P\)</span>!)</p>
+<p>where <span class="math inline">\(f\)</span> is a proposition ranging over Turing machine descriptions. For example, the following are propositions over a Turing machine, call it <span class="math inline">\(M\)</span>:</p>
+<ul>
+<li><span class="math inline">\(L(M)\)</span> is finite.</li>
+<li><span class="math inline">\(M\)</span> writes a <code>$</code> on its tape for some input.</li>
+</ul>
+<p>Rice’s Theorem demands two properties are true about <span class="math inline">\(P\)</span>.</p>
+<ul>
+<li><span class="math inline">\(P\)</span> is non-trivial: there exists <span class="math inline">\(M_1\)</span> and <span class="math inline">\(M_2\)</span> such that <span class="math inline">\(\desc{M_1} \in P\)</span> and <span class="math inline">\(\desc{M_2} \notin P\)</span>.</li>
+<li><span class="math inline">\(P\)</span> is a language property: if <span class="math inline">\(L(M_1) = L(M_2)\)</span> then <span class="math inline">\(\desc{M_1} \in P \Leftrightarrow \desc{M_2} \in P\)</span>.</li>
+</ul>
+<h1 id="problem-1-language-property-example">Problem 1: Language Property Example</h1>
+<p>Let’s first check that we understand what we mean by “language property”.</p>
+<p>Let:</p>
+<p><span class="math display">\[
+P = \{\, \desc{M} \mid \text{$M$ writes a `\$&#39; on its tape for some input.} \,\}.
+\]</span></p>
+<p>With your group, ultimately discuss and answer why <span class="math inline">\(P\)</span> <em>does not</em> fulfill the definition of language property. Make sure to appeal to the above definition of language property in your argument.</p>
+<h1 id="problem-2-core-reduction">Problem 2: Core Reduction</h1>
+<p>Now let’s proceed with the core of the proof of Rice’s theorem. First we’ll complete the core reduction under a set of assumptions about our property <span class="math inline">\(P\)</span>. We’ll then discuss after the fact why these assumptions are sound given the constraints of Rice’s theorem.</p>
+<p>Assume the following:</p>
+<ul>
+<li>There exists a TM <span class="math inline">\(T\)</span> such that <span class="math inline">\(\desc{T} \in P\)</span>.</li>
+<li>Define the TM that rejects all strings to be <span class="math inline">\(T_{\emptyset}\)</span>. Assume that <span class="math inline">\(\desc{T_{\emptyset}} \notin P\)</span>.</li>
+</ul>
+<p>Use <span class="math inline">\(T\)</span> to construct a mapping reduction from <span class="math inline">\(A_\mathsf{TM}\)</span> to <span class="math inline">\(P\)</span>. Keep in mind the following insights while constructing your mapping reduction:</p>
+<ul>
+<li>Your mapping construction, when given an input to <span class="math inline">\(A_\mathsf{TM}\)</span> of the form <span class="math inline">\(\desc{M, w}\)</span> should produce a TM <span class="math inline">\(\desc{M&#39;}\)</span> with the property that <span class="math inline">\(M\)</span> accepts <span class="math inline">\(w\)</span> iff <span class="math inline">\(\desc{M&#39;} \in P\)</span>.</li>
+<li>Note that we have asserted that (a) a machine <span class="math inline">\(T\)</span> exists that is in <span class="math inline">\(P\)</span> and (b) the machine that rejects all strings <span class="math inline">\(T_\emptyset\)</span> is not in <span class="math inline">\(P\)</span>. Use these as the targets for your mapping function as described in “Undecidable Proof Strategies” handout.</li>
+</ul>
+<p>Once you have a candidate reduction, check your answer with the course staff.</p>
+<h1 id="problem-3-the-first-constraint">Problem 3: The First Constraint</h1>
+<p>With the reduction completed, we need to show where the two constraints came from. Let’s briefly talk about the first constraint.</p>
+<p>In a few sentences, explain why the constraints of Rice’s Theorem on <span class="math inline">\(P\)</span> imply that there exists a TM <span class="math inline">\(T\)</span> such that <span class="math inline">\(\desc{T} \in P\)</span>.</p>
+<h1 id="problem-4-the-final-fix-up">Problem 4: The Final Fix-Up</h1>
+<p>The second constraint is really an assumption “without loss of generality”. In other words, even if <span class="math inline">\(T_\emptyset \in P\)</span>, we can still complete the proof with a little bit inconsequential fix-up to our proof. Note that we can’t simply work with <span class="math inline">\(T_\emptyset\)</span> directly in this case because our mapping reduction will fail in a style similar to <span class="math inline">\(E_{TM}\)</span>. We instead need to do something else.</p>
+<p>It turns out that the fix-up is to consider instead the complement of <span class="math inline">\(P\)</span>:</p>
+<p><span class="math display">\[
+\overline{P} = \{\, \desc{M} \mid \desc{M} \notin P \,\}.
+\]</span></p>
+<p>The reduction above then holds, but shows that <span class="math inline">\(A_\mathsf{TM} \leq_m \overline{P}\)</span> rather than <span class="math inline">\(P\)</span>.</p>
+<p>Determine how a decider for <span class="math inline">\(\overline{P}\)</span> could be used to create a decider for <span class="math inline">\(P\)</span>, allowing us to conclude that <span class="math inline">\(A_\mathsf{TM} \leq \overline{P}\)</span> as well. Check your reasoning for this and the previous part with the course staff when you are done.</p>
+
+      </div>
+    </section>
+    <footer class="footer is-size-7 has-text-centered">
+  <a rel="license" href="http://creativecommons.org/licenses/by-sa/4.0/"><img alt="Creative Commons License" style="border-width:0" src="https://i.creativecommons.org/l/by-sa/4.0/80x15.png" /></a><br />This work is licensed under a <a rel="license" href="http://creativecommons.org/licenses/by-sa/4.0/">Creative Commons Attribution-ShareAlike 4.0 International License</a>.<br/>
+  Made with <a href="https://bulma.io">Bulma</a>, <a href="https://jekyllrb.com">Jekyll</a>, <a href="https://www.brailleinstitute.org/freefont">Atkinson Hyperlegible</a>, and <a href="https://github.com/JetBrains/JetBrainsMono">JetBrains Mono</a>.
+</footer>
+
+  </body>
+</html>

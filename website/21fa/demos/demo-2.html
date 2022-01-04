@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Demonstration Exercise 2</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bulma/0.7.5/css/bulma.min.css">
+  <link rel="stylesheet" href="/csc341/css/style.css">
+  <link rel="stylesheet" href="/csc341/css/syntax.css">
+  <link rel="stylesheet" href="/csc341/css/syntax-drracket.css">
+  <script defer src="https://use.fontawesome.com/releases/v5.3.1/js/all.js"></script>
+  
+  <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+  <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+  
+  
+  
+</head>
+
+  </head>
+  <body>
+    <nav class="navbar is-primary" role="navigation" aria-label="main navigation">
+  <div class="navbar-brand">
+    <a class="navbar-item" href="/csc341/">
+      <img src="/csc341/img/laurel-white.png">
+      &nbsp;
+      CSC 341 (21fa)
+    </a>
+
+    <a role="button" class="navbar-burger burger" aria-label="menu" aria-expanded="false" data-target="navbarBasicExample">
+      <span aria-hidden="true"></span>
+      <span aria-hidden="true"></span>
+      <span aria-hidden="true"></span>
+    </a>
+  </div>
+
+  <div id="navbarBasicExample" class="navbar-menu">
+    <div class="navbar-start">
+      <a class="navbar-item" href="/csc341/syllabus">
+        Syllabus
+      </a>
+      <a class="navbar-item" href="/csc341/resources">
+        Resources
+      </a>
+      
+      <a class="navbar-item" href="https://teams.microsoft.com/l/team/19%3avJm8Wpx7VaDe72Q53lhFS8hKbE8ZqBMHkz-HLvwbzag1%40thread.tacv2/conversations?groupId=621c250a-ec62-4c30-afbd-0e3b7efa7606&tenantId=524f9e3e-faca-4f64-b3ec-adb2baee8807
+">Teams</a>
+      
+      
+      <a class="navbar-item" href="https://www.gradescope.com/courses/299977
+">Gradescope</a>
+      
+      <a class="navbar-item" href="/csc341/editor">
+        Editor
+      </a>
+    </div>
+  </div>
+</nav>
+
+<!-- Adapted from: https://bulma.io/documentation/components/navbar/ -->
+<script>
+  document.addEventListener('DOMContentLoaded', () => {
+
+    // Get all "navbar-burger" elements
+    const $navbarBurgers = Array.prototype.slice.call(document.querySelectorAll('.navbar-burger'), 0);
+
+    // Check if there are any navbar burgers
+    if ($navbarBurgers.length > 0) {
+
+      // Add a click event on each of them
+      $navbarBurgers.forEach( el => {
+        el.addEventListener('click', () => {
+
+          // Get the target from the "data-target" attribute
+          const target = el.dataset.target;
+          const $target = document.getElementById(target);
+
+          // Toggle the "is-active" class on both the "navbar-burger" and the "navbar-menu"
+          el.classList.toggle('is-active');
+          $target.classList.toggle('is-active');
+
+        });
+      });
+    }
+
+  });
+</script>
+
+    <section class="section">
+      <div class="container">
+        <h1 class="title">
+          CSC 341 (Fall 2021)
+        </h1>
+        <h1 class="subtitle">
+          
+            Demonstration Exercise 2
+          
+        </h1>
+      </div>
+    </section>
+    <section class="content">
+      <div class="container">
+        
+        <h1 id="problem-1">Problem 1: ☠</h1>
+<p>Formally define a <em>DFA with death</em> <span class="math inline">\(D = (Q, \Sigma^*, q_0, \delta, F)\)</span> as a DFA except that the type of the transition function is:</p>
+<p><span class="math display">\[
+\delta : Q \times Σ \rightarrow Q \cup \{\, ☠ \,\}.
+\]</span></p>
+<p>We assume that <span class="math inline">\(☠ \notin Q\)</span>. Intuitively, if a state-character pair transitions to ☠ (LaTeX: <code>\skull</code>, Unicode: ☠), then no additional input is consumed and the machine rejects the input string.</p>
+<ol type="1">
+<li><p>Recall that <span class="math inline">\(M\)</span> accepts <span class="math inline">\(w\)</span> if there exists a sequence of states <span class="math inline">\(r_0, r_1, \ldots, r_n \in Q\)</span> such that:</p>
+<ul>
+<li><span class="math inline">\(r_0 = q_0\)</span>,</li>
+<li><span class="math inline">\(\delta(r_i, w_{i+1}) = r_{i+1}\)</span> for <span class="math inline">\(i = 0, \ldots, n-1\)</span>, and</li>
+<li><span class="math inline">\(r_n in F\)</span>.</li>
+</ul>
+<p>Does the definition of acceptance need to change for a DFA with death? If so, give a modified definition, explaining what changes you made in a sentence or two. If not, explain why in a sentence or two.</p></li>
+<li><p>Prove that a DFA with death is equivalent to a DFA. Make sure to prove both sides of this equivalence!</p></li>
+</ol>
+<h1 id="problem-2-embedding">Problem 2: Embedding</h1>
+<p>Define the embedding of language <span class="math inline">\(L_2\)</span> into <span class="math inline">\(L_1\)</span>, written <span class="math inline">\(L_1 \curvearrowleft L_2\)</span> (LaTeX: <code>\curvearrowleft</code>, Unicode: ↶) as:</p>
+<p><span class="math display">\[
+L_1 \curvearrowleft L_2 = \{\, x_1 y x_2 \mid x_1 x_2 \in L_1, y \in L_2 \,\}.
+\]</span></p>
+<p>(<em>Note</em>: it is <span class="math inline">\(x_1 x_2\)</span>, <em>i.e.</em>, their concatenation, that is in <span class="math inline">\(L_1\)</span>. <span class="math inline">\(x_1\)</span> and <span class="math inline">\(x_2\)</span>, individually, may not be in <span class="math inline">\(L_1\)</span>.)</p>
+<p>Prove that the language embedding operator (↶) is closed under the regular languages.</p>
+<p>(<em>Hint 1</em>: work through a number of examples of finite automata, combining them with the (↶) operator and developing an intuitive sense of how to compute the embedding.)</p>
+<p>(<em>Hint 2</em>: to implement this construction elegantly, you will need to use nondeterminism heavily! Also, don’t be afraid to replicate your assumed machines for <span class="math inline">\(L_1\)</span> and <span class="math inline">\(L_2\)</span> repeatedly.)</p>
+<p>(<em>Hint 3</em>: regarding formalizing your construction, it is likely fairly complicated! I recommend developing a systematic notation for talking about the various states and transitions of your final machine. For example, if you want to denote a copy of a machine, say <span class="math inline">\(N\)</span>, that is associated with some state, call it <span class="math inline">\(q\)</span>, you might call the copy <span class="math inline">\(N_q\)</span>.)</p>
+
+      </div>
+    </section>
+    <footer class="footer is-size-7 has-text-centered">
+  <a rel="license" href="http://creativecommons.org/licenses/by-sa/4.0/"><img alt="Creative Commons License" style="border-width:0" src="https://i.creativecommons.org/l/by-sa/4.0/80x15.png" /></a><br />This work is licensed under a <a rel="license" href="http://creativecommons.org/licenses/by-sa/4.0/">Creative Commons Attribution-ShareAlike 4.0 International License</a>.<br/>
+  Made with <a href="https://bulma.io">Bulma</a>, <a href="https://jekyllrb.com">Jekyll</a>, <a href="https://www.brailleinstitute.org/freefont">Atkinson Hyperlegible</a>, and <a href="https://github.com/JetBrains/JetBrainsMono">JetBrains Mono</a>.
+</footer>
+
+  </body>
+</html>

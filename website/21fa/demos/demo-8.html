@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Demonstration Exercise #8</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bulma/0.7.5/css/bulma.min.css">
+  <link rel="stylesheet" href="/csc341/css/style.css">
+  <link rel="stylesheet" href="/csc341/css/syntax.css">
+  <link rel="stylesheet" href="/csc341/css/syntax-drracket.css">
+  <script defer src="https://use.fontawesome.com/releases/v5.3.1/js/all.js"></script>
+  
+  <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+  <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+  
+  
+  
+</head>
+
+  </head>
+  <body>
+    <nav class="navbar is-primary" role="navigation" aria-label="main navigation">
+  <div class="navbar-brand">
+    <a class="navbar-item" href="/csc341/">
+      <img src="/csc341/img/laurel-white.png">
+      &nbsp;
+      CSC 341 (21fa)
+    </a>
+
+    <a role="button" class="navbar-burger burger" aria-label="menu" aria-expanded="false" data-target="navbarBasicExample">
+      <span aria-hidden="true"></span>
+      <span aria-hidden="true"></span>
+      <span aria-hidden="true"></span>
+    </a>
+  </div>
+
+  <div id="navbarBasicExample" class="navbar-menu">
+    <div class="navbar-start">
+      <a class="navbar-item" href="/csc341/syllabus">
+        Syllabus
+      </a>
+      <a class="navbar-item" href="/csc341/resources">
+        Resources
+      </a>
+      
+      <a class="navbar-item" href="https://teams.microsoft.com/l/team/19%3avJm8Wpx7VaDe72Q53lhFS8hKbE8ZqBMHkz-HLvwbzag1%40thread.tacv2/conversations?groupId=621c250a-ec62-4c30-afbd-0e3b7efa7606&tenantId=524f9e3e-faca-4f64-b3ec-adb2baee8807
+">Teams</a>
+      
+      
+      <a class="navbar-item" href="https://www.gradescope.com/courses/299977
+">Gradescope</a>
+      
+      <a class="navbar-item" href="/csc341/editor">
+        Editor
+      </a>
+    </div>
+  </div>
+</nav>
+
+<!-- Adapted from: https://bulma.io/documentation/components/navbar/ -->
+<script>
+  document.addEventListener('DOMContentLoaded', () => {
+
+    // Get all "navbar-burger" elements
+    const $navbarBurgers = Array.prototype.slice.call(document.querySelectorAll('.navbar-burger'), 0);
+
+    // Check if there are any navbar burgers
+    if ($navbarBurgers.length > 0) {
+
+      // Add a click event on each of them
+      $navbarBurgers.forEach( el => {
+        el.addEventListener('click', () => {
+
+          // Get the target from the "data-target" attribute
+          const target = el.dataset.target;
+          const $target = document.getElementById(target);
+
+          // Toggle the "is-active" class on both the "navbar-burger" and the "navbar-menu"
+          el.classList.toggle('is-active');
+          $target.classList.toggle('is-active');
+
+        });
+      });
+    }
+
+  });
+</script>
+
+    <section class="section">
+      <div class="container">
+        <h1 class="title">
+          CSC 341 (Fall 2021)
+        </h1>
+        <h1 class="subtitle">
+          
+            Demonstration Exercise #8
+          
+        </h1>
+      </div>
+    </section>
+    <section class="content">
+      <div class="container">
+        
+        <h1 id="problem-1-chicken-and-rice">Problem 1: Chicken and Rice</h1>
+<ol type="a">
+<li><p>Use Rice’s Theorem to show the following language is undecidable:</p>
+<p><span class="math display">\[
+L_1 = \{\, M \mid \text{\( M \) is a TM and \( 010 \in L(M) \)} \,\}.
+\]</span></p></li>
+<li><p>Is the following language undecidable according to Rice’s Theorem? Explain in a sentence or two.</p>
+<p><span class="math display">\[
+L_2 = \{\, M \mid \text{\( M \) is a TM and on some input, \( 010 \) exists on the tape at some point} \,\}.
+\]</span></p></li>
+</ol>
+<h1 id="problem-2-scheme-is-real-right">Problem 2: Scheme Is Real, Right?</h1>
+<ol type="a">
+<li><p>Consider the problem of determining whether the branches of an arbitrary if-expression in Scheme, <em>i.e.</em>, a problem of the form <code>(if b e1 e2)</code>, produces the same type of value (<em>e.g.</em>, only integers or strings). For example, this property is:</p>
+<ul>
+<li>True of <code>(if b 0 1)</code>.</li>
+<li>False of <code>(if b 5 #t)</code>.</li>
+<li>True of <code>(if b (if #t 0 "hi") 1)</code> (because we are only checking the branches of the top-level conditional).</li>
+</ul>
+<p>Note that the content of the guard <code>b</code> in these cases is irrelevant because we want to know whether the types of values of each branch are the same, <em>irrespective of whether we go into either of the branches on any choice of <code>b</code></em>.</p>
+<p>Formulate this problem as a language and show that this problem is undecidable. For this problem, you may assume:</p>
+<ul>
+<li>The existence of a Scheme function <code>run-tm</code> that takes a Turing machine description <span class="math inline">\(M\)</span> and input <span class="math inline">\(w\)</span> and returns <code>#t</code> if <span class="math inline">\(M\)</span> accepts <span class="math inline">\(w\)</span> and <code>#f</code> if <span class="math inline">\(M\)</span> rejects <span class="math inline">\(w\)</span>.</li>
+<li>The “type” of the value “produced” by the infinite loop is the “bottom” type, <span class="math inline">\(\bot\)</span>. In the context of this proof, <span class="math inline">\(\bot\)</span> has type <span class="math inline">\(a\)</span> for any <span class="math inline">\(a\)</span> so that if were able to establish that a branch of computation had type <span class="math inline">\(\bottom\)</span>, that branch has some <em>unknown</em> type <span class="math inline">\(a\)</span> that is not necessarily equal to any particular concrete type we have in mind.</li>
+</ul></li>
+<li><p>Now consider the fact that a computer program on a 64-bit machine runs with <span class="math inline">\(2^{64}\)</span> bits of memory. Show that the halting problem for such computer programs is decidable. Make sure to argue the (a) correctness and (b) termination of your algorithm.</p>
+<p>(<em>Hint</em>: consider the decidability proof of <span class="math inline">\(A_{\mathsf{LBA}}\)</span>.)</p></li>
+<li><p>The answers to the two previous parts seem to be at odds. In a few sentences, describe the critical difference between the two cases that makes the first part undecidable but the second part decidable.</p></li>
+<li><p>Finally with all this in mind, it seems like that undecidability is merely a theoretical device. However, it does have important practical implications! In a few sentences, describe these practical implications—if we feel the need to solve some variant of the halting problem for a computational device, what must we keep in mind and how should we approach the problem?</p></li>
+</ol>
+
+      </div>
+    </section>
+    <footer class="footer is-size-7 has-text-centered">
+  <a rel="license" href="http://creativecommons.org/licenses/by-sa/4.0/"><img alt="Creative Commons License" style="border-width:0" src="https://i.creativecommons.org/l/by-sa/4.0/80x15.png" /></a><br />This work is licensed under a <a rel="license" href="http://creativecommons.org/licenses/by-sa/4.0/">Creative Commons Attribution-ShareAlike 4.0 International License</a>.<br/>
+  Made with <a href="https://bulma.io">Bulma</a>, <a href="https://jekyllrb.com">Jekyll</a>, <a href="https://www.brailleinstitute.org/freefont">Atkinson Hyperlegible</a>, and <a href="https://github.com/JetBrains/JetBrainsMono">JetBrains Mono</a>.
+</footer>
+
+  </body>
+</html>

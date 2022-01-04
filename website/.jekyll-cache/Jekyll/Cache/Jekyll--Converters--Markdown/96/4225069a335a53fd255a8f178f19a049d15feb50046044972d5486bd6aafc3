@@ -1,0 +1,20 @@
+I"�<p><span class="math display">\[
+\newcommand{\prob}[1]{\mathsf{#1}}
+\]</span></p>
+<h1 id="problem-tours-approximately">Problem: Tours, Approximately</h1>
+<p>A polynomial-time approximation scheme (PTAS) is an approximation algorithm for a minimization problem that produces solutions that are within a factor of <span class="math inline">\((1 + \epsilon)\)</span> (dually <span class="math inline">\((1 - \epsilon)\)</span> for maximization problems) of the optimal solution, for some constant parameter <span class="math inline">\(\epsilon\)</span>. In the book, Sipser describes a 2-approximation algorithm for <span class="math inline">\(\prob{VERTEX-COVER}\)</span> which is a PTAS with <span class="math inline">\(\epsilon = 1\)</span>. Several NP-complete problems has PTAS.</p>
+<p>Recall that a <em>Hamiltonian cycle</em> is a cycle in a graph that touches every vertex exactly once. From this, we can discuss the <em>traveling salesman problem</em> (TSP) which requires us to find the shortest Hamiltonian cycle in a weighted undirected graph. For simplicity’s sake, when we talk about TSP, we assume that the graph is complete, <em>i.e.</em>, every location is reachable from every other location. It turns out that it is provable that TSP has no PTAS which is not good since TSP occurs in many real-life situations!</p>
+<p>In order to gain a tractable approximation for TSP, we need to add in an extra constraint, <em>the triangle inequality</em>, which states that for any triple of vertices <span class="math inline">\(u\)</span>,<span class="math inline">\(v\)</span>,<span class="math inline">\(w\)</span>:</p>
+<p><span class="math display">\[
+l(u, v) + l(v, w) \geq l(u, w)
+\]</span></p>
+<p>Where <span class="math inline">\(l(u, v)\)</span> is the weight of the edge <span class="math inline">\(uv\)</span>. If we add this constraint to TSP, then we can obtain a <em>2-approximation</em> scheme for TSP.</p>
+<ol type="a">
+<li><p>Come up with two small example graphs, one that exhibits the triangle inequality and one that does not. Based on your graphs, answer the following question and justify your response in a sentence or two: if we know that the triangle inequality holds of a graph, what do we know about the shortest path between any pair of vertices in the graph?</p></li>
+<li><p>Review the concept of a <em>minimum spanning tree</em> (MST) for a graph. In particular, what is a MST and how can you compute one efficiently? Give an example weighted, undirected graph and a MST for that graph.</p></li>
+<li><p>Now, derive an approximation algorithm for the TSP using the notion of a minimum spanning tree.</p>
+<p>(<em>Hint</em>: Think about using the MST of the graph as a starting point for the tour. How can the MST be used to visit all the vertices of the graph? From this, you can view the problem as “fixing up” this tour so it is indeed Hamiltonian.)</p></li>
+<li><p>Finally, justify in a paragraph or two the correctness of your algorithm. In particular, why is algorithm a 2-approximation scheme. That is, why is the result is no larger than two times the optimal tour of the graph.</p>
+<p>(<em>Hint</em>: your reasoning should appeal to the triangle inequality in some way!)</p></li>
+</ol>
+:ET

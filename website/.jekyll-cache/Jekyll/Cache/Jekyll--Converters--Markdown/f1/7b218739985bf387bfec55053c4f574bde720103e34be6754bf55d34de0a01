@@ -1,0 +1,20 @@
+I"|<h1 id="problem-1-just-the-facts-turing-edition">Problem 1: Just The Facts, Turing Edition</h1>
+<p>(Adapted from Sipser 3.5) Answer the following short questions about Turing machines:</p>
+<ol type="1">
+<li><p>Can a Turing machine ever write the blank symbol <code>␣</code> on its tape?</p></li>
+<li><p>Can the tape alphabet <span class="math inline">\(Γ\)</span> be the same as the input alphabet <span class="math inline">\(Σ\)</span>?</p></li>
+<li><p>Can a Turing machine’s head <em>ever</em> be in the same location in two successive steps?</p></li>
+<li><p>Can a Turing machine contain just a single state?</p></li>
+<li><p>What happens when a Turing machine’s head moves off the left end of the tape? What happens when it moves off the right end of the tape?</p></li>
+<li><p>One difference between Turing machines and our previous machine-based models of computation is the presence of a reject state. Why was this unnecessary for finite automata? Why is it necessary for Turing machines?</p></li>
+<li><p>Describe the difference between a Turing machine that <em>recognizes</em> a language versus a machine that <em>decides</em> a language.</p></li>
+<li><p>We can strongly characterize the runtime of any finite automata in terms of the size of its input. What can we say about the runtime of a Turing machine in terms of the size of its input?</p></li>
+<li><p>Give a implementation-level diagram of a Turing machine that does not terminate on any input.</p></li>
+</ol>
+<h1 id="problem-2-implementation-details">Problem 2: Implementation Details</h1>
+<p>(Adapted from Sipser 3.8) Give implementation-level diagrams of the following languages:</p>
+<ul>
+<li><span class="math inline">\(L_1 = \{ w \mid \text{\( w \) contains an equal number of 0s and 1s} \}\)</span>.</li>
+<li><span class="math inline">\(L_3 = \{ w \mid \text{\( w \) does not contain an equal number of 0s and 1s} \}\)</span>.</li>
+</ul>
+:ET

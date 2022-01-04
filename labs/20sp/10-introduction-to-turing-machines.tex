@@ -1,0 +1,57 @@
+\documentclass[11pt]{book}
+
+\setcounter{chapter}{10}
+\newcommand{\docclass}{CSC 341 (20sp)}
+\newcommand{\doctitle}{Introduction to Turing Machines}
+\newcommand{\docauthor}{Peter-Michael Osera}
+
+\usepackage{reading}
+
+\begin{document}
+
+\begin{center}
+  \large\textbf{{\doctitle}}
+\end{center}
+
+\vspace{2em}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{problem}{Just The Facts, Turing Edition}
+
+(Adapted from Sipser 3.5)
+Answer the following short questions about Turing machines:
+
+\begin{enumerate}[label=(\alph*)]
+  \item Can a Turing machine ever write the blank symbol \texttt{\textvisiblespace} on its tape?
+  \item Can the tape alphabet \( Γ \) be the same as the input alphabet \( Σ \)?
+  \item Can a Turing machine's head \emph{ever} be in the same location in two successive steps?
+  \item Can a Turing machine contain just a single state?
+  \item What happens when a Turing machine's head moves off the left end of the tape?  What happens when it moves off the right end of the tape?
+  \item One difference between Turing machines and our previous machine-based models of computation is the presence of a reject state.
+    Why was this unnecessary for finite and pushdown automata?
+    Why is it necessary for Turing machines?
+  \item Describe the difference betwen a Turing machine that \emph{recognizes} a language versus a machine that \emph{decides} a language.
+  \item We can strongly characterize the runtime of any finite automata in terms of the size of its input.
+    What can we say about the runtime of a Turing machine in terms of the size of its input?
+  \item Give a implementation-level diagram of a Turing machine that does not terminate on any input.
+\end{enumerate}
+
+\end{problem}
+
+\newpage
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{problem}{Implementation Details}
+
+(Adapted from Sipser 3.8)
+Give implementation-level diagrams of the following languages:
+\begin{enumerate}[label=(\alph*)]
+  \item \( L_1 = \{ w \mid \text{\( w \) contains an equal number of 0s and 1s} \} \).
+  \item \( L_3 = \{ w \mid \text{\( w \) does not contain an equal number of 0s and 1s} \} \).
+\end{enumerate}
+
+\end{problem}
+
+\end{document}

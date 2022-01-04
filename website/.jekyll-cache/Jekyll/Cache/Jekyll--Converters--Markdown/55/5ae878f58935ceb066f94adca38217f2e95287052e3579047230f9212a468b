@@ -1,0 +1,19 @@
+I"á<h1 id="problem-reversal">Problem: Reversal</h1>
+<p>The <em>reverse</em> of a language <span class="math inline">\(L\)</span>, written <span class="math inline">\(L^R\)</span>, is defined as follows:</p>
+<p><span class="math display">\[
+L^R = \{\, x_k \cdots x_1 \mid x_1 \cdots x_k \in L \,\}.
+\]</span></p>
+<ol type="1">
+<li>Give a proof sketch (high-level proof description) that complement is closed under the regular languages. In particular, which language model would you use to prove closure in this case? At a high-level, how do you transform an instance of this model into one that recognizes its reversal?</li>
+<li>Formally prove that if <span class="math inline">\(L\)</span> is regular, then <span class="math inline">\(L^R\)</span> is also regular.</li>
+</ol>
+<h1 id="problem-complement">Problem: Complement</h1>
+<p>The <em>complement</em> of a language is defined to be the set of strings <em>not</em> in the language:</p>
+<p><span class="math display">\[
+\overline{L} = \{\, w \mid w \notin L \,\}.
+\]</span></p>
+<ol type="1">
+<li>Give a proof sketch (high-level proof description) that complement is closed under the regular languages. In particular, which language model would you use to prove closure in this case? At a high-level, how do you transform an instance of this model into one that recognizes its complement?</li>
+<li>Formally prove that if <span class="math inline">\(L\)</span> is regular, then <span class="math inline">\(\overline{L}\)</span> is also regular.</li>
+</ol>
+:ET

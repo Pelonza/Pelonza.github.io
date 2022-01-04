@@ -1,0 +1,88 @@
+@font-face {
+  font-family: "hyperlegible";
+  src: url("../fonts/Atkinson-Hyperlegible-Regular-102a.woff2") format("woff2");
+  font-weight: normal;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: "hyperlegible";
+  src: url("../fonts/Atkinson-Hyperlegible-Italic-102a.woff2") format("woff2");
+  font-weight: normal;
+  font-style: italic;
+}
+
+@font-face {
+  font-family: "hyperlegible";
+  src: url("../fonts/Atkinson-Hyperlegible-Bold-102a.woff2") format("woff2");
+  font-weight: bold;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: "hyperlegible";
+  src: url("../fonts/Atkinson-Hyperlegible-BoldItalic-102a.woff2") format("woff2");
+  font-weight: bold;
+  font-style: italic;
+}
+
+@font-face {
+  font-family: "jetbrains";
+  src: url("https://cdn.jsdelivr.net/gh/JetBrains/JetBrainsMono/web/woff2/JetBrainsMono-Regular.woff2") format("woff2"),
+       url("https://cdn.jsdelivr.net/gh/JetBrains/JetBrainsMono/web/woff/JetBrainsMono-Regular.woff") format("woff"),
+       url("https://cdn.jsdelivr.net/gh/JetBrains/JetBrainsMono/ttf/JetBrainsMono-Regular.ttf") format("truetype");
+  font-weight: normal;
+  font-style: normal;
+}
+
+body {
+  font-family: "hyperlegible", BlinkMacSystemFont, -apple-system, "Segoe UI", "Roboto", "Oxygen", "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue", "Helvetica", "Arial", sans-serif;
+  font-size: 1.2em;
+}
+
+code, pre {
+  font-family: "jetbrains", monospace;
+}
+
+table th.week {
+  background-color: hsl(171, 100%, 41%);
+  /* background-color: hsl(153, 53%, 53%); */
+  color: white;
+}
+
+div .definition {
+  padding: 0.5em;
+  border: solid black;
+  margin-bottom: 1em;
+}
+
+div .exercise {
+  padding: 0.5em;
+  border-left: 12px solid hsl(204, 71%, 53%);
+  background-color: hsl(204, 71%, 90%);
+  margin-bottom: 1em;
+}
+
+div .note {
+  padding: 0.5em;
+  border: dotted hsl(141, 53%, 53%);
+  margin-bottom: 1em;
+}
+
+div .proof {
+  padding: 0.5em;
+  border-left: 12px solid hsl(141, 53%, 53%);
+  background-color: hsl(141, 53%, 90%);
+  margin-bottom: 1em;
+}
+
+div .qed {
+  text-align: right;
+}
+
+div .toc {
+  border: 1px solid black;
+  font-size: 80%;
+}
+
+div .toc ul li { padding: 0pt; }

@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Demonstration Exercise #4</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bulma/0.7.5/css/bulma.min.css">
+  <link rel="stylesheet" href="/csc341/css/style.css">
+  <link rel="stylesheet" href="/csc341/css/syntax.css">
+  <link rel="stylesheet" href="/csc341/css/syntax-drracket.css">
+  <script defer src="https://use.fontawesome.com/releases/v5.3.1/js/all.js"></script>
+  
+  <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+  <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+  
+  
+  
+</head>
+
+  </head>
+  <body>
+    <nav class="navbar is-primary" role="navigation" aria-label="main navigation">
+  <div class="navbar-brand">
+    <a class="navbar-item" href="/csc341/">
+      <img src="/csc341/img/laurel-white.png">
+      &nbsp;
+      CSC 341 (21fa)
+    </a>
+
+    <a role="button" class="navbar-burger burger" aria-label="menu" aria-expanded="false" data-target="navbarBasicExample">
+      <span aria-hidden="true"></span>
+      <span aria-hidden="true"></span>
+      <span aria-hidden="true"></span>
+    </a>
+  </div>
+
+  <div id="navbarBasicExample" class="navbar-menu">
+    <div class="navbar-start">
+      <a class="navbar-item" href="/csc341/syllabus">
+        Syllabus
+      </a>
+      <a class="navbar-item" href="/csc341/resources">
+        Resources
+      </a>
+      
+      <a class="navbar-item" href="https://teams.microsoft.com/l/team/19%3avJm8Wpx7VaDe72Q53lhFS8hKbE8ZqBMHkz-HLvwbzag1%40thread.tacv2/conversations?groupId=621c250a-ec62-4c30-afbd-0e3b7efa7606&tenantId=524f9e3e-faca-4f64-b3ec-adb2baee8807
+">Teams</a>
+      
+      
+      <a class="navbar-item" href="https://www.gradescope.com/courses/299977
+">Gradescope</a>
+      
+      <a class="navbar-item" href="/csc341/editor">
+        Editor
+      </a>
+    </div>
+  </div>
+</nav>
+
+<!-- Adapted from: https://bulma.io/documentation/components/navbar/ -->
+<script>
+  document.addEventListener('DOMContentLoaded', () => {
+
+    // Get all "navbar-burger" elements
+    const $navbarBurgers = Array.prototype.slice.call(document.querySelectorAll('.navbar-burger'), 0);
+
+    // Check if there are any navbar burgers
+    if ($navbarBurgers.length > 0) {
+
+      // Add a click event on each of them
+      $navbarBurgers.forEach( el => {
+        el.addEventListener('click', () => {
+
+          // Get the target from the "data-target" attribute
+          const target = el.dataset.target;
+          const $target = document.getElementById(target);
+
+          // Toggle the "is-active" class on both the "navbar-burger" and the "navbar-menu"
+          el.classList.toggle('is-active');
+          $target.classList.toggle('is-active');
+
+        });
+      });
+    }
+
+  });
+</script>
+
+    <section class="section">
+      <div class="container">
+        <h1 class="title">
+          CSC 341 (Fall 2021)
+        </h1>
+        <h1 class="subtitle">
+          
+            Demonstration Exercise #4
+          
+        </h1>
+      </div>
+    </section>
+    <section class="content">
+      <div class="container">
+        
+        <h1 id="problem-1-irregularities">Problem 1: Irregularities</h1>
+<p>Consider the following language <span class="math inline">\(L\)</span>:</p>
+<p><span class="math display">\[
+L = \{\, x^i y^j z^k \mid k = i + j \,\}.
+\]</span></p>
+<ol type="a">
+<li>Prove that <span class="math inline">\(L\)</span> is irregular with the pumping lemma.</li>
+<li>Prove that <span class="math inline">\(L\)</span> is irregular using the Myhill-Nerode theorem.</li>
+</ol>
+<h1 id="problem-2-dont-judge-a-book">Problem 2: Don’t Judge a Book</h1>
+<p>In are study of finite automata, we have come to realize that the states of our automata constitute the “memory” of our computation. Some computations require very little memory. Others, however, require a large amount of memory. Regardless, if that memory requirement is <em>bounded</em>, we can write a finite automata that performs that computation.</p>
+<p>For the remaining problems, we will analyze the following family of languages over <span class="math inline">\(\Sigma = \{\, 0, 1 \,\}\)</span>.</p>
+<p><span class="math display">\[
+L_n = \{\, w \mid w \in \Sigma^*, \text{the \( n \)th to the last character of \( w \) is a \( 1 \)} \,\}.
+\]</span></p>
+<p>For example <span class="math inline">\(L_3\)</span> is the set of strings where the third-to-the-last character is a <span class="math inline">\(1\)</span> and <span class="math inline">\(L_1\)</span> is the set of strings where the last character is a <span class="math inline">\(1\)</span>.</p>
+<p>First, let’s see why these family of languages might be more complicated than they seem at first glance. Let’s consider <span class="math inline">\(L_2\)</span>, the set of strings where the second-to-the-last character is a <span class="math inline">\(1\)</span>. Here is a DFA <span class="math inline">\(D\)</span> that attempts to recognize <span class="math inline">\(L_3\)</span>.</p>
+<figure>
+<img src="/csc341/img/nth-last-01.png" alt="A DFA D that attempts to recognize L_3" /><figcaption aria-hidden="true">A DFA <span class="math inline">\(D\)</span> that attempts to recognize <span class="math inline">\(L_3\)</span></figcaption>
+</figure>
+<p>While this DFA works in some cases, it doesn’t work in all of them! Analyze <span class="math inline">\(D\)</span> and find an example string that <span class="math inline">\(D\)</span> rejects but should be accepted. Give an execution trace of this string on <span class="math inline">\(D\)</span> to demonstrate that <span class="math inline">\(D\)</span> has the wrong behavior on it. Based off of you example, describe what is wrong with <span class="math inline">\(D\)</span> in a sentence or two.</p>
+<h1 id="problem-3-nondeterminism-to-the-rescue">Problem 3: Nondeterminism to the Rescue!</h1>
+<p>While seemingly tricky, nondeterminism allows us to quickly implement machines that recognize this family of languages. Give NFAs that recognize <span class="math inline">\(L_1\)</span>, <span class="math inline">\(L_2\)</span>, and <span class="math inline">\(L_3\)</span> that employ nondeterminism to “guess” when we have seen the last <span class="math inline">\(n\)</span> characters of the input. Your NFAs should follow a common pattern of implementation such that <span class="math inline">\(L_n\)</span> takes <span class="math inline">\(n+1\)</span> states to implement as a NFA.</p>
+<h1 id="problem-4-back-to-dfas">Problem 4: Back to DFAs</h1>
+<p>Of course, nondeterminism is a theoretical device, so it is useful to bring our constructions “back to reality” by converting our NFAs to DFAs. Use the <em>subset construction</em> technique to convert each of your NFAs for <span class="math inline">\(L_1\)</span>, <span class="math inline">\(L_2\)</span>, and <span class="math inline">\(L_3\)</span> into DFAs. You should also notice a pattern to the number of subset states that actually participate in each of your DFAs, <em>i.e.</em>, are reachable from the starting state.</p>
+<h1 id="problem-5-by-hand">Problem 5: By Hand</h1>
+<p>The pattern that you saw in the previous problem suggests a troubling trend: we need an exponential number of states to capture <span class="math inline">\(L_n\)</span>! But of course, the subset construction, by virtue of being general, may include extraneous states that we could simplify away with direct implementation strategies.</p>
+<p>To explore this idea, build a DFA for <span class="math inline">\(L_2\)</span> (strings where the second-to-last character is a <span class="math inline">\(1\)</span>) independent of the NFAs/DFAs from the previous problems. For each state of your DFA, describe an invariant/property associated with that state that eventually implies correctness of the overall machine.</p>
+<p>(<em>Hint</em>: to do this, consider how much of the input do you have to <em>remember</em> in order to carry out the computation faithfully. Call this subset of the input a <em>window</em> and then formulate your state invariants in terms of these windows.)</p>
+<h1 id="problem-6-bounds">Problem 6: Bounds</h1>
+<p>You should observe that the DFA you derived by-hand in problem 5 is identical to the DFA you generated in problem 4 for <span class="math inline">\(L_2\)</span>! This suggests that <em>we can do no better</em> than an exponential number of states for this class of problems. We can state this formally as follows:</p>
+<div class="proof">
+<p><strong>Claim</strong>: any DFA <span class="math inline">\(D\)</span> that recognizes <span class="math inline">\(L_n\)</span> has <em>no fewer</em> than <span class="math inline">\(2^n\)</span> states.</p>
+</div>
+<p>Use ideas behind the Myhill-Nerode theorem to prove that this claim is true.</p>
+<p>(<em>Hint</em>: think about the invariants you developed in the previous problem. Think of them as sets of strings, predict how many such sets/invariants you need for <span class="math inline">\(L_n\)</span>, and argue why these sets form equivalence classes for <span class="math inline">\(L_n\)</span>.)</p>
+
+      </div>
+    </section>
+    <footer class="footer is-size-7 has-text-centered">
+  <a rel="license" href="http://creativecommons.org/licenses/by-sa/4.0/"><img alt="Creative Commons License" style="border-width:0" src="https://i.creativecommons.org/l/by-sa/4.0/80x15.png" /></a><br />This work is licensed under a <a rel="license" href="http://creativecommons.org/licenses/by-sa/4.0/">Creative Commons Attribution-ShareAlike 4.0 International License</a>.<br/>
+  Made with <a href="https://bulma.io">Bulma</a>, <a href="https://jekyllrb.com">Jekyll</a>, <a href="https://www.brailleinstitute.org/freefont">Atkinson Hyperlegible</a>, and <a href="https://github.com/JetBrains/JetBrainsMono">JetBrains Mono</a>.
+</footer>
+
+  </body>
+</html>

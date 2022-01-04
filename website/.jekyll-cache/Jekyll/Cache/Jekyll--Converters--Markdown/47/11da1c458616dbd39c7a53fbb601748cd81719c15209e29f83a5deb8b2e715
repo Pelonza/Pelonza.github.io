@@ -1,0 +1,19 @@
+I"?	<h1 id="mapping-reducibility">Mapping Reducibility</h1>
+<p>This upcoming week, we will study NP-completeness in depth. Our goals are threefold:</p>
+<ol type="1">
+<li>Refine our skills of developing mapping reductions between problems of increasingly disparate nature.</li>
+<li>Identify the types of problems that are NP-complete.</li>
+<li>Gain context into the famous <span class="math inline">\(\textsf{P} = \textsf{NP}\)</span> problem.</li>
+</ol>
+<p>To do this, we need to utilize our skills of rigorous mathematical reasoning and mathematical fortitude to effectively explore a large space of possibilities for our reductions and ultimately settle on a correct one.</p>
+<ul>
+<li>Review Sipser 7.4 “Polynomial Time Reducibility” to “The Cook-Levine Theorem” Read and study Theorem 7.32 (<span class="math inline">\(\textsf{3SAT} \leq_p \textsf{CLIQUE}\)</span>) in detail.</li>
+<li>Skim Sipser 7.5 “Additional NP-Complete Problems”. Read and study Theorem 7.44 (<span class="math inline">\(\textsf{VERTEX-COVER}\)</span> is NP-complete) in detail.</li>
+</ul>
+<hr />
+<p><strong>Reading Problem (Details)</strong></p>
+<ol type="1">
+<li>In the construction of the <span class="math inline">\(\textsf{CLIQUE}\)</span> instance in Theorem 7.32, it is noted that “no edge is present between two nodes of contradictory labels”. Suppose that this restriction was lifted so that there <em>is</em> an edge present between nodes with contradictory labels. Identify specifically where the proof of correctness fails with this change.</li>
+<li>In the construction of the <span class="math inline">\(\textsf{VERTEX-COVER}\)</span> instance in Theorem 7.44, the size of the vertex cover is set to be <span class="math inline">\(k = m + 2l\)</span> where <span class="math inline">\(m\)</span> is the number of variables and <span class="math inline">\(l\)</span> is the number of clauses in <span class="math inline">\(\phi\)</span>, the input <span class="math inline">\(\textsf{3-SAT}\)</span> instance. How does this formula for <span class="math inline">\(k\)</span> relate to the choice of vertices in the cover for the group, <em>i.e.</em>, explain where <span class="math inline">\(m\)</span> and <span class="math inline">\(2l\)</span> come from in terms of the construction of the potential cover and explain why these are the correct values.</li>
+</ol>
+:ET

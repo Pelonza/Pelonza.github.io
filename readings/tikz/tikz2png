@@ -1,0 +1,20 @@
+#!/bin/bash
+
+content=`cat $1`
+width=$2
+height=$3
+output=$4
+
+cat > tmp.tex <<-EOF
+\documentclass[convert={density=300,size=${width}x${height},outext=.png}]{standalone}
+\usepackage{tikz}
+\usetikzlibrary{automata, positioning}
+\begin{document}
+$content
+\end{document}
+
+EOF
+
+pdflatex -shell-escape tmp.tex
+mv tmp.png $output
+rm -rf tmp.aux tmp.log tmp.pdf tmp.tex

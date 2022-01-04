@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Quine Exploration</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bulma/0.7.5/css/bulma.min.css">
+  <link rel="stylesheet" href="/csc341/css/style.css">
+  <link rel="stylesheet" href="/csc341/css/syntax.css">
+  <link rel="stylesheet" href="/csc341/css/syntax-drracket.css">
+  <script defer src="https://use.fontawesome.com/releases/v5.3.1/js/all.js"></script>
+  
+  <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+  <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+  
+  
+  
+</head>
+
+  </head>
+  <body>
+    <nav class="navbar is-primary" role="navigation" aria-label="main navigation">
+  <div class="navbar-brand">
+    <a class="navbar-item" href="/csc341/">
+      <img src="/csc341/img/laurel-white.png">
+      &nbsp;
+      CSC 341 (21fa)
+    </a>
+
+    <a role="button" class="navbar-burger burger" aria-label="menu" aria-expanded="false" data-target="navbarBasicExample">
+      <span aria-hidden="true"></span>
+      <span aria-hidden="true"></span>
+      <span aria-hidden="true"></span>
+    </a>
+  </div>
+
+  <div id="navbarBasicExample" class="navbar-menu">
+    <div class="navbar-start">
+      <a class="navbar-item" href="/csc341/syllabus">
+        Syllabus
+      </a>
+      <a class="navbar-item" href="/csc341/resources">
+        Resources
+      </a>
+      
+      <a class="navbar-item" href="https://teams.microsoft.com/l/team/19%3avJm8Wpx7VaDe72Q53lhFS8hKbE8ZqBMHkz-HLvwbzag1%40thread.tacv2/conversations?groupId=621c250a-ec62-4c30-afbd-0e3b7efa7606&tenantId=524f9e3e-faca-4f64-b3ec-adb2baee8807
+">Teams</a>
+      
+      
+      <a class="navbar-item" href="https://www.gradescope.com/courses/299977
+">Gradescope</a>
+      
+      <a class="navbar-item" href="/csc341/editor">
+        Editor
+      </a>
+    </div>
+  </div>
+</nav>
+
+<!-- Adapted from: https://bulma.io/documentation/components/navbar/ -->
+<script>
+  document.addEventListener('DOMContentLoaded', () => {
+
+    // Get all "navbar-burger" elements
+    const $navbarBurgers = Array.prototype.slice.call(document.querySelectorAll('.navbar-burger'), 0);
+
+    // Check if there are any navbar burgers
+    if ($navbarBurgers.length > 0) {
+
+      // Add a click event on each of them
+      $navbarBurgers.forEach( el => {
+        el.addEventListener('click', () => {
+
+          // Get the target from the "data-target" attribute
+          const target = el.dataset.target;
+          const $target = document.getElementById(target);
+
+          // Toggle the "is-active" class on both the "navbar-burger" and the "navbar-menu"
+          el.classList.toggle('is-active');
+          $target.classList.toggle('is-active');
+
+        });
+      });
+    }
+
+  });
+</script>
+
+    <section class="section">
+      <div class="container">
+        <h1 class="title">
+          CSC 341 (Fall 2021)
+        </h1>
+        <h1 class="subtitle">
+          
+            Lab: Quine Exploration
+          
+        </h1>
+      </div>
+    </section>
+    <section class="content">
+      <div class="container">
+        
+        <p>The recursion theorem when stated in terms of Turing machines can feel rather abstract. However, we can apply the heart of the recursion theorem towards a fun programming activity, <em>quines</em>. Quines are programs that produce themselves as output. In this lab, we’ll try to map the proof of the recursion theorem into a general strategy for developing quines.</p>
+<h1 id="problem-1-review-yourself">Problem 1: Review Yourself</h1>
+<p>First, let’s review the construction of the <span class="math inline">\(\text{SELF}\)</span> machine from the reading. Recall that the machine is composed of two Turing Machines, <span class="math inline">\(A\)</span> and <span class="math inline">\(B\)</span>. Discuss with your group and ultimately answer in your own words (not the book’s):</p>
+<ol type="1">
+<li>What does <span class="math inline">\(A\)</span> do?</li>
+<li>What does <span class="math inline">\(B\)</span> do?</li>
+<li>How does <span class="math inline">\(\text{SELF}\)</span> use <span class="math inline">\(A\)</span> and <span class="math inline">\(B\)</span> to accomplish its behavior, <em>i.e.</em>, leave its own description, <span class="math inline">\(\langle \text{SELF} \rangle\)</span> on the tape?</li>
+</ol>
+<p>Check your answers with a member of the course staff before moving on.</p>
+<h1 id="problem-2-text-to-source">Problem 2: Text to Source</h1>
+<p>The reading presented a textual version of <span class="math inline">\(\text{SELF}\)</span> that is slightly closer to the:</p>
+<blockquote>
+<p>Print two copies of the following, the second in quotes: “Print two copies of the following, the second in quotes:”</p>
+</blockquote>
+<p>Intuitively, we read the first line as a command and the second, quoted line as the object the command manipulates. This is analogous to the distinction between strings and source code, say, in Python:</p>
+<div class="sourceCode" id="cb1"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="op">&gt;&gt;&gt;</span> <span class="dv">1</span><span class="op">+</span><span class="dv">1</span>     <span class="co"># this evaluates to the number 2</span></span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="op">&gt;&gt;&gt;</span> <span class="st">&quot;1+1&quot;</span>   <span class="co"># this evaluates to the string &quot;1+1&quot;</span></span></code></pre></div>
+<p>Mapping this back onto the Turing Machine construction:</p>
+<ul>
+<li><span class="math inline">\(A\)</span> is the quoted text, <em>i.e.</em>, the second line, and</li>
+<li><span class="math inline">\(B\)</span> is the “command” text, <em>i.e.</em>, the first line.</li>
+</ul>
+<p>Use this outline of <span class="math inline">\(\text{SELF}\)</span> to build a small quine in a programming language of your choice—I recommend either Python or C. Some notes about your construction:</p>
+<p>There are two main difficulties you will encounter carrying out this construction in a real programming language:</p>
+<ol type="1">
+<li>You need to translate “print this string” where the string contains (roughly) the source code of the program. Using a local variable to store this string first (analogous to <span class="math inline">\(A\)</span> being the quoted text) is a good starting point.</li>
+<li>While a seemingly benign comment in the textual version of <span class="math inline">\(\text{SELF}\)</span>, “the second in quotes” is integral to capture <span class="math inline">\(A\)</span> in the output. This also becomes somewhat problematic in a real programming language for a technical reason: string quotation. In other words, <code>"""</code> is not a well-formed string in most languages! You would typically need to escape the quote, <em>i.e.</em>, <code>"\""</code>, but then printing this string yields <code>"""</code> and not <code>"\""</code> which is what the source would say! You will need an alternative way to put “the second in quotes” other than using quotes themselves. Remember that many languages allow you to print characters via ASCII codes, avoiding the need to write down a quote directly!</li>
+</ol>
+<p>(A final note, I am well aware that many quines are on the Internet already. Please try not to look at these while you do this part of the lab. The fun in this is discovering the construction yourself!)</p>
+<p>(For fun: can you write an <em>ouborous</em> quine, <em>e.g.</em>, a quine in Python that outputs a quine in C that outputs the original quine in Python again?)</p>
+<h1 id="problem-3-lambdas">Problem 3: Lambdas</h1>
+<p>In the previous problem, our quine operated by printing and then patching up the string after the fact via string interpolation. One might wonder if this is a weird artifact of string interpolation that is more a “hack” than what the recursion theorem is getting at. It turns out that we can achieve the effects of the recursion theorem with just functions! Consider the following code snippets in Racket:</p>
+<pre class="racket"><code># Code snippet #1
+((lambda (x) (x x)) (lambda (x) (x x)))
+
+# Code snippet #2
+(define Y
+  (lambda (t)
+    ((lambda (f)
+       (t (lambda (z) ((f f) z))))
+     (lambda (f)
+       (t (lambda (z) ((f f) z)))))))
+
+(define fact
+  (lambda (f)
+    (lambda (n)
+      (if (= n 0)
+          1
+          (* n (f (- n 1)))))))
+
+(define fact5 ((Y fact) 5))</code></pre>
+<ol type="1">
+<li><p>Try out each code snippet in Racket to get a feel for what it does.</p>
+<ul>
+<li>For code snippet #1, you can run it directly in the REPL, <em>i.e.</em>, it is an expression rather than a function declaration.</li>
+<li>For code snippet #2, you can put the definitions in a source file and inspect the rules of <code>fact5</code>.</li>
+</ul></li>
+<li><p>In a few sentences, explain at a high-level what each snippet does and how it accomplishes that goal. In code snippet #1, identify roughly what is <span class="math inline">\(A\)</span> and <span class="math inline">\(B\)</span> in the construction. In code snippet #2, identify what the <code>f</code> parameter is in the definition of <code>fact</code>.</p></li>
+<li><p>Use code snippet #2 and <span class="math inline">\(Y\)</span> to write down a recursive definition for <code>(fib n)</code> which returns the <code>n</code>th Fibonacci number, defined recursively as:</p>
+<p><span class="math display">\[\begin{align}
+\mathsf{fib}(0) =&amp;\; 0 \\
+\mathsf{fib}(1) =&amp;\; 1 \\
+\mathsf{fib}(n) =&amp;\; \mathsf{fib}(n-1) + \mathsf{fib}(n-2)
+\end{align}\]</span></p></li>
+</ol>
+
+      </div>
+    </section>
+    <footer class="footer is-size-7 has-text-centered">
+  <a rel="license" href="http://creativecommons.org/licenses/by-sa/4.0/"><img alt="Creative Commons License" style="border-width:0" src="https://i.creativecommons.org/l/by-sa/4.0/80x15.png" /></a><br />This work is licensed under a <a rel="license" href="http://creativecommons.org/licenses/by-sa/4.0/">Creative Commons Attribution-ShareAlike 4.0 International License</a>.<br/>
+  Made with <a href="https://bulma.io">Bulma</a>, <a href="https://jekyllrb.com">Jekyll</a>, <a href="https://www.brailleinstitute.org/freefont">Atkinson Hyperlegible</a>, and <a href="https://github.com/JetBrains/JetBrainsMono">JetBrains Mono</a>.
+</footer>
+
+  </body>
+</html>

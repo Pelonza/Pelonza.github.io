@@ -1,0 +1,7 @@
+I"�<p>In today’s class, we’ll look at the connections between <em>linear programming</em>, a problem known to be in <span class="math inline">\(P\)</span>, <em>integer linear programming</em>, a specialization of linear programming known to be <span class="math inline">\(\mathsf{NP}\)</span>-hard, and how we can exploit this connection in creating approximation algorithms.</p>
+<p>If you have seen linear programming before in a previous class, feel free to review those materials to refresh your memory. For those of you that are new to linear programming, read this brief article on <a href="https://brilliant.org">brilliant.org</a> about the subject:</p>
+<ul>
+<li><a href="https://brilliant.org/wiki/linear-programming/" class="uri">https://brilliant.org/wiki/linear-programming/</a></li>
+</ul>
+<p>Read the first half of the article in detail to understand what the linear programming is about. You can skim the section on the Simplex method which is the canonical “first” method for solving linear programs.</p>
+:ET

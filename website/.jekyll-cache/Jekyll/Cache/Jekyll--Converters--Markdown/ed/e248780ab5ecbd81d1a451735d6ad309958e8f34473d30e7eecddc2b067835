@@ -1,0 +1,14 @@
+I"�<h1 id="np-completeness">NP-Completeness</h1>
+<p>Now that we’ve reviewed the basics of complexity theory, we’ll jump into the meat of the discussion: NP-Completeness. The <span class="math inline">\(\mathsf{P} = \mathsf{NP}\)</span> asks whether the class of polynomial time problems is equivalent to the class of nondeterministic polynominal time problems. To understand the nature of the problem and why it is so important, we’ll investigate the class <span class="math inline">\(\mathsf{NP}\)</span> in more detail as well as explore the idea of <em>completeness</em> for a complexity class: problems that define the “outer border” of that class.</p>
+<ul>
+<li>Sipser 7.3 “The class NP” and 7.4 “NP-Completeness” to “The Cook-Levin Theorem”.</li>
+</ul>
+<hr />
+<p><strong>Reading Problem (More Facts)</strong></p>
+<p>Answer these conceptual questions in a sentence or two a piece.</p>
+<ol type="1">
+<li>How do we define the class <span class="math inline">\(\mathsf{NP}\)</span> in terms of a “certificate”? How does the “certificate” relate to the “non-determinism” part of <span class="math inline">\(\mathsf{NP}\)</span>?</li>
+<li>How do I show that a language is <span class="math inline">\(\mathsf{NP}\)</span>-complete?</li>
+<li>Suppose that <span class="math inline">\(A \leq_p B\)</span>. Which of these languages is “solving” the other? Which of these languages is “stronger” than the other?</li>
+</ol>
+:ET

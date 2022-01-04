@@ -1,0 +1,22 @@
+I"�<h1 id="problem-1-multi-tape-kill">Problem 1: Multi-(tape) Kill</h1>
+<ol type="1">
+<li><p>Summarize each direction of the proof of equivalence of ordinary TMs and multi-tape Turing machines in a sentence a piece.</p></li>
+<li><p>Multi-tape Turing machines have a finite, fixed number of tapes at construction time. Suppose we tried extending the model so that the machine had an <em>infinite</em> number of tapes at construction time. Describe the fundamental difficulties we would encounter in trying to construct and execute such a model.</p></li>
+<li><p>In contrast, imagine extending the model so that the multi-tape model can have a <em>dynamic</em>, <em>unbounded</em> number of tapes. The model would need an operation to spawn a new tape and the transition function would need to be modified to operate over a list of tapes. In contrast to the infinite tape model, does this variant seem equivalent to ordinary TMs? Why?</p></li>
+</ol>
+<h1 id="problem-2-the-matrix">Problem 2: The Matrix</h1>
+<ol type="1">
+<li><p>Summarize each direction of the proof of equivalence of ordinary TMs and non-deterministic TMs in a sentence a piece.</p></li>
+<li><p>When converting NFAs to DFAs, we induced a <em>state explosion</em>, drastically increasing the space complexity of the automata. Where does this <em>space hit</em> occur in the NTM-to-TM transformation?</p></li>
+<li><p>Review the proof of the NTM-to-TM transformation in the book (theorem 3.16).</p>
+<ol type="a">
+<li>What is the purpose of the “address” in the construction?</li>
+<li>What does the TM do if a string is not accepted by the original NTM? How do we fix this problem?</li>
+</ol></li>
+</ol>
+<h1 id="problem-3-blah-blah-blah">Problem 3: Blah Blah Blah</h1>
+<ol type="1">
+<li><p>Summarize each direction of the proof of equivalence of ordinary TMs and enumerators in a sentence a piece.</p></li>
+<li><p>Give a formal description of <em>what</em> an enumerator is. Include a rigorous description of its components, its behavior, and the inclusion condition for its language, <em>i.e.</em>, the condition under which <span class="math inline">\(w \in L(E)\)</span> for some enumerator <span class="math inline">\(E\)</span></p></li>
+</ol>
+:ET

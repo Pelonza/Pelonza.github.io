@@ -1,0 +1,31 @@
+I"<h1 id="problem-1-chicken-and-rice">Problem 1: Chicken and Rice</h1>
+<ol type="a">
+<li><p>Use Rice’s Theorem to show the following language is undecidable:</p>
+<p><span class="math display">\[
+L_1 = \{\, M \mid \text{\( M \) is a TM and \( 010 \in L(M) \)} \,\}.
+\]</span></p></li>
+<li><p>Is the following language undecidable according to Rice’s Theorem? Explain in a sentence or two.</p>
+<p><span class="math display">\[
+L_2 = \{\, M \mid \text{\( M \) is a TM and on some input, \( 010 \) exists on the tape at some point} \,\}.
+\]</span></p></li>
+</ol>
+<h1 id="problem-2-scheme-is-real-right">Problem 2: Scheme Is Real, Right?</h1>
+<ol type="a">
+<li><p>Consider the problem of determining whether the branches of an arbitrary if-expression in Scheme, <em>i.e.</em>, a problem of the form <code>(if b e1 e2)</code>, produces the same type of value (<em>e.g.</em>, only integers or strings). For example, this property is:</p>
+<ul>
+<li>True of <code>(if b 0 1)</code>.</li>
+<li>False of <code>(if b 5 #t)</code>.</li>
+<li>True of <code>(if b (if #t 0 "hi") 1)</code> (because we are only checking the branches of the top-level conditional).</li>
+</ul>
+<p>Note that the content of the guard <code>b</code> in these cases is irrelevant because we want to know whether the types of values of each branch are the same, <em>irrespective of whether we go into either of the branches on any choice of <code>b</code></em>.</p>
+<p>Formulate this problem as a language and show that this problem is undecidable. For this problem, you may assume:</p>
+<ul>
+<li>The existence of a Scheme function <code>run-tm</code> that takes a Turing machine description <span class="math inline">\(M\)</span> and input <span class="math inline">\(w\)</span> and returns <code>#t</code> if <span class="math inline">\(M\)</span> accepts <span class="math inline">\(w\)</span> and <code>#f</code> if <span class="math inline">\(M\)</span> rejects <span class="math inline">\(w\)</span>.</li>
+<li>The “type” of the value “produced” by the infinite loop is the “bottom” type, <span class="math inline">\(\bot\)</span>. In the context of this proof, <span class="math inline">\(\bot\)</span> has type <span class="math inline">\(a\)</span> for any <span class="math inline">\(a\)</span> so that if were able to establish that a branch of computation had type <span class="math inline">\(\bottom\)</span>, that branch has some <em>unknown</em> type <span class="math inline">\(a\)</span> that is not necessarily equal to any particular concrete type we have in mind.</li>
+</ul></li>
+<li><p>Now consider the fact that a computer program on a 64-bit machine runs with <span class="math inline">\(2^{64}\)</span> bits of memory. Show that the halting problem for such computer programs is decidable. Make sure to argue the (a) correctness and (b) termination of your algorithm.</p>
+<p>(<em>Hint</em>: consider the decidability proof of <span class="math inline">\(A_{\mathsf{LBA}}\)</span>.)</p></li>
+<li><p>The answers to the two previous parts seem to be at odds. In a few sentences, describe the critical difference between the two cases that makes the first part undecidable but the second part decidable.</p></li>
+<li><p>Finally with all this in mind, it seems like that undecidability is merely a theoretical device. However, it does have important practical implications! In a few sentences, describe these practical implications—if we feel the need to solve some variant of the halting problem for a computational device, what must we keep in mind and how should we approach the problem?</p></li>
+</ol>
+:ET

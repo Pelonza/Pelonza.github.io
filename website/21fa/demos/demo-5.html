@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Demonstration Exercise #5</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bulma/0.7.5/css/bulma.min.css">
+  <link rel="stylesheet" href="/csc341/css/style.css">
+  <link rel="stylesheet" href="/csc341/css/syntax.css">
+  <link rel="stylesheet" href="/csc341/css/syntax-drracket.css">
+  <script defer src="https://use.fontawesome.com/releases/v5.3.1/js/all.js"></script>
+  
+  <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+  <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+  
+  
+  
+</head>
+
+  </head>
+  <body>
+    <nav class="navbar is-primary" role="navigation" aria-label="main navigation">
+  <div class="navbar-brand">
+    <a class="navbar-item" href="/csc341/">
+      <img src="/csc341/img/laurel-white.png">
+      &nbsp;
+      CSC 341 (21fa)
+    </a>
+
+    <a role="button" class="navbar-burger burger" aria-label="menu" aria-expanded="false" data-target="navbarBasicExample">
+      <span aria-hidden="true"></span>
+      <span aria-hidden="true"></span>
+      <span aria-hidden="true"></span>
+    </a>
+  </div>
+
+  <div id="navbarBasicExample" class="navbar-menu">
+    <div class="navbar-start">
+      <a class="navbar-item" href="/csc341/syllabus">
+        Syllabus
+      </a>
+      <a class="navbar-item" href="/csc341/resources">
+        Resources
+      </a>
+      
+      <a class="navbar-item" href="https://teams.microsoft.com/l/team/19%3avJm8Wpx7VaDe72Q53lhFS8hKbE8ZqBMHkz-HLvwbzag1%40thread.tacv2/conversations?groupId=621c250a-ec62-4c30-afbd-0e3b7efa7606&tenantId=524f9e3e-faca-4f64-b3ec-adb2baee8807
+">Teams</a>
+      
+      
+      <a class="navbar-item" href="https://www.gradescope.com/courses/299977
+">Gradescope</a>
+      
+      <a class="navbar-item" href="/csc341/editor">
+        Editor
+      </a>
+    </div>
+  </div>
+</nav>
+
+<!-- Adapted from: https://bulma.io/documentation/components/navbar/ -->
+<script>
+  document.addEventListener('DOMContentLoaded', () => {
+
+    // Get all "navbar-burger" elements
+    const $navbarBurgers = Array.prototype.slice.call(document.querySelectorAll('.navbar-burger'), 0);
+
+    // Check if there are any navbar burgers
+    if ($navbarBurgers.length > 0) {
+
+      // Add a click event on each of them
+      $navbarBurgers.forEach( el => {
+        el.addEventListener('click', () => {
+
+          // Get the target from the "data-target" attribute
+          const target = el.dataset.target;
+          const $target = document.getElementById(target);
+
+          // Toggle the "is-active" class on both the "navbar-burger" and the "navbar-menu"
+          el.classList.toggle('is-active');
+          $target.classList.toggle('is-active');
+
+        });
+      });
+    }
+
+  });
+</script>
+
+    <section class="section">
+      <div class="container">
+        <h1 class="title">
+          CSC 341 (Fall 2021)
+        </h1>
+        <h1 class="subtitle">
+          
+            Demonstration Exercise #5
+          
+        </h1>
+      </div>
+    </section>
+    <section class="content">
+      <div class="container">
+        
+        <h1 id="problem-1-membership">Problem 1: Membership</h1>
+<p>Consider the following problems and prove that they are in NP. Be explicit about (a) the type of witnesses of the problem and (b) the verification algorithm for witnesses. Argue that the verification algorithm operates in polynomial time.</p>
+<ol type="1">
+<li><span class="math inline">\(\mathsf{COLOR} = \{\, \langle G, k \rangle \mid \text{There is a \( k \)-coloring of graph \( G \)} \,\}\)</span>.</li>
+<li><span class="math inline">\(\mathsf{SCHED} = \{\, \langle J, (\prec), W, k, t \rangle \mid \text{There is a schedule of \( J \) jobs on \( k \) processors taking time \( t \) or less} \,\}\)</span>.</li>
+</ol>
+<p><strong>Graph Coloring</strong></p>
+<p>A <span class="math inline">\(k\)</span>-graph coloring of a graph <span class="math inline">\(G\)</span> is an assignment of <span class="math inline">\(k\)</span> colors to nodes such that no two nodes share both the same color and an edge.</p>
+<p><strong>Job Scheduling</strong></p>
+<p>Consider a set of <span class="math inline">\(J\)</span> jobs equipped with:</p>
+<ol type="1">
+<li>A partial order <span class="math inline">\(\prec\)</span> on <span class="math inline">\(J\)</span> that determines that for each <span class="math inline">\(J_m, J_n \in J\)</span> whether <span class="math inline">\(J_m \prec J_n\)</span> (understood to mean that <span class="math inline">\(J_m\)</span> must be completed before <span class="math inline">\(J_n\)</span>)</li>
+<li>Weight determined by the function <span class="math inline">\(W : J \rightarrow \mathbb{N}\)</span> that says how long each job takes to complete.</li>
+</ol>
+<p>There exists <span class="math inline">\(k\)</span> distinct processors on which to run jobs. The goal is to find a scheduling of jobs on these processors that respects the ordering such that all jobs complete in target time <span class="math inline">\(t\)</span> or less.</p>
+<h1 id="problem-2-the-complexity-strikes-again">Problem 2: The Complexity Strikes Again</h1>
+<p>Consider the following combinatorial decision problems:</p>
+<p><strong>0-1 Knapsack</strong></p>
+<p>Let <span class="math inline">\(B\)</span> be a set of objects equipped with two functions:</p>
+<ul>
+<li>A <em>weight function</em> <span class="math inline">\(w : B \rightarrow \mathbb{N}\)</span> assigning weights to objects.</li>
+<li>A <em>value function</em> <span class="math inline">\(v : B \rightarrow \mathbb{N}\)</span> assigning values to objects.</li>
+</ul>
+<p>Suppose that we have a knapsack that can hold at most <span class="math inline">\(W\)</span> weight. Find a subset <span class="math inline">\(B^* \subseteq B\)</span> that can fit in the knapsack and has at least value <span class="math inline">\(V\)</span>.</p>
+<p><strong>Subset Sum</strong></p>
+<p>Let <span class="math inline">\(S \subseteq \mathbb{N}\)</span> be a (multi-)set of natural numbers. Find a subset <span class="math inline">\(S^* \subseteq S\)</span> such that <span class="math inline">\(\sum_{s \in S^*} s = t\)</span> for some target number <span class="math inline">\(t\)</span>.</p>
+<ol type="1">
+<li><p>Write down formal language definitions for these two problems: <span class="math inline">\(\mathsf{knapsack}\)</span> and <span class="math inline">\(\mathsf{subsetsum}\)</span>.</p></li>
+<li><p>Assume that <span class="math inline">\(\mathsf{subsetsum}\)</span> is <span class="math inline">\(\mathsf{NP}\)</span>-complete. Prove that <span class="math inline">\(\mathsf{knapsack}\)</span> is <span class="math inline">\(\mathsf{NP}\)</span>-complete. Make sure that you explicitly justify the complexity of your verifier and the complexity and correctness of your constructed mapping function in your proof.</p></li>
+</ol>
+
+      </div>
+    </section>
+    <footer class="footer is-size-7 has-text-centered">
+  <a rel="license" href="http://creativecommons.org/licenses/by-sa/4.0/"><img alt="Creative Commons License" style="border-width:0" src="https://i.creativecommons.org/l/by-sa/4.0/80x15.png" /></a><br />This work is licensed under a <a rel="license" href="http://creativecommons.org/licenses/by-sa/4.0/">Creative Commons Attribution-ShareAlike 4.0 International License</a>.<br/>
+  Made with <a href="https://bulma.io">Bulma</a>, <a href="https://jekyllrb.com">Jekyll</a>, <a href="https://www.brailleinstitute.org/freefont">Atkinson Hyperlegible</a>, and <a href="https://github.com/JetBrains/JetBrainsMono">JetBrains Mono</a>.
+</footer>
+
+  </body>
+</html>

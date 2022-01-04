@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Machine Analysis</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bulma/0.7.5/css/bulma.min.css">
+  <link rel="stylesheet" href="/csc341/css/style.css">
+  <link rel="stylesheet" href="/csc341/css/syntax.css">
+  <link rel="stylesheet" href="/csc341/css/syntax-drracket.css">
+  <script defer src="https://use.fontawesome.com/releases/v5.3.1/js/all.js"></script>
+  
+  <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+  <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+  
+  
+  
+</head>
+
+  </head>
+  <body>
+    <nav class="navbar is-primary" role="navigation" aria-label="main navigation">
+  <div class="navbar-brand">
+    <a class="navbar-item" href="/csc341/">
+      <img src="/csc341/img/laurel-white.png">
+      &nbsp;
+      CSC 341 (21fa)
+    </a>
+
+    <a role="button" class="navbar-burger burger" aria-label="menu" aria-expanded="false" data-target="navbarBasicExample">
+      <span aria-hidden="true"></span>
+      <span aria-hidden="true"></span>
+      <span aria-hidden="true"></span>
+    </a>
+  </div>
+
+  <div id="navbarBasicExample" class="navbar-menu">
+    <div class="navbar-start">
+      <a class="navbar-item" href="/csc341/syllabus">
+        Syllabus
+      </a>
+      <a class="navbar-item" href="/csc341/resources">
+        Resources
+      </a>
+      
+      <a class="navbar-item" href="https://teams.microsoft.com/l/team/19%3avJm8Wpx7VaDe72Q53lhFS8hKbE8ZqBMHkz-HLvwbzag1%40thread.tacv2/conversations?groupId=621c250a-ec62-4c30-afbd-0e3b7efa7606&tenantId=524f9e3e-faca-4f64-b3ec-adb2baee8807
+">Teams</a>
+      
+      
+      <a class="navbar-item" href="https://www.gradescope.com/courses/299977
+">Gradescope</a>
+      
+      <a class="navbar-item" href="/csc341/editor">
+        Editor
+      </a>
+    </div>
+  </div>
+</nav>
+
+<!-- Adapted from: https://bulma.io/documentation/components/navbar/ -->
+<script>
+  document.addEventListener('DOMContentLoaded', () => {
+
+    // Get all "navbar-burger" elements
+    const $navbarBurgers = Array.prototype.slice.call(document.querySelectorAll('.navbar-burger'), 0);
+
+    // Check if there are any navbar burgers
+    if ($navbarBurgers.length > 0) {
+
+      // Add a click event on each of them
+      $navbarBurgers.forEach( el => {
+        el.addEventListener('click', () => {
+
+          // Get the target from the "data-target" attribute
+          const target = el.dataset.target;
+          const $target = document.getElementById(target);
+
+          // Toggle the "is-active" class on both the "navbar-burger" and the "navbar-menu"
+          el.classList.toggle('is-active');
+          $target.classList.toggle('is-active');
+
+        });
+      });
+    }
+
+  });
+</script>
+
+    <section class="section">
+      <div class="container">
+        <h1 class="title">
+          CSC 341 (Fall 2021)
+        </h1>
+        <h1 class="subtitle">
+          
+            Lab: Machine Analysis
+          
+        </h1>
+      </div>
+    </section>
+    <section class="content">
+      <div class="container">
+        
+        <p><span class="math display">\[
+\newcommand{\EQdfa}{\mathsf{EQ}_\mathsf{DFA}}
+\]</span></p>
+<h1 id="problem-1-to-infinity-and-beyond">Problem 1: To Infinity And Beyond</h1>
+<p>Consider the following language:</p>
+<p><span class="math display">\[
+\EQdfa = \{\, (D_1, D_2) \mid \text{\( D_1 \) and \( D_2 \) are equivalent DFAs} \,\}
+\]</span></p>
+<p>Recall that two DFAs are equivalent if their languages are identical. Theorem 4.5 of Sipser shows that <span class="math inline">\(\EQdfa\)</span> is decidable by way of language closure properties. In this problem, we’ll consider a more direct approach.</p>
+<ol type="a">
+<li><p>Consider the following proof that <span class="math inline">\(\EQdfa\)</span> is decidable by way of constructing a deciding Turing machine that recognizes the language.</p>
+<div class="proof">
+<p>Define <span class="math inline">\(M\)</span>, a deciding Turing machine that decides <span class="math inline">\(\EQdfa\)</span> as follows:</p>
+<p>M = On input <span class="math inline">\(D_1\)</span>, <span class="math inline">\(D_2\)</span>—two DFAs:</p>
+<ol type="1">
+<li>For every possible string <span class="math inline">\(w \in \Sigma^*\)</span>, if <span class="math inline">\(D_1\)</span> and <span class="math inline">\(D_2\)</span> have differing acceptance behavior on <span class="math inline">\(w\)</span>, <em>i.e.</em>, one rejects and the other accepts, then <em>reject</em>.</li>
+<li>Otherwise, <span class="math inline">\(D_1\)</span> and <span class="math inline">\(D_2\)</span> have the same acceptance behavior on all strings: <em>accept</em>.</li>
+</ol>
+</div>
+<p>This construction has a fatal flaw! In a few sentences, describe what the flaw is.</p></li>
+<li><p>We can patch up this flaw by noting that we don’t have to test all strings. Determine a bound on the size of strings we need to test to determine if two DFAs are equal. In a few sentences, argue why this bound is correct.</p></li>
+</ol>
+<h1 id="problem-2-can-you-do-it-yes-you-can">Problem 2: Can You Do It? Yes You Can!</h1>
+<ol type="a">
+<li><p>Call a language <span class="math inline">\(L\)</span> <em>prefix-free</em> if for all <span class="math inline">\(w \in L\)</span>, there does not exist a <span class="math inline">\(w&#39; \in L\)</span> such that <span class="math inline">\(w \neq w&#39;\)</span> and <span class="math inline">\(w&#39;\)</span> is a prefix of <span class="math inline">\(w\)</span>. For example <span class="math inline">\(ab\)</span> is a prefix of <span class="math inline">\(abcde\)</span> and thus <span class="math inline">\(abcde\)</span> would not be in a prefix-free language if <span class="math inline">\(ab\)</span> was also in the language. Give a deciding procedure to determine if the language of a DFA <span class="math inline">\(D\)</span> is prefix free. Argue the correctness of your construction in a few sentences.</p></li>
+<li><p>Apply the construction you developed to the problem of determining whether a Turing machine is prefix-free. Identify:</p>
+<ul>
+<li>What you must change about the construction in order to adapt it to TMs.</li>
+<li>What problem(s) do you ultimately run into with your construction that you cannot reconcile?</li>
+</ul></li>
+<li><p>The previous part does not necessarily mean that the prefix-free property is not decidable for TMs in general. Try to collaboratively develop a new algorithm to determine whether a TM is prefix-free. Describe the algorithm at a high-level and give a positive example of its execution, <em>i.e.</em>, a TM whose language is prefix-free and how the algorithm accepts this TM.</p></li>
+<li><p>It turns out that the problem of determining whether a TM is prefix free is actually undecidable! Since we can’t prove this fact yet, give an example of a TM that your algorithm should accept or reject, but the algorithm either fails to give the correct answer or goes into an infinite loop.</p></li>
+</ol>
+
+      </div>
+    </section>
+    <footer class="footer is-size-7 has-text-centered">
+  <a rel="license" href="http://creativecommons.org/licenses/by-sa/4.0/"><img alt="Creative Commons License" style="border-width:0" src="https://i.creativecommons.org/l/by-sa/4.0/80x15.png" /></a><br />This work is licensed under a <a rel="license" href="http://creativecommons.org/licenses/by-sa/4.0/">Creative Commons Attribution-ShareAlike 4.0 International License</a>.<br/>
+  Made with <a href="https://bulma.io">Bulma</a>, <a href="https://jekyllrb.com">Jekyll</a>, <a href="https://www.brailleinstitute.org/freefont">Atkinson Hyperlegible</a>, and <a href="https://github.com/JetBrains/JetBrainsMono">JetBrains Mono</a>.
+</footer>
+
+  </body>
+</html>

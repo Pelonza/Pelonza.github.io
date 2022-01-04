@@ -1,0 +1,57 @@
+I"H,<p><span class="math display">\[
+\newcommand{\PUZZLE}{\mathsf{PUZZLE}}
+\newcommand{\NP}{\mathsf{NP}}
+\newcommand{\SAT}{\mathsf{3SAT}}
+\newcommand{\INDSET}{\mathsf{INDSET}}
+\newcommand{\CLIQUE}{\mathsf{CLIQUE}}
+\newcommand{\SETPACK}{SETPACK}
+\]</span></p>
+<h1 id="problem-card-reductions">Problem: Card Reductions</h1>
+<p>To show that <span class="math inline">\(\PUZZLE\)</span> is <span class="math inline">\(\NP\)</span>-complete, we show that it is in <span class="math inline">\(\NP\)</span> and hard for <span class="math inline">\(\NP\)</span>.</p>
+<div class="proof">
+<p><strong>Claim 1</strong>: <span class="math inline">\(\PUZZLE \in \NP\)</span>.</p>
+<p><em>Proof</em>. The verifier for <span class="math inline">\(\PUZZLE\)</span> takes a stack of cards as input and a recommended orientation of the cards as a certificate. The verifier can then pile the cards, orienting them according to the certificate, and verify whether the bottom of the box is visible. It takes a linear amount of work to orient and pile the cards and a constant amount of work to sight-verify the holes.</p>
+</div>
+<div class="proof">
+<p><strong>Claim 2</strong>: <span class="math inline">\(\PUZZLE\)</span> is <span class="math inline">\(\NP\)</span>-hard</p>
+<p><em>Proof</em>. We reduce <span class="math inline">\(\SAT\)</span> to <span class="math inline">\(\PUZZLE\)</span>, <em>i.e.</em>, <span class="math inline">\(\SAT \leq_p \PUZZLE\)</span>. Let <span class="math inline">\(\phi\)</span> be a boolean formula in 3-cnf form. For each variable, create a card, and for each card, create a row on that card for each clause of <span class="math inline">\(\phi\)</span>. For each row on each card, punch a hole out of the left-hand column if the variable corresponding to the card <em>does not appear</em> in the clause corresponding to the row. Punch a hole out of the right-hand column if the variable’s complement <em>does not appear</em> in the clause. Finally, include an extra card, the left-hand column is entirely punched out and the right-hand column untouched.</p>
+<p>Now we show that this reduction preserves correctness of inputs. Before we begin, we introduce some terms to simplify the presentation. Call the left-hand column of each card the <em>positive column</em> and the right-hand column the <em>negative column</em>. Call the orientation of a card <em>positive</em> when the card is untouched, <em>i.e.</em>, the positive column is on the left and the negative column is on the right. Call the orientation of a card <em>negative</em> when the card is flipped, <em>i.e.</em>, the positive column is on the right and the negative column is on the left.</p>
+<p>First, we show that if <span class="math inline">\(\phi\)</span> is satisfiable, then the resulting cards have a solution. Orient the cards so that if variable <span class="math inline">\(x\)</span> is true in the satisfying assignment, then the card is oriented positively. If <span class="math inline">\(x\)</span> is false in the satisfying assignment, then the card is oriented negatively. Finally, the extra card is included in the deck as-is.</p>
+<p>Now consider each row of the resulting card deck and its corresponding clause in <span class="math inline">\(\phi\)</span>. Since the assignment in question is satisfying, one of the literals of these clause must be true, call it <span class="math inline">\(x\)</span>. Observe that by our construction, the card corresponding to <span class="math inline">\(x\)</span> must not be punched out in this position (the left-hand column of the row). This is true for each such row since each clause is true and thus the left-hand column is covered. Finally, by construction of the extra card, the right-hand column is also covered as it has no holes on the right-hand side.</p>
+<p>Finally, we show if the card deck has a solution then <span class="math inline">\(\phi\)</span> is satisfiable. Construct the satisfying assignment for <span class="math inline">\(\phi\)</span> by assigning each variable <span class="math inline">\(x\)</span> of <span class="math inline">\(\phi\)</span> to true if its corresponding card is positively oriented. Otherwise, assign <span class="math inline">\(x\)</span> to false if its corresponding card is negatively oriented.</p>
+<p>To see how the resulting assignment is indeed satisfying for <span class="math inline">\(\phi\)</span>, consider each clause of <span class="math inline">\(\phi\)</span> and its corresponding row among the cards. For the deck to have a solution, some card of the deck must cover the left-hand column of this row. By construction, this card corresponds to some variable <span class="math inline">\(x\)</span> of this clause. If the card is oriented positively, then <span class="math inline">\(x\)</span> itself makes the clause true. If the card is oriented negatively, then <span class="math inline">\(\overline{x}\)</span> makes the clause true.</p>
+</div>
+<h1 id="problem-graph-reductions">Problem: Graph Reductions</h1>
+<div class="proof">
+<p><strong>Claim 1</strong>: <span class="math inline">\(\INDSET \in \NP\)</span>.</p>
+<p><em>Proof</em>. A verifier for <span class="math inline">\(\INDSET\)</span> takes a graph <span class="math inline">\(G\)</span> and target <span class="math inline">\(k\)</span> as input and a subset <span class="math inline">\(V^*\)</span> of the vertices <span class="math inline">\(|V|\)</span> of <span class="math inline">\(G\)</span> as a certificate. The verifier then checks that <span class="math inline">\(V^*\)</span> has <span class="math inline">\(k\)</span> elements and is indeed an independent set by checking each pair of vertices of <span class="math inline">\(V^*\)</span> and observing that there is no edge between them. There are <span class="math inline">\(\mathcal{O}(|V|^2)\)</span> such pairs to check, leading to a polynomial runtime overall.</p>
+</div>
+<div class="proof">
+<p><strong>Claim 2</strong>: <span class="math inline">\(\INDSET\)</span> is <span class="math inline">\(\NP\)</span>-hard.</p>
+<p><em>Proof</em>. We show that <span class="math inline">\(\INDSET\)</span> is <span class="math inline">\(\NP\)</span>-hard by reducing <span class="math inline">\(\CLIQUE\)</span> to <span class="math inline">\(\INDSET\)</span>. Let <span class="math inline">\(G = (V, E)\)</span> be a graph and <span class="math inline">\(k\)</span> a target clique size. We convert these inputs to <span class="math inline">\(\CLIQUE\)</span> into inputs for <span class="math inline">\(\INDSET\)</span> as follows:</p>
+<ul>
+<li>Let the graph to <span class="math inline">\(\INDSET\)</span> be <span class="math inline">\(\overline{G}\)</span>, the complement of <span class="math inline">\(G\)</span>. <span class="math inline">\(\overline{G}\)</span> is <span class="math inline">\(G\)</span> but each pair of vertices of <span class="math inline">\(\overline{G}\)</span> has an edge iff the same pair of vertices <em>does not</em> have an edge in <span class="math inline">\(G\)</span>.</li>
+<li>Let the target independent set size be <span class="math inline">\(k\)</span>.</li>
+</ul>
+<p>Consider any pair of vertices <span class="math inline">\(v_1\)</span> and <span class="math inline">\(v_2\)</span> of the <span class="math inline">\(k\)</span>-clique. Observe that by the nature of graph complement, <span class="math inline">\(v_1\)</span> and <span class="math inline">\(v_2\)</span> are not connected in <span class="math inline">\(\overline{G}\)</span>. Thus, the vertices of the <span class="math inline">\(k\)</span>-clique form a <span class="math inline">\(k\)</span>-independent in <span class="math inline">\(\overline{G}\)</span>. This relationship between <span class="math inline">\(G\)</span> and its complement is symmetric, therefore, <span class="math inline">\(G\)</span> has a <span class="math inline">\(k\)</span>-clique if and only if <span class="math inline">\(\overline{G}\)</span> has a <span class="math inline">\(k\)</span>-independent set.</p>
+</div>
+<h1 id="problem-more-graph-reductions">Problem: More Graph Reductions</h1>
+<div class="proof">
+<p><strong>Claim</strong>: <span class="math inline">\(\INDSET \leq_p \SETPACK\)</span>.</p>
+<p>Let <span class="math inline">\(G = (V, E)\)</span> be a graph and <span class="math inline">\(k\)</span> be the size of an independent set of <span class="math inline">\(G\)</span>. Construct the components of <span class="math inline">\(\SETPACK\)</span> as follows:</p>
+<ul>
+<li><p><span class="math inline">\(U = V\)</span></p></li>
+<li><p>For each vertex <span class="math inline">\(v \in V\)</span>, include a subset <span class="math inline">\(X_v \in S\)</span>:</p>
+<p><span class="math display">\[
+X_v = \{\, (u, v) \mid (u, v) \in E \,\}.
+\]</span></p></li>
+<li><p>Use the size of the independent set <span class="math inline">\(k\)</span> as the minimum set packing size <span class="math inline">\(S\)</span>.</p></li>
+</ul>
+<p>First we show that if <span class="math inline">\(G\)</span> has a <span class="math inline">\(k\)</span>-independent set <span class="math inline">\(V^*\)</span>, then there is a set packing for <span class="math inline">\((U, S, k)\)</span>, call it <span class="math inline">\(S^*\)</span>. Define <span class="math inline">\(S^*\)</span> as follows:</p>
+<p><span class="math display">\[
+S^* = \{\, X_v \mid v \in V^* \,\}.
+\]</span></p>
+<p>Consider two vertices in the independent set of <span class="math inline">\(V^*\)</span>, say <span class="math inline">\(u\)</span> and <span class="math inline">\(v\)</span>. We consequently include <span class="math inline">\(X_u\)</span> and <span class="math inline">\(X_v\)</span> in <span class="math inline">\(S^*\)</span>. Observe that by construction that <span class="math inline">\(X_u\)</span> and <span class="math inline">\(X_v\)</span> are sets of edges drawn from <span class="math inline">\(E\)</span> and have no edges in common. Because <span class="math inline">\(u\)</span> and <span class="math inline">\(v\)</span> each represent one of the end points of the edges in <span class="math inline">\(X_u\)</span> and <span class="math inline">\(X_v\)</span>, the only way for them to have an edge in common is if edge <span class="math inline">\((u, v) \in E\)</span>. However, this is not the case because <span class="math inline">\(V^*\)</span> is an independent set. Therefore, every pair of sets in <span class="math inline">\(S^*\)</span> is pairwise disjoint and thus <span class="math inline">\(S^*\)</span> is a set packing of size <span class="math inline">\(k\)</span>.</p>
+<p>Now consider a <span class="math inline">\(\SETPACK\)</span> instance <span class="math inline">\((U, S, k)\)</span> produced by our reduction and a set packing <span class="math inline">\(S^*\)</span> and <span class="math inline">\(|S^*| \geq k\)</span>. Each of the subsets <span class="math inline">\(X_v\)</span> of <span class="math inline">\(S\)</span> correspond to a vertex in <span class="math inline">\(G\)</span>. Observe that the set of these vertices form a <span class="math inline">\(k\)</span>-independent set because they do not have a mutual edge in common. If they did, then their corresponding sets in the <span class="math inline">\(\SETPACK\)</span> instance would not be disjoint.</p>
+</div>
+:ET

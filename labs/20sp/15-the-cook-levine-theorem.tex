@@ -1,0 +1,40 @@
+\documentclass[11pt]{book}
+
+\setcounter{chapter}{15}
+\newcommand{\docclass}{CSC 341 (20sp)}
+\newcommand{\doctitle}{The Cook-Levine Theorem}
+\newcommand{\docauthor}{Peter-Michael Osera}
+
+\usepackage{reading}
+
+\begin{document}
+
+\begin{center}
+  \large\textbf{{\doctitle}}
+\end{center}
+
+\vspace{2em}
+
+%%%%% Problem-specific Macros %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\newcommand{\desc}[1]{\ensuremath{\langle #1 \rangle}}
+\newcommand{\NP}{\ensuremath{\mathsf{NP}}\xspace}
+\newcommand{\lang}[1]{\ensuremath{\mathsf{#1}}\xspace}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{problem}{Details, Details, \ldots}
+  Answer the following key questions about the proof of the Cook-Levine theorem that tests our understanding of Turing machines and polynominal-time reductions.
+  \begin{enumerate}[label=(\alph*)]
+    \item What are the inputs and outputs of the mapping function of the reduction?
+    \item Why do the tableaus under consideration have \( n^k \) rows?
+    \item Why can we bound the size of the tape, \ie, the number of rows of the tableau, to \( n^k \)?
+    \item What do the boolean variables \( x_{i, j, s} \) represent in the reduction?
+    \item What does each of the boolean formula represent: \( \phi_\mathsf{cell} \), \( \phi_{\mathsf{start}} \), \( \phi_{\mathsf{move}} \), \( \phi_{\mathsf{accept}} \)?
+    \item Does a \( 2 \times 2 \) window work?
+      Why or why not?
+    \item How does the constructed boolean function account for nondeterminism?
+  \end{enumerate}
+\end{problem}
+
+\end{document}

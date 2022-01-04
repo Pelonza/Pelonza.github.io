@@ -1,0 +1,21 @@
+I"&<div class="definition">
+<p>Consider <span class="math inline">\(n\)</span> jobs that must be scheduled on a single sequential processor. Define the following constants for each job <span class="math inline">\(j\)</span>:</p>
+<ul>
+<li><span class="math inline">\(p_j\)</span>, the processing time of <span class="math inline">\(j\)</span>.</li>
+<li><span class="math inline">\(r_j\)</span>, the release date of <span class="math inline">\(j\)</span>, <em>i.e.</em>, <span class="math inline">\(j\)</span> cannot start before time <span class="math inline">\(r_j\)</span>.</li>
+<li><span class="math inline">\(d_j\)</span>, the due date of <span class="math inline">\(j\)</span>.</li>
+</ul>
+<p>Define a <em>valid schedule</em> to be an assignment of start times to jobs that denote when the job starts. Furthermore, the release dates of each job are respected and no job’s execution overlaps another job’s execution.</p>
+<p>With such a schedule, define:</p>
+<ul>
+<li><span class="math inline">\(C_j\)</span>, the time that job <span class="math inline">\(j\)</span> completes.</li>
+<li><span class="math inline">\(L_j\)</span>, the lateness of job <span class="math inline">\(j\)</span>, <em>i.e.</em>, <span class="math inline">\(L_j = C_j - r_j\)</span>.</li>
+</ul>
+<p>Define the <em>minimum lateness job scheduling problem</em> to be the problem of finding a valid schedule for a set of jobs that minimizes the lateness of the jobs, <em>i.e.</em>, minimizes <span class="math inline">\(\sum_{j \in 1, \ldots, n} L_j\)</span>.</p>
+</div>
+<p>Show that the following algorithm that finds a scheduling of the jobs:</p>
+<blockquote>
+<p>When the processor is idle, schedule an available job with the earliest due date.</p>
+</blockquote>
+<p>Is a <span class="math inline">\(2\)</span>-approximation algorithm for this problem.</p>
+:ET

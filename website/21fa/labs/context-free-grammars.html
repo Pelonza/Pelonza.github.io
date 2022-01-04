@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Context-free Grammars</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bulma/0.7.5/css/bulma.min.css">
+  <link rel="stylesheet" href="/csc341/css/style.css">
+  <link rel="stylesheet" href="/csc341/css/syntax.css">
+  <link rel="stylesheet" href="/csc341/css/syntax-drracket.css">
+  <script defer src="https://use.fontawesome.com/releases/v5.3.1/js/all.js"></script>
+  
+  <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+  <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+  
+  
+  
+</head>
+
+  </head>
+  <body>
+    <nav class="navbar is-primary" role="navigation" aria-label="main navigation">
+  <div class="navbar-brand">
+    <a class="navbar-item" href="/csc341/">
+      <img src="/csc341/img/laurel-white.png">
+      &nbsp;
+      CSC 341 (21fa)
+    </a>
+
+    <a role="button" class="navbar-burger burger" aria-label="menu" aria-expanded="false" data-target="navbarBasicExample">
+      <span aria-hidden="true"></span>
+      <span aria-hidden="true"></span>
+      <span aria-hidden="true"></span>
+    </a>
+  </div>
+
+  <div id="navbarBasicExample" class="navbar-menu">
+    <div class="navbar-start">
+      <a class="navbar-item" href="/csc341/syllabus">
+        Syllabus
+      </a>
+      <a class="navbar-item" href="/csc341/resources">
+        Resources
+      </a>
+      
+      <a class="navbar-item" href="https://teams.microsoft.com/l/team/19%3avJm8Wpx7VaDe72Q53lhFS8hKbE8ZqBMHkz-HLvwbzag1%40thread.tacv2/conversations?groupId=621c250a-ec62-4c30-afbd-0e3b7efa7606&tenantId=524f9e3e-faca-4f64-b3ec-adb2baee8807
+">Teams</a>
+      
+      
+      <a class="navbar-item" href="https://www.gradescope.com/courses/299977
+">Gradescope</a>
+      
+      <a class="navbar-item" href="/csc341/editor">
+        Editor
+      </a>
+    </div>
+  </div>
+</nav>
+
+<!-- Adapted from: https://bulma.io/documentation/components/navbar/ -->
+<script>
+  document.addEventListener('DOMContentLoaded', () => {
+
+    // Get all "navbar-burger" elements
+    const $navbarBurgers = Array.prototype.slice.call(document.querySelectorAll('.navbar-burger'), 0);
+
+    // Check if there are any navbar burgers
+    if ($navbarBurgers.length > 0) {
+
+      // Add a click event on each of them
+      $navbarBurgers.forEach( el => {
+        el.addEventListener('click', () => {
+
+          // Get the target from the "data-target" attribute
+          const target = el.dataset.target;
+          const $target = document.getElementById(target);
+
+          // Toggle the "is-active" class on both the "navbar-burger" and the "navbar-menu"
+          el.classList.toggle('is-active');
+          $target.classList.toggle('is-active');
+
+        });
+      });
+    }
+
+  });
+</script>
+
+    <section class="section">
+      <div class="container">
+        <h1 class="title">
+          CSC 341 (Fall 2021)
+        </h1>
+        <h1 class="subtitle">
+          
+            Lab: Context-free Grammars
+          
+        </h1>
+      </div>
+    </section>
+    <section class="content">
+      <div class="container">
+        
+        <h1 id="problem-1-the-basics">Problem 1: The Basics</h1>
+<p>(Adapted from Sipser 2.3.) Answer each part for the following context-free grammar <span class="math inline">\(G\)</span> with start symbol <span class="math inline">\(R\)</span>.</p>
+<p><span class="math display">\[\begin{align*}
+R \rightarrow&amp;\; XRX \mid S \\
+S \rightarrow&amp;\; aTb \mid bTa \\
+T \rightarrow&amp;\; XTX \mid X \mid \epsilon \\
+X \rightarrow&amp;\; a \mid b
+\end{align*}\]</span></p>
+<ol type="1">
+<li>What are the variables of <span class="math inline">\(G\)</span>?</li>
+<li>What are the terminals of <span class="math inline">\(G\)</span>?</li>
+<li>Give three strings in <span class="math inline">\(L(G)\)</span>.</li>
+<li>Give three strings <em>not</em> in <span class="math inline">\(L(G)\)</span>.</li>
+<li>Consider the string <span class="math inline">\(XXX\)</span>. Show via a derivation that <span class="math inline">\(XXX \overset{*}{\Rightarrow} aba\)</span>.</li>
+<li>Consider the string <span class="math inline">\(T\)</span>. Show via a derivation that <span class="math inline">\(T \overset{*}{\Rightarrow} aba\)</span>.</li>
+<li>Consider the string <span class="math inline">\(T\)</span>. Show via a derivation that <span class="math inline">\(T \overset{*}{\Rightarrow} XX\)</span>.</li>
+<li>Consider the string <span class="math inline">\(R\)</span>. Show vi a derivation that <span class="math inline">\(R \overset{*}{\Rightarrow} aabbb\)</span>.</li>
+<li>Give a description in English of <span class="math inline">\(L(G)\)</span>.</li>
+</ol>
+<h1 id="problem-2-conditional-ambiguity">Problem 2: Conditional Ambiguity</h1>
+<p>In C-like programming languages, conditional statements frequently have the following form:</p>
+<pre><code>expr -&gt; true | false | ...
+stmt -&gt; if expr then stmt | if expr then stmt else stmt | skip | ...</code></pre>
+<p>(The <code>skip</code> statement is a statement that does nothing. For our purposes, it acts as a “base case” to the <span class="math inline">\(stmt\)</span> production. You could substitute any “real” base statement such as a call to a function, <em>e.g.</em>, <code>printf()</code> instead.)</p>
+<ol type="1">
+<li><p>Give a string and two parse trees demonstrating the ambiguity of this grammar.</p></li>
+<li><p>Which of the two parse trees is the “preferred” interpretation?</p></li>
+<li><p>Translate your toy example to an equivalent C program and try it out, <em>e.g.</em>, with <code>gcc</code> or <code>clang</code>. Which of the two parse trees is the one that your chosen compiler produces?</p></li>
+<li><p>Change the grammar above to remove the ambiguity. You may try to preserve the original syntax of the conditional statement, but you may also add additional syntax to remove the ambiguity. Your solution should be as faithful to good C programming practices as possible.</p></li>
+</ol>
+
+      </div>
+    </section>
+    <footer class="footer is-size-7 has-text-centered">
+  <a rel="license" href="http://creativecommons.org/licenses/by-sa/4.0/"><img alt="Creative Commons License" style="border-width:0" src="https://i.creativecommons.org/l/by-sa/4.0/80x15.png" /></a><br />This work is licensed under a <a rel="license" href="http://creativecommons.org/licenses/by-sa/4.0/">Creative Commons Attribution-ShareAlike 4.0 International License</a>.<br/>
+  Made with <a href="https://bulma.io">Bulma</a>, <a href="https://jekyllrb.com">Jekyll</a>, <a href="https://www.brailleinstitute.org/freefont">Atkinson Hyperlegible</a>, and <a href="https://github.com/JetBrains/JetBrainsMono">JetBrains Mono</a>.
+</footer>
+
+  </body>
+</html>

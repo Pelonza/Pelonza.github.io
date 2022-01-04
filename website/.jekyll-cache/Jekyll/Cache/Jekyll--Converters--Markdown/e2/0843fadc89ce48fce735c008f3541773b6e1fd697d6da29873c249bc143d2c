@@ -1,0 +1,25 @@
+I";<h1 id="problem-1-equivalence-classes">Problem 1: Equivalence Classes</h1>
+<p>Intuitively, we can think of the equivalence classes induced by <span class="math inline">\(\equiv_L\)</span> to be sets of string <em>prefixes</em> that all share the same acceptance or rejection behavior. As the Myhill-Nerode theorem tells us, each equivalence class is, itself, equivalent to a state of a DFA that recognizes language <span class="math inline">\(L\)</span>! To gain intuition about these equivalence classes, we’ll first do some translation between DFA states and equivalence classes.</p>
+<p>For each of the following regular languages:</p>
+<ol type="a">
+<li>First, give a DFA that recognizes the language.</li>
+<li>Then from the states of the DFA, give the corresponding equivalence classes induced by the <span class="math inline">\(\equiv_L\)</span> relation. Describe these equivalence classes as a collection of sets of strings where each set corresponds to a class. Ensure that your equivalence classes (a) are disjoint, <em>i.e.</em>, share no strings and (b) cover all possible strings drawn from <span class="math inline">\(\Sigma^*\)</span> although you do not need to formally prove these facts in this problem.</li>
+</ol>
+<p>In all cases, the alphabet is over <span class="math inline">\(\Sigma = \{\, 0, 1 \,\}\)</span>.</p>
+<ul>
+<li><span class="math inline">\(L_1 = \{\, 11x \mid x \in \Sigma^* \,\}\)</span>.</li>
+<li><span class="math inline">\(L_2 = \{\, w \mid w \in \Sigma^*, \text{\( w \) has an odd number of 0s and an even number of 1s } \,\}\)</span>.</li>
+</ul>
+<p>We’re accustomed to developing DFAs, so going from DFAs to these equivalence classes is a useful exercise to understand the concept. However, to apply Myhill-Nerode for the purposes of proving <em>irregularity</em> of a language, we will necessarily need to develop the equivalence classes without the aide of a finite automata!</p>
+<p>For these two regular languages, proceed in the opposite order:</p>
+<ol type="a">
+<li>First, give the corresponding equivalence classes induced by the <span class="math inline">\(\equiv_L\)</span> relation. Again, describe these classes as collections of sets of strings.</li>
+<li>From your equivalence classes, give a DFA that recognizes the language.</li>
+</ol>
+<ul>
+<li><span class="math inline">\(L_3 = \{\, 0x0 \mid x \in \Sigma^* \,\}\)</span>.</li>
+<li><span class="math inline">\(L_4 = \{\, w \mid w \in \Sigma^*, \text{every odd position of \( w \) is a \( 0 \)} \,\}\)</span>.</li>
+</ul>
+<h1 id="problem-2-nope-not-regular-again">Problem 2: Nope, Not Regular, Again</h1>
+<p>Consider the language <span class="math inline">\(A = \{\, www \mid w \in \Sigma^* \,\}\)</span> with <span class="math inline">\(\Sigma = \{\, 0, 1 \,\}\)</span>. Prove that <span class="math inline">\(A\)</span> is irregular using the Myhill-Nerode theorem.</p>
+:ET

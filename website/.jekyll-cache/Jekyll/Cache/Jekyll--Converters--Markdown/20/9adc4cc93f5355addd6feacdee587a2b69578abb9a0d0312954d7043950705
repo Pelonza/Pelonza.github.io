@@ -1,0 +1,21 @@
+I"Å	<p>In class, we introduced the problem of <em>0-1 integer programming</em>.</p>
+<div class="definition">
+<p>Suppose we have an <em>objective function</em> over <span class="math inline">\(m\)</span> variables <span class="math inline">\(f(x_1, \ldots, x_m) = c_1 x_1 + \cdots + c_m x_m\)</span>. Furthermore, suppose we have <em>constraints</em> on the variables in the form of <span class="math inline">\(n\)</span> equations of the form <span class="math inline">\(a_{i1} x_1 + \cdots + a_{im} x_m \leq b_i\)</span> for <span class="math inline">\(i \in 1, \ldots, n\)</span>. In addition, we require that the variables can only take on the values <span class="math inline">\(0\)</span> or <span class="math inline">\(1\)</span>.</p>
+<p>Our goal is to choose values for <span class="math inline">\(x_1, \ldots, x_m\)</span> that <em>maximizes</em> <span class="math inline">\(f(x_1, \ldots, x_m)\)</span> while satisfying all of the <span class="math inline">\(n\)</span> constraint equations.</p>
+</div>
+<p>We discussed how the 0-1 integer programming can serve as a reduction point for a variety of problems. We then discussed how we can reduce a problem, <em>e.g.</em>, the <em>set cover</em> problem:</p>
+<div class="definition">
+<p>Let <span class="math inline">\(S_1, \ldots, S_m \subseteq \mathcal{U}\)</span> be subsets drawn from a universe <span class="math inline">\(\mathcal{U}\)</span>. Furthermore, assign to each subset a weight <span class="math inline">\(w_i\)</span> for <span class="math inline">\(i \in 1, \ldots, m\)</span>. Create a sub-collection of these subsets such that:</p>
+<ul>
+<li>The subsets cover all the elements of <span class="math inline">\(\mathcal{U}\)</span>. In other words, if <span class="math inline">\(T\)</span> is the collection of subsets, then we want <span class="math inline">\(\bigcup_{S \in T} S = \mathcal{U}\)</span>.</li>
+<li>The sum of the weights of the sub-collection should be minimal.</li>
+</ul>
+</div>
+<p>An approximation algorithm comes from:</p>
+<ol type="1">
+<li>Reducing set cover to 0-1 integer programming.</li>
+<li>Solving the resulting integer program as a linear program, a process called <em>linear relaxation</em>.</li>
+<li>Recovering an approximate solution for the integer program from the linear program.</li>
+</ol>
+<p>For now, let‚Äôs focus on the first step of the process. Give a polynomial time reduction from 0-1 integer programming to set cover.</p>
+:ET

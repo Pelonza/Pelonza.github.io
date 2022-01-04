@@ -1,0 +1,24 @@
+I".<p><span class="math display">\[
+\newcommand{\NP}{\mathsf{NP}}\newcommand{\PUZZLE}{\mathsf{PUZZLE}}\newcommand{\SAT}{\mathsf{SAT}}
+\]</span></p>
+<h1 id="problem-card-reductions">Problem: Card Reductions</h1>
+<p>(Sipser 7.28) You are given a box and a collection of cards as indicated in the following figure. Because of the pegs in the box and the notches in the cards, each card will fit in the box in either of two ways. Each card contains two columns of holes, some of which may not be punched out. The puzzle is solved by placing all the cards in the box so as to completely cover the bottom of the box (every hole position is blocked by at least one card that has no hole there).</p>
+<figure>
+<img src="/csc341/img/cards.png" alt="Image of cards with holes" /><figcaption aria-hidden="true">Image of cards with holes</figcaption>
+</figure>
+<p>Let:</p>
+<p><span class="math display">\[
+\PUZZLE = \{\, \langle c_1, \ldots, c_k \rangle \mid \text{Each \( c_i \) represents a card and this collection of cards has a solution } \,\}.
+\]</span></p>
+<p>Ultimately, our goal will be to show that <span class="math inline">\(\PUZZLE\)</span> is <span class="math inline">\(\NP\)</span>-complete.</p>
+<ol type="a">
+<li><p>First, let’s explore this problem space a little bit. Design two sets of cards, <span class="math inline">\(C_1\)</span> and <span class="math inline">\(C_2\)</span>. For <span class="math inline">\(C_1\)</span>, ensure that there is a solution to the puzzle, <em>i.e.</em>, an orientation of each card such that the bottom of the box is covered, and list this solution. For <span class="math inline">\(C_2\)</span>, ensure that there is no such solution to the puzzle. Try to make these example cards <em>non-degenerate</em>, <em>i.e.</em>, every card has no holes, so that you can use your examples to generalize these results.</p></li>
+<li><p>To show <span class="math inline">\(\NP\)</span>-completeness, we must show membership and hardness. First, show that <span class="math inline">\(\PUZZLE \in \NP\)</span>.</p>
+<p>(<em>Hint</em>: what is a potential solution to <span class="math inline">\(\PUZZLE\)</span>? How do we verify that the solution is correct?)</p></li>
+<li><p>Now, let’s talk about proving hardness. Here, we will show <span class="math inline">\(\NP\)</span>-hardness by reducing <span class="math inline">\(\SAT\)</span> to <span class="math inline">\(\PUZZLE\)</span> where we know via the reading that <span class="math inline">\(\SAT\)</span> is <span class="math inline">\(\NP\)</span>-complete. First, let’s identify the “inputs” to each of the problems. What are the inputs to (predicates that decide) <span class="math inline">\(\SAT\)</span> and <span class="math inline">\(\PUZZLE\)</span>?</p></li>
+<li><p>With the inputs, let’s constrain our reduction function <span class="math inline">\(f\)</span>. Write down the <em>type</em> of the reduction function <span class="math inline">\(f\)</span>, <em>i.e.</em>, what does <span class="math inline">\(f\)</span> take as input and produce as output? Furthermore, write down the <em>correctness</em> condition of <span class="math inline">\(f\)</span> based on its type.</p></li>
+<li><p>Next we must design <span class="math inline">\(f\)</span>. It is likely not clear how to proceed as the problems are in vastly different domains! Ultimately what we want to do is <em>connect</em> the various parts of the inputs of <span class="math inline">\(\SAT\)</span> and <span class="math inline">\(\PUZZLE\)</span> which will allow us to then build our reduction function in a way that “preserves” correctness. List down the <em>components</em> of the inputs to <span class="math inline">\(\SAT\)</span> and <span class="math inline">\(\PUZZLE\)</span>.</p></li>
+<li><p>At this point, we’ve gotten all the facts out necessary to design <span class="math inline">\(f\)</span>. We must now experiment with designs that link together these parts and see if we can strike gold! To do this productively, first design a toy <span class="math inline">\(\SAT\)</span> example of 3–4 variables and 3–4 clauses with a satisfying assignment. Give at least <em>two potential designs</em> for reductions from <span class="math inline">\(\SAT\)</span> to <span class="math inline">\(\PUZZLE\)</span> showing how your reductions operate on your toy example, <em>even if the designs do not work!</em> If the designs do not work, describe what was broken about the reduction and how you could then address it in a subsequent attempt.</p></li>
+<li><p>Repeat (f) until you find a working reduction. Once you have this reduction, formally show that <span class="math inline">\(\SAT \leq_p \PUZZLE\)</span>, demonstrating that <span class="math inline">\(\PUZZLE\)</span> is <span class="math inline">\(\NP\)</span>-hard. Make sure to prove both sides of the correctness condition of your reduction!</p></li>
+</ol>
+:ET
